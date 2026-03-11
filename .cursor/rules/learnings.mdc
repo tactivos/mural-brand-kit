@@ -1,0 +1,83 @@
+---
+description: Agent learnings — how to do things in this project (Figma, patterns, etc.)
+alwaysApply: true
+---
+
+# Learnings
+
+Document learnings here so the agent can reuse them. Add new sections as we discover better approaches.
+
+---
+
+## Git versioning
+
+This project is under **Git** version control. Use it to avoid losing work when sessions overwrite or revert content.
+
+- **Commit after meaningful changes** — e.g. after adding/restoring sections, finishing a design pass, or aligning with Figma. That gives a restore point if a later edit goes wrong.
+- **No git = no history** — If the repo wasn’t initialized, the only “version” is the current file; overwrites from another session or tab can’t be undone without backups.
+- When making large or risky edits (e.g. removing whole sections, big refactors), suggest or run a commit first so the user can revert with `git checkout` or `git restore` if needed.
+
+---
+
+## Preventing overwrites and drift (spec-driven)
+
+- **Single source of truth:** Keep a canonical section list (e.g. `BRAND-SPEC.md`) that defines what sections and subsections the brand guide should have. The agent should not remove a section that appears in that spec unless the user explicitly asks and the spec is updated.
+- **Before removing:** Check the spec; if the section is listed, confirm with the user and update the spec when removing, so future sessions don’t re-add it.
+- **Project rules > global:** Prefer **project** rules (`.cursor/rules/`, `.cursorrules`) over global Cursor rules so behavior is version-controlled and shared. Global rules (Cursor Settings → Rules) apply to all projects but aren’t in the repo.
+- **Commit before big edits:** A project rule (e.g. `safe-editing.mdc`) can remind the agent to suggest a commit before removals or large refactors.
+
+---
+
+## Viewing / reading a Figma file
+
+**Do not** try to "view" a Figma design by fetching the Figma web URL (e.g. `https://www.figma.com/design/...`). That request will time out; Figma’s site is a heavy app and doesn’t return useful content to a simple fetch.
+
+**Do** use the **Figma Desktop MCP** when the user shares a Figma link or asks to compare/implement from Figma:
+
+1. **Extract the node ID** from the URL.  
+   Example: `https://www.figma.com/design/wqFFXQ2aDeGAumQrpmttCK/My-File?node-id=2735-236`  
+   → node ID is `2735-236`. For the MCP, use the colon form: **`2735:236`**.
+
+2. **Call the Figma Desktop tools** (the user must have the Figma file open in Figma Desktop):
+   - **`get_design_context`** (server: `user-Figma Desktop`) with `nodeId: "2735:236"` (and optional `clientLanguages`, `artifactType`, etc.).  
+     This returns reference code (e.g. React/Tailwind), design tokens, and metadata for that node.
+   - **`get_screenshot`** with the same `nodeId` to get a visual of the node when the response says to.
+
+3. Use the returned colors, spacing, and structure to compare with or implement in the codebase (e.g. Style Guide).
+
+### Calling Figma MCP over HTTP (when tools aren’t in the agent list)
+
+In some Cursor sessions the Figma Desktop tools (`get_design_context`, `get_screenshot`) don’t appear in the agent’s tool list even when the integration is enabled. You can still get design context by calling the MCP server over HTTP:
+
+1. **Ensure** the Figma file is open in **Figma Desktop** and the node you want is in that file.
+
+2. **Initialize a session** — POST to the MCP endpoint and capture the session ID from the response header:
+   ```bash
+   curl -s -D - -X POST http://127.0.0.1:3845/mcp \
+     -H "Content-Type: application/json" \
+     -H "Accept: application/json, text/event-stream" \
+     -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}'
+   ```
+   From the response headers, read **`mcp-session-id`** (e.g. `bce9c917-f306-4ddb-9484-6182d29b0346`).
+
+3. **Call the tool** — POST again with that session ID and `tools/call`:
+   ```bash
+   curl -s -X POST http://127.0.0.1:3845/mcp \
+     -H "Content-Type: application/json" \
+     -H "Accept: application/json, text/event-stream" \
+     -H "mcp-session-id: <SESSION_ID_FROM_STEP_2>" \
+     -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"get_design_context","arguments":{"nodeId":"2734:419","clientLanguages":"html,css","artifactType":"DESIGN_SYSTEM"}}}'
+   ```
+   Replace `<SESSION_ID_FROM_STEP_2>` with the value from step 2, and **`nodeId`** with the target node in colon form (e.g. from URL `node-id=2734-419` use `"2734:419"`). The response is JSON-RPC; the design context (e.g. React/Tailwind code, tokens) is in `result.content`.
+
+4. **Optional:** Call **`get_screenshot`** the same way with `"name":"get_screenshot"` and the same `nodeId` to get a visual of the node.
+
+5. Parse the response (e.g. extract colors like `#808080`, `#00c27a`, border-radius `4px`, padding) and apply them in the codebase (e.g. `mural-brand-guidelines.html`).
+
+**Note:** The MCP server (e.g. port 3845) is started by Cursor when the Figma Desktop integration is enabled; the file must be open in Figma Desktop for the context to reflect that file.
+
+---
+
+**Note:** The Figma REST API requires authentication and is not used here; the Figma Desktop integration reads the currently open file in the desktop app.
+
+**If the agent says it can’t access Figma:** The Figma Desktop MCP may not be connected in that session. Try the HTTP flow above, or ask the user to confirm (1) the Figma file is open in Figma Desktop and (2) the Figma integration is enabled in Cursor (e.g. Settings → MCP / Features). Alternatively, the user can paste design context or Inspect values from Figma so the agent can update the guidelines to match.

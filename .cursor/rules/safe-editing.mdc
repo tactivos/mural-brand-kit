@@ -1,0 +1,16 @@
+---
+description: Prevent overwriting and accidental removal — commit before big changes, treat spec as source of truth
+alwaysApply: true
+---
+
+# Safe editing and versioning
+
+## Before risky edits
+
+- **Removing sections or large blocks**: Before removing a whole section (e.g. Text inputs, Select dropdowns, Navbar, Footer), check **`BRAND-SPEC.md`** (canonical section list). If the section is listed there, treat removal as a **spec change**: confirm with the user and update `BRAND-SPEC.md` so the next session doesn’t re-add it by default.
+- **Big refactors or “revert” requests**: Suggest the user **commit current state first** (or run `git add` / `git commit` if they agree). Then do the refactor or revert. That way they can restore with `git checkout` or `git restore` if something goes wrong.
+- **Multiple sessions**: Different Cursor chats don’t share context. If the user says “we had X before and it’s gone,” use **agent transcripts** (see `RECOVERY-INSTRUCTIONS.md`) or **git history** to see what changed and restore from the spec or last good commit.
+
+## Spec-driven guardrail
+
+- The **brand guide** (`mural-brand-guidelines.html`) should match the project’s documented structure (sections and subsections). When in doubt, prefer **adding** or **updating** content over **deleting** unless the user explicitly asks to remove something and the spec is updated.

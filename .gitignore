@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Editor / IDE
+*.swp
+*.swo
+*~
+
+# Optional: uncomment if you want to keep Cursor project data local only
+# .cursor/

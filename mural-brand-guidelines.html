@@ -1,0 +1,3850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mural Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --jade: #00C27A;
+    --mural-green: #00843F;
+    --spring: #9FEC7F;
+    --mint: #B4F5C0;
+    --mural-blue: #5887FF;
+    --mural-pink: #FC83FF;  /* RGB 252, 131, 255 */
+    --mural-red: #FF4B4B;
+    --mural-yellow: #FFAA00;
+    --black: #000000;
+    --white: #FFFFFF;
+    --natural: #EDEDD8;
+    --mural-red-ada: #E02935;
+    --mural-blue-ada: #3776E4;
+
+    /* LUMA */
+    --luma-red: #EE3A43;
+    --luma-dark-olive: #575651;
+    --luma-light-olive: #989891;
+    --luma-deep-red: #C41230;
+    --luma-yellow: #ECB12E;
+    --luma-green: #8EA84E;
+    --luma-blue: #2F9DBA;
+
+    /* Form control tokens */
+    --primary-gray: #F0F0F0;
+    --surface-pills-bg: #D5F8E0;
+    --form-control-border: #808080;
+    --form-focus-ring-light: #bfffd2;
+    --form-focus-ring-dark: #073b28;
+    --form-hover-light: #dfdfdf;
+    --form-hover-dark: #303030;
+    --form-bg-dark: #1e1e1e;
+
+    --font-headline: 'Merriweather', Georgia, serif;
+    --font-body: Arial, Helvetica, sans-serif;
+    --weight-light: 300;
+    --weight-regular: 400;
+    --weight-bold: 700;
+    --sidebar-width: 240px;
+  }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--black);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--black);
+    padding: 32px 24px;
+    overflow-y: auto;
+    z-index: 100;
+  }
+  .sidebar-logo {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 28px;
+    letter-spacing: -0.5px;
+  }
+  .sidebar .nav-group {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.25);
+    margin-top: 20px;
+    margin-bottom: 6px;
+    padding-left: 12px;
+  }
+  .sidebar a {
+    display: block;
+    padding: 7px 12px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: var(--weight-regular);
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .sidebar a:hover,
+  .sidebar a.active {
+    color: var(--white);
+    background: rgba(255,255,255,0.07);
+  }
+
+  /* ── Main ── */
+  .main { margin-left: var(--sidebar-width); }
+
+  section { scroll-margin-top: 0; }
+
+  .section-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 64px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(0,0,0,0.4);
+    font-weight: var(--weight-bold);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 42px;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(0,0,0,0.6);
+    max-width: 620px;
+    margin-bottom: 48px;
+  }
+  .accent-line {
+    display: block;
+    width: 48px; height: 4px;
+    background: var(--jade);
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  h3.sub-title {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 24px;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    margin-top: 48px;
+  }
+  h3.sub-title:first-of-type { margin-top: 0; }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, var(--mural-green) 0%, var(--jade) 30%, var(--spring) 60%, var(--mint) 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+  .hero .section-inner { padding-top: 0; padding-bottom: 0; position: relative; z-index: 1; }
+  .hero .section-label { color: rgba(0,0,0,0.45); }
+  .hero h1 {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 64px;
+    color: var(--black);
+    letter-spacing: -2.5px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .hero p {
+    font-size: 19px;
+    color: rgba(0,0,0,0.6);
+    max-width: 520px;
+    line-height: 1.6;
+  }
+  .hero-bar {
+    display: flex;
+    width: 200px;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 40px;
+  }
+  .hero-bar span { flex: 1; }
+
+  /* ── Messaging hero block ── */
+  .messaging-hero {
+    background: var(--black);
+    border-radius: 16px;
+    padding: 56px;
+    margin-bottom: 40px;
+  }
+  .messaging-hero .tagline {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 44px;
+    color: var(--white);
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .messaging-hero .tagline em { color: var(--jade); font-style: normal; }
+  .messaging-hero p {
+    color: rgba(255,255,255,0.5);
+    font-size: 17px;
+    max-width: 500px;
+    line-height: 1.6;
+  }
+
+  .seeing-is-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+  .seeing-is-card {
+    padding: 20px 24px;
+    border-radius: 10px;
+    background: rgba(0,194,122,0.05);
+    border: 1px solid rgba(0,194,122,0.12);
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+    color: rgba(0,0,0,0.75);
+  }
+
+  /* ── Color swatches ── */
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .swatch { border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.06); }
+  .swatch-color {
+    height: 110px;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px 16px;
+  }
+  .swatch-hex {
+    font-size: 13px;
+    font-weight: var(--weight-bold);
+    padding: 3px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .swatch-info { padding: 12px 16px; background: var(--white); }
+  .swatch-name { font-weight: var(--weight-bold); font-size: 14px; margin-bottom: 2px; }
+  .swatch-usage { font-size: 12px; color: rgba(0,0,0,0.45); line-height: 1.4; }
+  .swatch-details { font-size: 11px; color: rgba(0,0,0,0.35); margin-top: 2px; }
+
+  /* ── Typography specimens ── */
+  .type-specimen {
+    background: var(--natural);
+    border-radius: 12px;
+    padding: 36px;
+    margin-bottom: 20px;
+  }
+  .type-specimen-label {
+    font-size: 11px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(0,0,0,0.35);
+    margin-bottom: 16px;
+  }
+  .type-specimen-meta {
+    margin-top: 16px;
+    font-size: 12px;
+    color: rgba(0,0,0,0.4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .type-specimen-meta span {
+    background: var(--white);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  .type-scale-row {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .type-scale-row:last-child { border-bottom: none; }
+  .type-scale-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(0,0,0,0.3);
+    width: 80px;
+    flex-shrink: 0;
+  }
+
+  .type-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .type-info-card {
+    padding: 24px;
+    background: var(--natural);
+    border-radius: 12px;
+  }
+  .type-info-card h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(0,0,0,0.35);
+    font-weight: var(--weight-bold);
+    margin-bottom: 10px;
+  }
+  .type-info-card .font-name {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .type-info-card .font-name.serif { font-family: var(--font-headline); font-weight: var(--weight-light); }
+  .type-info-card .font-name.sans { font-family: var(--font-body); font-weight: var(--weight-regular); }
+  .type-info-card .weights { font-size: 13px; color: rgba(0,0,0,0.5); line-height: 1.7; }
+
+  /* ── Brand bar ── */
+  .brandbar-demo {
+    background: var(--black);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 24px;
+  }
+  .brandbar-visual {
+    display: flex;
+    height: 32px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .brandbar-visual span { flex: 1; position: relative; }
+  .brandbar-visual span::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+  }
+  .brandbar-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .brandbar-spec {
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .brandbar-spec dt {
+    font-size: 11px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 4px;
+  }
+  .brandbar-spec dd {
+    font-size: 20px;
+    color: var(--white);
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+  }
+
+  /* ── Voice & tone ── */
+  .attribute-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .attribute-card {
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: box-shadow 0.2s;
+  }
+  .attribute-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .attribute-card h4 {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 22px;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+  .attribute-card p {
+    font-size: 14px;
+    color: rgba(0,0,0,0.55);
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+  .attribute-traits { display: flex; flex-wrap: wrap; gap: 6px; }
+  .trait-tag {
+    font-size: 11px;
+    font-weight: var(--weight-bold);
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(0,194,122,0.1);
+    color: var(--mural-green);
+    letter-spacing: 0.3px;
+  }
+
+  .we-are-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+  .we-are-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.02);
+  }
+  .we-are-row .are { font-weight: var(--weight-bold); font-size: 15px; flex: 1; color: var(--mural-green); }
+  .we-are-row .not-label { font-size: 12px; color: rgba(0,0,0,0.25); font-style: italic; }
+  .we-are-row .are-not { font-size: 15px; color: rgba(0,0,0,0.3); flex: 1; text-align: right; }
+
+  .principle-card {
+    padding: 32px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .principle-number {
+    font-size: 12px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--jade);
+    margin-bottom: 6px;
+  }
+  .principle-title {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 24px;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+  .principle-tone {
+    font-size: 14px;
+    font-weight: var(--weight-bold);
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 8px;
+  }
+  .principle-example {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(0,0,0,0.6);
+    padding-left: 20px;
+    border-left: 3px solid var(--jade);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* ── Do / Don't cards ── */
+  .do-dont-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .do-card, .dont-card {
+    padding: 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .do-card {
+    background: rgba(0,194,122,0.06);
+    border: 1px solid rgba(0,194,122,0.15);
+  }
+  .dont-card {
+    background: rgba(255,75,75,0.04);
+    border: 1px solid rgba(255,75,75,0.12);
+  }
+  .do-card h4, .dont-card h4 {
+    font-size: 12px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .do-card h4 { color: var(--mural-green); }
+  .dont-card h4 { color: #c44; }
+  .do-card ul, .dont-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .do-card li::before { content: "\2713  "; font-weight: 700; color: var(--mural-green); }
+  .dont-card li::before { content: "\2717  "; font-weight: 700; color: #c44; }
+
+  /* ── Editorial tables ── */
+  .editorial-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+  .editorial-table th {
+    text-align: left;
+    font-weight: var(--weight-bold);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(0,0,0,0.35);
+    padding: 12px 16px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+  }
+  .editorial-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    line-height: 1.5;
+  }
+  .editorial-table .do-text { color: var(--mural-green); font-weight: var(--weight-bold); }
+  .editorial-table .dont-text { color: #c44; font-weight: var(--weight-bold); }
+
+  /* ── Logo ── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .logo-card { border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); }
+  .logo-card-display {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .logo-card-display svg { max-width: 160px; height: auto; }
+  .logo-card-label {
+    padding: 12px 16px;
+    background: var(--white);
+    font-size: 13px;
+    color: rgba(0,0,0,0.45);
+    text-align: center;
+  }
+
+  /* ── Components ── */
+  .component-demo-area {
+    padding: 32px;
+    background: var(--natural);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+  .btn {
+    font-family: var(--font-body);
+    font-weight: var(--weight-bold);
+    font-size: 15px;
+    padding: 12px 28px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary { background: var(--jade); color: var(--white); border-color: var(--jade); }
+  .btn-secondary { background: var(--black); color: var(--white); border-color: var(--black); }
+  .btn-ghost { background: transparent; color: var(--jade); border-color: var(--jade); }
+
+  .card-demo {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.08);
+    max-width: 300px;
+  }
+  .card-demo h4 {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 20px;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+  .card-demo p { font-size: 14px; color: rgba(0,0,0,0.55); line-height: 1.55; }
+
+  /* ── Section pattern demos ── */
+  .section-demo {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .section-demo .inner { padding: 48px; }
+  .section-demo .demo-headline {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 32px;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .section-demo .demo-sub { font-size: 14px; color: rgba(0,0,0,0.45); }
+
+  /* ── Background patterns ── */
+  .bg-pattern-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .bg-pattern-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .bg-pattern-preview {
+    height: 200px;
+    position: relative;
+  }
+  .bg-pattern-preview.dot-white {
+    background-color: #FFFFFF;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.18) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .bg-pattern-preview.dot-black {
+    background-color: #000000;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .bg-pattern-preview.dot-mint {
+    background-color: #B4F5C0;
+    background-image: radial-gradient(circle, rgba(0,60,20,0.12) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .bg-pattern-info {
+    padding: 16px 20px;
+    background: var(--white);
+  }
+  .bg-pattern-name {
+    font-weight: var(--weight-bold);
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .bg-pattern-spec {
+    font-size: 12px;
+    color: rgba(0,0,0,0.5);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    line-height: 1.6;
+  }
+  .bg-pattern-usage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .bg-pattern-usage-card {
+    padding: 20px 24px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .bg-pattern-usage-card h4 {
+    font-size: 13px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: rgba(0,0,0,0.5);
+  }
+  .bg-pattern-usage-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .bg-pattern-usage-card li {
+    font-size: 14px;
+    line-height: 1.7;
+    padding-left: 16px;
+    position: relative;
+  }
+  .bg-pattern-usage-card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--jade);
+  }
+  .bg-pattern-fullwidth {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .bg-pattern-fullwidth-inner {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+  .bg-pattern-fullwidth-inner.dot-white {
+    background-color: #FFFFFF;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.18) 1px, transparent 1px);
+    background-size: 18px 18px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+  }
+  .bg-pattern-fullwidth-inner.dot-black {
+    background-color: #000000;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px);
+    background-size: 18px 18px;
+    border-radius: 12px;
+  }
+  .bg-pattern-fullwidth-label {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 24px;
+    letter-spacing: -0.5px;
+  }
+  @media (max-width: 900px) {
+    .bg-pattern-grid { grid-template-columns: 1fr; }
+    .bg-pattern-usage { grid-template-columns: 1fr; }
+  }
+
+  /* ── Data viz ── */
+  .dataviz-color-hierarchy {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .dataviz-color-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .dataviz-color-chip .chip-dot { width: 16px; height: 16px; border-radius: 4px; }
+  .dataviz-color-chip .chip-label { font-size: 13px; font-weight: var(--weight-bold); }
+  .dataviz-arrow { color: #ccc; font-size: 16px; }
+
+  .chart-demo {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 16px;
+  }
+  .chart-demo svg { display: block; }
+
+  .rule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .rule-card {
+    background: rgba(0,0,0,0.02);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .rule-card h4 {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    margin-bottom: 10px;
+  }
+  .rule-card p, .rule-card li { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,0.55); }
+  .rule-card ul { list-style: none; padding: 0; margin-top: 8px; }
+  .rule-card li { padding: 4px 0 4px 16px; position: relative; }
+  .rule-card li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 11px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--jade);
+  }
+  .rule-card code {
+    background: var(--white);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+
+  /* ── Visual do/don't cards ── */
+  .visual-donts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .visual-donts-card { border-radius: 12px; overflow: hidden; }
+  .visual-donts-card-visual {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f6;
+    position: relative;
+  }
+  .visual-donts-card-body {
+    padding: 16px 20px;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+  }
+  .visual-donts-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .visual-donts-badge.do { background: rgba(0,164,63,0.1); color: var(--mural-green); }
+  .visual-donts-badge.dont { background: rgba(204,68,68,0.1); color: #c44; }
+  .visual-donts-card-body p { font-size: 14px; line-height: 1.5; color: rgba(0,0,0,0.55); }
+  .visual-donts-card-body strong { color: var(--black); }
+
+  /* ── LUMA ── */
+  .luma-hero {
+    background: var(--luma-red);
+    border-radius: 16px;
+    padding: 48px;
+    margin-bottom: 40px;
+    color: var(--white);
+  }
+  .luma-hero .tagline {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 44px;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .luma-hero p { color: rgba(255,255,255,0.7); font-size: 17px; max-width: 500px; line-height: 1.6; }
+  .luma-system-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .luma-system-card {
+    padding: 24px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .luma-system-card.looking { background: rgba(236,177,46,0.1); border: 1px solid rgba(236,177,46,0.25); }
+  .luma-system-card.understanding { background: rgba(142,168,78,0.1); border: 1px solid rgba(142,168,78,0.25); }
+  .luma-system-card.making { background: rgba(47,157,186,0.1); border: 1px solid rgba(47,157,186,0.25); }
+  .luma-system-card .icon {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  .luma-system-card .icon svg { width: 22px; height: 22px; }
+  .luma-system-card.looking .icon { background: var(--luma-yellow); color: #fff; }
+  .luma-system-card.understanding .icon { background: var(--luma-green); color: #fff; }
+  .luma-system-card.making .icon { background: var(--luma-blue); color: #fff; }
+  .luma-system-card h4 { font-family: Georgia, serif; font-size: 18px; margin-bottom: 4px; }
+  .luma-system-card p { font-size: 13px; color: rgba(0,0,0,0.45); }
+
+  /* ── CSS snippets ── */
+  .code-block {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+  }
+  .code-block code {
+    font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    white-space: pre;
+  }
+  .code-block .comment { color: rgba(255,255,255,0.3); }
+  .code-block .prop { color: #9FEC7F; }
+  .code-block .val { color: #5887FF; }
+  .code-block .sel { color: #FC83FF; }
+
+  /* ── UI Patterns ── */
+  .ui-demo-area {
+    background: var(--natural);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 12px;
+  }
+  .ui-demo-area.dark {
+    background: #1e1e1e;
+  }
+
+  /* Dark form fields */
+  .demo-form-field {
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 2px solid #353535;
+    background: #2a2a2a;
+    color: #fff;
+    width: 100%;
+    max-width: 360px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .demo-form-field::placeholder { color: rgba(255,255,255,0.35); }
+  .demo-form-field:focus {
+    border-color: var(--jade);
+    box-shadow: 0 0 0 3px rgba(0,194,122,0.2);
+  }
+  .demo-form-field.error {
+    border-color: #FF4B4B;
+    box-shadow: 0 0 0 3px rgba(255,75,75,0.15);
+  }
+  .demo-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .demo-form-label {
+    font-size: 12px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* Scroll animation demo */
+  .scroll-demo-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  .scroll-demo-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.06);
+    opacity: 0;
+    transform: translateY(24px);
+    animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .scroll-demo-card:nth-child(2) { animation-delay: 0.1s; }
+  .scroll-demo-card:nth-child(3) { animation-delay: 0.2s; }
+  .scroll-demo-card h4 {
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .scroll-demo-card p { font-size: 13px; color: rgba(0,0,0,0.5); line-height: 1.5; }
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Link hover underline */
+  .demo-link {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: var(--weight-bold);
+    color: var(--jade);
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+  }
+  .demo-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 0; height: 2px;
+    background: var(--jade);
+    border-radius: 1px;
+    transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .demo-link:hover::after { width: 100%; }
+  .demo-link.dark-link { color: var(--white); }
+  .demo-link.dark-link::after { background: var(--white); }
+
+  /* Tabs */
+  .demo-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+  }
+  .demo-tab {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: var(--weight-bold);
+    padding: 12px 20px;
+    color: rgba(0,0,0,0.4);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+  }
+  .demo-tab::after {
+    content: '';
+    position: absolute;
+    left: 20px; right: 20px; bottom: -2px;
+    height: 2px;
+    background: var(--jade);
+    border-radius: 1px;
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .demo-tab:hover { color: rgba(0,0,0,0.7); }
+  .demo-tab:hover::after { transform: scaleX(1); }
+  .demo-tab.active { color: var(--black); }
+  .demo-tab.active::after { transform: scaleX(1); }
+  .demo-tab-content {
+    font-size: 14px;
+    color: rgba(0,0,0,0.55);
+    line-height: 1.6;
+    min-height: 48px;
+  }
+
+  /* ── Web Design System ── */
+  .wds-grid-demo {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .wds-grid-col {
+    background: rgba(0,194,122,0.12);
+    border: 1px solid rgba(0,194,122,0.25);
+    border-radius: 4px;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: var(--weight-bold);
+    color: rgba(0,0,0,0.4);
+  }
+  .wds-layout-demo {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .wds-layout-cell {
+    background: rgba(0,194,122,0.08);
+    border: 1px dashed rgba(0,194,122,0.3);
+    border-radius: 6px;
+    padding: 14px 0;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(0,0,0,0.35);
+  }
+  .wds-layout-label {
+    font-size: 13px;
+    font-weight: var(--weight-bold);
+    margin-bottom: 6px;
+    color: rgba(0,0,0,0.55);
+  }
+  .wds-container-demo {
+    margin-bottom: 10px;
+  }
+  .wds-container-bar {
+    background: rgba(0,194,122,0.10);
+    border: 1px solid rgba(0,194,122,0.2);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: rgba(0,0,0,0.5);
+    text-align: center;
+  }
+  .wds-container-label {
+    font-size: 13px;
+    font-weight: var(--weight-bold);
+    margin-bottom: 4px;
+    color: rgba(0,0,0,0.55);
+  }
+  .wds-token-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .wds-token-table th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(0,0,0,0.35);
+    padding: 8px 12px;
+    border-bottom: 2px solid rgba(0,0,0,0.08);
+    font-weight: var(--weight-bold);
+  }
+  .wds-token-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    vertical-align: middle;
+  }
+  .wds-token-table .token-name {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    background: rgba(0,0,0,0.04);
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .wds-token-table .token-rem {
+    color: rgba(0,0,0,0.45);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+  }
+  .wds-token-table .token-px {
+    font-weight: var(--weight-bold);
+  }
+  .wds-spacing-bar {
+    background: var(--jade);
+    height: 8px;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    opacity: 0.5;
+  }
+  .wds-radius-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .wds-radius-card {
+    border: 1px solid rgba(0,0,0,0.08);
+    height: 100px;
+    background: var(--white);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 12px;
+    font-size: 12px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: rgba(0,0,0,0.4);
+  }
+  .wds-shadow-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .wds-shadow-card {
+    text-align: center;
+    padding: 24px;
+  }
+  .wds-shadow-preview {
+    width: 100%;
+    height: 100px;
+    background: var(--white);
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+  .wds-shadow-preview.shadow-default {
+    box-shadow: 0 4px 4px rgba(0,0,0,0.08);
+  }
+  .wds-shadow-preview.shadow-hover {
+    box-shadow: 0 12px 12px rgba(0,0,0,0.12);
+  }
+  .wds-shadow-preview.shadow-elevated {
+    box-shadow: 0 0 1px rgba(11,41,70,0.32), 0 24px 20px rgba(42,82,121,0.08);
+  }
+  .wds-shadow-name {
+    font-weight: var(--weight-bold);
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .wds-shadow-spec {
+    font-size: 11px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: rgba(0,0,0,0.4);
+    line-height: 1.6;
+  }
+  .wds-type-specimen h4 {
+    font-size: 13px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 8px;
+    margin-top: 24px;
+  }
+  .wds-type-specimen h4:first-child { margin-top: 0; }
+  .wds-type-scale {
+    margin-top: 32px;
+  }
+  .wds-type-scale-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .wds-type-scale-label {
+    flex: 0 0 100px;
+    font-size: 11px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: rgba(0,0,0,0.35);
+  }
+  .wds-btn-table {
+    width: 100%;
+    margin-bottom: 24px;
+    border-collapse: collapse;
+  }
+  .wds-btn-table th {
+    padding: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .wds-btn-table th.th-default,
+  .wds-btn-table th.th-hover { text-align: center; }
+  .wds-btn-table td {
+    padding: 16px 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .wds-btn-table .td-default,
+  .wds-btn-table .td-hover { text-align: center; }
+  .wds-btn-table .btn-label {
+    font-size: 13px;
+    font-weight: var(--weight-bold);
+    color: rgba(0,0,0,0.6);
+    width: 180px;
+  }
+  .tertiary-dark-row td { border: none; }
+  .tertiary-dark-row .td-tertiary-dark {
+    background: var(--black);
+    border-radius: 0;
+    padding: 16px 20px;
+  }
+  .link-dark-row td { border: none; }
+  .link-dark-row .td-link-dark {
+    background: var(--black);
+    border-radius: 0;
+    padding: 16px 20px;
+  }
+  .btn-demo-hover .wds-btn-primary { background: #03af6e; }
+  .btn-demo-hover .wds-btn-primary .wds-btn-arrow { background: #b4f5c8; }
+  .btn-demo-hover .wds-btn-secondary { background: #333333; }
+  .btn-demo-hover .wds-btn-secondary .wds-btn-arrow { background: #626262; }
+  .btn-demo-hover .wds-btn-tertiary-light { border-color: #B9C0CB; }
+  .btn-demo-hover .wds-btn-tertiary-dark { border-color: var(--white); }
+  .btn-demo-hover .wds-btn-link { gap: 16px; }
+  .btn-demo-hover .wds-btn-link-dark { gap: 16px; }
+  .btn-demo-hover .wds-btn-icon { background: #fcfcfc; }
+  .wds-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    height: 40px;
+    padding: 0 0 0 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+  .wds-btn-primary {
+    background: #00c27a;
+    color: var(--black);
+  }
+  .wds-btn-primary:hover { background: #03af6e; }
+  .wds-btn-secondary {
+    background: var(--black);
+    color: var(--white);
+  }
+  .wds-btn-secondary:hover { background: #333333; }
+  .wds-btn-tertiary-light {
+    background: var(--white);
+    color: var(--black);
+    border: 2px solid #DCE1E5;
+    justify-content: center;
+    padding: 0 16px;
+    min-width: 119px;
+  }
+  .wds-btn-tertiary-light:hover { border-color: #B9C0CB; }
+  .wds-btn-tertiary-dark {
+    background: var(--black);
+    color: var(--white);
+    border: 2px solid #4f5457;
+    justify-content: center;
+    padding: 0 16px;
+    min-width: 119px;
+  }
+  .wds-btn-tertiary-dark:hover { border-color: var(--white); }
+  .wds-btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    padding: 0;
+    font-weight: 500;
+    color: var(--black);
+    cursor: pointer;
+    font-size: 16px;
+    font-family: var(--font-body);
+    line-height: 1.2;
+    height: 40px;
+    transition: gap 0.2s;
+  }
+  .wds-btn-link:hover { gap: 16px; }
+  .wds-btn-link-dark { color: var(--white); }
+  .wds-btn-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .wds-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 14px;
+    background: transparent;
+    border: 2px solid #DCE1E5;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .wds-btn-icon:hover { background: #fcfcfc; }
+  .wds-btn-pill {
+    border-radius: 9999px;
+  }
+  .wds-btn-outline-dark {
+    background: var(--black);
+    color: var(--white);
+    border: 2px solid var(--jade);
+  }
+  .wds-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .wds-form-demo {
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .wds-form-demo.light { background: var(--white); border: 1px solid rgba(0,0,0,0.08); }
+  .wds-form-demo.dark { background: #1e1e1e; }
+  .wds-form-input {
+    font-family: var(--font-body);
+    font-size: 18px;
+    padding: 15px 12px;
+    border-radius: 4px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .wds-form-input.light-input {
+    background: var(--white);
+    border: 1px solid #808080;
+    color: var(--black);
+  }
+  .wds-form-input.light-input:focus {
+    border-color: var(--jade);
+  }
+  .wds-form-input.light-input:focus-visible {
+    border-color: var(--jade);
+    box-shadow: 0 0 0 3px #bfffd2;
+  }
+  .wds-form-input.dark-input {
+    background: var(--black);
+    border: 1px solid #808080;
+    color: var(--white);
+  }
+  .wds-form-input.dark-input:focus {
+    border-color: var(--jade);
+  }
+  .wds-form-input.dark-input:focus-visible {
+    border-color: var(--jade);
+    box-shadow: 0 0 0 3px #073b28;
+  }
+  .wds-form-input::placeholder { color: #808080; }
+  .wds-form-input.dark-input::placeholder { color: #808080; }
+  .wds-form-input-table {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .wds-form-input-table .wds-layout-label { margin-bottom: 0; }
+  .wds-form-input-wrap { min-width: 0; }
+  .wds-form-input-wrap.hover-demo .wds-form-input.light-input { background: #F0F0F0; border-color: #808080; }
+  .wds-form-input-wrap.hover-demo .wds-form-input.dark-input { background: #1e1e1e; border-color: #808080; }
+  .wds-form-input-wrap.focus-demo .wds-form-input.light-input { border-color: var(--jade); }
+  .wds-form-input-wrap.focus-demo .wds-form-input.dark-input { border-color: var(--jade); }
+  .wds-form-input-wrap.keyboard-demo .wds-form-input.light-input { border-color: var(--jade); box-shadow: 0 0 0 3px #bfffd2; }
+  .wds-form-input-wrap.keyboard-demo .wds-form-input.dark-input { border-color: var(--jade); box-shadow: 0 0 0 3px #073b28; }
+  .wds-form-select {
+    font-family: var(--font-body);
+    font-size: 18px;
+    height: 48px;
+    padding: 10px 12px;
+    padding-right: 36px;
+    border-radius: 4px;
+    border: 1px solid #808080;
+    width: 100%;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 13.4142 8.12132'%3E%3Cpath fill='none' stroke='%23808080' stroke-width='2' d='M0.707107 0.707107 L6.70711 6.70711 L12.7071 0.707107'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 7px;
+  }
+  .wds-form-select.light-input { background-color: var(--white); color: #808080; }
+  .wds-form-select.dark-input { background-color: var(--black); border-color: #808080; color: #808080; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 13.4142 8.12132'%3E%3Cpath fill='none' stroke='%23808080' stroke-width='2' d='M0.707107 0.707107 L6.70711 6.70711 L12.7071 0.707107'/%3E%3C/svg%3E"); }
+  /* Form select state table (6 columns: Default, Hover, Focused, Keyboard, Open, Filled) */
+  .wds-form-select-table { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: auto minmax(320px, auto); gap: 12px; }
+  .wds-layout-label + .wds-form-select-table { margin-top: 12px; }
+  .wds-form-select-wrap { min-width: 0; position: relative; }
+  .wds-form-select-wrap.hover-demo .wds-form-select.light-input { background: #F0F0F0; border-color: #808080; }
+  .wds-form-select-wrap.hover-demo .wds-form-select.dark-input { background: #1e1e1e; border-color: #808080; }
+  .wds-form-select-wrap.focus-demo .wds-form-select.light-input,
+  .wds-form-select-wrap.keyboard-demo .wds-form-select.light-input,
+  .wds-form-select-wrap.open-demo .wds-form-select.light-input { border-color: #00c27a; }
+  .wds-form-select-wrap.focus-demo .wds-form-select.dark-input,
+  .wds-form-select-wrap.keyboard-demo .wds-form-select.dark-input,
+  .wds-form-select-wrap.open-demo .wds-form-select.dark-input { border-color: #00c27a; }
+  .wds-form-select-wrap.keyboard-demo .wds-form-select.light-input,
+  .wds-form-select-wrap.open-demo .wds-form-select.light-input { box-shadow: 0 0 0 3px #bfffd2; }
+  .wds-form-select-wrap.keyboard-demo .wds-form-select.dark-input,
+  .wds-form-select-wrap.open-demo .wds-form-select.dark-input { box-shadow: 0 0 0 3px #073b28; }
+  .wds-form-select-wrap.filled-demo .wds-form-select.light-input { color: var(--black); }
+  .wds-form-select-wrap.filled-demo .wds-form-select.dark-input { color: var(--white); }
+  .wds-form-select.light-input { color: #808080; }
+  .wds-form-select.dark-input { color: #808080; }
+  .wds-form-select-open-dropdown { position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 10; border-radius: 4px; padding: 16px 12px; display: flex; flex-direction: column; gap: 16px; font-size: 18px; }
+  .wds-form-select-open-dropdown--light { background: #fff; border: 1px solid #e0e0e0; box-shadow: 0 8px 24px rgba(0,0,0,0.12); color: var(--black); }
+  .wds-form-select-open-dropdown--dark { background: #1c1c1c; border: 1px solid #353535; box-shadow: 0 8px 24px rgba(0,0,0,1); color: var(--white); }
+  /* Filter Switch (Figma 2735:241): 32×16 track, 12×12 thumb, 4 states */
+  .wds-filter-switch { width: 32px; height: 16px; padding: 2px; border-radius: 16px; display: flex; align-items: center; transition: background 0.2s; flex-shrink: 0; border: none; margin: 0; cursor: default; }
+  button.wds-filter-switch { background: none; }
+  .wds-filter-switch-thumb { width: 12px; height: 12px; border-radius: 50%; transition: background 0.2s; }
+  .wds-filter-switch.light { background: #f0f0f0; justify-content: flex-start; }
+  .wds-filter-switch.light .wds-filter-switch-thumb { background: #C0C0C0; }
+  .wds-filter-switch.light.hover-demo { background: #e2e2e2; }
+  .wds-filter-switch.light.focus-demo { box-shadow: 0 0 0 3px #bfffd2; }
+  .wds-filter-switch.light.active-demo { background: #f0f0f0; justify-content: flex-end; }
+  .wds-filter-switch.light.active-demo .wds-filter-switch-thumb { background: #00C27A; }
+  .wds-filter-switch.dark { background: #373737; justify-content: flex-start; }
+  .wds-filter-switch.dark .wds-filter-switch-thumb { background: #8B8A8A; }
+  .wds-filter-switch.dark.hover-demo { background: #545454; }
+  .wds-filter-switch.dark.focus-demo { box-shadow: 0 0 0 3px #bfffd2; }
+  .wds-filter-switch.dark.active-demo { background: #373737; justify-content: flex-end; }
+  .wds-filter-switch.dark.active-demo .wds-filter-switch-thumb { background: #00C27A; }
+  .wds-filter-switch-table { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .wds-filter-switch-cell { min-width: 0; }
+  /* Content cards (Figma: Filter Layouts 2 frame) */
+  .wds-content-card {
+    background: var(--black);
+    border: 1px solid #DCE1E5;
+    border-radius: 24px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 480px;
+    box-shadow: 0 0 1px rgba(11,41,70,0.32), 0 6px 8px rgba(42,82,121,0.04);
+  }
+  .wds-content-card-image {
+    height: 200px;
+    border-radius: 16px;
+    width: 100%;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  }
+  .wds-content-card-body { padding: 12px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; gap: 10px; }
+  .wds-content-card-inner { display: flex; flex-direction: column; gap: 10px; }
+  .wds-content-card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .wds-content-card-tag {
+    display: inline-flex;
+    align-items: center;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .wds-content-card-tag--article { background: #d5f8e0; color: #007b3b; }
+  .wds-content-card-tag--business { background: #fee6ff; color: #ab38ae; }
+  .wds-content-card-tag--topic { background: rgba(88,135,255,0.15); color: #8BA3FF; }
+  .wds-content-card-title {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: -0.26px;
+    line-height: 1.2;
+  }
+  .wds-content-card-desc {
+    font-size: 18px;
+    font-weight: 300;
+    color: #666;
+    letter-spacing: -0.18px;
+    line-height: 1.4;
+  }
+  .wds-content-card-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 16px;
+    background: var(--white);
+    border: 2px solid #DCE1E5;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    align-self: flex-start;
+  }
+  .wds-content-card-cta:hover { background: #f5f5f5; border-color: #B9C0CB; }
+  .wds-category-tags-demo { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+  .wds-category-tag-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .wds-category-tag-desc { font-size: 14px; color: rgba(0,0,0,0.55); }
+  .wds-content-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 768px) {
+    .wds-content-cards-grid { grid-template-columns: 1fr; }
+  }
+  .wds-form-field-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .wds-form-field-label.dark-label { color: var(--white); }
+  .wds-form-field-label.light-label { color: var(--black); }
+  .wds-form-row { margin-bottom: 14px; }
+  .wds-form-row:last-child { margin-bottom: 0; }
+  /* Checkbox/Radio state table */
+  .wds-check-table {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .wds-check-state-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(0,0,0,0.45);
+    text-align: center;
+  }
+  .wds-check-dark-block {
+    background: var(--black);
+    border-radius: 8px;
+    padding: 20px 24px;
+  }
+  .wds-check-dark-block .wds-check-table { margin-bottom: 0; }
+  .wds-check-dark-block .wds-check-state-label { color: rgba(255,255,255,0.5); }
+
+  /* Checkbox/Radio option row */
+  .wds-check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    letter-spacing: 0.14px;
+    padding: 8px;
+    border-radius: 4px;
+    background: var(--primary-gray);
+    color: var(--black);
+    transition: background 0.15s;
+  }
+  .wds-check-item.dark-check {
+    background: var(--form-bg-dark);
+    color: var(--white);
+  }
+  .wds-check-item.hover-demo { background: var(--form-hover-light); }
+  .wds-check-item.dark-check.hover-demo { background: var(--form-hover-dark); }
+  .wds-check-item.focus-demo .wds-check-box,
+  .wds-check-item.focus-demo .wds-radio-circle {
+    border-color: var(--jade);
+    box-shadow: 0 0 0 3px var(--form-focus-ring-light);
+  }
+  .wds-check-item.dark-check.focus-demo .wds-check-box,
+  .wds-check-item.dark-check.focus-demo .wds-radio-circle {
+    border-color: var(--jade);
+    box-shadow: 0 0 0 3px var(--form-focus-ring-dark);
+  }
+  .wds-check-item.selected-demo { background: var(--surface-pills-bg); }
+  .wds-check-item.dark-check.selected-demo { background: var(--surface-pills-bg); color: var(--black); }
+  .wds-check-item:hover { background: var(--form-hover-light); }
+  .wds-check-item.dark-check:hover { background: var(--form-hover-dark); }
+  .wds-check-item:focus-within .wds-check-box,
+  .wds-check-item:focus-within .wds-radio-circle {
+    border-color: var(--jade);
+    box-shadow: 0 0 0 3px var(--form-focus-ring-light);
+  }
+  .wds-check-item.dark-check:focus-within .wds-check-box,
+  .wds-check-item.dark-check:focus-within .wds-radio-circle {
+    border-color: var(--jade);
+    box-shadow: 0 0 0 3px var(--form-focus-ring-dark);
+  }
+  .wds-check-label { padding-top: 4px; }
+
+  /* Checkbox control */
+  .wds-check-box {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 4px;
+    border: 1px solid var(--form-control-border);
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wds-check-box.checked {
+    background: var(--jade);
+    border-color: var(--jade);
+  }
+  .wds-check-box.dark-check-box {
+    border-color: var(--form-control-border);
+    background: var(--black);
+  }
+  .wds-check-box.dark-check-box.checked {
+    background: var(--jade);
+    border-color: var(--jade);
+  }
+
+  /* Radio control */
+  .wds-radio-circle {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--form-control-border);
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wds-radio-circle.selected {
+    background: var(--jade);
+    border-color: var(--jade);
+  }
+  .wds-radio-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--white);
+  }
+  .wds-radio-circle.dark-radio {
+    border-color: var(--form-control-border);
+    background: var(--black);
+  }
+  .wds-radio-circle.dark-radio.selected {
+    background: var(--jade);
+    border-color: var(--jade);
+  }
+
+  @media (max-width: 900px) {
+    .wds-grid-demo { grid-template-columns: repeat(6, 1fr); }
+    .wds-radius-grid { grid-template-columns: repeat(3, 1fr); }
+    .wds-shadow-grid { grid-template-columns: 1fr; }
+    .wds-form-grid { grid-template-columns: 1fr; }
+    .wds-btn-table .btn-label { width: 120px; }
+  }
+
+  /* ── Footer ── */
+  .footer {
+    background: var(--jade);
+    color: rgba(0,0,0,0.5);
+    font-size: 14px;
+    text-align: center;
+    padding: 48px 64px;
+  }
+  .footer a { color: var(--black); text-decoration: underline; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .section-inner { padding: 48px 24px; }
+    .hero { min-height: auto; }
+    .hero .section-inner { padding: 64px 24px; }
+    .type-info-grid, .do-dont-grid, .rule-grid, .visual-donts-grid { grid-template-columns: 1fr; }
+    .logo-grid { grid-template-columns: 1fr 1fr; }
+    .seeing-is-grid { grid-template-columns: 1fr; }
+    .luma-system-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Sidebar ── -->
+<nav class="sidebar">
+  <div class="sidebar-logo">Mural Brand<br>Guidelines</div>
+  <div class="nav-group">Foundation</div>
+  <a href="#messaging">Brand Messaging</a>
+  <a href="#colors">Colors</a>
+  <a href="#typography">Typography</a>
+  <a href="#logo">Logo</a>
+  <a href="#brandbar">Brand Bar</a>
+  <div class="nav-group">Voice</div>
+  <a href="#tone">Tone of Voice</a>
+  <a href="#editorial">Editorial</a>
+  <div class="nav-group">Application</div>
+  <a href="#layout">Layout Patterns</a>
+  <a href="#bg-patterns">Background Patterns</a>
+  <a href="#components">Components</a>
+  <a href="#dataviz">Data Visualization</a>
+  <a href="#ui-patterns">UI Patterns</a>
+  <a href="#css">CSS Snippets</a>
+  <div class="nav-group">Web Design System</div>
+  <a href="#wds-grid">Grid System</a>
+  <a href="#wds-spacing">Spacing</a>
+  <a href="#wds-radius">Radius &amp; Shadow</a>
+  <a href="#wds-web-type">Web Typography</a>
+  <a href="#wds-buttons">Buttons</a>
+  <a href="#wds-forms">Form Elements</a>
+  <a href="#wds-icons">Icons</a>
+  <a href="#wds-page">Page Components</a>
+  <div class="nav-group">Visual Rules</div>
+  <a href="#dos-donts">Do&rsquo;s &amp; Don&rsquo;ts</a>
+  <div class="nav-group">Sub-brand</div>
+  <a href="#luma">LUMA</a>
+</nav>
+
+<div class="main">
+
+  <!-- ════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════ -->
+  <section id="hero" class="hero">
+    <div class="section-inner">
+      <div class="section-label">Mural Brand System</div>
+      <h1>Everything you need to create on&#8209;brand, fast.</h1>
+      <p>The complete Mural brand system &mdash; colors, typography, messaging, voice, and guidelines &mdash; in one browsable reference.</p>
+      <a href="MURAL-BRAND-SKILLS-KIT.md" download="MURAL-BRAND-SKILLS-KIT.md" class="wds-btn wds-btn-primary" style="margin-top:20px;">Download skills kit</a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       BRAND MESSAGING
+       ════════════════════════════════════════ -->
+  <section id="messaging">
+    <div class="section-inner">
+      <div class="section-label">Brand Messaging</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Seeing is how.&trade;</h2>
+      <p class="section-desc">Our rally cry. How we show teams of all types from any industry the value they can deliver when they embrace Mural&rsquo;s visual collaboration platform.</p>
+
+      <div class="messaging-hero">
+        <div class="tagline"><em>Seeing is how</em> Mural helps teams get to better outcomes, faster.</div>
+        <p>Mural is the leading visual collaboration platform for getting results. We connect strategy to execution that drives real outcomes.</p>
+      </div>
+
+      <h3 class="sub-title">Mission</h3>
+      <p style="font-size:17px;line-height:1.65;margin-bottom:40px;color:rgba(0,0,0,0.65);">Unlock productivity and empower transformation. We help go-to-market teams drive better outcomes by transforming how work gets done.</p>
+
+      <h3 class="sub-title">Vision</h3>
+      <p style="font-size:17px;line-height:1.65;margin-bottom:40px;color:rgba(0,0,0,0.65);">We will drive execution velocity around the world. When teams have the right tools and methods to solve problems and derive strategic outcomes, they&rsquo;ll set new baselines of velocity, experience, and co-development.</p>
+
+      <h3 class="sub-title">&ldquo;Seeing is how&rdquo; statements</h3>
+      <div class="seeing-is-grid">
+        <div class="seeing-is-card">Seeing is how you turn goals into outcomes.</div>
+        <div class="seeing-is-card">Seeing is how you go to market in perfect sync.</div>
+        <div class="seeing-is-card">Seeing is how your business stays out of the slow lane.</div>
+        <div class="seeing-is-card">Seeing is how you turn product ideas into product-led growth.</div>
+        <div class="seeing-is-card">Seeing is how you break silos to get aligned.</div>
+        <div class="seeing-is-card">Seeing is how marketing gets time to market, faster.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       LOGO
+       ════════════════════════════════════════ -->
+  <section id="logo">
+    <div class="section-inner">
+      <div class="section-label">Logo</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Logo assets</h2>
+      <p class="section-desc">The Mural logo exists as a wordmark and a symbol. Use the wordmark for name recognition and the symbol where Mural context is already established.</p>
+
+      <div class="logo-grid">
+        <div class="logo-card">
+          <div class="logo-card-display" style="background:var(--white);">
+            <svg viewBox="170 185 750 230" style="max-width:220px"><style>.mc0{fill:#00843F}.mc1{fill:#FF4B4B}.mc2{fill:#5887FF}.mc3{fill:#FC83FF}.mc4{fill:#FFAA00}</style><g><path class="mc0" d="M780.9,404.9c-39.7,0-72-33.9-72-75.5s32.3-75.5,72-75.5s72,33.9,72,75.5S820.5,404.9,780.9,404.9z M785.3,288.4c-21,0-38,18.4-38,40.9c0,22.6,17.1,40.9,38,40.9s38-18.4,38-40.9C823.3,306.8,806.2,288.4,785.3,288.4z"/><rect x="411.3" y="255.9" width="38.4" height="146.6"/><path class="mc1" d="M267.5,402.5V255.9c0-12.4-10.1-22.4-22.4-22.4c-12.4,0-22.4,10-22.4,22.4h-38.4c0-33.5,27.3-60.7,60.8-60.7 s60.8,27.3,60.8,60.8v108.2l22.3,0V255.9c0-33.5,27.3-60.8,60.8-60.8s60.8,27.3,60.8,60.8h-38.4c0-12.4-10.1-22.4-22.4-22.4 c-12.4,0-22.4,10.1-22.4,22.4v146.6L267.5,402.5z"/><rect x="184.3" y="255.9" width="38.4" height="146.6"/><rect x="559.8" y="255.9" width="38.4" height="82.7"/><path class="mc2" d="M531.7,404.9c-36.6,0-66.4-29.8-66.4-66.4h38.4c0,15.4,12.6,28,28,28c15.4,0,28-12.6,28-28h38.4 C598.1,375.1,568.3,404.9,531.7,404.9z"/><rect x="465.4" y="255.9" width="38.4" height="82.7"/><rect x="877.4" y="197.5" class="mc3" width="38.4" height="58.4"/><rect x="823.3" y="255.9" width="38.4" height="146.6"/><rect x="877.4" y="255.9" width="38.4" height="146.6"/><rect x="613.9" y="294.2" width="38.4" height="108.2"/><rect x="613.9" y="255.9" class="mc4" width="94.5" height="38.4"/></g></svg>
+          </div>
+          <div class="logo-card-label">Multicolor wordmark</div>
+        </div>
+        <div class="logo-card">
+          <div class="logo-card-display" style="background:var(--white);">
+            <svg viewBox="170 185 750 230" fill="#000" style="max-width:220px"><g><path d="M388.9,195.1c-33.5,0-60.8,27.3-60.8,60.8v108.2h-22.3V255.9c0-33.5-27.3-60.8-60.8-60.8s-60.8,27.3-60.8,60.8v146.6h38.4 V255.9c0-12.4,10.1-22.4,22.4-22.4c12.4,0,22.4,10.1,22.4,22.4v146.6l99-0.1V255.9c0-12.4,10.1-22.4,22.4-22.4 c12.4,0,22.4,10.1,22.4,22.4v146.6h38.4V255.9C449.6,222.4,422.4,195.1,388.9,195.1z"/><path d="M559.8,338.5c0,15.4-12.6,28-28,28s-28-12.6-28-28v-82.7h-38.4v82.7c0,36.6,29.8,66.4,66.4,66.4s66.4-29.8,66.4-66.4v-82.7 h-38.4V338.5z"/><rect x="877.4" y="197.5" width="38.4" height="205"/><polygon points="613.9,402.5 652.2,402.5 652.2,294.5 708.4,294.5 708.4,255.9 613.9,255.9"/><path d="M823.3,268.4c-11.9-9.1-26.6-14.6-42.4-14.6c-39.7,0-72,33.9-72,75.5s32.3,75.5,72,75.5c15.8,0,30.5-5.4,42.4-14.6v12.2 h38.4V255.9h-38.4V268.4z M823.3,331.2c-0.9,21.7-17.6,39.1-38,39.1c-21,0-38-18.4-38-40.9s17.1-40.9,38-40.9 c20.4,0,37.1,17.4,38,39.1V331.2z"/></g></svg>
+          </div>
+          <div class="logo-card-label">Black wordmark</div>
+        </div>
+        <div class="logo-card">
+          <div class="logo-card-display" style="background:var(--black);">
+            <svg viewBox="170 185 750 230" fill="#FFFFFF" style="max-width:220px"><g><path d="M388.9,195.1c-33.5,0-60.8,27.3-60.8,60.8v108.2l-22.3,0V255.9c0-33.5-27.3-60.8-60.8-60.8 s-60.8,27.3-60.8,60.8v146.6h38.4V255.9c0-12.4,10.1-22.4,22.4-22.4c12.4,0,22.4,10.1,22.4,22.4v146.6l99-0.1V255.9 c0-12.4,10.1-22.4,22.4-22.4c12.4,0,22.4,10.1,22.4,22.4v146.6h38.4V255.9C449.6,222.4,422.4,195.1,388.9,195.1z"/><path d="M559.8,338.5c0,15.4-12.6,28-28,28c-15.4,0-28-12.6-28-28v-82.7h-38.4v82.7c0,36.6,29.8,66.4,66.4,66.4 s66.4-29.8,66.4-66.4v-82.7h-38.4V338.5z"/><rect x="877.4" y="197.5" width="38.4" height="205"/><polygon points="613.9,402.5 652.2,402.5 652.2,294.5 708.4,294.5 708.4,255.9 613.9,255.9"/><path d="M823.3,268.4c-11.9-9.1-26.6-14.6-42.4-14.6c-39.7,0-72,33.9-72,75.5c0,41.6,32.3,75.5,72,75.5 c15.8,0,30.5-5.4,42.4-14.6v12.2h38.4V255.9h-38.4V268.4z M823.3,331.2c-0.9,21.7-17.6,39.1-38,39.1c-21,0-38-18.4-38-40.9 s17.1-40.9,38-40.9c20.4,0,37.1,17.4,38,39.1V331.2z"/></g></svg>
+          </div>
+          <div class="logo-card-label">White wordmark</div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Usage rules</h3>
+      <div class="do-dont-grid">
+        <div class="do-card">
+          <h4>Do</h4>
+          <ul>
+            <li>Use only the three approved variants: Multicolor, Black, or White</li>
+            <li>Maintain clear space around the logo</li>
+            <li>Use the wordmark for audience-facing placements where name recognition matters</li>
+            <li>Use the symbol where Mural context is already established</li>
+          </ul>
+        </div>
+        <div class="dont-card">
+          <h4>Don&rsquo;t</h4>
+          <ul>
+            <li>Recolor the logo or use any other color variant</li>
+            <li>Use logo colors (Red, Yellow) as general background colors</li>
+            <li>Stretch, skew, or distort the logo</li>
+            <li>Place the logo on busy backgrounds without sufficient contrast</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       COLORS
+       ════════════════════════════════════════ -->
+  <section id="colors">
+    <div class="section-inner">
+      <div class="section-label">Color</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Palette</h2>
+      <p class="section-desc">Ideas are colorful and diverse, and so is our brand. Our colors are deliberately bright, optimistic, and energetic, with enough depth to still feel warm and welcoming.</p>
+
+      <h3 class="sub-title">Primary palette (monochromatic)</h3>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#00C27A;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#00C27A</span></div>
+          <div class="swatch-info"><div class="swatch-name">Jade</div><div class="swatch-details">RGB 0, 194, 122 &middot; PMS 7480 C</div><div class="swatch-usage">Primary brand color. Backgrounds, accents, buttons, links</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#00843F;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#00843F</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mural Green</div><div class="swatch-details">RGB 0, 132, 63 &middot; PMS 348 C</div><div class="swatch-usage">Logo &amp; brand bar. Darker anchor for gradients</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#9FEC7F;"><span class="swatch-hex" style="color:#000;background:rgba(255,255,255,0.4);">#9FEC7F</span></div>
+          <div class="swatch-info"><div class="swatch-name">Spring</div><div class="swatch-details">RGB 143, 236, 127 &middot; PMS 7487 C</div><div class="swatch-usage">Charts secondary, illustrations, highlight fills</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#B4F5C0;"><span class="swatch-hex" style="color:#000;background:rgba(255,255,255,0.4);">#B4F5C0</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mint</div><div class="swatch-details">RGB 180, 245, 200 &middot; PMS 351 C</div><div class="swatch-usage">Charts tertiary, soft backgrounds, badges</div></div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Supporting palette (accents)</h3>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#5887FF;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#5887FF</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mural Blue</div><div class="swatch-details">RGB 88, 135, 255 &middot; PMS 2727 C</div><div class="swatch-usage">Charts, accent color, illustrations</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FC83FF;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#FC83FF</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mural Pink</div><div class="swatch-details">RGB 252, 131, 255</div><div class="swatch-usage">Charts, accent color, illustrations</div></div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Neutrals</h3>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#000;"><span class="swatch-hex" style="color:#fff;background:rgba(255,255,255,0.1);">#000000</span></div>
+          <div class="swatch-info"><div class="swatch-name">Black</div><div class="swatch-usage">Headlines, body text, dark backgrounds</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#fff;border:1px solid rgba(0,0,0,0.08);"><span class="swatch-hex" style="color:#000;background:rgba(0,0,0,0.05);">#FFFFFF</span></div>
+          <div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-usage">Backgrounds, cards, text on dark</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#EDEDD8;"><span class="swatch-hex" style="color:#000;background:rgba(255,255,255,0.4);">#EDEDD8</span></div>
+          <div class="swatch-info"><div class="swatch-name">Natural</div><div class="swatch-usage">Warm background, section alternation</div></div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Logo color palette</h3>
+      <p style="font-size:14px;color:rgba(0,0,0,0.5);margin-bottom:16px;">These five colors plus black are reserved for the logo and color bar. They make our brand clear, iconic, and recognizable.</p>
+      <div class="swatches" style="grid-template-columns:repeat(5,1fr);">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FF4B4B;height:80px;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#FF4B4B</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mural Red</div><div class="swatch-details">RGB 255, 75, 75</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#00843F;height:80px;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#00843F</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mural Green</div><div class="swatch-details">RGB 0, 132, 63</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FFAA00;height:80px;"><span class="swatch-hex" style="color:#000;background:rgba(255,255,255,0.35);">#FFAA00</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mural Yellow</div><div class="swatch-details">RGB 255, 170, 0</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#5887FF;height:80px;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#5887FF</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mural Blue</div><div class="swatch-details">RGB 88, 135, 255</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FC83FF;height:80px;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#FC83FF</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mural Pink</div><div class="swatch-details">RGB 252, 131, 255</div></div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">ADA accessibility variants</h3>
+      <p style="font-size:14px;color:rgba(0,0,0,0.5);margin-bottom:16px;">For product UI only. Meet WCAG contrast requirements where the standard brand colors do not.</p>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E02935;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#E02935</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mural Red ADA</div><div class="swatch-usage">Error states in product UI</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#3776E4;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#3776E4</span></div>
+          <div class="swatch-info"><div class="swatch-name">Mural Blue ADA</div><div class="swatch-usage">Interactive elements in product UI</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       TYPOGRAPHY
+       ════════════════════════════════════════ -->
+  <section id="typography">
+    <div class="section-inner">
+      <div class="section-label">Typography</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Type system</h2>
+      <p class="section-desc">Our primary typeface helps us stand out from the crowd. Our secondary typeface is the spice of copy. Together they create the Mural voice on the page.</p>
+
+      <div class="type-specimen">
+        <div style="font-family:var(--font-headline);font-weight:300;font-size:44px;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px;">Practice makes progress.</div>
+        <div style="font-size:17px;line-height:1.6;color:rgba(0,0,0,0.65);max-width:560px;">Mural helps teams think with intention, train over time, and transform challenges into extraordinary work. That&rsquo;s what seeing is how really means.</div>
+      </div>
+
+      <div class="type-info-grid">
+        <div class="type-info-card">
+          <h4>Headlines</h4>
+          <div class="font-name serif">STK Bureau Serif</div>
+          <div class="weights">Light (default for headlines)<br>Book (emphasis in running text)<br><br><strong>Fallback:</strong> Merriweather Light</div>
+        </div>
+        <div class="type-info-card">
+          <h4>Body Copy</h4>
+          <div class="font-name sans">ABC Social</div>
+          <div class="weights">Light (body copy, long-form)<br>Medium (subheaders, buttons, nav)<br>Bold (very limited emphasis)<br><br><strong>Fallback:</strong> Arial Regular</div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Type scale</h3>
+      <div style="margin-bottom:40px;">
+        <div class="type-scale-row">
+          <div class="type-scale-label">Display</div>
+          <div style="font-family:var(--font-headline);font-weight:300;font-size:48px;letter-spacing:-2px;">Seeing is how</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-label">H1</div>
+          <div style="font-family:var(--font-headline);font-weight:300;font-size:36px;letter-spacing:-1.2px;">Make it happen.</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-label">H2</div>
+          <div style="font-family:var(--font-headline);font-weight:300;font-size:28px;letter-spacing:-0.8px;">Put ideas under pressure</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-label">H3</div>
+          <div style="font-family:var(--font-headline);font-weight:300;font-size:22px;letter-spacing:-0.5px;">Not people.</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-label">Body</div>
+          <div style="font-size:17px;">Mural is the leading visual collaboration platform for getting results.</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-label">Caption</div>
+          <div style="font-weight:700;font-size:13px;letter-spacing:0.5px;text-transform:uppercase;color:rgba(0,0,0,0.4);">Button &middot; Label &middot; Navigation</div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Pairing rules</h3>
+      <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:12px;">Always use <strong>STK Bureau Serif for headlines</strong> and <strong>ABC Social for body copy</strong>. Never use ABC Social without STK Bureau Serif in marketing applications.</p>
+      <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:40px;">Pair them in: two-part statements (headline + answer), editorial content (website, blog), and complex documents where differentiating content types improves readability.</p>
+
+      <h3 class="sub-title">Headline spacing</h3>
+      <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:8px;"><strong>Tracking:</strong> Tighten by &minus;10 to &minus;100px at large sizes (51pt+). Use <code style="background:#f0f0ec;padding:2px 6px;border-radius:3px;font-size:13px;">letter-spacing: -1.2px</code> for standard headlines.</p>
+      <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:8px;"><strong>Leading rule:</strong> Tracking &lt; Word spacing &lt; Leading (always). Headlines: <code style="background:#f0f0ec;padding:2px 6px;border-radius:3px;font-size:13px;">line-height: 1.1</code>. Body: <code style="background:#f0f0ec;padding:2px 6px;border-radius:3px;font-size:13px;">line-height: 1.55</code>.</p>
+      <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:40px;">Never justify headlines. Never apply effects (3D, drop shadow, warp) to any text. Always use smart typography: curly quotes (&ldquo; &rdquo;), em dashes (&mdash;), and proper ellipses (&hellip;).</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       BRAND BAR
+       ════════════════════════════════════════ -->
+  <section id="brandbar">
+    <div class="section-inner">
+      <div class="section-label">Brand Bar</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">The 5-color bar</h2>
+      <p class="section-desc">The brand bar is a signature element. Five stripes in a fixed order with specific proportions &mdash; anchoring slides, pages, and brand touchpoints.</p>
+
+      <div class="brandbar-demo">
+        <div class="brandbar-visual">
+          <span data-label="Pink" style="background:#FC83FF;flex:16;"></span>
+          <span data-label="Red" style="background:#FF4B4B;flex:33;"></span>
+          <span data-label="Green" style="background:#00843F;flex:9.5;"></span>
+          <span data-label="Yellow" style="background:#FFAA00;flex:15;"></span>
+          <span data-label="Blue" style="background:#5887FF;flex:26;"></span>
+        </div>
+        <div class="brandbar-specs">
+          <div class="brandbar-spec"><dl><dt>Height</dt><dd>8px</dd></dl></div>
+          <div class="brandbar-spec"><dl><dt>Color order</dt><dd>P R G Y B</dd></dl></div>
+          <div class="brandbar-spec"><dl><dt>Proportions</dt><dd>16 / 33 / 9.5 / 15 / 26</dd></dl></div>
+        </div>
+      </div>
+
+      <div class="do-dont-grid">
+        <div class="do-card">
+          <h4>Do</h4>
+          <ul>
+            <li>Use the brand bar on black or white backgrounds &mdash; all five colors remain visible</li>
+            <li>Always maintain the color order: Pink, Red, Green, Yellow, Blue</li>
+            <li>Preserve the proportions &mdash; the stripes are not equal widths</li>
+          </ul>
+        </div>
+        <div class="dont-card">
+          <h4>Don&rsquo;t</h4>
+          <ul>
+            <li>Use on green backgrounds &mdash; the green stripe blends in</li>
+            <li>Reorder, omit, or duplicate any stripe</li>
+            <li>Use brand bar colors as general fills or UI accents</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       TONE OF VOICE
+       ════════════════════════════════════════ -->
+  <section id="tone">
+    <div class="section-inner">
+      <div class="section-label">Tone of Voice</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">It&rsquo;s not what we say, it&rsquo;s how we say it.</h2>
+      <p class="section-desc">Our tone of voice is our personality. It&rsquo;s the character we present to the world through the words we choose, the attitude we convey, and the persona we represent.</p>
+
+      <h3 class="sub-title">Persona: The Trusted Team Leader</h3>
+      <p style="font-size:16px;line-height:1.65;color:rgba(0,0,0,0.6);margin-bottom:48px;">Mural is the dependable and knowledgeable collaboration expert who can help your teams get on the same page. We believe in our values and practice what we preach. We&rsquo;re the understanding colleague who knows when to be all business, but isn&rsquo;t afraid to loosen the tie when it&rsquo;s time to get real.</p>
+
+      <h3 class="sub-title">Brand attributes</h3>
+      <div class="attribute-grid">
+        <div class="attribute-card">
+          <h4>Authoritative</h4>
+          <p>Leaders and pioneers in visual work. We know what we&rsquo;re talking about and speak with confidence.</p>
+          <div class="attribute-traits">
+            <span class="trait-tag">Knowledgeable</span>
+            <span class="trait-tag">Confident</span>
+            <span class="trait-tag">Experienced</span>
+            <span class="trait-tag">Commanding</span>
+          </div>
+        </div>
+        <div class="attribute-card">
+          <h4>Dependable</h4>
+          <p>We&rsquo;re there for you when you need us. You can trust us to do what we claim. Consistent and reliable.</p>
+          <div class="attribute-traits">
+            <span class="trait-tag">Trustworthy</span>
+            <span class="trait-tag">Reliable</span>
+            <span class="trait-tag">Useful</span>
+            <span class="trait-tag">Responsible</span>
+          </div>
+        </div>
+        <div class="attribute-card">
+          <h4>Open</h4>
+          <p>Honest about who we are. Nothing to hide. Always seeking to learn more. Open for business.</p>
+          <div class="attribute-traits">
+            <span class="trait-tag">Honest</span>
+            <span class="trait-tag">Curious</span>
+            <span class="trait-tag">Straightforward</span>
+            <span class="trait-tag">Realistic</span>
+          </div>
+        </div>
+        <div class="attribute-card">
+          <h4>Collegial</h4>
+          <p>The partner you always enjoy working with. Friendly, helpful, and we love seeing customers win.</p>
+          <div class="attribute-traits">
+            <span class="trait-tag">Friendly</span>
+            <span class="trait-tag">Helpful</span>
+            <span class="trait-tag">Respectful</span>
+            <span class="trait-tag">Thoughtful</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">We are / we are not</h3>
+      <div class="we-are-grid">
+        <div class="we-are-row"><span class="are">Confident</span><span class="not-label">not</span><span class="are-not">Cocky</span></div>
+        <div class="we-are-row"><span class="are">Intelligent</span><span class="not-label">not</span><span class="are-not">Erudite</span></div>
+        <div class="we-are-row"><span class="are">Friendly</span><span class="not-label">not</span><span class="are-not">Intimate</span></div>
+        <div class="we-are-row"><span class="are">Honest</span><span class="not-label">not</span><span class="are-not">Oversharing</span></div>
+        <div class="we-are-row"><span class="are">Helpful</span><span class="not-label">not</span><span class="are-not">Deferential</span></div>
+        <div class="we-are-row"><span class="are">Witty</span><span class="not-label">not</span><span class="are-not">Goofy</span></div>
+        <div class="we-are-row"><span class="are">Informative</span><span class="not-label">not</span><span class="are-not">Over-explanatory</span></div>
+        <div class="we-are-row"><span class="are">Current</span><span class="not-label">not</span><span class="are-not">Trendy</span></div>
+        <div class="we-are-row"><span class="are">Pointed</span><span class="not-label">not</span><span class="are-not">Harsh</span></div>
+        <div class="we-are-row"><span class="are">Clear</span><span class="not-label">not</span><span class="are-not">Basic</span></div>
+      </div>
+
+      <h3 class="sub-title">Core principles</h3>
+      <div class="principle-card">
+        <div class="principle-number">Principle 1</div>
+        <div class="principle-title">Move forward with confidence</div>
+        <div class="principle-tone">Bold, future-focused, assertive</div>
+        <div class="principle-example">&ldquo;Welcome to Chapter Two. The future is here, and Mural is ready to lead it. The journey ahead is powered by bold moves and strategic action.&rdquo;</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-number">Principle 2</div>
+        <div class="principle-title">Own the narrative</div>
+        <div class="principle-tone">Authoritative, unapologetic, clear</div>
+        <div class="principle-example">&ldquo;At Mural, we&rsquo;re not waiting for change &mdash; we&rsquo;re creating it. Our journey has always focused on collaboration, and we&rsquo;re now setting the pace for the industry in new ways.&rdquo;</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-number">Principle 3</div>
+        <div class="principle-title">Center the customer in the story</div>
+        <div class="principle-tone">Empathetic, inspiring, relatable</div>
+        <div class="principle-example">&ldquo;Every step of the way, Mural customers have been our inspiration to push boundaries. Your success is the heart of what we do.&rdquo;</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-number">Principle 4</div>
+        <div class="principle-title">Accelerate with alignment, strength, precision, and energy</div>
+        <div class="principle-tone">Dynamic, focused, purposeful</div>
+        <div class="principle-example">&ldquo;Mural&rsquo;s roadmap is built with deliberation and strategy. We are aligned, we are focused, and we are moving faster than ever.&rdquo;</div>
+      </div>
+
+      <h3 class="sub-title" style="margin-top:48px;">Writing rules</h3>
+      <div class="do-dont-grid">
+        <div class="do-card">
+          <h4>Do</h4>
+          <ul>
+            <li>Get to the point &mdash; be direct with clear takeaways</li>
+            <li>Demonstrate value &mdash; show it, don&rsquo;t just talk about it</li>
+            <li>Keep it simple &mdash; no ten-dollar words</li>
+            <li>Speak your customers&rsquo; language</li>
+            <li>Differentiate &mdash; if a competitor could say it, don&rsquo;t</li>
+            <li>Focus on results with specifics</li>
+            <li>Take a stance on what&rsquo;s broken</li>
+            <li>Put the customer first, always</li>
+          </ul>
+        </div>
+        <div class="dont-card">
+          <h4>Don&rsquo;t</h4>
+          <ul>
+            <li>Make Mural the hero &mdash; the customer is</li>
+            <li>Use jargon or overly technical terms</li>
+            <li>Use passive voice or hesitant language</li>
+            <li>Treat every audience the same</li>
+            <li>Use vague positive statements</li>
+            <li>Be afraid to show personality</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       EDITORIAL
+       ════════════════════════════════════════ -->
+  <section id="editorial">
+    <div class="section-inner">
+      <div class="section-label">Editorial</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Editorial guidelines</h2>
+      <p class="section-desc">We use AP Style with some Mural-specific exceptions. These rules help us communicate clearly, cohesively, and consistently.</p>
+
+      <h3 class="sub-title">Quick reference</h3>
+      <table class="editorial-table">
+        <thead><tr><th>Rule</th><th>Guidance</th></tr></thead>
+        <tbody>
+          <tr><td>Headlines</td><td>Sentence case. No final punctuation unless expressive (?!) or multi-sentence.</td></tr>
+          <tr><td>Company name</td><td><strong>Mural</strong> (not MURAL). File names: mural (lowercase).</td></tr>
+          <tr><td>Oxford comma</td><td>Always. &ldquo;Milk, eggs, honey, and sugar.&rdquo;</td></tr>
+          <tr><td>Em dashes</td><td>Spaces around &mdash; like this. (Option + Shift + hyphen)</td></tr>
+          <tr><td>Exclamation points</td><td>Use sparingly!</td></tr>
+          <tr><td>ALL CAPS</td><td>Never, unless it&rsquo;s a design element (button label, file type).</td></tr>
+          <tr><td>Emphasis</td><td>Use <em>italics</em> or <strong>bold</strong>. Never ALL CAPS for emphasis.</td></tr>
+          <tr><td>Numbers</td><td>Spell out one&ndash;nine. Numerals for 10+.</td></tr>
+          <tr><td>Times</td><td>HH:MM am/pm ET/PT. No minutes on the hour.</td></tr>
+          <tr><td>Language</td><td>American English always (color, canceled, realize).</td></tr>
+          <tr><td>Voice</td><td>Active voice by default. Passive only to emphasize the object.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">&ldquo;Do not use&rdquo; words</h3>
+      <table class="editorial-table">
+        <thead><tr><th>Don&rsquo;t say</th><th>Say instead</th></tr></thead>
+        <tbody>
+          <tr><td class="dont-text">Muraling</td><td>Never turn the trademark into a verb</td></tr>
+          <tr><td class="dont-text">Tool</td><td>&ldquo;Software&rdquo; or &ldquo;platform&rdquo;</td></tr>
+          <tr><td class="dont-text">Mural file</td><td>Don&rsquo;t refer to canvases as &ldquo;files&rdquo;</td></tr>
+          <tr><td class="dont-text">Mural family</td><td>&ldquo;The Mural team&rdquo; or &ldquo;the team at Mural&rdquo;</td></tr>
+          <tr><td class="dont-text">Board</td><td>Use &ldquo;mural&rdquo; (lowercase) for the canvas</td></tr>
+          <tr><td class="dont-text">Log in</td><td>&ldquo;Sign in&rdquo; is preferred (more human, less techie)</td></tr>
+          <tr><td class="dont-text">Utilize</td><td>&ldquo;Use&rdquo; &mdash; simpler and more direct</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">Capitalization</h3>
+      <table class="editorial-table">
+        <thead><tr><th>Element</th><th>Case</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>Product/brand names</td><td>Title case</td><td>Mural, Microsoft 365 Copilot</td></tr>
+          <tr><td>Product offerings</td><td>Title case</td><td>Mural AI, Facilitation Superpowers</td></tr>
+          <tr><td>Features &amp; use cases</td><td>Lowercase</td><td>sticky notes, private mode, clustering</td></tr>
+          <tr><td>Templates</td><td>Title case names</td><td>Design Thinking template</td></tr>
+          <tr><td>UI elements</td><td>Lowercase</td><td>a mural, shapes, connectors</td></tr>
+          <tr><td>Titles &amp; headings</td><td>Sentence case</td><td>&ldquo;Take teamwork to new heights&rdquo;</td></tr>
+          <tr><td>Press releases</td><td>Title Case</td><td>&ldquo;Mural Announces Integration&hellip;&rdquo;</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">Writing about people</h3>
+      <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:12px;"><strong>Names:</strong> Full name + title on first reference. First name only after that.</p>
+      <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:12px;"><strong>Job titles:</strong> Capitalize before a name (&ldquo;President Smith&rdquo;). Lowercase after (&ldquo;Lindsey is an enterprise transformation manager&rdquo;).</p>
+      <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:12px;"><strong>Team names:</strong> &ldquo;Our Support team&rdquo; (capitalize team name, lowercase &ldquo;team&rdquo;).</p>
+      <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:40px;"><strong>Pronouns:</strong> Use preferred pronouns. Default to they/them if unknown. Use gender-inclusive language (mail carrier, server, humankind, first-year student, team capacity).</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       LAYOUT PATTERNS
+       ════════════════════════════════════════ -->
+  <section id="layout">
+    <div class="section-inner">
+      <div class="section-label">Layout Patterns</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Structure &amp; spacing</h2>
+      <p class="section-desc">Consistent layout creates rhythm across slides and pages. Use color blocking, split layouts, card grids, and section dividers as building blocks.</p>
+
+      <h3 class="sub-title">Section patterns</h3>
+      <div class="section-demo" style="background:linear-gradient(135deg,var(--mural-green),var(--jade),var(--spring));">
+        <div class="inner">
+          <div class="demo-headline" style="color:var(--black);">Green gradient hero</div>
+          <div class="demo-sub" style="color:rgba(0,0,0,0.5);">Use the monochromatic palette for signature Mural sections</div>
+        </div>
+      </div>
+      <div class="section-demo" style="background:var(--black);">
+        <div class="inner">
+          <div class="demo-headline" style="color:var(--white);">Dark section</div>
+          <div class="demo-sub" style="color:rgba(255,255,255,0.4);">High contrast for impact statements and CTAs</div>
+        </div>
+      </div>
+      <div class="section-demo" style="background:var(--natural);">
+        <div class="inner">
+          <div class="demo-headline">Natural surface</div>
+          <div class="demo-sub">Warm, approachable background for content sections</div>
+        </div>
+      </div>
+
+      <div class="type-info-grid" style="margin-top:40px;">
+        <div class="type-info-card">
+          <h4>Margin system</h4>
+          <div class="weights">Standard content margins: <strong>64px</strong> from the edge. Top padding: <strong>48px</strong>. Split layout panel padding: <strong>56px 48px</strong>. Keep content clear of the brand bar.</div>
+        </div>
+        <div class="type-info-card">
+          <h4>Corners &amp; shadows</h4>
+          <div class="weights">Cards and containers: <strong>border-radius: 12px</strong>. Small elements (badges, pills): <strong>4px</strong>. Avoid hard 0px corners &mdash; everything feels gently rounded.</div>
+        </div>
+        <div class="type-info-card">
+          <h4>Cards</h4>
+          <div class="weights">White or Natural background. 12px radius. 28px internal padding. 20px gap between cards. Subtle border or shadow.</div>
+        </div>
+        <div class="type-info-card">
+          <h4>Color blocking</h4>
+          <div class="weights">Alternate Jade, Black, White, Natural. Never same color adjacent. Jade for emphasis, Natural for breathing room. Ensure a visible edge between blocks.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       BACKGROUND PATTERNS
+       ════════════════════════════════════════ -->
+  <section id="bg-patterns">
+    <div class="section-inner">
+      <div class="section-label">Background Patterns</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Canvas dot grids</h2>
+      <p class="section-desc">Subtle dot-grid textures reference the Mural canvas and add tactile depth to backgrounds. Use them in presentations, ads, and marketing materials to give surfaces a collaborative, workspace feel.</p>
+
+      <h3 class="sub-title">Three variants</h3>
+      <div class="bg-pattern-grid">
+        <div class="bg-pattern-card">
+          <div class="bg-pattern-preview dot-white"></div>
+          <div class="bg-pattern-info">
+            <div class="bg-pattern-name">Light canvas</div>
+            <div class="bg-pattern-spec">
+              Background: #FFFFFF<br>
+              Dot: rgba(0,0,0,0.18)<br>
+              Grid: 18 &times; 18 px<br>
+              Dot size: 1 px radius
+            </div>
+          </div>
+        </div>
+        <div class="bg-pattern-card">
+          <div class="bg-pattern-preview dot-black"></div>
+          <div class="bg-pattern-info">
+            <div class="bg-pattern-name">Dark canvas</div>
+            <div class="bg-pattern-spec">
+              Background: #000000<br>
+              Dot: rgba(255,255,255,0.35)<br>
+              Grid: 18 &times; 18 px<br>
+              Dot size: 1 px radius
+            </div>
+          </div>
+        </div>
+        <div class="bg-pattern-card">
+          <div class="bg-pattern-preview dot-mint"></div>
+          <div class="bg-pattern-info">
+            <div class="bg-pattern-name">Mint canvas</div>
+            <div class="bg-pattern-spec">
+              Background: #B4F5C0<br>
+              Dot: rgba(0,60,20,0.12)<br>
+              Grid: 18 &times; 18 px<br>
+              Dot size: 1 px radius
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">In context</h3>
+      <div class="bg-pattern-fullwidth">
+        <div class="bg-pattern-fullwidth-inner dot-white">
+          <span class="bg-pattern-fullwidth-label" style="color:var(--black);">Content sits on top of the dot grid, adding subtle texture without competing</span>
+        </div>
+      </div>
+      <div class="bg-pattern-fullwidth">
+        <div class="bg-pattern-fullwidth-inner dot-black">
+          <span class="bg-pattern-fullwidth-label" style="color:var(--white);">Dark canvas works well for feature callouts and bold statements</span>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Usage guidelines</h3>
+      <div class="bg-pattern-usage">
+        <div class="bg-pattern-usage-card">
+          <h4>When to use</h4>
+          <ul>
+            <li>Presentation backgrounds for a collaborative feel</li>
+            <li>Ad and marketing hero sections</li>
+            <li>Behind product screenshots or UI mockups</li>
+            <li>Social media assets and event materials</li>
+          </ul>
+        </div>
+        <div class="bg-pattern-usage-card">
+          <h4>Best practices</h4>
+          <ul>
+            <li>Keep dots subtle&mdash;they should be felt, not seen</li>
+            <li>Don&rsquo;t scale the grid up; keep dots at 1px</li>
+            <li>Pair light canvas with dark text, dark canvas with light text</li>
+            <li>Avoid placing dot grid over photos or complex visuals</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub-title">CSS snippet</h3>
+      <pre style="background:#1a1a1a; color:#e0e0e0; padding:24px 28px; border-radius:8px; font-size:13px; line-height:1.7; overflow-x:auto; margin-bottom:0;"><code><span style="color:#9FEC7F;">/* Light canvas */</span>
+.bg-dots-light {
+  background-color: <span style="color:#FFAA00;">#FFFFFF</span>;
+  background-image: <span style="color:#5887FF;">radial-gradient</span>(circle, <span style="color:#5887FF;">rgba(0,0,0,0.18)</span> 1px, transparent 1px);
+  background-size: <span style="color:#FC83FF;">18px 18px</span>;
+}
+
+<span style="color:#9FEC7F;">/* Dark canvas */</span>
+.bg-dots-dark {
+  background-color: <span style="color:#FFAA00;">#000000</span>;
+  background-image: <span style="color:#5887FF;">radial-gradient</span>(circle, <span style="color:#5887FF;">rgba(255,255,255,0.35)</span> 1px, transparent 1px);
+  background-size: <span style="color:#FC83FF;">18px 18px</span>;
+}
+
+<span style="color:#9FEC7F;">/* Mint canvas */</span>
+.bg-dots-mint {
+  background-color: <span style="color:#FFAA00;">#B4F5C0</span>;
+  background-image: <span style="color:#5887FF;">radial-gradient</span>(circle, <span style="color:#5887FF;">rgba(0,60,20,0.12)</span> 1px, transparent 1px);
+  background-size: <span style="color:#FC83FF;">18px 18px</span>;
+}</code></pre>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       COMPONENTS
+       ════════════════════════════════════════ -->
+  <section id="components">
+    <div class="section-inner">
+      <div class="section-label">Components</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Building blocks</h2>
+      <p class="section-desc">Core UI patterns for building on-brand pages and assets.</p>
+
+      <h3 class="sub-title">Buttons</h3>
+      <div class="component-demo-area">
+        <button class="btn btn-primary">Primary action</button>
+        <button class="btn btn-secondary">Secondary action</button>
+        <button class="btn btn-ghost">Ghost action</button>
+      </div>
+      <p style="font-size:13px;color:rgba(0,0,0,0.35);margin-bottom:40px;">Primary: Jade bg, white text &middot; Secondary: Black bg, white text &middot; Ghost: Jade border + text, transparent bg</p>
+
+      <h3 class="sub-title">Cards</h3>
+      <div class="component-demo-area">
+        <div class="card-demo">
+          <h4>Turn goals into outcomes</h4>
+          <p>Mural&rsquo;s visual collaboration platform brings teams together to see the big picture and connect strategy to execution.</p>
+        </div>
+        <div class="card-demo" style="background:var(--natural);border-color:transparent;">
+          <h4>Make it happen.</h4>
+          <p>From Sales and Marketing to R&amp;D, every team gets aligned in one visual workspace.</p>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Accent line</h3>
+      <div class="component-demo-area">
+        <svg width="48" height="4"><rect width="48" height="4" rx="2" fill="#00C27A"/></svg>
+        <span style="font-size:12px;color:rgba(0,0,0,0.35);">48 &times; 4px &middot; Jade &middot; 2px radius</span>
+      </div>
+
+      <h3 class="sub-title">Slide number</h3>
+      <div class="component-demo-area">
+        <span style="font-size:11px;color:rgba(0,0,0,0.25);">01</span>
+        <span style="font-size:12px;color:rgba(0,0,0,0.35);">Light bg</span>
+        <span style="display:inline-block;background:#000;padding:4px 10px;border-radius:4px;font-size:11px;color:rgba(255,255,255,0.25);">01</span>
+        <span style="font-size:12px;color:rgba(0,0,0,0.35);">Dark bg</span>
+      </div>
+      <p style="font-size:13px;color:rgba(0,0,0,0.35);margin-bottom:40px;">Position: bottom 20px, right 32px &middot; Arial 11px, weight 400 &middot; rgba(0,0,0,0.25) on light, rgba(255,255,255,0.25) on dark</p>
+
+      <h3 class="sub-title">Quote accent bar</h3>
+      <div class="component-demo-area">
+        <svg width="5" height="80"><rect width="5" height="80" rx="3" fill="#00C27A"/></svg>
+        <span style="font-family:var(--font-headline);font-weight:300;font-size:16px;font-style:italic;color:#333;max-width:300px;display:inline-block;line-height:1.4;">&ldquo;Design is not just what it looks like. Design is how it works.&rdquo;</span>
+      </div>
+      <p style="font-size:13px;color:rgba(0,0,0,0.35);margin-bottom:40px;">5px wide &middot; 220px height (flexible) &middot; Jade &middot; 3px radius</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       DATA VISUALIZATION
+       ════════════════════════════════════════ -->
+  <section id="dataviz">
+    <div class="section-inner">
+      <div class="section-label">Data Visualization</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Charts &amp; data</h2>
+      <p class="section-desc">Use the Jade-led color hierarchy for all charts. Keep visualizations clean, labeled in Arial, and consistent with the brand palette.</p>
+
+      <h3 class="sub-title" style="margin-top:0;">Color hierarchy</h3>
+      <div class="dataviz-color-hierarchy">
+        <div class="dataviz-color-chip"><div class="chip-dot" style="background:#00C27A;"></div><span class="chip-label">Jade</span></div>
+        <span class="dataviz-arrow">&rarr;</span>
+        <div class="dataviz-color-chip"><div class="chip-dot" style="background:#9FEC7F;"></div><span class="chip-label">Spring</span></div>
+        <span class="dataviz-arrow">&rarr;</span>
+        <div class="dataviz-color-chip"><div class="chip-dot" style="background:#B4F5C0;"></div><span class="chip-label">Mint</span></div>
+        <span class="dataviz-arrow">&rarr;</span>
+        <div class="dataviz-color-chip"><div class="chip-dot" style="background:#5887FF;"></div><span class="chip-label">Blue</span></div>
+        <span class="dataviz-arrow">&rarr;</span>
+        <div class="dataviz-color-chip"><div class="chip-dot" style="background:#FC83FF;"></div><span class="chip-label">Pink</span></div>
+      </div>
+
+      <div class="chart-demo">
+        <div class="type-specimen-label">Bar Chart</div>
+        <svg width="400" height="160" viewBox="0 0 400 160">
+          <line x1="40" y1="130" x2="380" y2="130" stroke="#ddd" stroke-width="1"/>
+          <line x1="40" y1="90" x2="380" y2="90" stroke="#f0f0ec" stroke-width="1" stroke-dasharray="4"/>
+          <line x1="40" y1="50" x2="380" y2="50" stroke="#f0f0ec" stroke-width="1" stroke-dasharray="4"/>
+          <rect x="65" y="40" width="40" height="90" rx="4" fill="#00C27A"/>
+          <rect x="125" y="60" width="40" height="70" rx="4" fill="#9FEC7F"/>
+          <rect x="185" y="50" width="40" height="80" rx="4" fill="#B4F5C0"/>
+          <rect x="245" y="70" width="40" height="60" rx="4" fill="#5887FF"/>
+          <rect x="305" y="85" width="40" height="45" rx="4" fill="#FC83FF"/>
+          <text x="85" y="150" font-family="Arial" font-size="11" fill="#999" text-anchor="middle">Q1</text>
+          <text x="145" y="150" font-family="Arial" font-size="11" fill="#999" text-anchor="middle">Q2</text>
+          <text x="205" y="150" font-family="Arial" font-size="11" fill="#999" text-anchor="middle">Q3</text>
+          <text x="265" y="150" font-family="Arial" font-size="11" fill="#999" text-anchor="middle">Q4</text>
+          <text x="325" y="150" font-family="Arial" font-size="11" fill="#999" text-anchor="middle">Q5</text>
+        </svg>
+      </div>
+
+      <div class="chart-demo">
+        <div class="type-specimen-label">Line Chart</div>
+        <svg width="400" height="160" viewBox="0 0 400 160">
+          <line x1="40" y1="130" x2="380" y2="130" stroke="#ddd" stroke-width="1"/>
+          <line x1="40" y1="90" x2="380" y2="90" stroke="#f0f0ec" stroke-width="1" stroke-dasharray="4"/>
+          <line x1="40" y1="50" x2="380" y2="50" stroke="#f0f0ec" stroke-width="1" stroke-dasharray="4"/>
+          <polygon points="60,100 130,70 200,80 270,40 340,55 340,130 60,130" fill="#00C27A" opacity="0.1"/>
+          <polyline points="60,100 130,70 200,80 270,40 340,55" fill="none" stroke="#00C27A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="60" cy="100" r="4" fill="#fff" stroke="#00C27A" stroke-width="2.5"/>
+          <circle cx="130" cy="70" r="4" fill="#fff" stroke="#00C27A" stroke-width="2.5"/>
+          <circle cx="200" cy="80" r="4" fill="#fff" stroke="#00C27A" stroke-width="2.5"/>
+          <circle cx="270" cy="40" r="4" fill="#fff" stroke="#00C27A" stroke-width="2.5"/>
+          <circle cx="340" cy="55" r="4" fill="#fff" stroke="#00C27A" stroke-width="2.5"/>
+          <line x1="40" y1="65" x2="380" y2="65" stroke="#000" stroke-width="1" stroke-dasharray="6 3"/>
+          <text x="382" y="69" font-family="Arial" font-size="10" fill="#999">Target</text>
+        </svg>
+      </div>
+
+      <div class="chart-demo">
+        <div class="type-specimen-label">Donut Chart</div>
+        <svg width="160" height="160" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="60" fill="none" stroke="#00C27A" stroke-width="24" stroke-dasharray="226.2 376.99" stroke-dashoffset="94.25" stroke-linecap="round"/>
+          <circle cx="80" cy="80" r="60" fill="none" stroke="#9FEC7F" stroke-width="24" stroke-dasharray="94.25 376.99" stroke-dashoffset="-131.95" stroke-linecap="round"/>
+          <circle cx="80" cy="80" r="60" fill="none" stroke="#B4F5C0" stroke-width="24" stroke-dasharray="56.55 376.99" stroke-dashoffset="-226.19" stroke-linecap="round"/>
+          <text x="80" y="76" font-family="'Merriweather',Georgia,serif" font-weight="300" font-size="24" fill="#000" text-anchor="middle">60%</text>
+          <text x="80" y="96" font-family="Arial" font-size="11" fill="#999" text-anchor="middle">Primary</text>
+        </svg>
+      </div>
+
+      <div class="rule-grid">
+        <div class="rule-card">
+          <h4>Bar charts</h4>
+          <ul>
+            <li><code>border-radius: 4px</code> on top of each bar</li>
+            <li>Jade for primary metric; cycle through Spring, Mint, Blue, Pink</li>
+            <li>Labels: Arial 12px, color <code>#666</code></li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h4>Line charts</h4>
+          <ul>
+            <li>Stroke width: 2.5px, round caps and joins</li>
+            <li>Markers: white-filled circles with colored stroke</li>
+            <li>Area fill: same color at 10% opacity</li>
+            <li>Target line: black, 1px, dashed (6 3)</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h4>Donut charts</h4>
+          <ul>
+            <li>Stroke width: 24px standard, 16px small</li>
+            <li>Round line caps for polished look</li>
+            <li>Center metric in Merriweather Light</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h4>General rules</h4>
+          <ul>
+            <li>Always lead with Jade &mdash; primary data color</li>
+            <li>Never use brand bar colors (Red, Green, Yellow) in charts</li>
+            <li>Legend swatches: 16 &times; 16px, 4px radius</li>
+            <li>Chart labels: Arial 12px, <code>#666</code></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       UI PATTERNS
+       ════════════════════════════════════════ -->
+  <section id="ui-patterns">
+    <div class="section-inner">
+      <div class="section-label">UI Patterns</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Interaction &amp; motion</h2>
+      <p class="section-desc">Consistent interaction patterns and motion bring the brand to life. These patterns are used across mural.co and product surfaces.</p>
+
+      <!-- Dark form fields -->
+      <h3 class="sub-title">Dark-mode form fields</h3>
+      <p style="font-size:14px;color:rgba(0,0,0,0.5);margin-bottom:16px;">Used for sign-up forms, email capture, and login surfaces. Dark backgrounds create focus and contrast against page content.</p>
+      <div class="ui-demo-area dark">
+        <div class="demo-form-row">
+          <label class="demo-form-label">Default</label>
+          <input type="text" class="demo-form-field" placeholder="Enter your work email" readonly>
+          <label class="demo-form-label" style="margin-top:12px;">Focused</label>
+          <input type="text" class="demo-form-field" value="jenn@mural.co" style="border-color:#00C27A;box-shadow:0 0 0 3px rgba(0,194,122,0.2);" readonly>
+          <label class="demo-form-label" style="margin-top:12px;">Error</label>
+          <input type="text" class="demo-form-field error" value="not-an-email" readonly>
+        </div>
+      </div>
+      <div class="rule-grid" style="margin-top:16px;margin-bottom:40px;">
+        <div class="rule-card">
+          <h4>Specs</h4>
+          <ul>
+            <li>Background: <code>#2a2a2a</code></li>
+            <li>Border: 2px solid <code>#353535</code></li>
+            <li>Border radius: <code>8px</code></li>
+            <li>Padding: <code>14px 16px</code></li>
+            <li>Font: Arial, 15px, white text</li>
+            <li>Placeholder: <code>rgba(255,255,255,0.35)</code></li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h4>States</h4>
+          <ul>
+            <li>Focus: Jade border + <code>0 0 0 3px rgba(0,194,122,0.2)</code> glow</li>
+            <li>Error: Red border (<code>#FF4B4B</code>) + <code>rgba(255,75,75,0.15)</code> glow</li>
+            <li>Transitions: <code>0.2s ease</code> on border-color and box-shadow</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Scroll-triggered animations -->
+      <h3 class="sub-title">Scroll-triggered animations</h3>
+      <p style="font-size:14px;color:rgba(0,0,0,0.5);margin-bottom:16px;">Content enters the viewport by sliding up and fading in. Stagger children by 100ms for a cascading reveal.</p>
+      <div class="ui-demo-area">
+        <div class="scroll-demo-cards" id="scroll-demo">
+          <div class="scroll-demo-card">
+            <h4>Align faster</h4>
+            <p>Get teams on the same page with shared visual workspaces.</p>
+          </div>
+          <div class="scroll-demo-card">
+            <h4>Move together</h4>
+            <p>Turn strategy into action with connected workflows.</p>
+          </div>
+          <div class="scroll-demo-card">
+            <h4>Deliver results</h4>
+            <p>From brainstorm to execution in one platform.</p>
+          </div>
+        </div>
+        <button onclick="replayAnimation()" style="margin-top:16px;font-family:var(--font-body);font-size:13px;font-weight:700;padding:8px 16px;border-radius:6px;border:1px solid rgba(0,0,0,0.1);background:var(--white);color:rgba(0,0,0,0.5);cursor:pointer;">Replay animation</button>
+      </div>
+      <div class="rule-grid" style="margin-top:16px;margin-bottom:40px;">
+        <div class="rule-card">
+          <h4>Motion specs</h4>
+          <ul>
+            <li>Transform: <code>translateY(24px)</code> &rarr; <code>translateY(0)</code></li>
+            <li>Opacity: <code>0</code> &rarr; <code>1</code></li>
+            <li>Duration: <code>0.5s</code></li>
+            <li>Easing: <code>cubic-bezier(0.22, 1, 0.36, 1)</code></li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h4>Stagger rules</h4>
+          <ul>
+            <li>Delay between siblings: <code>100ms</code></li>
+            <li>Max stagger group: 5 items (avoid long cascades)</li>
+            <li>Trigger: element enters viewport at 20% visibility</li>
+            <li>Animate once &mdash; don&rsquo;t re-trigger on scroll back</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Link hover underlines -->
+      <h3 class="sub-title">Link hover underlines</h3>
+      <p style="font-size:14px;color:rgba(0,0,0,0.5);margin-bottom:16px;">Text links reveal an underline on hover that animates from left to right. Used for navigation, inline links, and CTAs.</p>
+      <div class="ui-demo-area" style="display:flex;gap:32px;align-items:center;">
+        <a href="#" class="demo-link" onclick="return false">Learn more</a>
+        <a href="#" class="demo-link" onclick="return false">View case study</a>
+        <a href="#" class="demo-link" onclick="return false">Get started free</a>
+      </div>
+      <div class="ui-demo-area dark" style="display:flex;gap:32px;align-items:center;margin-top:12px;">
+        <a href="#" class="demo-link dark-link" onclick="return false">Learn more</a>
+        <a href="#" class="demo-link dark-link" onclick="return false">View case study</a>
+        <a href="#" class="demo-link dark-link" onclick="return false">Get started free</a>
+      </div>
+      <div class="rule-grid" style="margin-top:16px;margin-bottom:40px;">
+        <div class="rule-card">
+          <h4>Specs</h4>
+          <ul>
+            <li>Underline height: <code>2px</code>, border-radius <code>1px</code></li>
+            <li>Color: matches link text color (Jade on light, white on dark)</li>
+            <li>Initial width: <code>0</code>, expands to <code>100%</code> on hover</li>
+            <li>Position: <code>2px</code> below baseline</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h4>Motion</h4>
+          <ul>
+            <li>Duration: <code>0.3s</code></li>
+            <li>Easing: <code>cubic-bezier(0.22, 1, 0.36, 1)</code></li>
+            <li>Direction: left to right on enter, right to left on leave</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <h3 class="sub-title">Tabs component</h3>
+      <p style="font-size:14px;color:rgba(0,0,0,0.5);margin-bottom:16px;">Tabbed navigation with an animated underline indicator. Used for switching between content views, feature categories, and product sections.</p>
+      <div class="ui-demo-area">
+        <div class="demo-tabs">
+          <button class="demo-tab active" onclick="switchTab(this, 'tab1')">Overview</button>
+          <button class="demo-tab" onclick="switchTab(this, 'tab2')">Features</button>
+          <button class="demo-tab" onclick="switchTab(this, 'tab3')">Pricing</button>
+          <button class="demo-tab" onclick="switchTab(this, 'tab4')">Resources</button>
+        </div>
+        <div class="demo-tab-content" id="tab1">Mural is the AI-powered visual workspace where teams align on strategy, collaborate in real time, and drive outcomes together.</div>
+        <div class="demo-tab-content" id="tab2" style="display:none;">200+ templates, real-time collaboration, AI-powered brainstorming, integrations across your tech stack, and the LUMA System framework.</div>
+        <div class="demo-tab-content" id="tab3" style="display:none;">Free, Team, Business, and Enterprise plans designed to scale with your organization. Start free, upgrade when you&rsquo;re ready.</div>
+        <div class="demo-tab-content" id="tab4" style="display:none;">Blog, webinars, case studies, community, developer docs, and the Mural Academy &mdash; everything you need to get the most from Mural.</div>
+      </div>
+      <div class="rule-grid" style="margin-top:16px;margin-bottom:40px;">
+        <div class="rule-card">
+          <h4>Specs</h4>
+          <ul>
+            <li>Tab font: Arial, 14px, bold</li>
+            <li>Inactive color: <code>rgba(0,0,0,0.4)</code></li>
+            <li>Active color: <code>#000</code></li>
+            <li>Indicator: 2px Jade underline, inset <code>20px</code> from tab edges</li>
+            <li>Track border: 2px solid <code>rgba(0,0,0,0.08)</code></li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h4>Motion</h4>
+          <ul>
+            <li>Indicator: <code>scaleX(0)</code> &rarr; <code>scaleX(1)</code></li>
+            <li>Duration: <code>0.3s</code></li>
+            <li>Easing: <code>cubic-bezier(0.22, 1, 0.36, 1)</code></li>
+            <li>Color transition on text: <code>0.2s ease</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Motion guidelines summary -->
+      <h3 class="sub-title">Motion guidelines</h3>
+      <div class="rule-grid">
+        <div class="rule-card">
+          <h4>Brand easing curve</h4>
+          <ul>
+            <li>Primary: <code>cubic-bezier(0.22, 1, 0.36, 1)</code></li>
+            <li>Use for entrances, underlines, and emphasis</li>
+            <li>Quick acceleration, gentle deceleration &mdash; feels responsive but smooth</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h4>Duration scale</h4>
+          <ul>
+            <li>Micro (hover, focus): <code>0.15s &ndash; 0.2s</code></li>
+            <li>Standard (underlines, tabs): <code>0.3s</code></li>
+            <li>Entrance (scroll-triggered): <code>0.4s &ndash; 0.6s</code></li>
+            <li>Never exceed <code>0.8s</code> &mdash; motion should feel quick, not sluggish</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       CSS SNIPPETS
+       ════════════════════════════════════════ -->
+  <section id="css">
+    <div class="section-inner">
+      <div class="section-label">Code</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">CSS snippets</h2>
+      <p class="section-desc">Ready-to-paste code for building on-brand pages. Copy these into any project.</p>
+
+      <h3 class="sub-title">CSS variables</h3>
+      <div class="code-block"><code><span class="sel">:root</span> {
+  <span class="comment">/* Primary palette */</span>
+  <span class="prop">--mural-jade</span>: <span class="val">#00C27A</span>;
+  <span class="prop">--mural-green</span>: <span class="val">#00843F</span>;
+  <span class="prop">--mural-spring</span>: <span class="val">#9FEC7F</span>;
+  <span class="prop">--mural-mint</span>: <span class="val">#B4F5C0</span>;
+
+  <span class="comment">/* Accents */</span>
+  <span class="prop">--mural-blue</span>: <span class="val">#5887FF</span>;
+  <span class="prop">--mural-pink</span>: <span class="val">#FC83FF</span>;  <span class="comment">/* RGB 252, 131, 255 */</span>
+
+  <span class="comment">/* Neutrals */</span>
+  <span class="prop">--mural-black</span>: <span class="val">#000000</span>;
+  <span class="prop">--mural-white</span>: <span class="val">#FFFFFF</span>;
+  <span class="prop">--mural-natural</span>: <span class="val">#EDEDD8</span>;
+
+  <span class="comment">/* Typography */</span>
+  <span class="prop">--font-headline</span>: <span class="val">'STK Bureau Serif', 'Merriweather', Georgia, serif</span>;
+  <span class="prop">--font-body</span>: <span class="val">'ABC Social', Arial, Helvetica, sans-serif</span>;
+}</code></div>
+
+      <h3 class="sub-title">Font stacks</h3>
+      <div class="code-block"><code><span class="comment">/* Headlines */</span>
+<span class="sel">.headline</span> {
+  <span class="prop">font-family</span>: <span class="val">var(--font-headline)</span>;
+  <span class="prop">font-weight</span>: <span class="val">300</span>;
+  <span class="prop">letter-spacing</span>: <span class="val">-1.5px</span>;
+  <span class="prop">line-height</span>: <span class="val">1.1</span>;
+}
+
+<span class="comment">/* Body copy */</span>
+<span class="sel">.body</span> {
+  <span class="prop">font-family</span>: <span class="val">var(--font-body)</span>;
+  <span class="prop">font-weight</span>: <span class="val">300</span>;
+  <span class="prop">line-height</span>: <span class="val">1.55</span>;
+}
+
+<span class="comment">/* Subheaders & buttons */</span>
+<span class="sel">.subheader</span>, <span class="sel">.btn</span> {
+  <span class="prop">font-family</span>: <span class="val">var(--font-body)</span>;
+  <span class="prop">font-weight</span>: <span class="val">500</span>;
+}</code></div>
+
+      <h3 class="sub-title">Section backgrounds</h3>
+      <div class="code-block"><code><span class="sel">.hero-gradient</span> {
+  <span class="prop">background</span>: <span class="val">linear-gradient(135deg, #00843F 0%, #00C27A 30%, #9FEC7F 60%, #B4F5C0 100%)</span>;
+}
+
+<span class="sel">.hero-dark</span> {
+  <span class="prop">background</span>: <span class="val">#000000</span>;
+  <span class="prop">color</span>: <span class="val">#FFFFFF</span>;
+}
+
+<span class="sel">.hero-natural</span> {
+  <span class="prop">background</span>: <span class="val">#EDEDD8</span>;
+}</code></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       WEB DESIGN SYSTEM — GRID
+       ════════════════════════════════════════ -->
+  <section id="wds-grid">
+    <div class="section-inner">
+      <div class="section-label">Web Design System</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Grid system</h2>
+      <p class="section-desc">A modular 12-column grid with 2rem (32px) gutters provides a standardized foundation of columns and alignment across all screen sizes.</p>
+
+      <h3 class="sub-title">12-column base grid</h3>
+      <div class="wds-grid-demo">
+        <div class="wds-grid-col">1</div><div class="wds-grid-col">2</div><div class="wds-grid-col">3</div>
+        <div class="wds-grid-col">4</div><div class="wds-grid-col">5</div><div class="wds-grid-col">6</div>
+        <div class="wds-grid-col">7</div><div class="wds-grid-col">8</div><div class="wds-grid-col">9</div>
+        <div class="wds-grid-col">10</div><div class="wds-grid-col">11</div><div class="wds-grid-col">12</div>
+      </div>
+      <p style="text-align:center; font-size:12px; font-family:'SF Mono','Fira Code',monospace; color:rgba(0,0,0,0.35); margin-bottom:48px;">Gutter: 2rem / 32px</p>
+
+      <h3 class="sub-title">Layout options</h3>
+
+      <div class="wds-layout-label">4 column layout</div>
+      <div class="wds-layout-demo" style="grid-template-columns:repeat(4,1fr);">
+        <div class="wds-layout-cell">3</div><div class="wds-layout-cell">3</div><div class="wds-layout-cell">3</div><div class="wds-layout-cell">3</div>
+      </div>
+
+      <div class="wds-layout-label">3 column layout</div>
+      <div class="wds-layout-demo" style="grid-template-columns:repeat(3,1fr);">
+        <div class="wds-layout-cell">4</div><div class="wds-layout-cell">4</div><div class="wds-layout-cell">4</div>
+      </div>
+
+      <div class="wds-layout-label">2 column half split</div>
+      <div class="wds-layout-demo" style="grid-template-columns:1fr 1fr;">
+        <div class="wds-layout-cell">6</div><div class="wds-layout-cell">6</div>
+      </div>
+
+      <div class="wds-layout-label">2 column third split</div>
+      <div class="wds-layout-demo" style="grid-template-columns:3fr 9fr;">
+        <div class="wds-layout-cell">3</div><div class="wds-layout-cell">9</div>
+      </div>
+
+      <div class="wds-layout-label">2 column quarter split</div>
+      <div class="wds-layout-demo" style="grid-template-columns:4fr 8fr;">
+        <div class="wds-layout-cell">4</div><div class="wds-layout-cell">8</div>
+      </div>
+
+      <div class="wds-layout-label">2 column fifth split</div>
+      <div class="wds-layout-demo" style="grid-template-columns:5fr 7fr;">
+        <div class="wds-layout-cell">5</div><div class="wds-layout-cell">7</div>
+      </div>
+
+      <h3 class="sub-title">Container sizes</h3>
+
+      <div class="wds-container-label">Container Large</div>
+      <div class="wds-container-demo">
+        <div class="wds-container-bar" style="width:100%; max-width:100%;">80rem / 1280px</div>
+      </div>
+
+      <div class="wds-container-label">Container Medium</div>
+      <div class="wds-container-demo">
+        <div class="wds-container-bar" style="width:80%; max-width:80%;">64rem / 1024px</div>
+      </div>
+
+      <div class="wds-container-label">Container Small</div>
+      <div class="wds-container-demo">
+        <div class="wds-container-bar" style="width:60%; max-width:60%;">48rem / 768px</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       WEB DESIGN SYSTEM — SPACING
+       ════════════════════════════════════════ -->
+  <section id="wds-spacing">
+    <div class="section-inner">
+      <div class="section-label">Web Design System</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Spacing</h2>
+      <p class="section-desc">A consistent 4px-base spacing scale. Desktop and mobile use the same token names but different values at the large end of the scale for appropriate density.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+        <div>
+          <h3 class="sub-title" style="margin-top:0;">Desktop</h3>
+          <table class="wds-token-table">
+            <thead><tr><th>Token</th><th>Rem</th><th>Px</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><span class="token-name">tiny</span></td><td class="token-rem">0.125rem</td><td class="token-px">2px</td><td><span class="wds-spacing-bar" style="width:2px;"></span></td></tr>
+              <tr><td><span class="token-name">xxsmall</span></td><td class="token-rem">0.25rem</td><td class="token-px">4px</td><td><span class="wds-spacing-bar" style="width:4px;"></span></td></tr>
+              <tr><td><span class="token-name">xsmall</span></td><td class="token-rem">0.5rem</td><td class="token-px">8px</td><td><span class="wds-spacing-bar" style="width:8px;"></span></td></tr>
+              <tr><td><span class="token-name">small</span></td><td class="token-rem">1rem</td><td class="token-px">16px</td><td><span class="wds-spacing-bar" style="width:16px;"></span></td></tr>
+              <tr><td><span class="token-name">medium</span></td><td class="token-rem">2rem</td><td class="token-px">32px</td><td><span class="wds-spacing-bar" style="width:32px;"></span></td></tr>
+              <tr><td><span class="token-name">large</span></td><td class="token-rem">3rem</td><td class="token-px">48px</td><td><span class="wds-spacing-bar" style="width:48px;"></span></td></tr>
+              <tr><td><span class="token-name">xlarge</span></td><td class="token-rem">4rem</td><td class="token-px">64px</td><td><span class="wds-spacing-bar" style="width:64px;"></span></td></tr>
+              <tr><td><span class="token-name">xxlarge</span></td><td class="token-rem">5rem</td><td class="token-px">80px</td><td><span class="wds-spacing-bar" style="width:80px;"></span></td></tr>
+              <tr><td><span class="token-name">huge</span></td><td class="token-rem">6rem</td><td class="token-px">96px</td><td><span class="wds-spacing-bar" style="width:96px;"></span></td></tr>
+              <tr><td><span class="token-name">xhuge</span></td><td class="token-rem">8rem</td><td class="token-px">128px</td><td><span class="wds-spacing-bar" style="width:128px;"></span></td></tr>
+              <tr><td><span class="token-name">xxhuge</span></td><td class="token-rem">12rem</td><td class="token-px">192px</td><td><span class="wds-spacing-bar" style="width:160px;"></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3 class="sub-title" style="margin-top:0;">Mobile</h3>
+          <table class="wds-token-table">
+            <thead><tr><th>Token</th><th>Rem</th><th>Px</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><span class="token-name">tiny</span></td><td class="token-rem">0.125rem</td><td class="token-px">2px</td><td><span class="wds-spacing-bar" style="width:2px;"></span></td></tr>
+              <tr><td><span class="token-name">xxsmall</span></td><td class="token-rem">0.25rem</td><td class="token-px">4px</td><td><span class="wds-spacing-bar" style="width:4px;"></span></td></tr>
+              <tr><td><span class="token-name">xsmall</span></td><td class="token-rem">0.5rem</td><td class="token-px">8px</td><td><span class="wds-spacing-bar" style="width:8px;"></span></td></tr>
+              <tr><td><span class="token-name">small</span></td><td class="token-rem">1rem</td><td class="token-px">16px</td><td><span class="wds-spacing-bar" style="width:16px;"></span></td></tr>
+              <tr><td><span class="token-name">medium</span></td><td class="token-rem">1.25rem</td><td class="token-px">20px</td><td><span class="wds-spacing-bar" style="width:20px;"></span></td></tr>
+              <tr><td><span class="token-name">large</span></td><td class="token-rem">1.5rem</td><td class="token-px">24px</td><td><span class="wds-spacing-bar" style="width:24px;"></span></td></tr>
+              <tr><td><span class="token-name">xlarge</span></td><td class="token-rem">2rem</td><td class="token-px">32px</td><td><span class="wds-spacing-bar" style="width:32px;"></span></td></tr>
+              <tr><td><span class="token-name">xxlarge</span></td><td class="token-rem">3rem</td><td class="token-px">48px</td><td><span class="wds-spacing-bar" style="width:48px;"></span></td></tr>
+              <tr><td><span class="token-name">huge</span></td><td class="token-rem">3.5rem</td><td class="token-px">56px</td><td><span class="wds-spacing-bar" style="width:56px;"></span></td></tr>
+              <tr><td><span class="token-name">xhuge</span></td><td class="token-rem">4rem</td><td class="token-px">64px</td><td><span class="wds-spacing-bar" style="width:64px;"></span></td></tr>
+              <tr><td><span class="token-name">xxhuge</span></td><td class="token-rem">4.5rem</td><td class="token-px">72px</td><td><span class="wds-spacing-bar" style="width:72px;"></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Section spacing</h3>
+      <div class="type-info-grid">
+        <div class="type-info-card">
+          <div class="type-info-label">H1 Hero</div>
+          <div class="type-info-value">40&ndash;48px</div>
+          <div class="type-info-desc">Vertical padding around hero headings</div>
+        </div>
+        <div class="type-info-card">
+          <div class="type-info-label">H2 Section</div>
+          <div class="type-info-value">80px</div>
+          <div class="type-info-desc">Margin above H2 content blocks</div>
+        </div>
+        <div class="type-info-card">
+          <div class="type-info-label">Between sections</div>
+          <div class="type-info-value">120px</div>
+          <div class="type-info-desc">Vertical space between major page sections</div>
+        </div>
+        <div class="type-info-card">
+          <div class="type-info-label">Card gap</div>
+          <div class="type-info-value">32&ndash;48px</div>
+          <div class="type-info-desc">Space between card components in a grid</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       WEB DESIGN SYSTEM — RADIUS & SHADOW
+       ════════════════════════════════════════ -->
+  <section id="wds-radius">
+    <div class="section-inner">
+      <div class="section-label">Web Design System</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Radius &amp; shadow</h2>
+      <p class="section-desc">A defined set of border radius and elevation tokens ensures visual consistency and a clear depth hierarchy across components.</p>
+
+      <h3 class="sub-title">Border radius</h3>
+      <div class="wds-radius-grid">
+        <div class="wds-radius-card" style="border-radius:4px;">radius-sm</div>
+        <div class="wds-radius-card" style="border-radius:8px;">radius-md</div>
+        <div class="wds-radius-card" style="border-radius:12px;">radius-mdl</div>
+        <div class="wds-radius-card" style="border-radius:16px;">radius-lg</div>
+        <div class="wds-radius-card" style="border-radius:24px;">radius-xl</div>
+        <div class="wds-radius-card" style="border-radius:32px;">radius-2xl</div>
+      </div>
+
+      <table class="wds-token-table">
+        <thead><tr><th>Token</th><th>Rem</th><th>Px</th></tr></thead>
+        <tbody>
+          <tr><td><span class="token-name">radius-sm</span></td><td class="token-rem">0.25rem</td><td class="token-px">4px</td></tr>
+          <tr><td><span class="token-name">radius-md</span></td><td class="token-rem">0.5rem</td><td class="token-px">8px</td></tr>
+          <tr><td><span class="token-name">radius-mdl</span></td><td class="token-rem">0.75rem</td><td class="token-px">12px</td></tr>
+          <tr><td><span class="token-name">radius-lg</span></td><td class="token-rem">1rem</td><td class="token-px">16px</td></tr>
+          <tr><td><span class="token-name">radius-xl</span></td><td class="token-rem">1.5rem</td><td class="token-px">24px</td></tr>
+          <tr><td><span class="token-name">radius-2xl</span></td><td class="token-rem">2rem</td><td class="token-px">32px</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">Shadow</h3>
+      <div class="wds-shadow-grid">
+        <div class="wds-shadow-card">
+          <div class="wds-shadow-preview shadow-default"></div>
+          <div class="wds-shadow-name">shadow-default</div>
+          <div class="wds-shadow-spec">
+            0 4px 4px<br>rgba(0,0,0,0.08)
+          </div>
+        </div>
+        <div class="wds-shadow-card">
+          <div class="wds-shadow-preview shadow-hover"></div>
+          <div class="wds-shadow-name">shadow-hover</div>
+          <div class="wds-shadow-spec">
+            0 12px 12px<br>rgba(0,0,0,0.12)
+          </div>
+        </div>
+        <div class="wds-shadow-card">
+          <div class="wds-shadow-preview shadow-elevated"></div>
+          <div class="wds-shadow-name">shadow-elevated</div>
+          <div class="wds-shadow-spec">
+            Layer 1: 0 0 1px rgba(11,41,70,0.32)<br>
+            Layer 2: 0 24px 20px rgba(42,82,121,0.08)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       WEB DESIGN SYSTEM — WEB TYPOGRAPHY
+       ════════════════════════════════════════ -->
+  <section id="wds-web-type">
+    <div class="section-inner">
+      <div class="section-label">Web Design System</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Web typography</h2>
+      <p class="section-desc">The web implementation uses STK Bureau for display/headlines and ABC Social for body text. Use rem units (base = 16px) and clamp() for fluid scaling between breakpoints.</p>
+
+      <div class="wds-type-specimen">
+        <h4>STK Bureau &mdash; Light 300</h4>
+        <p style="font-family:Georgia,serif; font-weight:300; font-size:42px; letter-spacing:-1.5px; line-height:1.1; margin-bottom:4px;">Ag</p>
+        <p style="font-family:Georgia,serif; font-weight:300; font-size:16px; letter-spacing:1px; color:rgba(0,0,0,0.5); margin-bottom:24px;">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 !@#$%^&amp;*()</p>
+
+        <h4>ABC Social &mdash; Light 300 &middot; Medium 500 &middot; Bold 700</h4>
+        <p style="font-family:Arial,Helvetica,sans-serif; font-weight:400; font-size:42px; line-height:1.1; margin-bottom:4px;">Ag</p>
+        <p style="font-family:Arial,Helvetica,sans-serif; font-size:16px; letter-spacing:0.5px; color:rgba(0,0,0,0.5); margin-bottom:8px;">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 !@#$%^&amp;*()</p>
+        <div style="display:flex; gap:32px; margin-top:16px; margin-bottom:8px;">
+          <div>
+            <span style="font-family:Arial,sans-serif; font-size:28px; font-weight:300;">Aa</span>
+            <span style="font-size:11px; color:rgba(0,0,0,0.35); margin-left:8px;">Light &middot; 300</span>
+          </div>
+          <div>
+            <span style="font-family:Arial,sans-serif; font-size:28px; font-weight:500;">Aa</span>
+            <span style="font-size:11px; color:rgba(0,0,0,0.35); margin-left:8px;">Medium &middot; 500</span>
+          </div>
+          <div>
+            <span style="font-family:Arial,sans-serif; font-size:28px; font-weight:700;">Aa</span>
+            <span style="font-size:11px; color:rgba(0,0,0,0.35); margin-left:8px;">Bold &middot; 700</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Type scale &mdash; Golden Ratio 1/2 increments</h3>
+      <div class="wds-type-scale">
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Display 5xl</span><span style="font-family:Georgia,serif; font-weight:300; font-size:48px; letter-spacing:-2px; line-height:1;">Display 5xl</span></div>
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Display 4xl</span><span style="font-family:Georgia,serif; font-weight:300; font-size:40px; letter-spacing:-1.5px; line-height:1;">Display 4xl</span></div>
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Display 3xl</span><span style="font-family:Georgia,serif; font-weight:300; font-size:32px; letter-spacing:-1px; line-height:1.1;">Display 3xl</span></div>
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Display 2xl</span><span style="font-family:Georgia,serif; font-weight:300; font-size:26px; letter-spacing:-0.5px; line-height:1.15;">Display 2xl</span></div>
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Display xl</span><span style="font-family:Georgia,serif; font-weight:300; font-size:22px; line-height:1.2;">Display xl</span></div>
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Text lg</span><span style="font-family:Arial,sans-serif; font-size:18px; line-height:1.4;">Text lg</span></div>
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Text md</span><span style="font-family:Arial,sans-serif; font-size:16px; line-height:1.5;">Text md</span></div>
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Base</span><span style="font-family:Arial,sans-serif; font-size:16px; line-height:1.55;">Base</span></div>
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Text sm</span><span style="font-family:Arial,sans-serif; font-size:14px; line-height:1.5;">Text sm</span></div>
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Text xs</span><span style="font-family:Arial,sans-serif; font-size:12px; line-height:1.5;">Text xs</span></div>
+        <div class="wds-type-scale-row"><span class="wds-type-scale-label">Eyebrow</span><span style="font-family:Arial,sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; line-height:1.5;">Eyebrow</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       WEB DESIGN SYSTEM — BUTTONS
+       ════════════════════════════════════════ -->
+  <section id="wds-buttons">
+    <div class="section-inner">
+      <div class="section-label">Web Design System</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Buttons</h2>
+      <p class="section-desc">A cohesive set of button styles with clear visual hierarchy and predefined interaction states. Each variant serves a specific purpose in the interface.</p>
+
+      <table class="wds-btn-table">
+        <tr>
+          <th></th>
+          <th class="th-default">Default</th>
+          <th class="th-hover">Hover</th>
+        </tr>
+        <tr>
+          <td class="btn-label">Button / Primary</td>
+          <td class="td-default">
+            <span class="wds-btn wds-btn-primary">Button <span class="wds-btn-arrow" style="background:#b4f5c8;"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.375 14.625L14.625 3.375M14.625 3.375L6.1875 3.375M14.625 3.375V11.8125" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </td>
+          <td class="td-hover"><div class="btn-demo-hover">
+            <span class="wds-btn wds-btn-primary">Button <span class="wds-btn-arrow" style="background:#b4f5c8;"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.375 14.625L14.625 3.375M14.625 3.375L6.1875 3.375M14.625 3.375V11.8125" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </div></td>
+        </tr>
+        <tr>
+          <td class="btn-label">Button / Secondary</td>
+          <td class="td-default">
+            <span class="wds-btn wds-btn-secondary">Button <span class="wds-btn-arrow" style="background:#626262;"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.375 14.625L14.625 3.375M14.625 3.375L6.1875 3.375M14.625 3.375V11.8125" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </td>
+          <td class="td-hover"><div class="btn-demo-hover">
+            <span class="wds-btn wds-btn-secondary">Button <span class="wds-btn-arrow" style="background:#626262;"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.375 14.625L14.625 3.375M14.625 3.375L6.1875 3.375M14.625 3.375V11.8125" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </div></td>
+        </tr>
+        <tr>
+          <td class="btn-label">Button / Tertiary Light</td>
+          <td class="td-default">
+            <span class="wds-btn wds-btn-tertiary-light">Button</span>
+          </td>
+          <td class="td-hover"><div class="btn-demo-hover">
+            <span class="wds-btn wds-btn-tertiary-light">Button</span>
+          </div></td>
+        </tr>
+        <tr class="tertiary-dark-row">
+          <td class="btn-label">Button / Tertiary Dark</td>
+          <td class="td-default td-tertiary-dark">
+            <span class="wds-btn wds-btn-tertiary-dark">Button</span>
+          </td>
+          <td class="td-hover td-tertiary-dark"><div class="btn-demo-hover">
+            <span class="wds-btn wds-btn-tertiary-dark">Button</span>
+          </div></td>
+        </tr>
+        <tr>
+          <td class="btn-label">Button / Link Light</td>
+          <td class="td-default">
+            <span class="wds-btn-link">Button <svg width="6" height="9" viewBox="0 0 6 9" fill="none"><path d="M1 1L5 4.5L1 8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </td>
+          <td class="td-hover"><div class="btn-demo-hover">
+            <span class="wds-btn-link">Button <svg width="6" height="9" viewBox="0 0 6 9" fill="none"><path d="M1 1L5 4.5L1 8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div></td>
+        </tr>
+        <tr class="link-dark-row">
+          <td class="btn-label">Button / Link Dark</td>
+          <td class="td-default td-link-dark">
+            <span class="wds-btn-link wds-btn-link-dark">Button <svg width="6" height="9" viewBox="0 0 6 9" fill="none"><path d="M1 1L5 4.5L1 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </td>
+          <td class="td-hover td-link-dark"><div class="btn-demo-hover">
+            <span class="wds-btn-link wds-btn-link-dark">Button <svg width="6" height="9" viewBox="0 0 6 9" fill="none"><path d="M1 1L5 4.5L1 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div></td>
+        </tr>
+        <tr>
+          <td class="btn-label">Button / Icon</td>
+          <td class="td-default">
+            <span class="wds-btn-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M26 13.09C26 5.86 20.19 0 13.01 0 5.82 0 0 5.86 0 13.09c0 6.53 4.76 11.95 10.98 12.93v-9.15H7.67v-3.78h3.3v-2.88c0-3.28 1.94-5.1 4.91-5.1 1.42 0 2.91.26 2.91.26v3.22h-1.64c-1.62 0-2.12 1.01-2.12 2.04v2.44h3.61l-.58 3.78h-3.03v9.15C21.26 25.04 26 19.62 26 13.09z" fill="black"/></svg></span>
+          </td>
+          <td class="td-hover"><div class="btn-demo-hover">
+            <span class="wds-btn-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M26 13.09C26 5.86 20.19 0 13.01 0 5.82 0 0 5.86 0 13.09c0 6.53 4.76 11.95 10.98 12.93v-9.15H7.67v-3.78h3.3v-2.88c0-3.28 1.94-5.1 4.91-5.1 1.42 0 2.91.26 2.91.26v3.22h-1.64c-1.62 0-2.12 1.01-2.12 2.04v2.44h3.61l-.58 3.78h-3.03v9.15C21.26 25.04 26 19.62 26 13.09z" fill="black"/></svg></span>
+          </div></td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       WEB DESIGN SYSTEM — FORM ELEMENTS
+       ════════════════════════════════════════ -->
+  <section id="wds-forms">
+    <div class="section-inner">
+      <div class="section-label">Web Design System</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Form elements</h2>
+      <p class="section-desc">A consistent form system for collecting user data. All form elements are available in both light and dark mode with matching interaction states.</p>
+
+      <h3 class="sub-title">Form inputs</h3>
+      <p class="section-desc" style="margin-bottom:12px;">States: Default, Hover, Focused, Keyboard, Filled. Light: field on page background; dark: on dark block.</p>
+      <div class="wds-layout-label">Form input — Light</div>
+      <div class="wds-form-input-table">
+        <div class="wds-form-input-wrap"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Default</span><input type="text" class="wds-form-input light-input" placeholder="Placeholder" readonly></div>
+        <div class="wds-form-input-wrap hover-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Hover</span><input type="text" class="wds-form-input light-input" placeholder="Placeholder" readonly></div>
+        <div class="wds-form-input-wrap focus-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Focused</span><input type="text" class="wds-form-input light-input" placeholder="Placeholder" readonly></div>
+        <div class="wds-form-input-wrap keyboard-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Keyboard</span><input type="text" class="wds-form-input light-input" placeholder="Placeholder" readonly></div>
+        <div class="wds-form-input-wrap"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Filled</span><input type="text" class="wds-form-input light-input" value="Filled" readonly></div>
+      </div>
+      <div class="wds-layout-label" style="margin-top:24px;">Form input — Dark</div>
+      <div class="wds-form-input-table" style="background:#1e1e1e; padding:16px; border-radius:8px;">
+        <div class="wds-form-input-wrap"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Default</span><input type="text" class="wds-form-input dark-input" placeholder="Placeholder" readonly></div>
+        <div class="wds-form-input-wrap hover-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Hover</span><input type="text" class="wds-form-input dark-input" placeholder="Placeholder" readonly></div>
+        <div class="wds-form-input-wrap focus-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Focused</span><input type="text" class="wds-form-input dark-input" placeholder="Placeholder" readonly></div>
+        <div class="wds-form-input-wrap keyboard-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Keyboard</span><input type="text" class="wds-form-input dark-input" placeholder="Placeholder" readonly></div>
+        <div class="wds-form-input-wrap"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Filled</span><input type="text" class="wds-form-input dark-input" value="Filled" readonly></div>
+      </div>
+
+      <h3 class="sub-title">Form select</h3>
+      <p class="section-desc" style="margin-bottom:12px;">States: Default, Hover, Focused, Keyboard, Open, Filled. Light and dark with visible dropdown in Open column.</p>
+      <div class="wds-layout-label">Form select — Light</div>
+      <div class="wds-form-select-table">
+        <div class="wds-form-select-wrap"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Default</span><label class="wds-form-field-label light-label">Location</label><select class="wds-form-select light-input" disabled><option>Please select&hellip;</option><option>United States</option><option>Germany</option><option>France</option></select></div>
+        <div class="wds-form-select-wrap hover-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Hover</span><label class="wds-form-field-label light-label">Location</label><select class="wds-form-select light-input" disabled><option>Please select&hellip;</option><option>United States</option><option>Germany</option><option>France</option></select></div>
+        <div class="wds-form-select-wrap focus-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Focused</span><label class="wds-form-field-label light-label">Location</label><select class="wds-form-select light-input" disabled><option>Please select&hellip;</option><option>United States</option><option>Germany</option><option>France</option></select></div>
+        <div class="wds-form-select-wrap keyboard-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Keyboard</span><label class="wds-form-field-label light-label">Location</label><select class="wds-form-select light-input" disabled><option>Please select&hellip;</option><option>United States</option><option>Germany</option><option>France</option></select></div>
+        <div class="wds-form-select-wrap open-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Open</span><label class="wds-form-field-label light-label">Location</label><select class="wds-form-select light-input" disabled><option>Please select&hellip;</option><option>United States</option><option>Germany</option><option>France</option></select><div class="wds-form-select-open-dropdown wds-form-select-open-dropdown--light"><span>United States</span><span>Germany</span><span>France</span><span>Canada</span><span>Argentina</span><span>Spain</span></div></div>
+        <div class="wds-form-select-wrap filled-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(0,0,0,0.5); margin-bottom:4px;">Filled</span><label class="wds-form-field-label light-label">Location</label><select class="wds-form-select light-input" disabled><option>Please select&hellip;</option><option>United States</option><option selected>Germany</option><option>France</option></select></div>
+      </div>
+      <div class="wds-layout-label" style="margin-top:24px;">Form select — Dark</div>
+      <div class="wds-form-select-table" style="background:#1e1e1e; padding:16px; border-radius:8px;">
+        <div class="wds-form-select-wrap"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Default</span><label class="wds-form-field-label dark-label">Location</label><select class="wds-form-select dark-input" disabled><option>Please select&hellip;</option><option>United States</option><option>Germany</option><option>France</option></select></div>
+        <div class="wds-form-select-wrap hover-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Hover</span><label class="wds-form-field-label dark-label">Location</label><select class="wds-form-select dark-input" disabled><option>Please select&hellip;</option><option>United States</option><option>Germany</option><option>France</option></select></div>
+        <div class="wds-form-select-wrap focus-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Focused</span><label class="wds-form-field-label dark-label">Location</label><select class="wds-form-select dark-input" disabled><option>Please select&hellip;</option><option>United States</option><option>Germany</option><option>France</option></select></div>
+        <div class="wds-form-select-wrap keyboard-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Keyboard</span><label class="wds-form-field-label dark-label">Location</label><select class="wds-form-select dark-input" disabled><option>Please select&hellip;</option><option>United States</option><option>Germany</option><option>France</option></select></div>
+        <div class="wds-form-select-wrap open-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Open</span><label class="wds-form-field-label dark-label">Location</label><select class="wds-form-select dark-input" disabled><option>Please select&hellip;</option><option>United States</option><option>Germany</option><option>France</option></select><div class="wds-form-select-open-dropdown wds-form-select-open-dropdown--dark"><span>United States</span><span>Germany</span><span>France</span><span>Canada</span><span>Argentina</span><span>Spain</span></div></div>
+        <div class="wds-form-select-wrap filled-demo"><span class="wds-check-state-label" style="display:block; font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Filled</span><label class="wds-form-field-label dark-label">Location</label><select class="wds-form-select dark-input" disabled><option>Please select&hellip;</option><option>United States</option><option selected>Germany</option><option>France</option></select></div>
+      </div>
+
+
+      <h3 class="sub-title">Checkboxes</h3>
+      <p class="section-desc" style="margin-bottom:12px;">States: Default, Hover, Keyboard focused, Selected. 20&times;20px control, 4px radius, 1px border.</p>
+      <div class="wds-layout-label">Checkbox &mdash; Light</div>
+      <div class="wds-check-table">
+        <div class="wds-check-state-label">Default</div>
+        <div class="wds-check-state-label">Hover</div>
+        <div class="wds-check-state-label">Keyboard focused</div>
+        <div class="wds-check-state-label">Selected</div>
+        <label class="wds-check-item"><div class="wds-check-box"></div><span class="wds-check-label">Option</span></label>
+        <label class="wds-check-item hover-demo"><div class="wds-check-box"></div><span class="wds-check-label">Option</span></label>
+        <label class="wds-check-item focus-demo"><div class="wds-check-box"></div><span class="wds-check-label">Option</span></label>
+        <label class="wds-check-item selected-demo"><div class="wds-check-box checked"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="wds-check-label">Option</span></label>
+      </div>
+      <div class="wds-layout-label" style="margin-top:24px;">Checkbox &mdash; Dark</div>
+      <div class="wds-check-dark-block">
+        <div class="wds-check-table">
+          <div class="wds-check-state-label">Default</div>
+          <div class="wds-check-state-label">Hover</div>
+          <div class="wds-check-state-label">Keyboard focused</div>
+          <div class="wds-check-state-label">Selected</div>
+          <label class="wds-check-item dark-check"><div class="wds-check-box dark-check-box"></div><span class="wds-check-label">Option</span></label>
+          <label class="wds-check-item dark-check hover-demo"><div class="wds-check-box dark-check-box"></div><span class="wds-check-label">Option</span></label>
+          <label class="wds-check-item dark-check focus-demo"><div class="wds-check-box dark-check-box"></div><span class="wds-check-label">Option</span></label>
+          <label class="wds-check-item dark-check selected-demo"><div class="wds-check-box dark-check-box checked"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="wds-check-label">Option</span></label>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Radios</h3>
+      <p class="section-desc" style="margin-bottom:12px;">States: Default, Hover, Keyboard focused, Selected. 20&times;20px circle, 1px border. Selected: jade fill with white center dot.</p>
+      <div class="wds-layout-label">Radio &mdash; Light</div>
+      <div class="wds-check-table">
+        <div class="wds-check-state-label">Default</div>
+        <div class="wds-check-state-label">Hover</div>
+        <div class="wds-check-state-label">Keyboard focused</div>
+        <div class="wds-check-state-label">Selected</div>
+        <label class="wds-check-item"><div class="wds-radio-circle"></div><span class="wds-check-label">Option</span></label>
+        <label class="wds-check-item hover-demo"><div class="wds-radio-circle"></div><span class="wds-check-label">Option</span></label>
+        <label class="wds-check-item focus-demo"><div class="wds-radio-circle"></div><span class="wds-check-label">Option</span></label>
+        <label class="wds-check-item selected-demo"><div class="wds-radio-circle selected"><div class="wds-radio-dot"></div></div><span class="wds-check-label">Option</span></label>
+      </div>
+      <div class="wds-layout-label" style="margin-top:24px;">Radio &mdash; Dark</div>
+      <div class="wds-check-dark-block">
+        <div class="wds-check-table">
+          <div class="wds-check-state-label">Default</div>
+          <div class="wds-check-state-label">Hover</div>
+          <div class="wds-check-state-label">Keyboard focused</div>
+          <div class="wds-check-state-label">Selected</div>
+          <label class="wds-check-item dark-check"><div class="wds-radio-circle dark-radio"></div><span class="wds-check-label">Option</span></label>
+          <label class="wds-check-item dark-check hover-demo"><div class="wds-radio-circle dark-radio"></div><span class="wds-check-label">Option</span></label>
+          <label class="wds-check-item dark-check focus-demo"><div class="wds-radio-circle dark-radio"></div><span class="wds-check-label">Option</span></label>
+          <label class="wds-check-item dark-check selected-demo"><div class="wds-radio-circle dark-radio selected"><div class="wds-radio-dot"></div></div><span class="wds-check-label">Option</span></label>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Filter buttons &amp; switches</h3>
+      <div class="wds-layout-label">Filter Buttons &mdash; Light</div>
+      <div style="display:flex; gap:8px; margin-bottom:12px;">
+        <span style="padding:8px 16px; border-radius:20px; border:1px solid rgba(0,0,0,0.12); font-size:13px; color:rgba(0,0,0,0.5);">Option</span>
+        <span style="padding:8px 16px; border-radius:20px; border:1px solid rgba(0,0,0,0.12); font-size:13px; color:rgba(0,0,0,0.5);">Option</span>
+        <span style="padding:8px 16px; border-radius:20px; border:1px solid rgba(0,0,0,0.12); font-size:13px; color:rgba(0,0,0,0.5);">Option</span>
+        <span style="padding:8px 16px; border-radius:20px; border:2px solid var(--black); font-size:13px; font-weight:bold;">Option</span>
+      </div>
+      <div class="wds-layout-label" style="margin-top:24px;">Filter Buttons &mdash; Dark</div>
+      <div style="display:flex; gap:8px; background:var(--black); padding:20px 24px; border-radius:8px; margin-bottom:12px;">
+        <span style="padding:8px 16px; border-radius:20px; border:1px solid rgba(255,255,255,0.15); font-size:13px; color:rgba(255,255,255,0.5);">Option</span>
+        <span style="padding:8px 16px; border-radius:20px; border:1px solid rgba(255,255,255,0.15); font-size:13px; color:rgba(255,255,255,0.5);">Option</span>
+        <span style="padding:8px 16px; border-radius:20px; border:2px solid var(--white); font-size:13px; font-weight:bold; color:var(--white);">Option</span>
+        <span style="padding:8px 16px; border-radius:20px; background:var(--jade); font-size:13px; font-weight:bold; color:var(--black);">Option</span>
+      </div>
+      <div class="wds-layout-label" style="margin-top:24px;">Filter Switch &mdash; Light</div>
+      <div class="wds-filter-switch-table">
+        <div class="wds-filter-switch-cell"><span class="wds-check-state-label" style="display:block; margin-bottom:4px;">Default</span><button type="button" class="wds-filter-switch light" aria-pressed="false"><span class="wds-filter-switch-thumb"></span></button></div>
+        <div class="wds-filter-switch-cell"><span class="wds-check-state-label" style="display:block; margin-bottom:4px;">Hover</span><button type="button" class="wds-filter-switch light hover-demo" aria-pressed="false"><span class="wds-filter-switch-thumb"></span></button></div>
+        <div class="wds-filter-switch-cell"><span class="wds-check-state-label" style="display:block; margin-bottom:4px;">Focused</span><button type="button" class="wds-filter-switch light focus-demo" aria-pressed="false"><span class="wds-filter-switch-thumb"></span></button></div>
+        <div class="wds-filter-switch-cell"><span class="wds-check-state-label" style="display:block; margin-bottom:4px;">Active</span><button type="button" class="wds-filter-switch light active-demo" aria-pressed="true"><span class="wds-filter-switch-thumb"></span></button></div>
+      </div>
+      <div class="wds-layout-label" style="margin-top:24px;">Filter Switch &mdash; Dark</div>
+      <div class="wds-filter-switch-table" style="background:var(--black); padding:20px 24px; border-radius:8px;">
+        <div class="wds-filter-switch-cell"><span class="wds-check-state-label" style="display:block; color:rgba(255,255,255,0.5); margin-bottom:4px;">Default</span><button type="button" class="wds-filter-switch dark" aria-pressed="false"><span class="wds-filter-switch-thumb"></span></button></div>
+        <div class="wds-filter-switch-cell"><span class="wds-check-state-label" style="display:block; color:rgba(255,255,255,0.5); margin-bottom:4px;">Hover</span><button type="button" class="wds-filter-switch dark hover-demo" aria-pressed="false"><span class="wds-filter-switch-thumb"></span></button></div>
+        <div class="wds-filter-switch-cell"><span class="wds-check-state-label" style="display:block; color:rgba(255,255,255,0.5); margin-bottom:4px;">Focused</span><button type="button" class="wds-filter-switch dark focus-demo" aria-pressed="false"><span class="wds-filter-switch-thumb"></span></button></div>
+        <div class="wds-filter-switch-cell"><span class="wds-check-state-label" style="display:block; color:rgba(255,255,255,0.5); margin-bottom:4px;">Active</span><button type="button" class="wds-filter-switch dark active-demo" aria-pressed="true"><span class="wds-filter-switch-thumb"></span></button></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       WEB DESIGN SYSTEM — ICONS
+       ════════════════════════════════════════ -->
+  <section id="wds-icons">
+    <div class="section-inner">
+      <div class="section-label">Web Design System</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Icons</h2>
+      <p class="section-desc">Consistent and scalable iconography from the Streamline Core Solid set. Use a limited set of stroke weights and sizing options to ensure clarity and intuitive navigation.</p>
+
+      <div style="background:rgba(0,0,0,0.02); border:1px solid rgba(0,0,0,0.06); border-radius:12px; padding:32px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
+          <h3 class="sub-title" style="margin:0;">From Streamline Core Solid</h3>
+        </div>
+        <div style="display:flex; gap:24px; align-items:center; flex-wrap:wrap;">
+          <div style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; background:var(--white); border-radius:8px; border:1px solid rgba(0,0,0,0.08);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; background:var(--white); border-radius:8px; border:1px solid rgba(0,0,0,0.08);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; background:var(--white); border-radius:8px; border:1px solid rgba(0,0,0,0.08);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12" stroke="white" stroke-width="2"/><line x1="12" y1="16" x2="12.01" y2="16" stroke="white" stroke-width="2"/></svg>
+          </div>
+          <div style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; background:var(--white); border-radius:8px; border:1px solid rgba(0,0,0,0.08);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+        </div>
+        <div class="type-info-grid" style="margin-top:24px;">
+          <div class="type-info-card">
+            <div class="type-info-label">Style</div>
+            <div class="type-info-value">Solid filled</div>
+          </div>
+          <div class="type-info-card">
+            <div class="type-info-label">Default size</div>
+            <div class="type-info-value">20 &times; 20px</div>
+          </div>
+          <div class="type-info-card">
+            <div class="type-info-label">Touch target</div>
+            <div class="type-info-value">44 &times; 44px min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       WEB DESIGN SYSTEM — PAGE COMPONENTS
+       ════════════════════════════════════════ -->
+  <section id="wds-page">
+    <div class="section-inner">
+      <div class="section-label">Web Design System</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Page components</h2>
+      <p class="section-desc">Standardized layout components for navigation and content sections. These ensure seamless user navigation across mural.co.</p>
+
+      <h3 class="sub-title">Application header</h3>
+      <p class="section-desc" style="margin-bottom:12px;">In-app header with global search on the left and utility icons (profile, notifications) on the right. Default state shown.</p>
+      <div style="background:var(--white); border:1px solid rgba(0,0,0,0.08); border-radius:12px; padding:12px 24px; display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span style="font-weight:bold; font-size:18px; color:var(--black);">mural</span>
+          <div style="display:flex; align-items:center; gap:8px; background:#f5f5f5; border-radius:8px; padding:8px 16px; min-width:280px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span style="font-size:14px; color:rgba(0,0,0,0.4);">Search</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <div style="width:32px; height:32px; border-radius:50%; background:rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--black); border:1px solid #333; border-radius:12px; padding:12px 24px; display:flex; align-items:center; justify-content:space-between; margin-bottom:32px;">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span style="font-weight:bold; font-size:18px; color:var(--white);">mural</span>
+          <div style="display:flex; align-items:center; gap:8px; background:#1e1e1e; border-radius:8px; padding:8px 16px; min-width:280px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span style="font-size:14px; color:rgba(255,255,255,0.4);">Search</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <div style="width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Content cards</h3>
+      <p class="section-desc" style="margin-bottom:12px;">Card pattern: image, category tags, title, description, CTA. Used in resource grids and content hubs.</p>
+      <div class="wds-content-cards-grid" style="margin-bottom:32px;">
+        <div class="wds-content-card">
+          <div class="wds-content-card-image" style="background:linear-gradient(135deg, #1a3a2a 0%, #0a1a0f 100%);"></div>
+          <div class="wds-content-card-body">
+            <div class="wds-content-card-inner">
+              <div class="wds-content-card-tags">
+                <span class="wds-content-card-tag wds-content-card-tag--article">Article</span>
+                <span class="wds-content-card-tag wds-content-card-tag--business">Business plan</span>
+              </div>
+              <div class="wds-content-card-title">Account Planning</div>
+              <div class="wds-content-card-desc">Strategic approach to managing key accounts and driving growth through collaborative planning.</div>
+            </div>
+            <span class="wds-content-card-cta">Call to action</span>
+          </div>
+        </div>
+        <div class="wds-content-card">
+          <div class="wds-content-card-image" style="background:linear-gradient(135deg, #1a1a3a 0%, #0a0a1f 100%);"></div>
+          <div class="wds-content-card-body">
+            <div class="wds-content-card-inner">
+              <div class="wds-content-card-tags">
+                <span class="wds-content-card-tag wds-content-card-tag--topic">Topic</span>
+              </div>
+              <div class="wds-content-card-title">Template title here</div>
+              <div class="wds-content-card-desc">Explore templates and resources to help your team collaborate more effectively.</div>
+            </div>
+            <span class="wds-content-card-cta">Read more</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Category tags</h3>
+      <p class="section-desc" style="margin-bottom:12px;">Use the pill styles below on content cards to categorize resources. Each category gets a distinct color for quick visual scanning.</p>
+      <div class="wds-category-tags-demo">
+        <div class="wds-category-tag-row">
+          <span class="wds-content-card-tag wds-content-card-tag--article">Article</span>
+          <span class="wds-category-tag-desc">Leadership, strategy, facilitation, and how-to content.</span>
+        </div>
+        <div class="wds-category-tag-row">
+          <span class="wds-content-card-tag wds-content-card-tag--business">Business plan</span>
+          <span class="wds-category-tag-desc">Product-related content, business plans, and offers.</span>
+        </div>
+        <div class="wds-category-tag-row">
+          <span class="wds-content-card-tag wds-content-card-tag--topic">Topic</span>
+          <span class="wds-category-tag-desc">General topics, templates, or uncategorized.</span>
+        </div>
+      </div>
+
+      <h3 class="sub-title">CTA sections</h3>
+      <div style="background:var(--mint); border-radius:12px; padding:48px; text-align:center; margin-bottom:12px;">
+        <div style="font-family:var(--font-headline); font-weight:var(--weight-light); font-size:28px; letter-spacing:-1px; margin-bottom:12px;">Designed for businesses of all sizes</div>
+        <div style="font-size:14px; color:rgba(0,0,0,0.5); margin-bottom:20px;">Expand with transparency on credit cycles, cancel anytime, instant setup.</div>
+        <div style="display:flex; gap:12px; justify-content:center;">
+          <span class="wds-btn wds-btn-primary" style="padding:10px 20px; font-size:13px;">Get started</span>
+          <span class="wds-btn wds-btn-secondary" style="padding:10px 20px; font-size:13px;">Learn more</span>
+        </div>
+      </div>
+      <div style="background:var(--black); border-radius:12px; padding:48px; text-align:center; margin-bottom:32px;">
+        <div style="font-family:var(--font-headline); font-weight:var(--weight-light); font-size:28px; letter-spacing:-1px; color:var(--white); margin-bottom:12px;">Learn why Mural is trusted by IBM, Microsoft, and Intuit.</div>
+        <span class="wds-btn wds-btn-primary" style="padding:10px 20px; font-size:13px; margin-top:8px;">See customers</span>
+      </div>
+
+
+      <h3 class="sub-title">Form layouts</h3>
+      <div class="type-info-grid">
+        <div class="type-info-card">
+          <div class="type-info-label">Default state</div>
+          <div class="type-info-value">Left-aligned form</div>
+          <div class="type-info-desc">Headline + subtext left, form fields right. Used for lead gen and gated content.</div>
+        </div>
+        <div class="type-info-card">
+          <div class="type-info-label">Success state</div>
+          <div class="type-info-value">&ldquo;Thank you!&rdquo;</div>
+          <div class="type-info-desc">Form replaced by confirmation message with Mural icon. Matches brand bar accent.</div>
+        </div>
+        <div class="type-info-card">
+          <div class="type-info-label">Success download</div>
+          <div class="type-info-value">&ldquo;Your download is ready&rdquo;</div>
+          <div class="type-info-desc">Includes download link button. Available in light and dark variants.</div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Filter layout</h3>
+      <div class="type-info-grid">
+        <div class="type-info-card">
+          <div class="type-info-label">Structure</div>
+          <div class="type-info-value">Category tabs + sort + grid</div>
+          <div class="type-info-desc">Filter by category with horizontal tabs, sort dropdown, and 2-column card grid below.</div>
+        </div>
+        <div class="type-info-card">
+          <div class="type-info-label">Card grid</div>
+          <div class="type-info-value">2-column responsive</div>
+          <div class="type-info-desc">Template cards with thumbnail, title, description, and CTA. Collapses to 1-column on mobile.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       DO'S & DON'TS (Visual)
+       ════════════════════════════════════════ -->
+  <section id="dos-donts">
+    <div class="section-inner">
+      <div class="section-label">Visual Rules</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Do&rsquo;s &amp; don&rsquo;ts</h2>
+      <p class="section-desc">The most common visual rules at a glance. When in doubt, check here.</p>
+
+      <div class="visual-donts-grid">
+        <div class="visual-donts-card">
+          <div class="visual-donts-card-visual">
+            <div style="display:flex;width:80%;height:24px;border-radius:4px;overflow:hidden;">
+              <div style="flex:16;background:#FC83FF;"></div>
+              <div style="flex:33;background:#FF4B4B;"></div>
+              <div style="flex:9.5;background:#00843F;"></div>
+              <div style="flex:15;background:#FFAA00;"></div>
+              <div style="flex:26;background:#5887FF;"></div>
+            </div>
+          </div>
+          <div class="visual-donts-card-body">
+            <span class="visual-donts-badge do">Do</span>
+            <p><strong>Maintain the correct color order.</strong> Pink, Red, Green, Yellow, Blue &mdash; always left to right, with correct proportions.</p>
+          </div>
+        </div>
+
+        <div class="visual-donts-card">
+          <div class="visual-donts-card-visual">
+            <div style="display:flex;width:80%;height:24px;border-radius:4px;overflow:hidden;">
+              <div style="flex:1;background:#5887FF;"></div>
+              <div style="flex:1;background:#FF4B4B;"></div>
+              <div style="flex:1;background:#FC83FF;"></div>
+              <div style="flex:1;background:#FFAA00;"></div>
+              <div style="flex:1;background:#00843F;"></div>
+            </div>
+          </div>
+          <div class="visual-donts-card-body">
+            <span class="visual-donts-badge dont">Don&rsquo;t</span>
+            <p><strong>Reorder or equalize the brand bar.</strong> Scrambling the stripes or making them equal widths breaks brand recognition.</p>
+          </div>
+        </div>
+
+        <div class="visual-donts-card">
+          <div class="visual-donts-card-visual" style="background:var(--black);">
+            <div style="position:absolute;bottom:0;left:0;right:0;display:flex;height:8px;">
+              <div style="flex:16;background:#FC83FF;"></div>
+              <div style="flex:33;background:#FF4B4B;"></div>
+              <div style="flex:9.5;background:#00843F;"></div>
+              <div style="flex:15;background:#FFAA00;"></div>
+              <div style="flex:26;background:#5887FF;"></div>
+            </div>
+          </div>
+          <div class="visual-donts-card-body">
+            <span class="visual-donts-badge do">Do</span>
+            <p><strong>Show the brand bar on black or white.</strong> All five colors remain fully visible.</p>
+          </div>
+        </div>
+
+        <div class="visual-donts-card">
+          <div class="visual-donts-card-visual" style="background:var(--jade);">
+            <div style="position:absolute;bottom:0;left:0;right:0;display:flex;height:8px;">
+              <div style="flex:16;background:#FC83FF;"></div>
+              <div style="flex:33;background:#FF4B4B;"></div>
+              <div style="flex:9.5;background:#00843F;"></div>
+              <div style="flex:15;background:#FFAA00;"></div>
+              <div style="flex:26;background:#5887FF;"></div>
+            </div>
+          </div>
+          <div class="visual-donts-card-body">
+            <span class="visual-donts-badge dont">Don&rsquo;t</span>
+            <p><strong>Place the brand bar on green.</strong> The green stripe vanishes into Jade.</p>
+          </div>
+        </div>
+
+        <div class="visual-donts-card">
+          <div class="visual-donts-card-visual" style="padding:0;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;width:100%;height:100%;">
+              <div style="background:#00C27A;"></div>
+              <div style="background:#000;"></div>
+              <div style="background:#fff;"></div>
+              <div style="background:#EDEDD8;"></div>
+            </div>
+          </div>
+          <div class="visual-donts-card-body">
+            <span class="visual-donts-badge do">Do</span>
+            <p><strong>Alternate blocks with contrast.</strong> Jade + Black, White + Natural &mdash; always a visible edge.</p>
+          </div>
+        </div>
+
+        <div class="visual-donts-card">
+          <div class="visual-donts-card-visual" style="flex-direction:column;display:flex;align-items:flex-start;padding:24px 32px;justify-content:center;">
+            <span style="font-family:var(--font-headline);font-weight:300;font-size:22px;letter-spacing:-0.8px;margin-bottom:8px;">Headline in Merriweather</span>
+            <span style="font-size:13px;color:rgba(0,0,0,0.5);line-height:1.5;">Body copy in Arial. Clean, readable, and on-brand.</span>
+          </div>
+          <div class="visual-donts-card-body">
+            <span class="visual-donts-badge do">Do</span>
+            <p><strong>Pair Merriweather Light headlines with Arial body.</strong> Serif/sans-serif creates hierarchy.</p>
+          </div>
+        </div>
+
+        <div class="visual-donts-card">
+          <div class="visual-donts-card-visual" style="flex-direction:column;display:flex;align-items:flex-start;padding:24px 32px;justify-content:center;">
+            <span style="font-weight:700;font-size:22px;margin-bottom:8px;">Headline in Arial Bold</span>
+            <span style="font-family:var(--font-headline);font-size:13px;color:rgba(0,0,0,0.5);line-height:1.5;">Body copy in Merriweather. Reversed pairing feels off.</span>
+          </div>
+          <div class="visual-donts-card-body">
+            <span class="visual-donts-badge dont">Don&rsquo;t</span>
+            <p><strong>Reverse the font pairing.</strong> Arial headlines with serif body breaks visual hierarchy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       LUMA
+       ════════════════════════════════════════ -->
+  <section id="luma">
+    <div class="section-inner">
+      <div class="section-label">23 LUMA</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">LUMA</h2>
+      <p class="section-desc">Learning, Understanding, MAking. A methodology and facilitation system within Mural with its own distinct visual identity.</p>
+
+      <div class="luma-hero">
+        <div class="tagline">Make things better.</div>
+        <p>LUMA Institute&rsquo;s methodology brings structured facilitation methods to help teams look, understand, and make &mdash; transforming how they collaborate and solve problems.</p>
+      </div>
+
+      <h3 class="sub-title">LUMA system</h3>
+      <div class="luma-system-grid">
+        <div class="luma-system-card looking">
+          <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h4>Looking</h4>
+          <p>Observation &amp; research methods</p>
+        </div>
+        <div class="luma-system-card understanding">
+          <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 1 7 7c0 3-2 5-4 6.5V18H9v-2.5C7 14 5 12 5 9a7 7 0 0 1 7-7z" fill="currentColor" opacity="0.15"/><line x1="9" y1="21" x2="15" y2="21"/><line x1="10" y1="24" x2="14" y2="24"/></svg></div>
+          <h4>Understanding</h4>
+          <p>Analysis &amp; synthesis methods</p>
+        </div>
+        <div class="luma-system-card making">
+          <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+          <h4>Making</h4>
+          <p>Ideation &amp; experimentation</p>
+        </div>
+      </div>
+
+      <h3 class="sub-title">LUMA color palette</h3>
+      <p style="font-size:14px;color:rgba(0,0,0,0.45);margin-bottom:16px;">Primary brand colors for all LUMA graphic representation. System colors are used only in reference to the methods.</p>
+
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(0,0,0,0.3);font-weight:700;margin-bottom:12px;">Primary brand colors</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#EE3A43;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#EE3A43</span></div>
+          <div class="swatch-info"><div class="swatch-name">LUMA Red</div><div class="swatch-details">RGB 238, 58, 67 &middot; PMS 185</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#575651;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#575651</span></div>
+          <div class="swatch-info"><div class="swatch-name">Dark Olive</div><div class="swatch-details">RGB 87, 86, 81 &middot; PMS 418</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#989891;"><span class="swatch-hex" style="color:#000;background:rgba(255,255,255,0.35);">#989891</span></div>
+          <div class="swatch-info"><div class="swatch-name">Light Olive</div><div class="swatch-details">RGB 152, 152, 145 &middot; PMS 415</div></div>
+        </div>
+      </div>
+
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(0,0,0,0.3);font-weight:700;margin-top:32px;margin-bottom:12px;">System colors (method-specific)</div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#C41230;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#C41230</span></div>
+          <div class="swatch-info"><div class="swatch-name">Deep Red</div><div class="swatch-details">PMS 187</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#ECB12E;"><span class="swatch-hex" style="color:#000;background:rgba(255,255,255,0.35);">#ECB12E</span></div>
+          <div class="swatch-info"><div class="swatch-name">Yellow &mdash; Looking</div><div class="swatch-details">RGB 228, 171, 44 &middot; PMS 131</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#8EA84E;"><span class="swatch-hex" style="color:#000;background:rgba(255,255,255,0.35);">#8EA84E</span></div>
+          <div class="swatch-info"><div class="swatch-name">Green &mdash; Understanding</div><div class="swatch-details">RGB 142, 168, 78 &middot; PMS 370</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#2F9DBA;"><span class="swatch-hex" style="color:#fff;background:rgba(0,0,0,0.15);">#2F9DBA</span></div>
+          <div class="swatch-info"><div class="swatch-name">Blue &mdash; Making</div><div class="swatch-details">RGB 47, 157, 186 &middot; PMS 633</div></div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">LUMA typography</h3>
+      <div class="type-info-grid">
+        <div class="type-info-card">
+          <h4>Print</h4>
+          <div class="weights"><strong>ITC Charter BT</strong> &mdash; Regular, Italic, Bold, Bold Italic<br><strong>Helvetica Neue</strong> &mdash; Regular, Italic, Medium, Bold, Bold Italic</div>
+        </div>
+        <div class="type-info-card">
+          <h4>Digital</h4>
+          <div class="weights"><strong>Georgia</strong> &mdash; Regular, Italic, Bold, Bold Italic<br><strong>Arial</strong> &mdash; Regular, Italic, Bold, Bold Italic</div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Usage rules</h3>
+      <div class="do-dont-grid">
+        <div class="do-card">
+          <h4>Do</h4>
+          <ul>
+            <li>Always capitalize as LUMA (never &ldquo;Luma&rdquo;)</li>
+            <li>Make clear LUMA is a methodology within Mural</li>
+            <li>Use system colors only for their specific methods</li>
+            <li>Use LUMA&rsquo;s own typography (Georgia/Arial digital, Charter/Helvetica print)</li>
+          </ul>
+        </div>
+        <div class="dont-card">
+          <h4>Don&rsquo;t</h4>
+          <ul>
+            <li>Mix LUMA colors with Mural logo palette</li>
+            <li>Interchange LUMA Red (#EE3A43) with Mural Red (#FF4B4B)</li>
+            <li>Use Mural typography (STK Bureau Serif / ABC Social) for LUMA materials</li>
+            <li>Use system colors outside of method-specific contexts</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Mural Brand Guidelines &middot; Maintained by the creative team &middot; <a href="mailto:creative@mural.co">creative@mural.co</a> &middot; #ask-marketing</p>
+  </footer>
+
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        const active = document.querySelector(`.sidebar a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(section => observer.observe(section));
+
+  // Replay scroll animation demo
+  function replayAnimation() {
+    const cards = document.querySelectorAll('#scroll-demo .scroll-demo-card');
+    cards.forEach(card => {
+      card.style.animation = 'none';
+      card.offsetHeight; // trigger reflow
+      card.style.animation = '';
+    });
+  }
+
+  // Tab switching
+  function switchTab(el, tabId) {
+    el.closest('.ui-demo-area').querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    el.closest('.ui-demo-area').querySelectorAll('.demo-tab-content').forEach(c => c.style.display = 'none');
+    document.getElementById(tabId).style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
