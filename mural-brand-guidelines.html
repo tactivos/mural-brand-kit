@@ -1993,6 +1993,31 @@
           <div class="swatch-info"><div class="swatch-name">Mural Blue ADA</div><div class="swatch-usage">Interactive elements in product UI</div></div>
         </div>
       </div>
+
+      <h3 class="sub-title">CSS variables</h3>
+      <div class="code-block"><code><span class="sel">:root</span> {
+  <span class="comment">/* Primary */</span>
+  <span class="prop">--jade</span>: <span class="val">#00C27A</span>;
+  <span class="prop">--green</span>: <span class="val">#00843F</span>;
+  <span class="prop">--spring</span>: <span class="val">#9FEC7F</span>;
+  <span class="prop">--mint</span>: <span class="val">#B4F5C0</span>;
+
+  <span class="comment">/* Brand bar */</span>
+  <span class="prop">--mural-red</span>: <span class="val">#FF4B4B</span>;
+  <span class="prop">--mural-blue</span>: <span class="val">#5887FF</span>;
+  <span class="prop">--mural-pink</span>: <span class="val">#FC83FF</span>;
+  <span class="prop">--mural-yellow</span>: <span class="val">#FFAA00</span>;
+
+  <span class="comment">/* Neutrals */</span>
+  <span class="prop">--black</span>: <span class="val">#000000</span>;
+  <span class="prop">--white</span>: <span class="val">#FFFFFF</span>;
+  <span class="prop">--natural</span>: <span class="val">#EDEDD8</span>;
+
+  <span class="comment">/* ADA accessible variants */</span>
+  <span class="prop">--red-ada</span>: <span class="val">#E02935</span>;
+  <span class="prop">--blue-ada</span>: <span class="val">#3776E4</span>;
+}</code></div>
+
     </div>
   </section>
 
@@ -2110,6 +2135,23 @@
           </ul>
         </div>
       </div>
+
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="comment">&lt;!-- Brand bar — preserves exact flex proportions --&gt;</span>
+<span class="sel">&lt;div</span> <span class="prop">class</span>=<span class="val">"brand-bar"</span><span class="sel">&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:16; background:#FC83FF"</span><span class="sel">&gt;&lt;/span&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:33; background:#FF4B4B"</span><span class="sel">&gt;&lt;/span&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:9.5; background:#00843F"</span><span class="sel">&gt;&lt;/span&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:15; background:#FFAA00"</span><span class="sel">&gt;&lt;/span&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:26; background:#5887FF"</span><span class="sel">&gt;&lt;/span&gt;</span>
+<span class="sel">&lt;/div&gt;</span>
+
+<span class="sel">.brand-bar</span> {
+  <span class="prop">display</span>: <span class="val">flex</span>;
+  <span class="prop">height</span>: <span class="val">8px</span>;
+  <span class="prop">width</span>: <span class="val">100%</span>;
+}</code></div>
+
     </div>
   </section>
 
@@ -2447,27 +2489,27 @@
         </div>
       </div>
 
-      <h3 class="sub-title">CSS snippet</h3>
-      <pre style="background:#1a1a1a; color:#e0e0e0; padding:24px 28px; border-radius:8px; font-size:13px; line-height:1.7; overflow-x:auto; margin-bottom:0;"><code><span style="color:#9FEC7F;">/* Light canvas */</span>
-.bg-dots-light {
-  background-color: <span style="color:#FFAA00;">#FFFFFF</span>;
-  background-image: <span style="color:#5887FF;">radial-gradient</span>(circle, <span style="color:#5887FF;">rgba(0,0,0,0.18)</span> 1px, transparent 1px);
-  background-size: <span style="color:#FC83FF;">18px 18px</span>;
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="comment">/* Light canvas */</span>
+<span class="sel">.bg-dots-light</span> {
+  <span class="prop">background-color</span>: <span class="val">#FFFFFF</span>;
+  <span class="prop">background-image</span>: <span class="val">radial-gradient(circle, rgba(0,0,0,0.18) 1px, transparent 1px)</span>;
+  <span class="prop">background-size</span>: <span class="val">18px 18px</span>;
 }
 
-<span style="color:#9FEC7F;">/* Dark canvas */</span>
-.bg-dots-dark {
-  background-color: <span style="color:#FFAA00;">#000000</span>;
-  background-image: <span style="color:#5887FF;">radial-gradient</span>(circle, <span style="color:#5887FF;">rgba(255,255,255,0.35)</span> 1px, transparent 1px);
-  background-size: <span style="color:#FC83FF;">18px 18px</span>;
+<span class="comment">/* Dark canvas */</span>
+<span class="sel">.bg-dots-dark</span> {
+  <span class="prop">background-color</span>: <span class="val">#000000</span>;
+  <span class="prop">background-image</span>: <span class="val">radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px)</span>;
+  <span class="prop">background-size</span>: <span class="val">18px 18px</span>;
 }
 
-<span style="color:#9FEC7F;">/* Mint canvas */</span>
-.bg-dots-mint {
-  background-color: <span style="color:#FFAA00;">#B4F5C0</span>;
-  background-image: <span style="color:#5887FF;">radial-gradient</span>(circle, <span style="color:#5887FF;">rgba(0,60,20,0.12)</span> 1px, transparent 1px);
-  background-size: <span style="color:#FC83FF;">18px 18px</span>;
-}</code></pre>
+<span class="comment">/* Mint canvas */</span>
+<span class="sel">.bg-dots-mint</span> {
+  <span class="prop">background-color</span>: <span class="val">#B4F5C0</span>;
+  <span class="prop">background-image</span>: <span class="val">radial-gradient(circle, rgba(0,60,20,0.12) 1px, transparent 1px)</span>;
+  <span class="prop">background-size</span>: <span class="val">18px 18px</span>;
+}</code></div>
 
     </div>
   </section>
@@ -2819,6 +2861,60 @@
           </ul>
         </div>
       </div>
+
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="comment">/* Brand easing */</span>
+<span class="sel">:root</span> {
+  <span class="prop">--ease-brand</span>: <span class="val">cubic-bezier(0.22, 1, 0.36, 1)</span>;
+}
+
+<span class="comment">/* Link hover underline */</span>
+<span class="sel">.link</span> {
+  <span class="prop">position</span>: <span class="val">relative</span>;
+  <span class="prop">text-decoration</span>: <span class="val">none</span>;
+  <span class="prop">color</span>: <span class="val">var(--jade)</span>;
+}
+<span class="sel">.link::after</span> {
+  <span class="prop">content</span>: <span class="val">""</span>;
+  <span class="prop">position</span>: <span class="val">absolute</span>;
+  <span class="prop">bottom</span>: <span class="val">-2px</span>;
+  <span class="prop">left</span>: <span class="val">0</span>;
+  <span class="prop">width</span>: <span class="val">100%</span>;
+  <span class="prop">height</span>: <span class="val">2px</span>;
+  <span class="prop">background</span>: <span class="val">currentColor</span>;
+  <span class="prop">border-radius</span>: <span class="val">1px</span>;
+  <span class="prop">transform</span>: <span class="val">scaleX(0)</span>;
+  <span class="prop">transform-origin</span>: <span class="val">left</span>;
+  <span class="prop">transition</span>: <span class="val">transform 0.3s var(--ease-brand)</span>;
+}
+<span class="sel">.link:hover::after</span> {
+  <span class="prop">transform</span>: <span class="val">scaleX(1)</span>;
+}
+
+<span class="comment">/* Scroll-triggered entrance */</span>
+<span class="sel">.reveal</span> {
+  <span class="prop">opacity</span>: <span class="val">0</span>;
+  <span class="prop">transform</span>: <span class="val">translateY(24px)</span>;
+  <span class="prop">transition</span>: <span class="val">opacity 0.5s var(--ease-brand),
+               transform 0.5s var(--ease-brand)</span>;
+}
+<span class="sel">.reveal.visible</span> {
+  <span class="prop">opacity</span>: <span class="val">1</span>;
+  <span class="prop">transform</span>: <span class="val">translateY(0)</span>;
+}
+
+<span class="comment">/* Tab indicator */</span>
+<span class="sel">.tab.active::after</span> {
+  <span class="prop">content</span>: <span class="val">""</span>;
+  <span class="prop">position</span>: <span class="val">absolute</span>;
+  <span class="prop">bottom</span>: <span class="val">0</span>;
+  <span class="prop">left</span>: <span class="val">20px</span>;
+  <span class="prop">right</span>: <span class="val">20px</span>;
+  <span class="prop">height</span>: <span class="val">2px</span>;
+  <span class="prop">background</span>: <span class="val">var(--jade)</span>;
+  <span class="prop">animation</span>: <span class="val">tab-in 0.3s var(--ease-brand)</span>;
+}</code></div>
+
     </div>
   </section>
 
@@ -2963,6 +3059,25 @@
       <div class="wds-container-demo">
         <div class="wds-container-bar" style="width:60%; max-width:60%;">48rem / 768px</div>
       </div>
+
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="sel">.grid</span> {
+  <span class="prop">display</span>: <span class="val">grid</span>;
+  <span class="prop">grid-template-columns</span>: <span class="val">repeat(12, 1fr)</span>;
+  <span class="prop">gap</span>: <span class="val">2rem</span>;  <span class="comment">/* 32px gutters */</span>
+}
+
+<span class="comment">/* Container sizes */</span>
+<span class="sel">.container-lg</span> { <span class="prop">max-width</span>: <span class="val">80rem</span>;  <span class="comment">/* 1280px */</span> }
+<span class="sel">.container-md</span> { <span class="prop">max-width</span>: <span class="val">64rem</span>;  <span class="comment">/* 1024px */</span> }
+<span class="sel">.container-sm</span> { <span class="prop">max-width</span>: <span class="val">48rem</span>;  <span class="comment">/* 768px */</span> }
+
+<span class="comment">/* Common span patterns */</span>
+<span class="sel">.col-full</span>  { <span class="prop">grid-column</span>: <span class="val">span 12</span>; }
+<span class="sel">.col-half</span>  { <span class="prop">grid-column</span>: <span class="val">span 6</span>; }
+<span class="sel">.col-third</span> { <span class="prop">grid-column</span>: <span class="val">span 4</span>; }
+<span class="sel">.col-quarter</span> { <span class="prop">grid-column</span>: <span class="val">span 3</span>; }</code></div>
+
     </div>
   </section>
 
@@ -3042,6 +3157,36 @@
           <div class="type-info-desc">Space between card components in a grid</div>
         </div>
       </div>
+
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="sel">:root</span> {
+  <span class="comment">/* Desktop spacing tokens */</span>
+  <span class="prop">--space-tiny</span>: <span class="val">2px</span>;
+  <span class="prop">--space-xxsmall</span>: <span class="val">4px</span>;
+  <span class="prop">--space-xsmall</span>: <span class="val">0.5rem</span>;   <span class="comment">/* 8px */</span>
+  <span class="prop">--space-small</span>: <span class="val">1rem</span>;     <span class="comment">/* 16px */</span>
+  <span class="prop">--space-medium</span>: <span class="val">2rem</span>;    <span class="comment">/* 32px */</span>
+  <span class="prop">--space-large</span>: <span class="val">3rem</span>;     <span class="comment">/* 48px */</span>
+  <span class="prop">--space-xlarge</span>: <span class="val">4rem</span>;    <span class="comment">/* 64px */</span>
+  <span class="prop">--space-xxlarge</span>: <span class="val">5rem</span>;   <span class="comment">/* 80px */</span>
+  <span class="prop">--space-huge</span>: <span class="val">6rem</span>;      <span class="comment">/* 96px */</span>
+  <span class="prop">--space-xhuge</span>: <span class="val">8rem</span>;     <span class="comment">/* 128px */</span>
+  <span class="prop">--space-xxhuge</span>: <span class="val">12rem</span>;   <span class="comment">/* 192px */</span>
+}
+
+<span class="comment">/* Override large end for mobile */</span>
+<span class="sel">@media (max-width: 768px)</span> {
+  <span class="sel">:root</span> {
+    <span class="prop">--space-medium</span>: <span class="val">1.25rem</span>;  <span class="comment">/* 20px */</span>
+    <span class="prop">--space-large</span>: <span class="val">1.5rem</span>;   <span class="comment">/* 24px */</span>
+    <span class="prop">--space-xlarge</span>: <span class="val">2rem</span>;    <span class="comment">/* 32px */</span>
+    <span class="prop">--space-xxlarge</span>: <span class="val">3rem</span>;   <span class="comment">/* 48px */</span>
+    <span class="prop">--space-huge</span>: <span class="val">3.5rem</span>;    <span class="comment">/* 56px */</span>
+    <span class="prop">--space-xhuge</span>: <span class="val">4rem</span>;     <span class="comment">/* 64px */</span>
+    <span class="prop">--space-xxhuge</span>: <span class="val">4.5rem</span>;  <span class="comment">/* 72px */</span>
+  }
+}</code></div>
+
     </div>
   </section>
 
@@ -3104,6 +3249,25 @@
           </div>
         </div>
       </div>
+
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="sel">:root</span> {
+  <span class="comment">/* Border radius */</span>
+  <span class="prop">--radius-sm</span>: <span class="val">0.25rem</span>;  <span class="comment">/* 4px */</span>
+  <span class="prop">--radius-md</span>: <span class="val">0.5rem</span>;   <span class="comment">/* 8px */</span>
+  <span class="prop">--radius-mdl</span>: <span class="val">0.75rem</span>; <span class="comment">/* 12px */</span>
+  <span class="prop">--radius-lg</span>: <span class="val">1rem</span>;     <span class="comment">/* 16px */</span>
+  <span class="prop">--radius-xl</span>: <span class="val">1.5rem</span>;   <span class="comment">/* 24px */</span>
+  <span class="prop">--radius-2xl</span>: <span class="val">2rem</span>;    <span class="comment">/* 32px */</span>
+
+  <span class="comment">/* Shadows */</span>
+  <span class="prop">--shadow-default</span>: <span class="val">0 4px 4px rgba(0,0,0,0.08)</span>;
+  <span class="prop">--shadow-hover</span>: <span class="val">0 12px 12px rgba(0,0,0,0.12)</span>;
+  <span class="prop">--shadow-elevated</span>:
+    <span class="val">0 0 1px rgba(11,41,70,0.32),
+    0 24px 20px rgba(42,82,121,0.08)</span>;
+}</code></div>
+
     </div>
   </section>
 
@@ -3157,6 +3321,35 @@
         <div class="wds-type-scale-row"><span class="wds-type-scale-label">Text xs</span><span style="font-family:Arial,sans-serif; font-size:12px; line-height:1.5;">Text xs</span></div>
         <div class="wds-type-scale-row"><span class="wds-type-scale-label">Eyebrow</span><span style="font-family:Arial,sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; line-height:1.5;">Eyebrow</span></div>
       </div>
+
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="sel">:root</span> {
+  <span class="prop">--font-headline</span>: <span class="val">"STK Bureau", Georgia, serif</span>;
+  <span class="prop">--font-body</span>: <span class="val">"ABC Social", Arial, sans-serif</span>;
+}
+
+<span class="comment">/* Headlines — STK Bureau Light */</span>
+<span class="sel">.display-5xl</span> {
+  <span class="prop">font</span>: <span class="val">300 clamp(2.5rem, 5vw, 3rem) var(--font-headline)</span>;
+  <span class="prop">letter-spacing</span>: <span class="val">-2px</span>;
+  <span class="prop">line-height</span>: <span class="val">1</span>;
+}
+
+<span class="comment">/* Body — ABC Social */</span>
+<span class="sel">.text-md</span> {
+  <span class="prop">font</span>: <span class="val">300 1rem/1.5 var(--font-body)</span>;
+}
+<span class="sel">.text-sm</span> {
+  <span class="prop">font</span>: <span class="val">300 0.875rem/1.5 var(--font-body)</span>;
+}
+
+<span class="comment">/* Eyebrow */</span>
+<span class="sel">.eyebrow</span> {
+  <span class="prop">font</span>: <span class="val">700 0.6875rem/1.5 var(--font-body)</span>;
+  <span class="prop">text-transform</span>: <span class="val">uppercase</span>;
+  <span class="prop">letter-spacing</span>: <span class="val">2px</span>;
+}</code></div>
+
     </div>
   </section>
 
@@ -3242,6 +3435,51 @@
           </div></td>
         </tr>
       </table>
+
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="comment">&lt;!-- Primary button --&gt;</span>
+<span class="sel">&lt;button</span> <span class="prop">class</span>=<span class="val">"btn btn-primary"</span><span class="sel">&gt;</span>
+  Button
+  <span class="sel">&lt;span</span> <span class="prop">class</span>=<span class="val">"btn-arrow"</span><span class="sel">&gt;</span><span class="comment">&lt;!-- arrow icon --&gt;</span><span class="sel">&lt;/span&gt;</span>
+<span class="sel">&lt;/button&gt;</span>
+
+<span class="sel">.btn</span> {
+  <span class="prop">display</span>: <span class="val">inline-flex</span>;
+  <span class="prop">align-items</span>: <span class="val">center</span>;
+  <span class="prop">gap</span>: <span class="val">16px</span>;
+  <span class="prop">height</span>: <span class="val">40px</span>;
+  <span class="prop">padding</span>: <span class="val">0 0 0 16px</span>;
+  <span class="prop">border-radius</span>: <span class="val">8px</span>;
+  <span class="prop">font</span>: <span class="val">500 16px/1.2 var(--font-body)</span>;
+  <span class="prop">border</span>: <span class="val">2px solid transparent</span>;
+}
+<span class="sel">.btn-primary</span> {
+  <span class="prop">background</span>: <span class="val">#00c27a</span>;
+  <span class="prop">color</span>: <span class="val">#000</span>;
+}
+<span class="sel">.btn-primary:hover</span> { <span class="prop">background</span>: <span class="val">#03af6e</span>; }
+
+<span class="sel">.btn-secondary</span> {
+  <span class="prop">background</span>: <span class="val">#000</span>;
+  <span class="prop">color</span>: <span class="val">#fff</span>;
+}
+<span class="sel">.btn-secondary:hover</span> { <span class="prop">background</span>: <span class="val">#333</span>; }
+
+<span class="sel">.btn-tertiary</span> {
+  <span class="prop">background</span>: <span class="val">#fff</span>;
+  <span class="prop">border</span>: <span class="val">2px solid #DCE1E5</span>;
+  <span class="prop">padding</span>: <span class="val">0 16px</span>;
+}
+<span class="sel">.btn-tertiary:hover</span> { <span class="prop">border-color</span>: <span class="val">#B9C0CB</span>; }
+
+<span class="sel">.btn-arrow</span> {
+  <span class="prop">width</span>: <span class="val">36px</span>;
+  <span class="prop">height</span>: <span class="val">36px</span>;
+  <span class="prop">border-radius</span>: <span class="val">6px</span>;
+}
+<span class="sel">.btn-primary .btn-arrow</span> { <span class="prop">background</span>: <span class="val">#b4f5c8</span>; }
+<span class="sel">.btn-secondary .btn-arrow</span> { <span class="prop">background</span>: <span class="val">#626262</span>; }</code></div>
+
     </div>
   </section>
 
@@ -3381,6 +3619,50 @@
         <div class="wds-filter-switch-cell"><span class="wds-check-state-label" style="display:block; color:rgba(255,255,255,0.5); margin-bottom:4px;">Focused</span><button type="button" class="wds-filter-switch dark focus-demo" aria-pressed="false"><span class="wds-filter-switch-thumb"></span></button></div>
         <div class="wds-filter-switch-cell"><span class="wds-check-state-label" style="display:block; color:rgba(255,255,255,0.5); margin-bottom:4px;">Active</span><button type="button" class="wds-filter-switch dark active-demo" aria-pressed="true"><span class="wds-filter-switch-thumb"></span></button></div>
       </div>
+
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="comment">&lt;!-- Text input --&gt;</span>
+<span class="sel">&lt;label</span> <span class="prop">class</span>=<span class="val">"form-label"</span><span class="sel">&gt;</span>First name<span class="sel">&lt;/label&gt;</span>
+<span class="sel">&lt;input</span> <span class="prop">type</span>=<span class="val">"text"</span> <span class="prop">class</span>=<span class="val">"form-input"</span> <span class="prop">placeholder</span>=<span class="val">"Enter first name"</span><span class="sel">&gt;</span>
+
+<span class="sel">.form-label</span> {
+  <span class="prop">font</span>: <span class="val">500 14px var(--font-body)</span>;
+  <span class="prop">color</span>: <span class="val">#000</span>;
+}
+<span class="sel">.form-input</span> {
+  <span class="prop">font-size</span>: <span class="val">18px</span>;
+  <span class="prop">padding</span>: <span class="val">15px 12px</span>;
+  <span class="prop">border</span>: <span class="val">1px solid #808080</span>;
+  <span class="prop">border-radius</span>: <span class="val">4px</span>;
+}
+<span class="sel">.form-input:focus</span> {
+  <span class="prop">border-color</span>: <span class="val">#00c27a</span>;
+  <span class="prop">outline</span>: <span class="val">none</span>;
+}
+<span class="sel">.form-input:focus-visible</span> {
+  <span class="prop">box-shadow</span>: <span class="val">0 0 0 3px #bfffd2</span>;
+}
+<span class="sel">.form-input:hover</span> {
+  <span class="prop">background</span>: <span class="val">#F0F0F0</span>;
+}
+
+<span class="comment">&lt;!-- Checkbox --&gt;</span>
+<span class="sel">&lt;label</span> <span class="prop">class</span>=<span class="val">"check-item"</span><span class="sel">&gt;</span>
+  <span class="sel">&lt;div</span> <span class="prop">class</span>=<span class="val">"check-box"</span><span class="sel">&gt;&lt;/div&gt;</span>
+  <span class="sel">&lt;span&gt;</span>Option<span class="sel">&lt;/span&gt;</span>
+<span class="sel">&lt;/label&gt;</span>
+
+<span class="sel">.check-box</span> {
+  <span class="prop">width</span>: <span class="val">20px</span>;
+  <span class="prop">height</span>: <span class="val">20px</span>;
+  <span class="prop">border</span>: <span class="val">1px solid #808080</span>;
+  <span class="prop">border-radius</span>: <span class="val">4px</span>;
+}
+<span class="sel">.check-box.selected</span> {
+  <span class="prop">background</span>: <span class="val">#00c27a</span>;
+  <span class="prop">border-color</span>: <span class="val">#00c27a</span>;
+}</code></div>
+
     </div>
   </section>
 
@@ -3573,6 +3855,51 @@
           <div class="type-info-desc">Template cards with thumbnail, title, description, and CTA. Collapses to 1-column on mobile.</div>
         </div>
       </div>
+
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="comment">&lt;!-- Application header --&gt;</span>
+<span class="sel">&lt;header</span> <span class="prop">class</span>=<span class="val">"app-header"</span><span class="sel">&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">class</span>=<span class="val">"logo"</span><span class="sel">&gt;</span>mural<span class="sel">&lt;/span&gt;</span>
+  <span class="sel">&lt;div</span> <span class="prop">class</span>=<span class="val">"search-bar"</span><span class="sel">&gt;</span>...<span class="sel">&lt;/div&gt;</span>
+  <span class="sel">&lt;nav</span> <span class="prop">class</span>=<span class="val">"header-actions"</span><span class="sel">&gt;</span>...<span class="sel">&lt;/nav&gt;</span>
+<span class="sel">&lt;/header&gt;</span>
+
+<span class="sel">.app-header</span> {
+  <span class="prop">display</span>: <span class="val">flex</span>;
+  <span class="prop">align-items</span>: <span class="val">center</span>;
+  <span class="prop">justify-content</span>: <span class="val">space-between</span>;
+  <span class="prop">padding</span>: <span class="val">12px 24px</span>;
+  <span class="prop">border</span>: <span class="val">1px solid rgba(0,0,0,0.08)</span>;
+  <span class="prop">border-radius</span>: <span class="val">12px</span>;
+}
+
+<span class="comment">&lt;!-- Content card --&gt;</span>
+<span class="sel">&lt;article</span> <span class="prop">class</span>=<span class="val">"content-card"</span><span class="sel">&gt;</span>
+  <span class="sel">&lt;img</span> <span class="prop">class</span>=<span class="val">"content-card-image"</span> <span class="prop">src</span>=<span class="val">"..."</span> <span class="sel">/&gt;</span>
+  <span class="sel">&lt;div</span> <span class="prop">class</span>=<span class="val">"content-card-body"</span><span class="sel">&gt;</span>
+    <span class="sel">&lt;div</span> <span class="prop">class</span>=<span class="val">"content-card-tags"</span><span class="sel">&gt;</span>
+      <span class="sel">&lt;span</span> <span class="prop">class</span>=<span class="val">"tag tag--article"</span><span class="sel">&gt;</span>Article<span class="sel">&lt;/span&gt;</span>
+    <span class="sel">&lt;/div&gt;</span>
+    <span class="sel">&lt;h3&gt;</span>Card title<span class="sel">&lt;/h3&gt;</span>
+    <span class="sel">&lt;p&gt;</span>Card description...<span class="sel">&lt;/p&gt;</span>
+    <span class="sel">&lt;a</span> <span class="prop">class</span>=<span class="val">"card-cta"</span><span class="sel">&gt;</span>Read more &rarr;<span class="sel">&lt;/a&gt;</span>
+  <span class="sel">&lt;/div&gt;</span>
+<span class="sel">&lt;/article&gt;</span>
+
+<span class="sel">.content-card</span> {
+  <span class="prop">height</span>: <span class="val">480px</span>;
+  <span class="prop">border-radius</span>: <span class="val">var(--radius-lg)</span>;
+  <span class="prop">overflow</span>: <span class="val">hidden</span>;
+  <span class="prop">box-shadow</span>: <span class="val">var(--shadow-default)</span>;
+}
+<span class="sel">.content-card-body</span> {
+  <span class="prop">padding</span>: <span class="val">12px</span>;
+  <span class="prop">display</span>: <span class="val">flex</span>;
+  <span class="prop">flex-direction</span>: <span class="val">column</span>;
+  <span class="prop">flex</span>: <span class="val">1</span>;
+  <span class="prop">justify-content</span>: <span class="val">space-between</span>;
+}</code></div>
+
     </div>
   </section>
 
