@@ -2,6 +2,15 @@
 
 This is a single self-contained HTML file (`mural-brand-guidelines.html`) that serves as the complete Mural brand guidelines and web design system. All CSS, JS, and SVG assets are inlined — no external dependencies besides Google Fonts (Merriweather).
 
+## Logo
+
+The Mural logo exists as a **wordmark** and a **symbol**, each in three variants:
+- **Multicolor** — full-color version for light backgrounds
+- **Black** — single-color for light backgrounds
+- **White** — single-color for dark backgrounds
+
+Use the wordmark for name recognition; use the symbol where Mural context is already established.
+
 ## Brand Colors (canonical — sourced from logo SVGs)
 
 | Name | Hex | RGB | Usage |
@@ -86,6 +95,76 @@ NOT equal fifths. NOT always at the bottom edge of a frame.
 - Easing: cubic-bezier(0.22, 1, 0.36, 1)
 - Standard duration: 0.3s for UI transitions
 
+## Buttons (Web Design System)
+
+All buttons: height 40px, border-radius 8px, font ABC Social Medium 16px (weight 500), `border: 2px solid transparent`.
+
+### Primary
+- Default: bg `#00c27a`, text black
+- Hover: bg `#03af6e`
+- Arrow box: 36×36px, 6px radius, bg `#b4f5c8`, black arrow icon
+- Layout: `padding: 0 0 0 16px; gap: 16px`
+
+### Secondary
+- Default: bg `#000`, text white
+- Hover: bg `#333`
+- Arrow box: bg `#626262`, white arrow icon (stays `#626262` on hover)
+
+### Tertiary Light
+- Default: bg white, `border: 2px solid #DCE1E5`, text black
+- Hover: border `#B9C0CB`
+- No arrow; `padding: 0 16px; min-width: 119px`
+
+### Tertiary Dark
+- Default: bg black, `border: 2px solid #4f5457`, text white
+- Hover: border white
+
+### Link Light / Dark
+- Inline-flex, gap 8px, font 500 16px
+- Hover: gap increases to 16px (chevron slides right)
+- SVG chevron 6×9px, stroke-width 2, round caps
+- Dark variant: white text and chevron on black bg
+
+### Icon
+- 62×62px, border-radius 14px, `border: 2px solid #DCE1E5`, transparent bg
+- Hover: bg `#fcfcfc`
+
+## Form Elements (Web Design System)
+
+### Text inputs
+`.wds-form-input` with `.light-input` or `.dark-input`. Base: 18px font, 15px 12px padding, 4px radius, 1px solid border. Default/filled: border and placeholder `#808080`; light bg white, dark bg black. Hover fill: light `#F0F0F0`, dark `#1e1e1e`. Focused (mouse): border `#00c27a` only. Keyboard focused (`:focus-visible`): border `#00c27a` + 3px ring light `#bfffd2`, dark `#073b28`. Labels: 14px, font-weight 500; light black, dark white.
+
+### Form select
+Same base styling as text inputs. Custom chevron arrow `#808080` in all states. Open state: chevron rotates 180°, dropdown panel appears below. Dropdown options: 14px, padding 10px 12px, hover bg `#f5f5f5` (light) / `#1e1e1e` (dark).
+
+### Checkboxes
+20×20px, 4px radius, 1px solid `#808080` border. Selected: jade (`#00c27a`) fill with white checkmark (stroke-width 2.5). States: Default, Hover, Keyboard focused, Selected.
+
+### Radios
+20×20px circle, 1px solid `#808080` border. Selected: jade fill with white center dot. States: Default, Hover, Keyboard focused, Selected.
+
+### Filter switches
+Track 40×22px, radius 11px; off `rgba(0,0,0,0.15)`, on jade; thumb 18×18px white, `box-shadow: 0 1px 3px rgba(0,0,0,0.2)`. Light and dark variants with 4 states: Default, Hover, Focused, Active.
+
+## Page Components (Web Design System)
+
+### Content cards
+- Fixed height: 480px
+- Border-radius: `var(--radius-lg)` (16px)
+- Shadow: `var(--shadow-default)`
+- Image area at top, body area below with `padding: 12px; flex: 1; justify-content: space-between`
+- Body contains: category tags, title, description, CTA link
+
+### Category tags
+- Pill-shaped tags with category-specific colors
+- Article: jade bg, black text
+- Business plan: blue bg, white text
+- Topic: neutral bg, dark text
+
+### CTA sections
+- Available in light (mint bg) and dark (black bg) variants
+- Centered layout: headline, subtext, button group
+
 ## LUMA Sub-brand Colors
 - LUMA Red: #EE3A43
 - Dark Olive: #575651
@@ -95,15 +174,9 @@ NOT equal fifths. NOT always at the bottom edge of a frame.
 - Green: #8EA84E
 - Blue: #2F9DBA
 
-## Form Elements (Web Design System)
-
-- **Text inputs:** `.wds-form-input` with `.light-input` or `.dark-input`. Base: 18px font, 15px 12px padding, 4px radius, 1px solid border. Default/filled: border and placeholder `#808080`; light bg `var(--white)`, dark bg `var(--black)`. Hover fill: light `#F0F0F0`, dark `#1e1e1e`. Focused (mouse): border `#00c27a` only. Keyboard focused (`:focus-visible`): border `#00c27a` + 3px ring light `#bfffd2`, dark `#073b28`. Labels: `.wds-form-field-label` 14px, font-weight 500; `.light-label` black, `.dark-label` white. State table: `.wds-form-input-table` (5 columns), `.wds-layout-label + .wds-form-input-table` gets 12px margin-top.
-- **Checkboxes & radios:** Tokens in `:root`: `--primary-gray`, `--form-bg-dark`, `--form-control-border`, `--form-focus-ring-light`, `--form-focus-ring-dark`, `--form-hover-light`, `--form-hover-dark`, `--surface-pills-bg`. Option row: `.wds-check-item` (flex, 12px gap, 8px padding, 4px radius); dark context: wrap in `.wds-check-dark-block`. Checkbox: `.wds-check-box` 20×20px, 4px radius; radio: `.wds-radio-circle` + `.wds-radio-dot`. States: Default, Hover, Keyboard focused, Selected.
-- **Filter buttons:** Filled pills; 4px radius, 8px padding, 14px. Light: default `#f0f0f0`, hover `#e2e2e2`, focus ring 3px `#bfffd2`, selected `#D5F8E0`. Dark: default `#373737`, hover `#545454`, focus ring 4px `#bfffd2`, selected `#00C27A`. Use `.wds-check-table` + `.wds-check-state-label` for state table layout when documenting.
-- **Toggle switch:** Track 40×22px, radius 11px; off `rgba(0,0,0,0.15)`, on `var(--jade)`; thumb 18×18px white, `box-shadow: 0 1px 3px rgba(0,0,0,0.2)`.
-
 ## File Structure
 - `mural-brand-guidelines.html` — the complete brand guide (single file, self-contained)
+- `Mural_Symbol_Multicolor.png`, `Mural_Symbol_Black.png`, `Mural_Symbol_White.png` — symbol assets
 
 ## Editing Guidelines
 - Keep everything in the single HTML file (inline CSS, inline JS, inline SVGs)
@@ -111,3 +184,4 @@ NOT equal fifths. NOT always at the bottom edge of a frame.
 - Use CSS custom properties (defined in :root) for all brand colors
 - Follow existing section pattern: `<section id="..."><div class="section-inner">...</div></section>` with `<hr class="divider">` between sections
 - The sidebar nav is grouped: Foundation, Voice, Application, Web Design System, Visual Rules, Sub-brand
+- Code snippets use `.code-block` with syntax highlighting: `.comment`, `.sel`, `.prop`, `.val`
