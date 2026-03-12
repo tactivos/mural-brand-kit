@@ -1766,16 +1766,15 @@
   <a href="#colors">Colors</a>
   <a href="#typography">Typography</a>
   <a href="#logo">Logo</a>
-  <a href="#brandbar">Brand Bar</a>
   <div class="nav-group">Voice</div>
   <a href="#tone">Tone of Voice</a>
   <a href="#editorial">Editorial</a>
-  <div class="nav-group">Application</div>
-  <a href="#layout">Layout Patterns</a>
+  <div class="nav-group">Supporting Graphics</div>
+  <a href="#brandbar">Brand Bar</a>
   <a href="#bg-patterns">Background Patterns</a>
 
   <a href="#dataviz">Data Visualization</a>
-
+  <a href="#mascot">Mascot</a>
 
   <div class="nav-group">Web Design System</div>
   <a href="#wds-grid">Grid System</a>
@@ -1850,6 +1849,7 @@
       <div class="accent-line"></div>
       <h2 class="section-title">Logo assets</h2>
       <p class="section-desc">The Mural logo exists as a wordmark and a symbol. Use the wordmark for name recognition and the symbol where Mural context is already established.</p>
+      <a href="https://drive.google.com/drive/folders/1-2Qi5tSw4lqnrAlC0nzXVnw58fUayMBa?usp=sharing" target="_blank" rel="noopener" class="wds-btn-link" style="margin-top:-8px; margin-bottom:24px; text-decoration:none;">Download logo assets <svg width="6" height="9" viewBox="0 0 6 9" fill="none"><path d="M1 1L5 4.5L1 8" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 
       <div class="logo-grid">
         <div class="logo-card">
@@ -2073,7 +2073,7 @@
         </div>
       </div>
 
-      <h3 class="sub-title">Type scale</h3>
+      <h3 class="sub-title" style="margin-top:48px;">Type scale</h3>
       <div style="margin-bottom:40px;">
         <div class="type-scale-row">
           <div class="type-scale-label">Display</div>
@@ -2109,71 +2109,6 @@
       <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:8px;"><strong>Tracking:</strong> Tighten by &minus;10 to &minus;100px at large sizes (51pt+). Use <code style="background:#f0f0ec;padding:2px 6px;border-radius:3px;font-size:13px;">letter-spacing: -1.2px</code> for standard headlines.</p>
       <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:8px;"><strong>Leading rule:</strong> Tracking &lt; Word spacing &lt; Leading (always). Headlines: <code style="background:#f0f0ec;padding:2px 6px;border-radius:3px;font-size:13px;">line-height: 1.1</code>. Body: <code style="background:#f0f0ec;padding:2px 6px;border-radius:3px;font-size:13px;">line-height: 1.55</code>.</p>
       <p style="font-size:15px;line-height:1.7;color:rgba(0,0,0,0.6);margin-bottom:40px;">Never justify headlines. Never apply effects (3D, drop shadow, warp) to any text. Always use smart typography: curly quotes (&ldquo; &rdquo;), em dashes (&mdash;), and proper ellipses (&hellip;).</p>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- ════════════════════════════════════════
-       BRAND BAR
-       ════════════════════════════════════════ -->
-  <section id="brandbar">
-    <div class="section-inner">
-      <div class="section-label">Brand Bar</div>
-      <div class="accent-line"></div>
-      <h2 class="section-title">The 5-color bar</h2>
-      <p class="section-desc">The brand bar is a signature element. Five stripes in a fixed order with specific proportions &mdash; anchoring slides, pages, and brand touchpoints.</p>
-
-      <div class="brandbar-demo">
-        <div class="brandbar-visual">
-          <span data-label="Pink" style="background:#FC83FF;flex:16;"></span>
-          <span data-label="Red" style="background:#FF4B4B;flex:33;"></span>
-          <span data-label="Green" style="background:#00843F;flex:9.5;"></span>
-          <span data-label="Yellow" style="background:#FFAA00;flex:15;"></span>
-          <span data-label="Blue" style="background:#5887FF;flex:26;"></span>
-        </div>
-        <div class="brandbar-specs">
-          <div class="brandbar-spec"><dl><dt>Height</dt><dd>8px</dd></dl></div>
-          <div class="brandbar-spec"><dl><dt>Color order</dt><dd>P R G Y B</dd></dl></div>
-          <div class="brandbar-spec"><dl><dt>Proportions</dt><dd>16 / 33 / 9.5 / 15 / 26</dd></dl></div>
-        </div>
-      </div>
-
-      <div class="do-dont-grid">
-        <div class="do-card">
-          <h4>Do</h4>
-          <ul>
-            <li>Use the brand bar on black or white backgrounds &mdash; all five colors remain visible</li>
-            <li>Always maintain the color order: Pink, Red, Green, Yellow, Blue</li>
-            <li>Preserve the proportions &mdash; the stripes are not equal widths</li>
-          </ul>
-        </div>
-        <div class="dont-card">
-          <h4>Don&rsquo;t</h4>
-          <ul>
-            <li>Use on green backgrounds &mdash; the green stripe blends in</li>
-            <li>Reorder, omit, or duplicate any stripe</li>
-            <li>Use brand bar colors as general fills or UI accents</li>
-          </ul>
-        </div>
-      </div>
-
-      <h3 class="sub-title">Code</h3>
-      <div class="code-block"><code><span class="comment">&lt;!-- Brand bar — preserves exact flex proportions --&gt;</span>
-<span class="sel">&lt;div</span> <span class="prop">class</span>=<span class="val">"brand-bar"</span><span class="sel">&gt;</span>
-  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:16; background:#FC83FF"</span><span class="sel">&gt;&lt;/span&gt;</span>
-  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:33; background:#FF4B4B"</span><span class="sel">&gt;&lt;/span&gt;</span>
-  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:9.5; background:#00843F"</span><span class="sel">&gt;&lt;/span&gt;</span>
-  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:15; background:#FFAA00"</span><span class="sel">&gt;&lt;/span&gt;</span>
-  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:26; background:#5887FF"</span><span class="sel">&gt;&lt;/span&gt;</span>
-<span class="sel">&lt;/div&gt;</span>
-
-<span class="sel">.brand-bar</span> {
-  <span class="prop">display</span>: <span class="val">flex</span>;
-  <span class="prop">height</span>: <span class="val">8px</span>;
-  <span class="prop">width</span>: <span class="val">100%</span>;
-}</code></div>
-
     </div>
   </section>
 
@@ -2375,53 +2310,65 @@
   <hr class="divider">
 
   <!-- ════════════════════════════════════════
-       LAYOUT PATTERNS
+       BRAND BAR
        ════════════════════════════════════════ -->
-  <section id="layout">
+  <section id="brandbar">
     <div class="section-inner">
-      <div class="section-label">Layout Patterns</div>
+      <div class="section-label">Brand Bar</div>
       <div class="accent-line"></div>
-      <h2 class="section-title">Structure &amp; spacing</h2>
-      <p class="section-desc">Consistent layout creates rhythm across slides and pages. Use color blocking, split layouts, card grids, and section dividers as building blocks.</p>
+      <h2 class="section-title">The 5-color bar</h2>
+      <p class="section-desc">The brand bar is a signature element. Five stripes in a fixed order with specific proportions &mdash; anchoring slides, pages, and brand touchpoints.</p>
 
-      <h3 class="sub-title">Section patterns</h3>
-      <div class="section-demo" style="background:linear-gradient(135deg,var(--mural-green),var(--jade),var(--spring));">
-        <div class="inner">
-          <div class="demo-headline" style="color:var(--black);">Green gradient hero</div>
-          <div class="demo-sub" style="color:rgba(0,0,0,0.5);">Use the monochromatic palette for signature Mural sections</div>
+      <div class="brandbar-demo">
+        <div class="brandbar-visual">
+          <span data-label="Pink" style="background:#FC83FF;flex:16;"></span>
+          <span data-label="Red" style="background:#FF4B4B;flex:33;"></span>
+          <span data-label="Green" style="background:#00843F;flex:9.5;"></span>
+          <span data-label="Yellow" style="background:#FFAA00;flex:15;"></span>
+          <span data-label="Blue" style="background:#5887FF;flex:26;"></span>
         </div>
-      </div>
-      <div class="section-demo" style="background:var(--black);">
-        <div class="inner">
-          <div class="demo-headline" style="color:var(--white);">Dark section</div>
-          <div class="demo-sub" style="color:rgba(255,255,255,0.4);">High contrast for impact statements and CTAs</div>
-        </div>
-      </div>
-      <div class="section-demo" style="background:var(--natural);">
-        <div class="inner">
-          <div class="demo-headline">Natural surface</div>
-          <div class="demo-sub">Warm, approachable background for content sections</div>
+        <div class="brandbar-specs">
+          <div class="brandbar-spec"><dl><dt>Height</dt><dd>8px</dd></dl></div>
+          <div class="brandbar-spec"><dl><dt>Color order</dt><dd>P R G Y B</dd></dl></div>
+          <div class="brandbar-spec"><dl><dt>Proportions</dt><dd>16 / 33 / 9.5 / 15 / 26</dd></dl></div>
         </div>
       </div>
 
-      <div class="type-info-grid" style="margin-top:40px;">
-        <div class="type-info-card">
-          <h4>Margin system</h4>
-          <div class="weights">Standard content margins: <strong>64px</strong> from the edge. Top padding: <strong>48px</strong>. Split layout panel padding: <strong>56px 48px</strong>. Keep content clear of the brand bar.</div>
+      <div class="do-dont-grid">
+        <div class="do-card">
+          <h4>Do</h4>
+          <ul>
+            <li>Use the brand bar on black or white backgrounds &mdash; all five colors remain visible</li>
+            <li>Always maintain the color order: Pink, Red, Green, Yellow, Blue</li>
+            <li>Preserve the proportions &mdash; the stripes are not equal widths</li>
+          </ul>
         </div>
-        <div class="type-info-card">
-          <h4>Corners &amp; shadows</h4>
-          <div class="weights">Cards and containers: <strong>border-radius: 12px</strong>. Small elements (badges, pills): <strong>4px</strong>. Avoid hard 0px corners &mdash; everything feels gently rounded.</div>
-        </div>
-        <div class="type-info-card">
-          <h4>Cards</h4>
-          <div class="weights">White or Natural background. 12px radius. 28px internal padding. 20px gap between cards. Subtle border or shadow.</div>
-        </div>
-        <div class="type-info-card">
-          <h4>Color blocking</h4>
-          <div class="weights">Alternate Jade, Black, White, Natural. Never same color adjacent. Jade for emphasis, Natural for breathing room. Ensure a visible edge between blocks.</div>
+        <div class="dont-card">
+          <h4>Don&rsquo;t</h4>
+          <ul>
+            <li>Use on green backgrounds &mdash; the green stripe blends in</li>
+            <li>Reorder, omit, or duplicate any stripe</li>
+            <li>Use brand bar colors as general fills or UI accents</li>
+          </ul>
         </div>
       </div>
+
+      <h3 class="sub-title">Code</h3>
+      <div class="code-block"><code><span class="comment">&lt;!-- Brand bar — preserves exact flex proportions --&gt;</span>
+<span class="sel">&lt;div</span> <span class="prop">class</span>=<span class="val">"brand-bar"</span><span class="sel">&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:16; background:#FC83FF"</span><span class="sel">&gt;&lt;/span&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:33; background:#FF4B4B"</span><span class="sel">&gt;&lt;/span&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:9.5; background:#00843F"</span><span class="sel">&gt;&lt;/span&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:15; background:#FFAA00"</span><span class="sel">&gt;&lt;/span&gt;</span>
+  <span class="sel">&lt;span</span> <span class="prop">style</span>=<span class="val">"flex:26; background:#5887FF"</span><span class="sel">&gt;&lt;/span&gt;</span>
+<span class="sel">&lt;/div&gt;</span>
+
+<span class="sel">.brand-bar</span> {
+  <span class="prop">display</span>: <span class="val">flex</span>;
+  <span class="prop">height</span>: <span class="val">8px</span>;
+  <span class="prop">width</span>: <span class="val">100%</span>;
+}</code></div>
+
     </div>
   </section>
 
@@ -2645,6 +2592,20 @@
           </ul>
         </div>
       </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════════════════════════════════════════
+       MASCOT
+       ════════════════════════════════════════ -->
+  <section id="mascot">
+    <div class="section-inner">
+      <div class="section-label">Mascot</div>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Anku</h2>
+      <p class="section-desc">Anku is the Mural mascot &mdash; a friendly, expressive character that brings warmth and personality to the brand.</p>
     </div>
   </section>
 
