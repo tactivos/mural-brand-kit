@@ -1,17 +1,73 @@
 # Mural Brand Guidelines — Project Context
 
-This is a single self-contained HTML file (`mural-brand-guidelines.html`) that serves as the complete Mural brand guidelines and web design system. All CSS, JS, and SVG assets are inlined — no external dependencies besides Google Fonts (Merriweather).
+This project is a single self-contained HTML file, `mural-brand-guidelines.html`, that serves as the complete Mural brand guidelines and web design system. All CSS, JS, and most assets are inline or local to the project. The hero download button points to `MURAL-BRAND-SKILLS-KIT.md`.
+
+## Core Brand Sections
+
+### Foundation
+- Brand Messaging
+- Logo
+- Color
+- Typography
+
+### Voice
+- Tone of Voice
+- Editorial
+
+### Supporting Graphics
+- Brand Bar
+- Background Patterns
+- Data Visualization
+- Mascot
+- Photography
+
+### Web Design System
+- Grid System
+- Spacing
+- Radius & Shadow
+- Web Typography
+- Buttons
+- Form Elements
+- Icons
+- Page Components
+- Interaction & Motion
+
+### Visual Rules
+- Do's & Don'ts
+
+### Sub-brand
+- LUMA
+
+### Co-branding
+- Partnerships
+- Integrations
+- Collaborations
 
 ## Logo
 
-The Mural logo exists as a **wordmark** and a **symbol**, each in three variants:
-- **Multicolor** — full-color version for light backgrounds
-- **Black** — single-color for light backgrounds
-- **White** — single-color for dark backgrounds
+The Mural logo exists in two forms:
+- **Wordmark** — use for big brand moments where name recognition matters
+- **Symbol** — use where it is already clear the communication comes from Mural
 
-Use the wordmark for name recognition; use the symbol where Mural context is already established.
+Approved variants for both:
+- **Multicolor** — for white or natural backgrounds only
+- **Black** — for light backgrounds
+- **White** — for dark backgrounds
 
-## Brand Colors (canonical — sourced from logo SVGs)
+The multicolor mark is built from the five core colors plus the two foundational black bars. The bars are a required part of the logo and must not be removed or altered.
+
+### Logo misuse
+The guide now includes a dedicated `Logo misuse` section with paired example cards for:
+- Dark-background mismatches
+- Recolored logos
+- Disproportionate scaling
+- Multicolor logos placed on photos
+- Multicolor logos placed on unsupported backgrounds
+- Altered or removed black bars
+
+## Brand Colors
+
+Canonical brand colors:
 
 | Name | Hex | RGB | Usage |
 |------|-----|-----|-------|
@@ -26,162 +82,224 @@ Use the wordmark for name recognition; use the symbol where Mural context is alr
 | Natural | #EDEDD8 | 237, 237, 216 | Warm background surfaces |
 | Black | #000000 | — | Text, dark sections |
 | White | #FFFFFF | — | Backgrounds, light text |
-| Red ADA | #E02935 | 224, 41, 53 | Accessible variant of red |
-| Blue ADA | #3776E4 | 55, 118, 228 | Accessible variant of blue |
+| Red ADA | #E02935 | 224, 41, 53 | Accessible red |
+| Blue ADA | #3776E4 | 55, 118, 228 | Accessible blue |
 
 ## Brand Bar
 
-Order and proportions (left to right):
-- Pink (#FC83FF) — flex: 16
-- Red (#FF4B4B) — flex: 33
-- Green (#00843F) — flex: 9.5
-- Yellow (#FFAA00) — flex: 15
-- Blue (#5887FF) — flex: 26
+Fixed stripe order and proportions:
+- Pink `#FC83FF` — `16`
+- Red `#FF4B4B` — `33`
+- Green `#00843F` — `9.5`
+- Yellow `#FFAA00` — `15`
+- Blue `#5887FF` — `26`
 
-NOT equal fifths. NOT always at the bottom edge of a frame.
+Rules:
+- Not equal fifths
+- Not always pinned to the bottom edge
+- Preserve order and proportion
 
 ## Typography
 
-### Brand (presentations, print, general brand)
-- Headlines: Merriweather Light (300) — loaded via Google Fonts
+### Brand typography
+- Headlines: Merriweather Light (300)
 - Body: Arial
 
-### Web Design System
-- Headlines: STK Bureau Light (300)
-- Body: ABC Social — Light (300), Medium (500), Bold (700)
-- Base size: 16px (1rem)
-- Use rem units, clamp() for fluid scaling
+### Web typography
+- Headlines: STK Bureau Serif
+- Body: ABC Social
+- Base size: `16px / 1rem`
+- Prefer `rem` units and `clamp()` for fluid scaling
+
+### LUMA typography
+- Headlines: ITC Charter BT
+- Body Copy: Helvetica Neue
+
+## Editorial
+
+The Editorial section now includes:
+- Quick reference
+- "Do not use" words
+- Capitalization
+- Punctuation
+- Numbers, dates, & times
+- Writing about people
+- Accessibility
+
+Key additions reflected in the guide:
+- AP Style link styling in black with underline-on-default / remove-on-hover behavior
+- Concise punctuation rules
+- Number/date/time formatting guidance
+- Accessibility guidance covering headings, organization, directions, captions, mobile optimization, alt text, and CTA phrasing
+
+## Photography
+
+The Photography section sits under Supporting Graphics and includes:
+
+### Overview
+- Photography should feel real, human, and grounded in how people actually work
+- Favor documentary-style moments over staged scenes
+- Prioritize candid interaction, active work, authentic environments, and process
+- Make the work the hero rather than posed portraiture
+
+### Casting
+- Celebrate diversity across identities, ages, ethnicities, and lived experiences
+- Cast people who feel genuine and believable on camera
+- Describe scenarios and mood, but do not over-script behavior
+- Avoid cliched corporate or stock-photo energy
+
+## Supporting Graphics
+
+### Background Patterns
+- Light canvas: white background, subtle dark dots, 18px grid
+- Dark canvas: black background, subtle white dots, 18px grid
+- Mint canvas: mint background, subtle green dots, 18px grid
+
+### Data Visualization
+- Use Spring and Jade for emphasis with accessible colors where needed
+
+### Mascot
+- `Anku` is the named Mural mascot
 
 ## Key Design Tokens
 
-### Spacing (desktop / mobile)
-- tiny: 2px / 2px
-- xxsmall: 4px / 4px
-- xsmall: 8px / 8px
-- small: 16px / 16px
-- medium: 32px / 20px
-- large: 48px / 24px
-- xlarge: 64px / 32px
-- xxlarge: 80px / 48px
-- huge: 96px / 56px
-- xhuge: 128px / 64px
-- xxhuge: 192px / 72px
+### Spacing
+- tiny: `2px / 2px`
+- xxsmall: `4px / 4px`
+- xsmall: `8px / 8px`
+- small: `16px / 16px`
+- medium: `32px / 20px`
+- large: `48px / 24px`
+- xlarge: `64px / 32px`
+- xxlarge: `80px / 48px`
+- huge: `96px / 56px`
+- xhuge: `128px / 64px`
+- xxhuge: `192px / 72px`
 
 ### Border Radius
-- radius-sm: 4px (0.25rem)
-- radius-md: 8px (0.5rem)
-- radius-mdl: 12px (0.75rem)
-- radius-lg: 16px (1rem)
-- radius-xl: 24px (1.5rem)
-- radius-2xl: 32px (2rem)
+- radius-sm: `4px`
+- radius-md: `8px`
+- radius-mdl: `12px`
+- radius-lg: `16px`
+- radius-xl: `24px`
+- radius-2xl: `32px`
 
 ### Shadow
-- shadow-default: 0 4px 4px rgba(0,0,0,0.08)
-- shadow-hover: 0 12px 12px rgba(0,0,0,0.12)
-- shadow-elevated: 0 0 1px rgba(11,41,70,0.32), 0 24px 20px rgba(42,82,121,0.08)
+- shadow-default: `0 4px 4px rgba(0,0,0,0.08)`
+- shadow-hover: `0 12px 12px rgba(0,0,0,0.12)`
+- shadow-elevated: `0 0 1px rgba(11,41,70,0.32), 0 24px 20px rgba(42,82,121,0.08)`
 
 ### Grid
-- 12-column, 32px (2rem) gutters
-- Container Large: 1280px (80rem)
-- Container Medium: 1024px (64rem)
-- Container Small: 768px (48rem)
+- 12-column system
+- 32px / 2rem gutters
+- Large container: `1280px`
+- Medium container: `1024px`
+- Small container: `768px`
 
-## Background Dot-Grid Patterns
-- Light canvas: #FFFFFF bg, rgba(0,0,0,0.18) dots, 18px grid
-- Dark canvas: #000000 bg, rgba(255,255,255,0.35) dots, 18px grid
-- Mint canvas: #B4F5C0 bg, rgba(0,60,20,0.12) dots, 18px grid
+## Buttons
 
-## Brand Motion
-- Easing: cubic-bezier(0.22, 1, 0.36, 1)
-- Standard duration: 0.3s for UI transitions
-
-## Buttons (Web Design System)
-
-All buttons: height 40px, border-radius 8px, font ABC Social Medium 16px (weight 500), `border: 2px solid transparent`.
+All buttons:
+- Height `40px`
+- Radius `8px`
+- ABC Social Medium `16px`
+- `border: 2px solid transparent`
 
 ### Primary
-- Default: bg `#00c27a`, text black
-- Hover: bg `#03af6e`
-- Arrow box: 36×36px, 6px radius, bg `#b4f5c8`, black arrow icon
-- Layout: `padding: 0 0 0 16px; gap: 16px`
+- Jade background, black text
+- Mint arrow box with black arrow
 
 ### Secondary
-- Default: bg `#000`, text white
-- Hover: bg `#333`
-- Arrow box: bg `#626262`, white arrow icon (stays `#626262` on hover)
+- Black background, white text
+- Dark gray arrow box with white arrow
 
-### Tertiary Light
-- Default: bg white, `border: 2px solid #DCE1E5`, text black
-- Hover: border `#B9C0CB`
-- No arrow; `padding: 0 16px; min-width: 119px`
+### Tertiary
+- Light and dark variants
 
-### Tertiary Dark
-- Default: bg black, `border: 2px solid #4f5457`, text white
-- Hover: border white
+### Link buttons
+- Light and dark variants
+- Chevron shifts right on hover
 
-### Link Light / Dark
-- Inline-flex, gap 8px, font 500 16px
-- Hover: gap increases to 16px (chevron slides right)
-- SVG chevron 6×9px, stroke-width 2, round caps
-- Dark variant: white text and chevron on black bg
+### CTA examples
+CTA section examples in the guide were updated to use the defined brand button styling rather than custom ad hoc styles.
 
-### Icon
-- 62×62px, border-radius 14px, `border: 2px solid #DCE1E5`, transparent bg
-- Hover: bg `#fcfcfc`
+## Form Elements
 
-## Form Elements (Web Design System)
+Included components:
+- Text inputs
+- Selects
+- Checkboxes
+- Radios
+- Filter switches
 
-### Text inputs
-`.wds-form-input` with `.light-input` or `.dark-input`. Base: 18px font, 15px 12px padding, 4px radius, 1px solid border. Default/filled: border and placeholder `#808080`; light bg white, dark bg black. Hover fill: light `#F0F0F0`, dark `#1e1e1e`. Focused (mouse): border `#00c27a` only. Keyboard focused (`:focus-visible`): border `#00c27a` + 3px ring light `#bfffd2`, dark `#073b28`. Labels: 14px, font-weight 500; light black, dark white.
+## Page Components
 
-### Form select
-Same base styling as text inputs. Custom chevron arrow `#808080` in all states. Open state: chevron rotates 180°, dropdown panel appears below. Dropdown options: 14px, padding 10px 12px, hover bg `#f5f5f5` (light) / `#1e1e1e` (dark).
+Included components:
+- Content cards
+- Category tags
+- CTA sections
 
-### Checkboxes
-20×20px, 4px radius, 1px solid `#808080` border. Selected: jade (`#00c27a`) fill with white checkmark (stroke-width 2.5). States: Default, Hover, Keyboard focused, Selected.
+## LUMA
 
-### Radios
-20×20px circle, 1px solid `#808080` border. Selected: jade fill with white center dot. States: Default, Hover, Keyboard focused, Selected.
+The LUMA section now includes:
+- LUMA color palette
+- LUMA typography
+- LUMA logos (full color, white, black; horizontal and stacked)
+- LUMA supporting graphic
+- LUMA icons in card layout
+- Mural + LUMA logo lockups
 
-### Filter switches
-Track 40×22px, radius 11px; off `rgba(0,0,0,0.15)`, on jade; thumb 18×18px white, `box-shadow: 0 1px 3px rgba(0,0,0,0.2)`. Light and dark variants with 4 states: Default, Hover, Focused, Active.
+LUMA colors:
+- LUMA Red: `#EE3A43`
+- Dark Olive: `#575651`
+- Light Olive: `#989891`
+- Deep Red: `#C41230`
+- Yellow: `#ECB12E`
+- Green: `#8EA84E`
+- Blue: `#2F9DBA`
 
-## Page Components (Web Design System)
+## Co-branding
 
-### Content cards
-- Fixed height: 480px
-- Border-radius: `var(--radius-lg)` (16px)
-- Shadow: `var(--shadow-default)`
-- Image area at top, body area below with `padding: 12px; flex: 1; justify-content: space-between`
-- Body contains: category tags, title, description, CTA link
+The Co-branding area now includes three sections:
 
-### Category tags
-- Pill-shaped tags with category-specific colors
-- Article: jade bg, black text
-- Business plan: blue bg, white text
-- Topic: neutral bg, dark text
+### Partnerships
+- Partner logo lockups should be created by the Creative team
+- Pair wordmark with wordmark and symbol with symbol
+- When Mural leads, use Mural as the scaling reference
+- Includes side-by-side partner wordmark and symbol examples
 
-### CTA sections
-- Available in light (mint bg) and dark (black bg) variants
-- Centered layout: headline, subtext, button group
+### Integrations
+- Use symbol lockups connected by a `+`
+- Scale partner symbols for visual balance
+- Example spec in guide:
+  - symbols at `140px` height
+  - `+` in ABC Social Light at `70pt`
+  - `+` is black and half the symbol height
+- Includes downloadable integration lockups and example SVG
 
-## LUMA Sub-brand Colors
-- LUMA Red: #EE3A43
-- Dark Olive: #575651
-- Light Olive: #989891
-- Deep Red: #C41230
-- Yellow: #ECB12E
-- Green: #8EA84E
-- Blue: #2F9DBA
+### Collaborations
+- Use wordmark lockups connected by a black stroke
+- Stroke should be visible but not overpower the logos
+- Example spec in guide:
+  - wordmarks at `140px` height
+  - stroke thickness `1.5px`
+  - stroke matches Mural wordmark height
+- Includes downloadable collaboration lockups and example SVG
+
+## Motion
+- Easing: `cubic-bezier(0.22, 1, 0.36, 1)`
+- Standard duration: `0.3s`
 
 ## File Structure
-- `mural-brand-guidelines.html` — the complete brand guide (single file, self-contained)
-- `Mural_Symbol_Multicolor.png`, `Mural_Symbol_Black.png`, `Mural_Symbol_White.png` — symbol assets
+- `mural-brand-guidelines.html` — complete self-contained guide
+- `MURAL-BRAND-SKILLS-KIT.md` — downloadable companion skills kit
+- Local image and SVG assets live beside the HTML file as needed for guide examples
 
 ## Editing Guidelines
-- Keep everything in the single HTML file (inline CSS, inline JS, inline SVGs)
-- Preserve the sidebar navigation — add `<a href="#section-id">` links when adding sections
-- Use CSS custom properties (defined in :root) for all brand colors
-- Follow existing section pattern: `<section id="..."><div class="section-inner">...</div></section>` with `<hr class="divider">` between sections
-- The sidebar nav is grouped: Foundation, Voice, Application, Web Design System, Visual Rules, Sub-brand
-- Code snippets use `.code-block` with syntax highlighting: `.comment`, `.sel`, `.prop`, `.val`
+- Keep the guide in the single HTML file
+- Preserve the section pattern: `<section id="..."><div class="section-inner">...</div></section>`
+- Separate top-level sections with `<hr class="divider">`
+- Use CSS custom properties in `:root` for brand values
+- Keep sidebar navigation aligned with actual page section order
+- Reuse existing card and grid patterns where possible
+- Keep download links pointed at the current asset or markdown file
+- Use `.code-block` for code examples
