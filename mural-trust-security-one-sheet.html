@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mural Trust &amp; Security One-Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --jade: #00C27A;
+    --mural-green: #00843F;
+    --mural-blue: #5887FF;
+    --mural-pink: #FC83FF;
+    --mural-red: #FF4B4B;
+    --mural-yellow: #FFAA00;
+    --black: #000000;
+    --white: #FFFFFF;
+    --natural: #EDEDD8;
+    --rule: rgba(0, 0, 0, 0.12);
+    --muted: rgba(0, 0, 0, 0.62);
+    --font-headline: 'Merriweather', Georgia, serif;
+    --font-body: Arial, Helvetica, sans-serif;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    margin: 0;
+    background: #f6f4ef;
+    color: var(--black);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  .sheet {
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 1px rgba(11,41,70,0.22), 0 18px 30px rgba(42,82,121,0.08);
+  }
+
+  .brand-bar {
+    display: flex;
+    height: 10px;
+  }
+
+  .brand-bar span:nth-child(1) { flex: 16; background: var(--mural-pink); }
+  .brand-bar span:nth-child(2) { flex: 33; background: var(--mural-red); }
+  .brand-bar span:nth-child(3) { flex: 9.5; background: var(--mural-green); }
+  .brand-bar span:nth-child(4) { flex: 15; background: var(--mural-yellow); }
+  .brand-bar span:nth-child(5) { flex: 26; background: var(--mural-blue); }
+
+  .inner {
+    padding: 34px 42px 30px;
+  }
+
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.79rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .masthead-left {
+    font-weight: 700;
+  }
+
+  .masthead-right {
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .headline-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(230px, 0.65fr);
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 28px;
+  }
+
+  h1 {
+    margin: 0 0 14px;
+    font-family: var(--font-headline);
+    font-size: 3.65rem;
+    line-height: 0.98;
+    font-weight: 300;
+    letter-spacing: -2.3px;
+    max-width: 11ch;
+  }
+
+  .deck {
+    margin: 0;
+    max-width: 58ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .proof-panel {
+    padding: 18px 0 0 22px;
+    border-left: 2px solid var(--jade);
+  }
+
+  .proof-label {
+    margin: 0 0 10px;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .proof-number {
+    margin: 0;
+    font-family: var(--font-headline);
+    font-size: 3.2rem;
+    line-height: 0.95;
+    font-weight: 300;
+    letter-spacing: -1.8px;
+  }
+
+  .proof-copy {
+    margin: 12px 0 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .section {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .section:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .section-label {
+    margin: 0 0 8px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h2 {
+    margin: 0 0 10px;
+    font-family: var(--font-headline);
+    font-size: 2rem;
+    line-height: 1.06;
+    font-weight: 300;
+    letter-spacing: -1px;
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 34px;
+  }
+
+  .narrative {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--black);
+  }
+
+  .narrative p {
+    margin: 0 0 14px;
+  }
+
+  .narrative p:last-child {
+    margin-bottom: 0;
+    color: var(--muted);
+  }
+
+  .pillar-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 20px;
+  }
+
+  .pillar {
+    padding-top: 10px;
+    border-top: 2px solid var(--black);
+  }
+
+  .pillar h3,
+  .controls-list h3 {
+    margin: 0 0 8px;
+    font-size: 0.98rem;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+  }
+
+  .pillar p,
+  .controls-list p {
+    margin: 0;
+    font-size: 0.93rem;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .controls-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .controls-list {
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .controls-list ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .cert-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px 18px;
+    padding: 14px 0 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .cert-item {
+    font-size: 0.86rem;
+    line-height: 1.45;
+    color: var(--black);
+  }
+
+  .cert-item strong {
+    font-weight: 700;
+  }
+
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.75fr);
+    gap: 30px;
+    align-items: start;
+  }
+
+  blockquote {
+    margin: 0;
+    font-family: var(--font-headline);
+    font-size: 1.6rem;
+    line-height: 1.22;
+    font-weight: 300;
+    letter-spacing: -0.6px;
+  }
+
+  .quote-attribution {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .resource-box {
+    padding: 16px 0 0 20px;
+    border-left: 2px solid var(--jade);
+  }
+
+  .resource-box p {
+    margin: 0 0 10px;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .resource-box ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .resource-box li {
+    margin-bottom: 8px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  a {
+    color: var(--black);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  .footer {
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+
+  .footer strong {
+    color: var(--black);
+  }
+
+  @media (max-width: 920px) {
+    .headline-block,
+    .body-grid,
+    .bottom-grid,
+    .controls-grid,
+    .cert-strip,
+    .pillar-list {
+      grid-template-columns: 1fr;
+    }
+
+    .masthead,
+    .footer {
+      display: block;
+    }
+
+    .masthead-right,
+    .footer-right {
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    h1 {
+      max-width: none;
+      font-size: 2.8rem;
+    }
+  }
+
+  @media print {
+    @page {
+      size: letter portrait;
+      margin: 0.45in;
+    }
+
+    html, body {
+      background: var(--white);
+      font-size: 10.5pt;
+    }
+
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      max-width: none;
+      padding: 0;
+    }
+
+    .sheet {
+      border: none;
+      box-shadow: none;
+    }
+
+    .inner {
+      padding: 0.28in 0.34in 0.24in;
+    }
+
+    .masthead {
+      margin-bottom: 0.22in;
+      padding-bottom: 0.12in;
+    }
+
+    .headline-block {
+      margin-bottom: 0.22in;
+      gap: 0.26in;
+    }
+
+    h1 {
+      font-size: 31pt;
+    }
+
+    .proof-number {
+      font-size: 28pt;
+    }
+
+    .section {
+      margin-top: 0.16in;
+      padding-top: 0.14in;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .pillar,
+    .controls-list,
+    .resource-box {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <main class="sheet">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="inner">
+        <header class="masthead">
+          <div class="masthead-left">Mural Trust &amp; Security</div>
+          <div class="masthead-right">
+            Enterprise one-sheet<br>
+            Public-source summary for sales conversations
+          </div>
+        </header>
+
+        <section class="headline-block">
+          <div>
+            <h1>Trust, security, and control for enterprise collaboration.</h1>
+            <p class="deck">Mural maintains rigorous security, reliability, compliance, and privacy measures, paired with enterprise-grade administrative controls designed to help organizations collaborate with confidence.</p>
+          </div>
+          <aside class="proof-panel">
+            <p class="proof-label">Trusted by enterprise teams</p>
+            <p class="proof-number">50%+</p>
+            <p class="proof-copy">of the Fortune 100, along with customers in highly regulated industries including financial services, government, and healthcare.</p>
+          </aside>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Trust posture</p>
+          <div class="body-grid">
+            <div class="narrative">
+              <p>Mural organizes its public trust-and-security story around four pillars: security, compliance, reliability, and privacy. Together, they frame the platform as an enterprise-ready environment for teams that need strong controls without slowing down collaboration.</p>
+              <p>The emphasis is on layered protection, operational transparency, documented policies, and governance capabilities that help procurement, security, and IT stakeholders evaluate risk with confidence.</p>
+            </div>
+            <div class="pillar-list">
+              <div class="pillar">
+                <h3>Security</h3>
+                <p>Dedicated security controls to protect customer data at every layer, backed by a public security policy and vulnerability disclosure policy.</p>
+              </div>
+              <div class="pillar">
+                <h3>Compliance</h3>
+                <p>Alignment with global, regional, and industry regulations to support customer compliance obligations.</p>
+              </div>
+              <div class="pillar">
+                <h3>Reliability</h3>
+                <p>Infrastructure investment designed to support deployments that scale to thousands of members.</p>
+              </div>
+              <div class="pillar">
+                <h3>Privacy</h3>
+                <p>Commitment to collaborator privacy rights, supported by formal privacy and data processing documentation.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Enterprise controls</p>
+          <h2>Greater visibility, security, and control.</h2>
+          <div class="controls-grid">
+            <div class="controls-list">
+              <h3>Identity &amp; access</h3>
+              <ul>
+                <li>SSO (SAML 2.0)</li>
+                <li>SCIM provisioning</li>
+                <li>2FA for members and guests</li>
+              </ul>
+            </div>
+            <div class="controls-list">
+              <h3>Data protection</h3>
+              <ul>
+                <li>File type restrictions</li>
+                <li>Data residency</li>
+                <li>BYOK encryption</li>
+              </ul>
+            </div>
+            <div class="controls-list">
+              <h3>Information governance</h3>
+              <ul>
+                <li>Audit logs and support for SIEM</li>
+                <li>eDiscovery</li>
+                <li>Reports</li>
+              </ul>
+            </div>
+            <div class="controls-list">
+              <h3>Collaboration controls</h3>
+              <ul>
+                <li>Custom guest deactivation periods</li>
+                <li>Password-protected visitor links</li>
+                <li>Visitor link expiration</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="section-label">Certifications &amp; assurances</p>
+          <div class="cert-strip">
+            <div class="cert-item"><strong>SOC 2 Type 2</strong><br>Trust Services Principles</div>
+            <div class="cert-item"><strong>SOC 3 report</strong><br>Publicly available report</div>
+            <div class="cert-item"><strong>ISO 27001</strong><br>Information Security Management System</div>
+            <div class="cert-item"><strong>Microsoft 365 Certified</strong><br>Security &amp; Compliance</div>
+            <div class="cert-item"><strong>Microsoft SSPA certified</strong><br>Security posture assessment</div>
+            <div class="cert-item"><strong>CSA STAR</strong><br>Security, Trust, Assurance, and Risk</div>
+            <div class="cert-item"><strong>GDPR ready</strong><br>General Data Protection Regulation</div>
+            <div class="cert-item"><strong>CCPA ready</strong><br>California Consumer Privacy Act</div>
+            <div class="cert-item"><strong>KY3P assessed 2024</strong><br>Independent third-party assessment</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="bottom-grid">
+            <div>
+              <p class="section-label">Customer perspective</p>
+              <blockquote>&ldquo;Mural features robust security protocols that make it an ideal choice for distributed teams.&rdquo;</blockquote>
+              <p class="quote-attribution">Sofia Quintero, Founder &amp; CEO, Enjoy HQ, as quoted on Mural&rsquo;s trust-and-security page.</p>
+            </div>
+            <aside class="resource-box">
+              <p>Resources</p>
+              <ul>
+                <li><a href="https://www.mural.co/trust-and-security">Trust &amp; security overview</a></li>
+                <li><a href="https://www.mural.co/enterprise">Enterprise plan details</a></li>
+                <li><a href="https://www.mural.co/terms/security-policy">Security policy</a></li>
+                <li><a href="https://www.mural.co/terms/vdp">Vulnerability disclosure policy</a></li>
+                <li><a href="https://status.mural.co/">Status page</a></li>
+                <li><a href="https://www.mural.co/terms/privacy-statement">Privacy statement</a></li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <div class="footer-left">
+            Based on Mural&rsquo;s public trust-and-security materials and intended as a styled sales-facing summary.
+          </div>
+          <div class="footer-right">
+            <strong>Next step:</strong> Book a demo or share the SOC 3 report for deeper review.
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mural Trust &amp; Security One-Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --jade: #00C27A;
+    --mural-green: #00843F;
+    --spring: #9FEC7F;
+    --mint: #B4F5C0;
+    --mural-blue: #5887FF;
+    --mural-pink: #FC83FF;
+    --mural-red: #FF4B4B;
+    --mural-yellow: #FFAA00;
+    --black: #000000;
+    --white: #FFFFFF;
+    --natural: #EDEDD8;
+    --border: rgba(0, 0, 0, 0.08);
+    --text-muted: rgba(0, 0, 0, 0.64);
+    --shadow-default: 0 4px 4px rgba(0,0,0,0.08);
+    --shadow-elevated: 0 0 1px rgba(11,41,70,0.32), 0 24px 20px rgba(42,82,121,0.08);
+    --font-headline: 'Merriweather', Georgia, serif;
+    --font-body: Arial, Helvetica, sans-serif;
+    --weight-light: 300;
+    --weight-regular: 400;
+    --weight-bold: 700;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--black);
+    background:
+      radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.12) 1px, transparent 0) 0 0 / 18px 18px,
+      var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .sheet {
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--white);
+    box-shadow: var(--shadow-elevated);
+    border: 1px solid var(--border);
+  }
+
+  .hero {
+    padding: 52px 56px 36px;
+    background: linear-gradient(135deg, var(--mural-green) 0%, var(--jade) 30%, var(--spring) 60%, var(--mint) 100%);
+  }
+
+  .eyebrow {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(0, 0, 0, 0.48);
+  }
+
+  h1 {
+    margin: 0;
+    max-width: 9ch;
+    font-family: var(--font-headline);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: var(--weight-light);
+    line-height: 0.98;
+    letter-spacing: -2px;
+  }
+
+  .hero-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.8fr);
+    gap: 20px;
+    align-items: end;
+    margin-top: 16px;
+  }
+
+  .intro {
+    margin: 0;
+    max-width: 60ch;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: rgba(0, 0, 0, 0.72);
+  }
+
+  .hero-card {
+    padding: 18px 20px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.74);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .hero-card strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+
+  .hero-card p {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.72);
+    line-height: 1.55;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .wds-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    height: 40px;
+    padding: 0 0 0 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .wds-btn:hover { transform: translateY(-1px); }
+
+  .wds-btn-primary {
+    background: var(--jade);
+    color: var(--black);
+  }
+
+  .wds-btn-primary:hover { background: #03af6e; }
+
+  .wds-btn-secondary {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .wds-btn-secondary:hover { background: #333333; }
+
+  .wds-btn-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .wds-btn-primary .wds-btn-arrow { background: #b4f5c8; }
+  .wds-btn-secondary .wds-btn-arrow { background: #626262; }
+
+  .brand-bar {
+    display: flex;
+    height: 8px;
+  }
+
+  .brand-bar span:nth-child(1) { flex: 16; background: var(--mural-pink); }
+  .brand-bar span:nth-child(2) { flex: 33; background: var(--mural-red); }
+  .brand-bar span:nth-child(3) { flex: 9.5; background: var(--mural-green); }
+  .brand-bar span:nth-child(4) { flex: 15; background: var(--mural-yellow); }
+  .brand-bar span:nth-child(5) { flex: 26; background: var(--mural-blue); }
+
+  .content {
+    padding: 36px 44px 44px;
+  }
+
+  .section {
+    margin-top: 24px;
+  }
+
+  .section:first-child { margin-top: 0; }
+
+  .section-header {
+    margin-bottom: 14px;
+  }
+
+  .section-label {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  .accent-line {
+    display: block;
+    width: 40px;
+    height: 4px;
+    margin-bottom: 12px;
+    border-radius: 999px;
+    background: var(--jade);
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-headline);
+    font-size: 2.1rem;
+    font-weight: var(--weight-light);
+    line-height: 1.05;
+    letter-spacing: -1.2px;
+  }
+
+  .section-desc {
+    margin: 10px 0 0;
+    max-width: 66ch;
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .grid-2,
+  .grid-4,
+  .logo-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .card,
+  .stat-card,
+  .logo-card,
+  .quote-card {
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    box-shadow: var(--shadow-default);
+  }
+
+  .card,
+  .logo-card,
+  .quote-card { padding: 18px; }
+
+  .stat-card {
+    padding: 20px;
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .stat-kicker {
+    margin: 0 0 8px;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .stat-value {
+    margin: 0;
+    font-family: var(--font-headline);
+    font-size: 3rem;
+    line-height: 0.95;
+    font-weight: var(--weight-light);
+    letter-spacing: -1.6px;
+  }
+
+  .stat-card p,
+  .card p,
+  .logo-card p,
+  .quote-card p,
+  .quote-card blockquote {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .card h3,
+  .logo-card h3 {
+    margin: 0 0 8px;
+    font-family: var(--font-headline);
+    font-weight: var(--weight-light);
+    font-size: 1.3rem;
+    line-height: 1.1;
+    letter-spacing: -0.3px;
+  }
+
+  .card ul,
+  .logo-card ul {
+    margin: 10px 0 0;
+    padding-left: 18px;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  .card a,
+  .source a,
+  .footer-links a {
+    color: var(--black);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--natural);
+    border: 1px solid var(--border);
+    font-size: 0.88rem;
+    line-height: 1.2;
+  }
+
+  .pill.dark {
+    background: var(--black);
+    color: var(--white);
+    border-color: transparent;
+  }
+
+  .pill.jade {
+    background: var(--mint);
+    color: var(--black);
+  }
+
+  .quote-card {
+    background: linear-gradient(180deg, rgba(0,194,122,0.06), rgba(180,245,192,0.18));
+  }
+
+  .quote-card blockquote {
+    font-family: var(--font-headline);
+    font-size: 1.5rem;
+    font-weight: var(--weight-light);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .quote-attribution {
+    margin-top: 12px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .source {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 960px) {
+    .hero,
+    .content { padding-left: 24px; padding-right: 24px; }
+    .hero-copy,
+    .grid-2,
+    .grid-4,
+    .logo-grid { grid-template-columns: 1fr; }
+    h1 { max-width: none; }
+  }
+
+  @media print {
+    @page {
+      size: letter portrait;
+      margin: 0.4in;
+    }
+
+    html, body {
+      font-size: 10.5pt;
+      background: var(--white);
+    }
+
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      max-width: none;
+      padding: 0;
+    }
+
+    .sheet {
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+    }
+
+    .hero {
+      padding: 0.45in 0.5in 0.3in;
+    }
+
+    .content {
+      padding: 0.32in 0.4in 0.36in;
+    }
+
+    .section {
+      margin-top: 0.18in;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .card,
+    .stat-card,
+    .logo-card,
+    .quote-card,
+    .pill {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      box-shadow: none;
+    }
+
+    .wds-btn {
+      height: 34px;
+      font-size: 11pt;
+    }
+
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <main class="sheet">
+      <section class="hero">
+        <p class="eyebrow">Mural One-Sheet</p>
+        <h1>Trust &amp; Security</h1>
+        <div class="hero-copy">
+          <p class="intro">Mural maintains rigorous security, reliability, compliance, and privacy measures, paired with enterprise-grade administrative controls designed to help organizations collaborate with confidence.</p>
+          <div class="hero-card">
+            <strong>Trusted by security-conscious enterprises</strong>
+            <p>Mural is trusted by over 50% of the Fortune 100 and by customers in highly regulated industries including financial services, government, and healthcare.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="wds-btn wds-btn-primary" href="https://www.mural.co/contact-us/sales">
+            Book a demo
+            <span class="wds-btn-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3.375 14.625L14.625 3.375M14.625 3.375L6.1875 3.375M14.625 3.375V11.8125" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+          <a class="wds-btn wds-btn-secondary" href="https://cdn.prod.website-files.com/62e11362da2667ac3d0e6ed5/683d9416606f12e85948b26a_Mural%20-%20SOC%203%20Report%2003-31-25.pdf">
+            Download SOC 3 report
+            <span class="wds-btn-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3.375 14.625L14.625 3.375M14.625 3.375L6.1875 3.375M14.625 3.375V11.8125" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="content">
+        <section class="section">
+          <div class="grid-2">
+            <article class="stat-card">
+              <p class="stat-kicker">At a glance</p>
+              <p class="stat-value">50%+</p>
+              <p>of the Fortune 100 trust Mural, alongside teams in finance, government, and healthcare.</p>
+            </article>
+            <article class="card">
+              <h3>Designed for demanding environments</h3>
+              <p>Mural’s trust posture is organized around four pillars: security, compliance, reliability, and privacy. Together they support enterprise collaboration at scale.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <p class="section-label">Security Program</p>
+            <span class="accent-line"></span>
+            <h2>Built to meet stringent IT and regulatory requirements.</h2>
+            <p class="section-desc">Mural’s public trust-and-security materials emphasize layered controls, operational resilience, privacy commitments, and formal policy documentation for customers evaluating risk.</p>
+          </div>
+          <div class="grid-4">
+            <article class="card">
+              <h3>Security</h3>
+              <p>Mural’s Security Team implements and maintains controls to protect customer data at every layer.</p>
+              <ul>
+                <li><a href="https://www.mural.co/terms/security-policy">Security policy</a></li>
+                <li><a href="https://www.mural.co/terms/vdp">Vulnerability disclosure policy</a></li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Compliance</h3>
+              <p>Mural aligns to global, regional, and industry regulations to help customers meet their own compliance obligations.</p>
+              <ul>
+                <li>Certifications and attestations</li>
+                <li>GDPR and CCPA readiness</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Reliability</h3>
+              <p>Mural invests in infrastructure that supports deployments scaled to thousands of members.</p>
+              <ul>
+                <li><a href="https://status.mural.co/">Status page</a></li>
+                <li><a href="https://www.mural.co/terms/quality-policy">Quality policy</a></li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Privacy</h3>
+              <p>Mural states a commitment to honoring collaborator privacy rights and helping organizations meet their data privacy needs.</p>
+              <ul>
+                <li><a href="https://www.mural.co/terms/data-processing-addendum">Data processing addendum</a></li>
+                <li><a href="https://www.mural.co/terms/privacy-statement">Privacy statement</a></li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <p class="section-label">Enterprise Features</p>
+            <span class="accent-line"></span>
+            <h2>Greater visibility, security, and control.</h2>
+            <p class="section-desc">The enterprise plan highlights identity controls, data protection options, governance tooling, and collaboration safeguards for members, guests, and visitors.</p>
+          </div>
+          <div class="grid-2">
+            <article class="card">
+              <h3>Identity &amp; access management</h3>
+              <ul>
+                <li>SSO (SAML 2.0)</li>
+                <li>SCIM provisioning</li>
+                <li>2FA for members and guests</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Data protection</h3>
+              <ul>
+                <li>File type restrictions</li>
+                <li>Data residency</li>
+                <li>BYOK encryption</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Information governance</h3>
+              <ul>
+                <li>Audit logs and support for SIEM</li>
+                <li>eDiscovery</li>
+                <li>Reports</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Collaboration controls &amp; insights</h3>
+              <ul>
+                <li>Custom guest deactivation periods</li>
+                <li>Password-protected visitor links</li>
+                <li>Visitor link expiration</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <p class="section-label">Certifications &amp; Attestations</p>
+            <span class="accent-line"></span>
+            <h2>Recognized frameworks and assurances.</h2>
+          </div>
+          <div class="pill-row">
+            <div class="pill dark">SOC 2 Type 2</div>
+            <div class="pill">SOC 3 report</div>
+            <div class="pill jade">ISO 27001</div>
+            <div class="pill">Microsoft 365 Certified</div>
+            <div class="pill">Microsoft SSPA certified</div>
+            <div class="pill">CSA STAR</div>
+            <div class="pill">GDPR ready</div>
+            <div class="pill">CCPA ready</div>
+            <div class="pill">KY3P assessed 2024</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="logo-grid">
+            <article class="logo-card">
+              <h3>Data privacy and governance</h3>
+              <p>Mural calls out privacy support, data processing documentation, and governance features that can evolve with organizational requirements.</p>
+            </article>
+            <article class="logo-card">
+              <h3>Operational transparency</h3>
+              <p>Customers can review public-facing resources such as the status page, quality policy, security policy, and privacy statement during procurement or renewal.</p>
+            </article>
+            <article class="logo-card">
+              <h3>Enterprise controls</h3>
+              <p>Administrative controls span identity, visitor management, file restrictions, reporting, and encryption options intended to reduce risk without blocking collaboration.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <article class="quote-card">
+            <blockquote>“Mural features robust security protocols that make it an ideal choice for distributed teams.”</blockquote>
+            <p class="quote-attribution">Sofia Quintero, Founder &amp; CEO, Enjoy HQ (quoted on Mural’s trust-and-security page)</p>
+          </article>
+        </section>
+
+        <section class="section source">
+          <p>This one-sheet is a separate asset styled from the existing Mural brand guide and based on Mural’s public trust-and-security page.</p>
+          <div class="footer-links">
+            <a href="https://www.mural.co/trust-and-security">Trust &amp; security</a>
+            <a href="https://www.mural.co/enterprise">Enterprise plan</a>
+            <a href="https://www.mural.co/contact-us/special-requests">Support request</a>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
