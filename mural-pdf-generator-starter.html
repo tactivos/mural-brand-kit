@@ -1,9 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!--
+Mural PDF Generator Starter - safe content limits
+
+Print target:
+- Letter portrait
+- 100% print scale
+- Body copy should stay at 11pt or smaller
+
+Page 1 recommended limits:
+- Topic label: short phrase repeated on every page above the top rule
+- Headline: 2-4 lines
+- Deck: 45-75 words
+- Proof strip copy: 20-40 words
+- Logo row: 3-6 logos, optically balanced
+
+Page 2 recommended limits:
+- Interior headline: 1-2 lines
+- Control blocks: 4 blocks max
+- Bullets per block: 2-5
+- Certifications / badges: 6-9 max depending on logo shape
+- Quote: 20-45 words
+- Resources: 3-5 links
+
+Editorial craft notes:
+- Use one global utilitarian topic label across the full document
+- Do not add a competing top-right meta field or a duplicate label above the headline
+- Keep interior page headings on a consistent hang line
+- If using a quote, let the opening mark hang to the left of the text block
+- Bullet sections should read like body copy and should not feel "horsey"
+- Improve rags before reducing type size or over-tightening spacing
+- Use soft returns only when they materially improve the rag
+- Balance logos and badges optically rather than mathematically
+- Start uploaded logos and badges from normalized containment rules, then use small scale and vertical-shift tweaks for optical balance
+
+If content starts feeling tight, shorten copy before reducing type size or spacing.
+-->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mural PDF Generator Example - Trust and Security</title>
+<title>Mural PDF Generator Starter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -19,7 +55,6 @@
     --mural-yellow: #FFAA00;
     --black: #000000;
     --white: #FFFFFF;
-    --natural: #EDEDD8;
     --paper: #f3f1ec;
     --rule: rgba(0, 0, 0, 0.12);
     --muted: rgba(0, 0, 0, 0.64);
@@ -122,12 +157,43 @@
     letter-spacing: -1.5px;
   }
 
+  h2 {
+    font-size: 23pt;
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+
+  h3 {
+    font-size: 12.25pt;
+    line-height: 1.18;
+    margin-bottom: 0.05in;
+    letter-spacing: -0.15px;
+  }
+
+  .deck,
+  .trusted-copy,
+  .body-copy,
+  .body-copy p,
+  .pillar p,
+  .control li,
+  .resource-list li,
+  .placeholder-copy {
+    font-size: var(--body-copy);
+    color: var(--muted);
+  }
+
+  .deck,
+  .trusted-copy,
+  .body-copy p,
+  .placeholder-copy,
+  blockquote,
+  .quote-attribution {
+    text-wrap: pretty;
+  }
+
   .deck {
     margin: 14px 0 0;
-    font-size: var(--body-copy);
     line-height: 1.55;
-    color: var(--muted);
-    text-wrap: pretty;
   }
 
   .hero-copy-block {
@@ -136,15 +202,11 @@
 
   .hero-copy-block h1,
   .hero-copy-block .deck {
-    max-width: none;
     width: 100%;
+    max-width: none;
   }
 
   .hero {
-    display: grid;
-    grid-template-columns: 1.38fr 0.72fr;
-    gap: 0.34in;
-    align-items: end;
     margin-top: var(--hang-offset);
   }
 
@@ -152,27 +214,10 @@
     margin-top: var(--hang-offset);
   }
 
-  .proof-panel {
-    padding: 0.08in 0 0 0.22in;
-    border-left: 2px solid var(--jade);
-  }
-
-  .proof-number {
-    font-size: 27pt;
-    line-height: 0.95;
-    letter-spacing: -1.4px;
-  }
-
-  .proof-copy {
-    margin: 0.14in 0 0;
-    font-size: var(--body-copy);
-    line-height: 1.5;
-    color: var(--muted);
-  }
-
-  .trusted-strip {
-    margin-top: 0.24in;
-    padding-top: 0.16in;
+  .trusted-strip,
+  .section {
+    margin-top: 0.28in;
+    padding-top: 0.18in;
     border-top: 1px solid var(--rule);
   }
 
@@ -184,52 +229,55 @@
   }
 
   .trusted-copy {
-    font-size: var(--body-copy);
     line-height: 1.45;
-    color: var(--muted);
-    text-wrap: pretty;
   }
 
   .trusted-logos {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.22in;
+    gap: 0.18in;
   }
 
-  .trusted-logo {
-    display: flex;
+  .logo-chip,
+  .cert-placeholder {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 0.24in;
-    flex: 1 1 0;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 999px;
+    color: rgba(0, 0, 0, 0.56);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.02);
+    --asset-scale: 1;
+    --asset-shift-x: 0px;
+    --asset-shift-y: 0px;
   }
 
-  .trusted-logo img {
+  .logo-chip img,
+  .cert-placeholder img {
     display: block;
-    max-width: 100%;
-    max-height: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
+    transform: translate(var(--asset-shift-x), var(--asset-shift-y)) scale(var(--asset-scale));
+    transform-origin: center;
   }
 
-  .trusted-logo.ibm img {
-    width: 0.58in;
+  .logo-chip {
+    min-height: 0.34in;
+    padding: 0 0.18in;
+    font-size: 8pt;
+    line-height: 1;
+    white-space: nowrap;
   }
 
-  .trusted-logo.microsoft img {
-    width: 0.84in;
-  }
-
-  .trusted-logo.booz img {
-    width: 1.12in;
-  }
-
-  .section {
-    margin-top: 0.28in;
-    padding-top: 0.18in;
-    border-top: 1px solid var(--rule);
+  .logo-chip img {
+    max-width: calc(100% - 0.14in);
+    max-height: calc(100% - 0.08in);
   }
 
   .intro-grid,
@@ -240,18 +288,12 @@
   }
 
   .body-copy {
-    font-size: var(--body-copy);
     line-height: 1.58;
-    color: var(--muted);
-  }
-
-  .intro-grid .body-copy {
-    max-width: 34em;
   }
 
   .body-copy p {
     margin: 0 0 0.12in;
-    text-wrap: pretty;
+    line-height: 1.58;
   }
 
   .body-copy p:last-child { margin-bottom: 0; }
@@ -266,7 +308,8 @@
 
   .pillar,
   .control,
-  .resource-list {
+  .resource-list,
+  .cert-card {
     break-inside: avoid;
     page-break-inside: avoid;
   }
@@ -276,20 +319,9 @@
     border-top: 2px solid var(--black);
   }
 
-  h3 {
-    font-size: 12.25pt;
-    line-height: 1.18;
-    margin-bottom: 0.05in;
-    letter-spacing: -0.15px;
-  }
-
-  .pillar p,
-  .control p,
-  .resource-list li,
-  .cert-matrix li {
-    font-size: var(--body-copy);
+  .pillar p {
     line-height: 1.5;
-    color: var(--muted);
+    margin: 0;
   }
 
   .controls-grid {
@@ -315,10 +347,7 @@
   .control li,
   .resource-list li {
     margin-bottom: 0.035in;
-    font-family: var(--font-body);
-    font-size: var(--body-copy);
     line-height: 1.38;
-    color: var(--muted);
   }
 
   .cert-matrix {
@@ -326,90 +355,26 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 0.16in 0.24in;
     margin-top: 0.12in;
-    padding-top: 0;
-  }
-
-  .cert-matrix div {
-    break-inside: avoid;
-    page-break-inside: avoid;
   }
 
   .cert-card {
     padding-top: 0.04in;
   }
 
-  .cert-matrix > .cert-card:nth-child(4),
-  .cert-matrix > .cert-card:nth-child(5),
-  .cert-matrix > .cert-card:nth-child(6) {
-    transform: translateY(-0.03in);
-  }
-
-  .cert-logo {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  .cert-placeholder {
+    width: 100%;
     height: 0.62in;
+    border-radius: 0.12in;
     margin-bottom: 0.08in;
+    font-size: 8pt;
   }
 
-  .cert-logo img {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+  .cert-placeholder img {
+    max-width: calc(100% - 0.18in);
+    max-height: calc(100% - 0.14in);
   }
 
-  .cert-logo.logo-aicpa img {
-    height: 0.46in;
-    transform: translateY(0.01in);
-    transform-origin: left center;
-  }
-
-  .cert-logo.logo-iso img {
-    width: 1.5in;
-    max-width: 76%;
-    transform: translateY(0.028in);
-    transform-origin: left center;
-  }
-
-  .cert-logo.logo-ms365 img {
-    width: 1.46in;
-    max-width: 74%;
-    transform: translateY(0.022in);
-    transform-origin: left center;
-  }
-
-  .cert-logo.logo-msspa img {
-    height: 0.38in;
-    transform: translateY(0.022in);
-    transform-origin: left center;
-  }
-
-  .cert-logo.logo-csa img {
-    width: 1.12in;
-    max-width: 64%;
-    transform: translateY(0.03in);
-    transform-origin: left center;
-  }
-
-  .cert-logo.logo-gdpr img,
-  .cert-logo.logo-ccpa img {
-    width: 0.94in;
-    max-width: 56%;
-    transform: translateY(0.038in);
-    transform-origin: left center;
-  }
-
-  .cert-logo.logo-ky3p img {
-    width: 0.88in;
-    max-width: 52%;
-    transform: translateY(0.04in);
-    transform-origin: left center;
-  }
-
-  .cert-matrix strong {
+  .cert-card strong {
     display: block;
     font-size: 9.1pt;
     line-height: 1.35;
@@ -417,7 +382,7 @@
     letter-spacing: 0.02em;
   }
 
-  .cert-matrix span {
+  .cert-card span {
     display: block;
     font-size: 9pt;
     line-height: 1.4;
@@ -430,7 +395,6 @@
     line-height: 1.2;
     letter-spacing: -0.6px;
     max-width: 16.8em;
-    text-wrap: pretty;
   }
 
   .quote-open {
@@ -446,7 +410,6 @@
     line-height: 1.45;
     color: var(--muted);
     max-width: 24em;
-    text-wrap: pretty;
   }
 
   .resource-box {
@@ -458,27 +421,10 @@
     margin-bottom: 0.08in;
   }
 
-  .resource-list li a,
-  .footer a {
+  .resource-list li a {
     color: var(--black);
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
-  }
-
-  .footer {
-    margin-top: auto;
-    padding-top: 0.18in;
-    border-top: 1px solid var(--rule);
-    display: flex;
-    justify-content: space-between;
-    gap: 0.2in;
-    font-size: 8.7pt;
-    line-height: 1.45;
-    color: var(--muted);
-  }
-
-  .footer strong {
-    color: var(--black);
   }
 
   .page-footer {
@@ -510,21 +456,12 @@
     letter-spacing: 0.01em;
   }
 
-  .page-signature-wordmark,
-  .page-signature-symbol {
+  .page-signature-wordmark {
     display: block;
     object-fit: contain;
-  }
-
-  .page-signature-wordmark {
     width: 0.86in;
     height: auto;
     transform: translateY(0.01in);
-  }
-
-  .page-signature-symbol {
-    width: 0.18in;
-    height: 0.18in;
   }
 
   .page-signature-url {
@@ -571,26 +508,27 @@
       </div>
       <div class="page-inner">
         <header class="page-meta">
-          <div class="left">Mural Trust &amp; Security</div>
+          <div class="left">[Topic or audience label]</div>
         </header>
 
         <div class="hero">
           <div class="hero-copy-block">
-            <h1>Trust, security, and control for enterprise collaboration.</h1>
-            <p class="deck">Mural maintains rigorous security, reliability, compliance, and privacy measures, paired with enterprise-grade administrative controls designed to help organizations collaborate with confidence.</p>
+            <h1>[Primary headline designed to fit in 2 to 4 lines.]</h1>
+            <p class="deck">[Short deck copy goes here. Aim for a concise summary that reads well in print and stays within roughly 45 to 75 words.]</p>
           </div>
         </div>
 
-        <section class="trusted-strip" aria-label="Selected enterprise customer logos">
+        <section class="trusted-strip" aria-label="Proof strip placeholder">
           <div class="trusted-strip-inner">
             <div>
-              <p class="kicker">Trusted by enterprise teams</p>
-              <p class="trusted-copy">50%+ of the Fortune 100, along with customers in highly regulated industries including financial services, government, and healthcare.</p>
+              <p class="kicker">[Proof point, customer logos, or short narrative]</p>
+              <p class="trusted-copy">[Use this area for a concise supporting proof point, a customer statement, or a short line introducing a logo row.]</p>
             </div>
-            <div class="trusted-logos">
-              <div class="trusted-logo ibm"><img src="enterprise-logos/ibm-black.svg" alt="IBM logo"></div>
-              <div class="trusted-logo microsoft"><img src="enterprise-logos/microsoft-black.svg" alt="Microsoft logo"></div>
-              <div class="trusted-logo booz"><img src="enterprise-logos/booz-allen-black.svg" alt="Booz Allen Hamilton logo"></div>
+            <div class="trusted-logos" aria-label="Logo placeholders">
+              <!-- Replace placeholder text with uploaded marks when needed. Start with the built-in containment rules, then fine-tune each asset with --asset-scale and --asset-shift-y for optical balance. -->
+              <span class="logo-chip">Logo 1</span>
+              <span class="logo-chip">Logo 2</span>
+              <span class="logo-chip">Logo 3</span>
             </div>
           </div>
         </section>
@@ -598,30 +536,29 @@
         <section class="section">
           <div class="intro-grid">
             <div class="body-copy">
-              <p>Mural organizes its public trust-and-security story around four pillars: security, compliance, reliability,<br>and privacy. Together, they frame the platform as an enterprise-ready environment for teams that need strong controls without slowing down collaboration.</p>
-              <p class="muted">The emphasis is on layered protection, operational transparency, documented policies, and governance capabilities that help procurement, security, and IT stakeholders evaluate risk with confidence.</p>
+              <p>[Use this opening narrative for the top-level story of the document. Keep paragraphs compact and write for a printed leave-behind rather than a webpage.]</p>
+              <p class="muted">[Optional second paragraph for context, procurement framing, or editorial setup. Edit line breaks only when they materially improve the rag.]</p>
             </div>
             <div class="pillar-grid">
               <div class="pillar">
-                <h3>Security</h3>
-                <p>Dedicated security controls protect customer data at every layer, supported by a public security policy and vulnerability disclosure policy.</p>
+                <h3>[Pillar one]</h3>
+                <p>[One short paragraph explaining the first core point.]</p>
               </div>
               <div class="pillar">
-                <h3>Compliance</h3>
-                <p>Alignment with global, regional, and industry regulations helps support customer compliance obligations.</p>
+                <h3>[Pillar two]</h3>
+                <p>[One short paragraph explaining the second core point.]</p>
               </div>
               <div class="pillar">
-                <h3>Reliability</h3>
-                <p>Infrastructure investment is designed to support deployments that scale to thousands of members.</p>
+                <h3>[Pillar three]</h3>
+                <p>[One short paragraph explaining the third core point.]</p>
               </div>
               <div class="pillar">
-                <h3>Privacy</h3>
-                <p>Formal privacy<br>and data processing<br>documentation helps<br>organizations evaluate<br>how collaboration data<br>is handled.</p>
+                <h3>[Pillar four]</h3>
+                <p>[One short paragraph explaining the fourth core point.]</p>
               </div>
             </div>
           </div>
         </section>
-
       </div>
       <div class="page-footer">
         <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
@@ -638,85 +575,74 @@
       </div>
       <div class="page-inner">
         <header class="page-meta">
-          <div class="left">Mural Trust &amp; Security</div>
+          <div class="left">[Topic or audience label]</div>
         </header>
 
         <section class="page-opening">
-          <h2>Greater visibility, security, and control.</h2>
+          <h2>[Interior page headline aligned to the same hang line.]</h2>
           <div class="controls-grid">
             <div class="control">
-              <h3>Identity &amp; access</h3>
+              <h3>[Content block one]</h3>
               <ul>
-                <li>SSO (SAML 2.0)</li>
-                <li>SCIM provisioning</li>
-                <li>2FA for members and guests</li>
+                <li>[Body-style bullet one]</li>
+                <li>[Body-style bullet two]</li>
+                <li>[Body-style bullet three]</li>
               </ul>
             </div>
             <div class="control">
-              <h3>Data protection</h3>
+              <h3>[Content block two]</h3>
               <ul>
-                <li>File type restrictions</li>
-                <li>Data residency</li>
-                <li>BYOK encryption</li>
+                <li>[Body-style bullet one]</li>
+                <li>[Body-style bullet two]</li>
+                <li>[Body-style bullet three]</li>
               </ul>
             </div>
             <div class="control">
-              <h3>Information governance</h3>
+              <h3>[Content block three]</h3>
               <ul>
-                <li>Audit logs and support for SIEM</li>
-                <li>eDiscovery</li>
-                <li>Reports</li>
+                <li>[Body-style bullet one]</li>
+                <li>[Body-style bullet two]</li>
+                <li>[Body-style bullet three]</li>
               </ul>
             </div>
             <div class="control">
-              <h3>Collaboration controls</h3>
+              <h3>[Content block four]</h3>
               <ul>
-                <li>Custom guest deactivation periods</li>
-                <li>Password-protected visitor links</li>
-                <li>Visitor link expiration</li>
+                <li>[Body-style bullet one]</li>
+                <li>[Body-style bullet two]</li>
+                <li>[Body-style bullet three]</li>
               </ul>
             </div>
           </div>
         </section>
 
         <section class="section">
-          <p class="kicker">Certifications &amp; assurances</p>
+          <p class="kicker">[Certifications, proof marks, or partner badges]</p>
           <div class="cert-matrix">
+            <!-- Uploaded badges should start from normalized containment and then receive small per-mark optical adjustments as needed. -->
             <div class="cert-card">
-              <div class="cert-logo logo-aicpa"><img src="cert-logos/aicpa-soc.webp" alt="AICPA SOC certification logo"></div>
-              <strong>SOC 2 Type 2</strong><span>Trust Services Principles</span>
+              <div class="cert-placeholder">Badge</div>
+              <strong>[Badge title]</strong><span>[Short explanatory line]</span>
             </div>
             <div class="cert-card">
-              <div class="cert-logo logo-aicpa"><img src="cert-logos/aicpa-soc.webp" alt="AICPA SOC report logo"></div>
-              <strong>SOC 3 report</strong><span>Publicly available report</span>
+              <div class="cert-placeholder">Badge</div>
+              <strong>[Badge title]</strong><span>[Short explanatory line]</span>
             </div>
             <div class="cert-card">
-              <div class="cert-logo logo-iso"><img src="cert-logos/iso-27001.webp" alt="ISO 27001 certification logo"></div>
-              <strong>ISO 27001</strong><span>Information Security Management System</span>
+              <div class="cert-placeholder">Badge</div>
+              <strong>[Badge title]</strong><span>[Short explanatory line]</span>
             </div>
             <div class="cert-card">
-              <div class="cert-logo logo-ms365"><img src="cert-logos/microsoft-365-certified.png" alt="Microsoft 365 Certified badge"></div>
-              <strong>Microsoft 365 Certified</strong><span>Security &amp; Compliance</span>
+              <div class="cert-placeholder">Badge</div>
+              <strong>[Badge title]</strong><span>[Short explanatory line]</span>
             </div>
             <div class="cert-card">
-              <div class="cert-logo logo-msspa"><img src="cert-logos/microsoft-sspa.avif" alt="Microsoft SSPA certified badge"></div>
-              <strong>Microsoft SSPA certified</strong><span>Security posture assessment</span>
+              <div class="cert-placeholder">Badge</div>
+              <strong>[Badge title]</strong><span>[Short explanatory line]</span>
             </div>
             <div class="cert-card">
-              <div class="cert-logo logo-csa"><img src="cert-logos/csa-star.avif" alt="CSA STAR certification logo"></div>
-              <strong>CSA STAR</strong><span>Security, Trust, Assurance, and Risk</span>
-            </div>
-            <div class="cert-card">
-              <div class="cert-logo logo-gdpr"><img src="cert-logos/gdpr-ready.webp" alt="GDPR ready badge"></div>
-              <strong>GDPR ready</strong><span>General Data Protection Regulation</span>
-            </div>
-            <div class="cert-card">
-              <div class="cert-logo logo-ccpa"><img src="cert-logos/ccpa-ready.webp" alt="CCPA ready badge"></div>
-              <strong>CCPA ready</strong><span>California Consumer Privacy Act</span>
-            </div>
-            <div class="cert-card">
-              <div class="cert-logo logo-ky3p"><img src="cert-logos/ky3p.avif" alt="KY3P assessment logo"></div>
-              <strong>KY3P assessed 2024</strong><span>Independent third-party assessment</span>
+              <div class="cert-placeholder">Badge</div>
+              <strong>[Badge title]</strong><span>[Short explanatory line]</span>
             </div>
           </div>
         </section>
@@ -724,26 +650,23 @@
         <section class="section">
           <div class="closing-grid">
             <div>
-              <p class="kicker">Customer perspective</p>
-              <blockquote><span class="quote-open">&ldquo;</span>Mural features robust security protocols that make it an ideal choice for distributed teams.&rdquo;</blockquote>
-              <p class="quote-attribution">Sofia Quintero, Founder &amp; CEO, Enjoy HQ.</p>
+              <p class="kicker">[Quote or customer perspective]</p>
+              <blockquote><span class="quote-open">&ldquo;</span>[Use one short quote here. Keep it strong, concise, and visually balanced.]&rdquo;</blockquote>
+              <p class="quote-attribution">[Name, title, organization]</p>
             </div>
             <aside class="resource-box">
-              <p class="kicker">Resources</p>
+              <p class="kicker">[Resources or next steps]</p>
               <div class="resource-list">
                 <ul>
-                  <li><a href="https://www.mural.co/trust-and-security">Trust &amp; security overview</a></li>
-                  <li><a href="https://www.mural.co/enterprise">Enterprise plan details</a></li>
-                  <li><a href="https://www.mural.co/terms/security-policy">Security policy</a></li>
-                  <li><a href="https://www.mural.co/terms/vdp">Vulnerability disclosure policy</a></li>
-                  <li><a href="https://status.mural.co/">Status page</a></li>
-                  <li><a href="https://www.mural.co/terms/privacy-statement">Privacy statement</a></li>
+                  <li><a href="#">[Resource link one]</a></li>
+                  <li><a href="#">[Resource link two]</a></li>
+                  <li><a href="#">[Resource link three]</a></li>
+                  <li><a href="#">[Resource link four]</a></li>
                 </ul>
               </div>
             </aside>
           </div>
         </section>
-
       </div>
       <div class="page-footer">
         <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
