@@ -29,6 +29,7 @@
     --page-height: 11in;
     --page-padding-x: 0.62in;
     --page-padding-y: 0.58in;
+    --hang-offset: 0.34in;
     --body-copy: 10.5pt;
     --small-copy: 8.75pt;
     --shadow: 0 1px 2px rgba(0,0,0,0.08), 0 14px 34px rgba(0,0,0,0.08);
@@ -119,15 +120,24 @@
     font-size: 31pt;
     line-height: 0.98;
     letter-spacing: -2.1px;
-    max-width: 10.6ch;
   }
 
   .deck {
     margin: 14px 0 0;
-    max-width: 36em;
     font-size: var(--body-copy);
     line-height: 1.55;
     color: var(--muted);
+    text-wrap: pretty;
+  }
+
+  .hero-copy-block {
+    width: min(100%, 5.2in);
+  }
+
+  .hero-copy-block h1,
+  .hero-copy-block .deck {
+    max-width: none;
+    width: 100%;
   }
 
   .hero {
@@ -135,7 +145,11 @@
     grid-template-columns: 1.38fr 0.72fr;
     gap: 0.34in;
     align-items: end;
-    margin-top: 0.34in;
+    margin-top: var(--hang-offset);
+  }
+
+  .page-opening {
+    margin-top: var(--hang-offset);
   }
 
   .proof-panel {
@@ -156,6 +170,62 @@
     color: var(--muted);
   }
 
+  .trusted-strip {
+    margin-top: 0.24in;
+    padding-top: 0.16in;
+    border-top: 1px solid var(--rule);
+  }
+
+  .trusted-strip-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 0.28in;
+    align-items: center;
+  }
+
+  .trusted-copy {
+    font-size: var(--body-copy);
+    line-height: 1.45;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+
+  .trusted-logos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.22in;
+  }
+
+  .trusted-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 0.24in;
+    flex: 1 1 0;
+  }
+
+  .trusted-logo img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .trusted-logo.ibm img {
+    width: 0.58in;
+  }
+
+  .trusted-logo.microsoft img {
+    width: 0.84in;
+  }
+
+  .trusted-logo.booz img {
+    width: 1.12in;
+  }
+
   .section {
     margin-top: 0.28in;
     padding-top: 0.18in;
@@ -172,10 +242,16 @@
   .body-copy {
     font-size: var(--body-copy);
     line-height: 1.58;
+    color: var(--muted);
+  }
+
+  .intro-grid .body-copy {
+    max-width: 34em;
   }
 
   .body-copy p {
     margin: 0 0 0.12in;
+    text-wrap: pretty;
   }
 
   .body-copy p:last-child { margin-bottom: 0; }
@@ -201,10 +277,10 @@
   }
 
   h3 {
-    font-size: 14pt;
-    line-height: 1.2;
-    margin-bottom: 0.06in;
-    letter-spacing: -0.3px;
+    font-size: 12.25pt;
+    line-height: 1.18;
+    margin-bottom: 0.05in;
+    letter-spacing: -0.15px;
   }
 
   .pillar p,
@@ -219,24 +295,30 @@
   .controls-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.2in 0.28in;
-    margin-top: 0.08in;
+    gap: 0.11in 0.28in;
+    margin-top: 0.11in;
   }
 
   .control {
-    padding-top: 0.09in;
-    border-top: 1px solid var(--rule);
+    padding-top: 0.01in;
   }
 
   .control ul,
   .resource-list ul {
     margin: 0;
-    padding-left: 18px;
+    padding-left: 15px;
+    font-family: var(--font-body);
+    font-size: var(--body-copy);
+    line-height: 1.38;
   }
 
   .control li,
   .resource-list li {
-    margin-bottom: 0.06in;
+    margin-bottom: 0.035in;
+    font-family: var(--font-body);
+    font-size: var(--body-copy);
+    line-height: 1.38;
+    color: var(--muted);
   }
 
   .cert-matrix {
@@ -244,13 +326,87 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 0.16in 0.24in;
     margin-top: 0.12in;
-    padding-top: 0.14in;
-    border-top: 1px solid var(--rule);
+    padding-top: 0;
   }
 
   .cert-matrix div {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  .cert-card {
+    padding-top: 0.04in;
+  }
+
+  .cert-matrix > .cert-card:nth-child(4),
+  .cert-matrix > .cert-card:nth-child(5),
+  .cert-matrix > .cert-card:nth-child(6) {
+    transform: translateY(-0.03in);
+  }
+
+  .cert-logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 0.62in;
+    margin-bottom: 0.08in;
+  }
+
+  .cert-logo img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .cert-logo.logo-aicpa img {
+    height: 0.46in;
+    transform: translateY(0.01in);
+    transform-origin: left center;
+  }
+
+  .cert-logo.logo-iso img {
+    width: 1.5in;
+    max-width: 76%;
+    transform: translateY(0.028in);
+    transform-origin: left center;
+  }
+
+  .cert-logo.logo-ms365 img {
+    width: 1.46in;
+    max-width: 74%;
+    transform: translateY(0.022in);
+    transform-origin: left center;
+  }
+
+  .cert-logo.logo-msspa img {
+    height: 0.38in;
+    transform: translateY(0.022in);
+    transform-origin: left center;
+  }
+
+  .cert-logo.logo-csa img {
+    width: 1.12in;
+    max-width: 64%;
+    transform: translateY(0.03in);
+    transform-origin: left center;
+  }
+
+  .cert-logo.logo-gdpr img,
+  .cert-logo.logo-ccpa img {
+    width: 0.94in;
+    max-width: 56%;
+    transform: translateY(0.038in);
+    transform-origin: left center;
+  }
+
+  .cert-logo.logo-ky3p img {
+    width: 0.88in;
+    max-width: 52%;
+    transform: translateY(0.04in);
+    transform-origin: left center;
   }
 
   .cert-matrix strong {
@@ -269,10 +425,19 @@
   }
 
   blockquote {
+    position: relative;
     font-size: 20pt;
     line-height: 1.2;
     letter-spacing: -0.6px;
-    max-width: 18em;
+    max-width: 16.8em;
+    text-wrap: pretty;
+  }
+
+  .quote-open {
+    position: absolute;
+    left: -0.12in;
+    top: 0;
+    line-height: 1;
   }
 
   .quote-attribution {
@@ -280,6 +445,8 @@
     font-size: 9.5pt;
     line-height: 1.45;
     color: var(--muted);
+    max-width: 24em;
+    text-wrap: pretty;
   }
 
   .resource-box {
@@ -314,15 +481,54 @@
     color: var(--black);
   }
 
-  .page-number {
+  .page-footer {
     position: absolute;
+    left: var(--page-padding-x);
     right: var(--page-padding-x);
-    bottom: 0.28in;
+    bottom: 0.23in;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .page-number {
     font-size: 8pt;
     line-height: 1;
     color: rgba(0, 0, 0, 0.42);
     letter-spacing: 0.08em;
     text-transform: uppercase;
+  }
+
+  .page-signature {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 0.12in;
+    color: rgba(0, 0, 0, 0.72);
+    text-decoration: none;
+    font-size: 8.8pt;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .page-signature-wordmark,
+  .page-signature-symbol {
+    display: block;
+    object-fit: contain;
+  }
+
+  .page-signature-wordmark {
+    width: 0.86in;
+    height: auto;
+    transform: translateY(0.01in);
+  }
+
+  .page-signature-symbol {
+    width: 0.18in;
+    height: 0.18in;
+  }
+
+  .page-signature-url {
+    color: rgba(0, 0, 0, 0.72);
   }
 
   @media print {
@@ -366,26 +572,33 @@
       <div class="page-inner">
         <header class="page-meta">
           <div class="left">Mural Trust &amp; Security</div>
-          <div class="right">Enterprise editorial PDF<br>Public-source sales collateral</div>
         </header>
 
         <div class="hero">
-          <div>
-            <p class="kicker">Trust &amp; Security</p>
+          <div class="hero-copy-block">
             <h1>Trust, security, and control for enterprise collaboration.</h1>
             <p class="deck">Mural maintains rigorous security, reliability, compliance, and privacy measures, paired with enterprise-grade administrative controls designed to help organizations collaborate with confidence.</p>
           </div>
-          <aside class="proof-panel">
-            <p class="kicker">Trusted by enterprise teams</p>
-            <p class="proof-number">50%+</p>
-            <p class="proof-copy">of the Fortune 100, along with customers in highly regulated industries including financial services, government, and healthcare.</p>
-          </aside>
         </div>
+
+        <section class="trusted-strip" aria-label="Selected enterprise customer logos">
+          <div class="trusted-strip-inner">
+            <div>
+              <p class="kicker">Trusted by enterprise teams</p>
+              <p class="trusted-copy">50%+ of the Fortune 100, along with customers in highly regulated industries including financial services, government, and healthcare.</p>
+            </div>
+            <div class="trusted-logos">
+              <div class="trusted-logo ibm"><img src="enterprise-logos/ibm-black.svg" alt="IBM logo"></div>
+              <div class="trusted-logo microsoft"><img src="enterprise-logos/microsoft-black.svg" alt="Microsoft logo"></div>
+              <div class="trusted-logo booz"><img src="enterprise-logos/booz-allen-black.svg" alt="Booz Allen Hamilton logo"></div>
+            </div>
+          </div>
+        </section>
 
         <section class="section">
           <div class="intro-grid">
             <div class="body-copy">
-              <p>Mural organizes its public trust-and-security story around four pillars: security, compliance, reliability, and privacy. Together, they frame the platform as an enterprise-ready environment for teams that need strong controls without slowing down collaboration.</p>
+              <p>Mural organizes its public trust-and-security story around four pillars: security, compliance, reliability,<br>and privacy. Together, they frame the platform as an enterprise-ready environment for teams that need strong controls without slowing down collaboration.</p>
               <p class="muted">The emphasis is on layered protection, operational transparency, documented policies, and governance capabilities that help procurement, security, and IT stakeholders evaluate risk with confidence.</p>
             </div>
             <div class="pillar-grid">
@@ -403,25 +616,20 @@
               </div>
               <div class="pillar">
                 <h3>Privacy</h3>
-                <p>Formal privacy and data processing documentation helps organizations evaluate how collaboration data is handled.</p>
+                <p>Formal privacy<br>and data processing<br>documentation helps<br>organizations evaluate<br>how collaboration data<br>is handled.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="section">
-          <p class="kicker">Page summary</p>
-          <div class="body-copy muted">
-            <p>This opening page establishes Mural’s enterprise trust posture and sets the tone for the following operational and compliance details.</p>
-          </div>
-        </section>
-
-        <footer class="footer">
-          <div>Designed as fixed 8.5x11 print collateral so browser view and PDF export stay closely aligned.</div>
-          <div><strong>Body copy:</strong> 10.5pt at 100% print scale.</div>
-        </footer>
       </div>
-      <div class="page-number">Page 1</div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <img class="page-signature-wordmark" src="Mural_Wordmark_Multicolor.svg" alt="Mural logo">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <div class="page-number">Page 1</div>
+      </div>
     </section>
 
     <section class="page">
@@ -431,11 +639,9 @@
       <div class="page-inner">
         <header class="page-meta">
           <div class="left">Mural Trust &amp; Security</div>
-          <div class="right">Enterprise controls and assurances</div>
         </header>
 
-        <section>
-          <p class="kicker">Enterprise controls</p>
+        <section class="page-opening">
           <h2>Greater visibility, security, and control.</h2>
           <div class="controls-grid">
             <div class="control">
@@ -476,15 +682,42 @@
         <section class="section">
           <p class="kicker">Certifications &amp; assurances</p>
           <div class="cert-matrix">
-            <div><strong>SOC 2 Type 2</strong><span>Trust Services Principles</span></div>
-            <div><strong>SOC 3 report</strong><span>Publicly available report</span></div>
-            <div><strong>ISO 27001</strong><span>Information Security Management System</span></div>
-            <div><strong>Microsoft 365 Certified</strong><span>Security &amp; Compliance</span></div>
-            <div><strong>Microsoft SSPA certified</strong><span>Security posture assessment</span></div>
-            <div><strong>CSA STAR</strong><span>Security, Trust, Assurance, and Risk</span></div>
-            <div><strong>GDPR ready</strong><span>General Data Protection Regulation</span></div>
-            <div><strong>CCPA ready</strong><span>California Consumer Privacy Act</span></div>
-            <div><strong>KY3P assessed 2024</strong><span>Independent third-party assessment</span></div>
+            <div class="cert-card">
+              <div class="cert-logo logo-aicpa"><img src="cert-logos/aicpa-soc.webp" alt="AICPA SOC certification logo"></div>
+              <strong>SOC 2 Type 2</strong><span>Trust Services Principles</span>
+            </div>
+            <div class="cert-card">
+              <div class="cert-logo logo-aicpa"><img src="cert-logos/aicpa-soc.webp" alt="AICPA SOC report logo"></div>
+              <strong>SOC 3 report</strong><span>Publicly available report</span>
+            </div>
+            <div class="cert-card">
+              <div class="cert-logo logo-iso"><img src="cert-logos/iso-27001.webp" alt="ISO 27001 certification logo"></div>
+              <strong>ISO 27001</strong><span>Information Security Management System</span>
+            </div>
+            <div class="cert-card">
+              <div class="cert-logo logo-ms365"><img src="cert-logos/microsoft-365-certified.png" alt="Microsoft 365 Certified badge"></div>
+              <strong>Microsoft 365 Certified</strong><span>Security &amp; Compliance</span>
+            </div>
+            <div class="cert-card">
+              <div class="cert-logo logo-msspa"><img src="cert-logos/microsoft-sspa.avif" alt="Microsoft SSPA certified badge"></div>
+              <strong>Microsoft SSPA certified</strong><span>Security posture assessment</span>
+            </div>
+            <div class="cert-card">
+              <div class="cert-logo logo-csa"><img src="cert-logos/csa-star.avif" alt="CSA STAR certification logo"></div>
+              <strong>CSA STAR</strong><span>Security, Trust, Assurance, and Risk</span>
+            </div>
+            <div class="cert-card">
+              <div class="cert-logo logo-gdpr"><img src="cert-logos/gdpr-ready.webp" alt="GDPR ready badge"></div>
+              <strong>GDPR ready</strong><span>General Data Protection Regulation</span>
+            </div>
+            <div class="cert-card">
+              <div class="cert-logo logo-ccpa"><img src="cert-logos/ccpa-ready.webp" alt="CCPA ready badge"></div>
+              <strong>CCPA ready</strong><span>California Consumer Privacy Act</span>
+            </div>
+            <div class="cert-card">
+              <div class="cert-logo logo-ky3p"><img src="cert-logos/ky3p.avif" alt="KY3P assessment logo"></div>
+              <strong>KY3P assessed 2024</strong><span>Independent third-party assessment</span>
+            </div>
           </div>
         </section>
 
@@ -492,8 +725,8 @@
           <div class="closing-grid">
             <div>
               <p class="kicker">Customer perspective</p>
-              <blockquote>&ldquo;Mural features robust security protocols that make it an ideal choice for distributed teams.&rdquo;</blockquote>
-              <p class="quote-attribution">Sofia Quintero, Founder &amp; CEO, Enjoy HQ, as quoted on Mural&rsquo;s trust-and-security page.</p>
+              <blockquote><span class="quote-open">&ldquo;</span>Mural features robust security protocols that make it an ideal choice for distributed teams.&rdquo;</blockquote>
+              <p class="quote-attribution">Sofia Quintero, Founder &amp; CEO, Enjoy HQ.</p>
             </div>
             <aside class="resource-box">
               <p class="kicker">Resources</p>
@@ -511,12 +744,13 @@
           </div>
         </section>
 
-        <footer class="footer">
-          <div>Based on Mural&rsquo;s public trust-and-security materials and restyled as elegant print-first sales collateral.</div>
-          <div><strong>Next step:</strong> share the SOC 3 report or book an enterprise demo.</div>
-        </footer>
       </div>
-      <div class="page-number">Page 2</div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <div class="page-number">Page 2</div>
+      </div>
     </section>
   </main>
 </body>
