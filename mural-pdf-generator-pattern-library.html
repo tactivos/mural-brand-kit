@@ -230,6 +230,218 @@
     margin-top: 0.04in;
   }
 
+  .editorial-specimen {
+    padding: 0;
+    background: transparent;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .editorial-specimen.plain {
+    background: transparent;
+    border: none;
+  }
+
+  .specimen-topic {
+    font-size: 7.8pt;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.08in;
+  }
+
+  .specimen-headline {
+    font-family: var(--font-headline);
+    font-weight: 300;
+    font-size: 18pt;
+    line-height: 1.02;
+    letter-spacing: -0.8px;
+    max-width: 10.5em;
+  }
+
+  .specimen-headline.display {
+    font-size: 31pt;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    max-width: 10.8em;
+  }
+
+  .specimen-deck {
+    margin-top: 0.08in;
+    font-size: 8.8pt;
+    line-height: 1.35;
+    color: var(--muted);
+    max-width: 28ch;
+    text-wrap: pretty;
+  }
+
+  .specimen-deck.large {
+    font-size: 10.5pt;
+    line-height: 1.38;
+    max-width: 62ch;
+  }
+
+  .specimen-proof-strip {
+    margin-top: 0.12in;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 0.1in;
+    align-items: center;
+  }
+
+  .specimen-proof-copy {
+    font-size: 8.3pt;
+    line-height: 1.35;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+
+  .specimen-logo-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.05in;
+  }
+
+  .specimen-logo {
+    min-height: 0.26in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed rgba(0, 0, 0, 0.16);
+    background:
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 0) 0 0/18px 18px,
+      rgba(0, 0, 0, 0.02);
+    font-size: 7.2pt;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .specimen-columns {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 0.12in;
+    align-items: start;
+  }
+
+  .specimen-body {
+    font-size: 8.8pt;
+    line-height: 1.38;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+
+  .specimen-mini-grid {
+    display: grid;
+    gap: 0.08in;
+  }
+
+  .specimen-mini-block {
+    padding-top: 0.06in;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .specimen-mini-block strong {
+    display: block;
+    margin-bottom: 0.03in;
+    font-size: 8.4pt;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+
+  .specimen-mini-block span {
+    display: block;
+    font-size: 8pt;
+    line-height: 1.32;
+    color: var(--muted);
+  }
+
+  .specimen-bullet-block h4 {
+    margin-bottom: 0.06in;
+  }
+
+  .specimen-bullet-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.12in;
+  }
+
+  .specimen-bullet-columns ul {
+    margin: 0;
+    padding-left: 15px;
+  }
+
+  .specimen-bullet-columns li {
+    font-size: 8.6pt;
+    line-height: 1.35;
+    color: var(--muted);
+    margin-bottom: 0.03in;
+  }
+
+  .text-specimen {
+    max-width: 5.35in;
+  }
+
+  .text-specimen.narrow {
+    max-width: 4.9in;
+  }
+
+  .editorial-three-col {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.18in;
+  }
+
+  .editorial-three-col .text-specimen,
+  .editorial-three-col .text-specimen.narrow {
+    grid-column: span 2;
+    max-width: none;
+  }
+
+  .specimen-section-head {
+    font-family: "ABC Social", Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 18pt;
+    line-height: 1.05;
+    letter-spacing: 0;
+    margin: 0 0 0.09in;
+  }
+
+  .specimen-body-copy {
+    font-size: 10pt;
+    line-height: 1.45;
+    color: var(--muted);
+    max-width: 62ch;
+    text-wrap: pretty;
+  }
+
+  .specimen-body-copy + .specimen-body-copy {
+    margin-top: 0.09in;
+  }
+
+  .specimen-list {
+    margin: 0.08in 0 0;
+    padding-left: 16px;
+    max-width: 62ch;
+  }
+
+  .specimen-list li {
+    font-size: 10pt;
+    line-height: 1.42;
+    color: var(--muted);
+    margin-bottom: 0.05in;
+  }
+
+  .specimen-list li::marker {
+    color: rgba(0, 0, 0, 0.78);
+  }
+
+  .specimen-list strong {
+    color: rgba(0, 0, 0, 0.86);
+    font-weight: 700;
+  }
+
   .mini-proof {
     margin-top: 0.08in;
     padding-top: 0.08in;
@@ -373,9 +585,22 @@
   }
 
   .pattern-guidance {
+    font-size: 8.6pt;
+    line-height: 1.35;
+    color: var(--muted);
+    text-wrap: pretty;
     margin-top: 0.03in;
     margin-bottom: 0.14in;
     max-width: 60ch;
+  }
+
+  .specimen-label {
+    margin: 0 0 0.07in;
+    font-size: 7.4pt;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.5);
   }
 
   .stat-band {
@@ -487,7 +712,8 @@
     color: rgba(0, 0, 0, 0.72);
   }
 
-  .logo-box.image-placeholder {
+  .logo-box.image-placeholder,
+  .badge-pill.image-placeholder {
     min-height: 0.5in;
     border: 1px dashed rgba(0, 0, 0, 0.18);
     background:
@@ -634,6 +860,7 @@
     font-size: 8.8pt;
     line-height: 1.3;
     letter-spacing: 0.02em;
+    text-align: center;
   }
 
   .badge-card span {
@@ -642,6 +869,7 @@
     font-size: 8.4pt;
     line-height: 1.35;
     color: var(--muted);
+    text-align: center;
   }
 
   blockquote {
@@ -666,6 +894,10 @@
   }
 
   .resource-box {
+    padding-left: 0;
+  }
+
+  .resource-content {
     padding-left: 0.18in;
     border-left: 2px solid var(--jade);
   }
@@ -673,7 +905,7 @@
   .cta-card {
     margin-top: 0.1in;
     padding: 0.16in;
-    border-radius: 0.14in;
+    border-radius: 0;
     background: var(--natural);
   }
 
@@ -682,6 +914,7 @@
     font-size: 9.8pt;
     line-height: 1.45;
     color: var(--muted);
+    max-width: 60ch;
   }
 
   .page-footer {
@@ -823,40 +1056,34 @@
 
         <section class="page-opening">
           <h2>Core editorial patterns</h2>
-          <p class="deck">These modules cover the most common narrative layouts: a clean opener, a proof strip, a two-column body section, and a compact bullet-grid treatment for capabilities or themes.</p>
+          <p class="deck">This section shows the foundational editorial content types used most often in a print-first PDF: headline, section heading, body copy, bullets, and numbered lists.</p>
         </section>
 
         <section class="section">
-          <div class="pattern-grid">
-            <div class="pattern-card">
-              <p class="eyebrow">Pattern label</p>
-              <h4>Editorial opener</h4>
-              <p class="pattern-copy">Use for the first page of a leave-behind or one-sheet. Supports a concise topic label, a strong headline, and a deck designed for print reading.</p>
-            </div>
-            <div class="pattern-card mini-proof">
-              <p class="eyebrow">Pattern label</p>
-              <h4>Opener with proof strip</h4>
-              <p class="pattern-copy">Add a short proof line, narrative, or customer logo strip directly under the opener when the first page needs credibility or orientation.</p>
+          <div class="pattern-card">
+            <p class="eyebrow">Pattern: Headline and supporting paragraph</p>
+            <p class="pattern-copy pattern-guidance">Use this pattern when a large headline is followed by a supporting paragraph in the same text column.</p>
+            <div class="editorial-three-col">
+              <div class="text-specimen narrow">
+                <p class="specimen-label">Example</p>
+                <div class="specimen-headline display">Transforming feedback into clearer, more actionable insight.</div>
+                <p class="specimen-deck large">Use the supporting paragraph to frame the story, explain the challenge,<br>or introduce the subject with enough context to carry the reader into the body content below.</p>
+              </div>
             </div>
           </div>
         </section>
 
         <section class="section">
-          <div class="pattern-grid">
-            <div class="pattern-card">
-              <p class="eyebrow">Pattern label</p>
-              <h4>Two-column narrative page</h4>
-              <p class="pattern-copy">Good for an explanatory section where the left column carries narrative setup and the right column breaks ideas into four smaller sub-points.</p>
-            </div>
-            <div class="pattern-card list-card">
-              <p class="eyebrow">Pattern label</p>
-              <h4>Bullet-grid / capabilities page</h4>
-              <p class="pattern-copy">Use short subheads with body-style bullets. This works well for capabilities, controls, benefits, or grouped features, but should stay calm and editorial rather than "horsey."</p>
-              <ul>
-                <li>Short heading</li>
-                <li>Body-size bullet copy</li>
-                <li>Optically even spacing</li>
-              </ul>
+          <div class="pattern-card">
+            <p class="eyebrow">Pattern: Section heading and body copy</p>
+            <p class="pattern-copy pattern-guidance">Use this pattern when a section heading and body copy should work together in one section.</p>
+            <div class="editorial-three-col">
+              <div class="text-specimen">
+                <p class="specimen-label">Example</p>
+                <h3 class="specimen-section-head">Example section heading</h3>
+                <p class="specimen-body-copy">Example body copy showing how a paragraph should sit under a section heading with a readable measure and restrained editorial spacing.</p>
+                <p class="specimen-body-copy">A second paragraph can follow when needed, as long as it still feels compact and clearly related to the same section.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -879,13 +1106,79 @@
         </header>
 
         <section class="page-opening">
+          <h2>Core editorial patterns continued</h2>
+          <p class="deck">These foundational editorial patterns are easier to understand as stacked text specimens, especially when showing how bullets and numbered steps should live inside body copy.</p>
+        </section>
+
+        <section class="section">
+          <div class="pattern-card">
+            <p class="eyebrow">Pattern: Bullets in body copy</p>
+            <p class="pattern-copy pattern-guidance">Use this pattern when supporting points work better as bullets but should still read like body copy.</p>
+            <div class="editorial-three-col">
+              <div class="text-specimen">
+                <p class="specimen-label">Example</p>
+                <h3 class="specimen-section-head">Example section heading</h3>
+                <ul class="specimen-list">
+                  <li>Example bullet showing body-size copy in a grouped list.</li>
+                  <li>Example bullet showing how scanable supporting points can stay editorial.</li>
+                  <li>Example bullet showing calm spacing and restrained hierarchy.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="pattern-card">
+            <p class="eyebrow">Pattern: Numbered list in body copy</p>
+            <p class="pattern-copy pattern-guidance">Use this pattern when the content follows a sequence and works best as a numbered list.</p>
+            <div class="editorial-three-col">
+              <div class="text-specimen">
+                <p class="specimen-label">Example</p>
+                <h3 class="specimen-section-head">Example section heading</h3>
+                <ol class="specimen-list">
+                  <li><strong>Example step one.</strong> A numbered item can begin with a short lead phrase and continue in readable body copy.</li>
+                  <li><strong>Example step two.</strong> The number should organize the sequence without overpowering the text.</li>
+                  <li><strong>Example step three.</strong> Keep the prose compact so the list still feels editorial rather than instructional UI.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Pattern: Closing / CTA page</p>
+          <div class="cta-card">
+            <h4>Short closing statement</h4>
+            <p>Use a compact CTA, contact line, or next-step statement to finish the piece cleanly without overloading the final page.</p>
+          </div>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <div class="page-number">Page 3</div>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Pattern library</div>
+        </header>
+
+        <section class="page-opening">
           <h2>Comparison and matrix patterns</h2>
           <p class="deck">The library needs both editorial comparison tables and operational matrices. Use `Natural` row treatments to improve scanability without drifting into spreadsheet styling.</p>
         </section>
 
         <section class="section compare-block">
           <p class="eyebrow">Pattern: Competitor comparison table</p>
-          <p class="chart-note pattern-guidance">Use grouped labels such as `Capabilities`, `Resources`, or `Integrations` when a comparison needs clearer structure.</p>
+          <p class="chart-note pattern-guidance">Use group labels when the table needs clearer sections.</p>
           <div class="compare-table">
             <div class="compare-row header">
               <div class="table-cell"></div>
@@ -912,7 +1205,7 @@
 
         <section class="section">
           <p class="eyebrow">Pattern: User-type access matrix</p>
-          <p class="chart-note pattern-guidance">Footnotes and help-center rows can sit directly below this pattern when access or pricing conditions need qualification.</p>
+          <p class="chart-note pattern-guidance">Add footnotes or help links below the table when access or pricing needs explanation.</p>
           <div class="matrix-table">
             <div class="matrix-row header">
               <div class="matrix-cell"></div>
@@ -969,7 +1262,7 @@
         <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
           <span class="page-signature-url">mural.co</span>
         </a>
-        <div class="page-number">Page 3</div>
+        <div class="page-number">Page 4</div>
       </div>
     </section>
 
@@ -983,7 +1276,91 @@
         </header>
 
         <section class="page-opening">
-          <h2>Big-number proof patterns</h2>
+          <h2>Image-led patterns</h2>
+          <p class="deck">Support both one-up and two-up image layouts. Screenshots, ecosystems, diagrams, and logo matrices should function as editorial content blocks, not as filler.</p>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Pattern: Single placed image, full width</p>
+          <p class="image-caption pattern-guidance">Pair this with body copy above, bullets below, or a partner or certification strip at the bottom.</p>
+          <div class="image-single">
+            <div class="image-frame single">
+              <div class="image-fields">
+                <div></div>
+                <div></div>
+              </div>
+              <div class="image-overlay">
+                <div>
+                  <strong>IMAGE</strong>
+                  <span>Use when one placed visual communicates a complete idea more clearly than breaking the information into smaller modules.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Pattern: Single placed image, 3/4 width</p>
+          <p class="image-caption pattern-guidance">Use this when the image should match the text-column width above instead of spanning the full page width.</p>
+          <div class="image-single contained">
+            <div class="image-frame single-contained">
+              <div class="image-fields">
+                <div></div>
+                <div></div>
+              </div>
+              <div class="image-overlay">
+                <div>
+                  <strong>IMAGE</strong>
+                  <span>Use when the image should feel editorially tied to the column measure above rather than reading as a full-width panel.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Pattern: Two-up image layout</p>
+          <p class="image-caption pattern-guidance">This works well when the visual story benefits from two images.</p>
+          <div class="image-grid">
+            <div class="image-card">
+              <div class="image-frame two-up">
+                <div>
+                  <strong>IMAGE</strong>
+                  <span>Workflow step, screenshot, or concept visual.</span>
+                </div>
+              </div>
+            </div>
+            <div class="image-card">
+              <div class="image-frame two-up">
+                <div>
+                  <strong>IMAGE</strong>
+                  <span>Second step, companion visual, or comparison state.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <div class="page-number">Page 5</div>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Pattern library</div>
+        </header>
+
+        <section class="page-opening">
+          <h2>Supporting proof patterns: Big numbers</h2>
           <p class="deck">Use oversized numerals when the metric is strong enough to carry the visual weight of the page. Supporting copy should stay short so the proof remains dominant in the hierarchy.</p>
         </section>
 
@@ -1013,7 +1390,7 @@
 
         <section class="section">
           <p class="eyebrow">Pattern: Headline-led oversized stat option</p>
-          <p class="chart-note pattern-guidance">Use this option when one headline should frame a small set of very large proof points and the numbers need to dominate the page more aggressively.</p>
+          <p class="chart-note pattern-guidance">Use this when one headline introduces a small set of very large proof points.</p>
           <div class="stat-hero">
             <div class="stat-hero-intro">
               <h3>Unpacking a customer ROI story with a setup headline.</h3>
@@ -1044,7 +1421,7 @@
         <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
           <span class="page-signature-url">mural.co</span>
         </a>
-        <div class="page-number">Page 4</div>
+        <div class="page-number">Page 6</div>
       </div>
     </section>
 
@@ -1058,139 +1435,37 @@
         </header>
 
         <section class="page-opening">
-          <h2>Image-led patterns</h2>
-          <p class="deck">Support both one-up and two-up image layouts. Screenshots, ecosystems, diagrams, and logo matrices should function as editorial content blocks, not as filler.</p>
-        </section>
-
-        <section class="section">
-          <p class="eyebrow">Pattern: Single placed image, full width</p>
-          <p class="image-caption pattern-guidance">Typical pairings: narrative copy above, bullets below, or a partner / certification strip at the bottom of the section.</p>
-          <div class="image-single">
-            <div class="image-frame single">
-              <div class="image-fields">
-                <div></div>
-                <div></div>
-              </div>
-              <div class="image-overlay">
-                <div>
-                  <strong>Single ecosystem graphic</strong>
-                  <span>Use when one placed visual communicates a complete idea more clearly than breaking the information into smaller modules.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <p class="eyebrow">Pattern: Single placed image, 3/4 width</p>
-          <p class="image-caption pattern-guidance">Use when the image should align more closely to the text-column width above it instead of spanning the full available content width.</p>
-          <div class="image-single contained">
-            <div class="image-frame single-contained">
-              <div class="image-fields">
-                <div></div>
-                <div></div>
-              </div>
-              <div class="image-overlay">
-                <div>
-                  <strong>Contained placed image</strong>
-                  <span>Use when the image should feel editorially tied to the column measure above rather than reading as a full-width panel.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <p class="eyebrow">Pattern: Two-up image layout</p>
-          <p class="image-caption pattern-guidance">This works well when the visual story benefits from sequence, comparison, or paired proof objects.</p>
-          <div class="image-grid">
-            <div class="image-card">
-              <div class="image-frame two-up">
-                <div>
-                  <strong>Image A</strong>
-                  <span>Workflow step, screenshot, or concept visual.</span>
-                </div>
-              </div>
-            </div>
-            <div class="image-card">
-              <div class="image-frame two-up">
-                <div>
-                  <strong>Image B</strong>
-                  <span>Second step, companion visual, or comparison state.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <p class="eyebrow">Pattern: Annotated screenshot</p>
-          <div class="screenshot-grid">
-            <div class="image-frame screenshot">
-              <div class="image-overlay">
-                <div>
-                  <strong>Product screenshot</strong>
-                  <span>Annotated only when callouts materially improve understanding.</span>
-                </div>
-              </div>
-            </div>
-            <div class="annotation-list">
-              <div class="annotation">Callout one: identify the key action or UI step.</div>
-              <div class="annotation">Callout two: explain why the screenshot matters to the story.</div>
-              <div class="annotation">Callout three: keep annotations concise and editorial.</div>
-            </div>
-          </div>
-        </section>
-      </div>
-      <div class="page-footer">
-        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
-          <span class="page-signature-url">mural.co</span>
-        </a>
-        <div class="page-number">Page 5</div>
-      </div>
-    </section>
-
-    <section class="page">
-      <div class="brand-bar" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <div class="page-inner">
-        <header class="page-meta">
-          <div class="left">Pattern library</div>
-        </header>
-
-        <section class="page-opening">
-          <h2>Supporting proof and closing patterns</h2>
+          <h2>Supporting proof patterns: Logos and quotes</h2>
           <p class="deck">These supporting modules help complete a document once the primary narrative, chart, stat, or image-led sections are in place.</p>
         </section>
 
         <section class="section">
           <p class="eyebrow">Pattern: Customer logo strip</p>
-          <p class="image-caption pattern-guidance">Uploaded marks should begin from normalized containment and then receive small optical scale or vertical-shift tweaks so the row looks balanced at first pass.</p>
+          <p class="image-caption pattern-guidance">Start logo images at a shared size, then make small scale or vertical adjustments until the row looks balanced.</p>
           <div class="logo-strip">
-            <div class="logo-box">Logo 1</div>
-            <div class="logo-box">Logo 2</div>
-            <div class="logo-box">Logo 3</div>
-            <div class="logo-box">Logo 4</div>
+            <div class="logo-box image-placeholder">Logo image</div>
+            <div class="logo-box image-placeholder">Logo image</div>
+            <div class="logo-box image-placeholder">Logo image</div>
+            <div class="logo-box image-placeholder">Logo image</div>
           </div>
         </section>
 
         <section class="section">
           <p class="eyebrow">Pattern: Certifications / badges grid</p>
-          <p class="image-caption pattern-guidance">Badge containers should provide a consistent starting height, but individual marks may still need slight optical adjustment to feel centered and equal in weight.</p>
+          <p class="image-caption pattern-guidance">Start badge images at a shared height, then make small adjustments so they look centered and balanced.</p>
           <div class="badge-grid">
             <div class="badge-card">
-              <div class="badge-pill">Badge</div>
+              <div class="badge-pill image-placeholder">Badge image</div>
               <strong>Certification title</strong>
               <span>Short explanatory line.</span>
             </div>
             <div class="badge-card">
-              <div class="badge-pill">Badge</div>
+              <div class="badge-pill image-placeholder">Badge image</div>
               <strong>Certification title</strong>
               <span>Short explanatory line.</span>
             </div>
             <div class="badge-card">
-              <div class="badge-pill">Badge</div>
+              <div class="badge-pill image-placeholder">Badge image</div>
               <strong>Certification title</strong>
               <span>Short explanatory line.</span>
             </div>
@@ -1198,39 +1473,35 @@
         </section>
 
         <section class="section">
-          <div class="pattern-grid">
-            <div class="pattern-card">
-              <p class="eyebrow">Pattern: Quote and resources</p>
-              <blockquote><span class="quote-open">&ldquo;</span>[Use a short quote to reinforce the story with one strong external voice.]&rdquo;</blockquote>
-              <p class="quote-attribution">[Name, title, organization]</p>
-              <p class="pattern-copy">Let the opening punctuation hang left so the quote text, heading, and attribution align to the same text edge.</p>
-            </div>
-            <aside class="pattern-card resource-box">
-              <p class="eyebrow">Pattern: Resource list</p>
+          <div class="pattern-card">
+            <p class="eyebrow">Pattern: Quote and resources</p>
+            <p class="pattern-copy pattern-guidance">Let the opening quote mark hang left so the quote, heading, and attribution align.</p>
+            <blockquote><span class="quote-open">&ldquo;</span>Use a short quote to reinforce the story with one strong external voice.&rdquo;</blockquote>
+            <p class="quote-attribution">Name, title, organization</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <aside class="pattern-card resource-box">
+            <p class="eyebrow">Pattern: Resource list</p>
+            <div class="resource-content">
               <div class="resource-list">
                 <ul>
-                  <li>[Resource or supporting link]</li>
-                  <li>[Supporting documentation]</li>
-                  <li>[Reference or follow-up page]</li>
+                  <li>Resource or supporting link</li>
+                  <li>Supporting documentation</li>
+                  <li>Reference or follow-up page</li>
                 </ul>
               </div>
-            </aside>
-          </div>
+            </div>
+          </aside>
         </section>
 
-        <section class="section">
-          <p class="eyebrow">Pattern: Closing / CTA page</p>
-          <div class="cta-card">
-            <h4>[Short closing statement]</h4>
-            <p>[Use a compact CTA, contact line, or next-step statement to finish the piece cleanly without overloading the final page.]</p>
-          </div>
-        </section>
       </div>
       <div class="page-footer">
         <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
           <span class="page-signature-url">mural.co</span>
         </a>
-        <div class="page-number">Page 6</div>
+        <div class="page-number">Page 7</div>
       </div>
     </section>
   </main>

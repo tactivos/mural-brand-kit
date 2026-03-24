@@ -128,6 +128,12 @@ Include:
 - CTA or contact line
 - footer signature and page number
 
+Rules:
+
+- Prefer a restrained, print-forward treatment for the closing message.
+- If using a panel or tinted field, keep it square-cornered rather than card-like.
+- Keep the supporting line compact and comfortably within a readable measure.
+
 ## First-Pass Pattern Library
 
 This is the initial list of reusable patterns the kit should support.
@@ -136,17 +142,30 @@ These should be treated as draft modules for brand review and refinement, not as
 
 In the pattern library, specimen labels such as `Pattern: Multi-stat ROI grid` are document annotations for review, not content that must appear inside the final component.
 
+The pattern library should generally use plain example copy rather than starter-style bracketed placeholders. Reserve bracketed placeholders for the starter template or places where a fill-in field truly needs to be called out.
+
 ### Core Editorial Patterns
 
-- Editorial opener
-- Opener with proof strip
-- Two-column narrative page
-- Bullet-grid / capabilities page
+- Headline and supporting paragraph
+- Section heading and body copy
+- Bullets in body copy
+- Numbered list in body copy
 - Quote and resources page
 - Certifications / badges grid
 - Customer logo strip
 - Stat or proof callout
 - Closing / CTA page
+
+For `Headline and supporting paragraph`, support a large editorial headline with a supporting paragraph that stays aligned to the same reading column beneath it.
+
+Core editorial pattern rules:
+
+- Show editorial text patterns as straightforward specimens, not as boxed cards or abstract descriptions.
+- Separate the annotation layer from the example layer: use `Pattern:` for the label, plain-language guidance beneath it, and an explicit `Example` label before the specimen.
+- Use plain-language guidance written for non-designers. Prefer familiar terms such as headline, section heading, body copy, bullets, numbered list, caption, and logo.
+- When demonstrating a single-column text pattern on the page, use a three-column page logic and let the specimen span two columns.
+- Keep the headline and supporting paragraph on the same reading column width.
+- Show section headings in an `ABC Social Light` treatment.
 
 ### Comparison Patterns
 
@@ -207,7 +226,6 @@ In the pattern library, specimen labels such as `Pattern: Multi-stat ROI grid` a
 - Single ecosystem graphic
 - Single infographic or logo matrix as one placed asset
 - Two-up image layout
-- Annotated product screenshot
 - UI screenshot paired with narrative copy
 - Product image plus proof stat
 - Narrative copy above image
@@ -255,6 +273,7 @@ In the pattern library, specimen labels such as `Pattern: Multi-stat ROI grid` a
 - Primary `h1`: `31pt`, `line-height: 1.1`, `letter-spacing: -1.5px`
 - Primary `h2`: `23pt`, `line-height: 1.1`, `letter-spacing: -1px`
 - Body: `Arial`
+- Editorial section headings: `ABC Social Light` treatment
 - Body copy should generally live around `10-10.5pt`
 - Small utility copy can be smaller, but should remain comfortably printable
 - Bullet copy should match body copy styling unless there is a clear reason not to
