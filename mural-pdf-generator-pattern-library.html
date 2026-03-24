@@ -260,7 +260,6 @@
 
   .compare-table {
     width: 100%;
-    border-top: 1px solid var(--black);
   }
 
   .compare-row,
@@ -268,7 +267,6 @@
     display: grid;
     align-items: center;
     min-height: 0.42in;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   .compare-row {
@@ -301,43 +299,28 @@
     text-align: center;
   }
 
-  .state-pill {
+  .state-mark {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 0.78in;
-    min-height: 0.24in;
-    padding: 0 0.08in;
-    border-radius: 999px;
-    font-size: 7.8pt;
+    min-width: 0.18in;
+    min-height: 0.18in;
+    font-size: 10pt;
     line-height: 1;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border: 1px solid transparent;
-  }
-
-  .state-included {
-    background: rgba(0, 194, 122, 0.12);
-    color: rgba(0, 86, 54, 0.95);
-    border-color: rgba(0, 194, 122, 0.18);
+    color: rgba(0, 0, 0, 0.82);
   }
 
   .state-limited {
-    background: rgba(255, 170, 0, 0.12);
-    color: rgba(114, 72, 0, 0.95);
-    border-color: rgba(255, 170, 0, 0.18);
-  }
-
-  .state-none {
-    background: rgba(0, 0, 0, 0.06);
-    color: rgba(0, 0, 0, 0.56);
-    border-color: rgba(0, 0, 0, 0.1);
+    font-size: 8.2pt;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.62);
   }
 
   .matrix-table {
     width: 100%;
     margin-top: 0.1in;
-    border-top: 1px solid var(--black);
   }
 
   .matrix-row {
@@ -345,8 +328,9 @@
   }
 
   .matrix-row.header {
-    min-height: 0.4in;
+    min-height: 0.9in;
     background: rgba(0, 0, 0, 0.02);
+    align-items: start;
   }
 
   .matrix-cell {
@@ -355,33 +339,30 @@
     line-height: 1.3;
   }
 
-  .matrix-intro {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.1in;
-    margin-top: 0.08in;
+  .matrix-row.header .matrix-cell:first-child {
+    padding-top: 0.12in;
   }
 
-  .intro-card {
-    padding: 0.1in;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 0.12in;
-    background: rgba(0, 0, 0, 0.02);
+  .matrix-colhead {
+    text-align: center;
   }
 
-  .intro-card strong {
+  .matrix-colhead strong {
     display: block;
-    margin-bottom: 0.04in;
-    font-size: 9pt;
-    line-height: 1.2;
+    margin-bottom: 0.03in;
+    font-size: 8.9pt;
+    line-height: 1.15;
     letter-spacing: 0.01em;
+    color: rgba(0, 0, 0, 0.86);
   }
 
-  .intro-card span {
+  .matrix-colhead span {
     display: block;
-    font-size: 8pt;
-    line-height: 1.35;
+    font-size: 7.6pt;
+    line-height: 1.3;
     color: var(--muted);
+    text-transform: none;
+    letter-spacing: 0;
   }
 
   .chart-note,
@@ -391,11 +372,17 @@
     line-height: 1.35;
   }
 
+  .pattern-guidance {
+    margin-top: 0.03in;
+    margin-bottom: 0.14in;
+    max-width: 60ch;
+  }
+
   .stat-band {
     margin-top: 0.12in;
     padding: 0.18in;
     background: var(--natural);
-    border-radius: 0.16in;
+    border-radius: 0;
   }
 
   .stat-grid {
@@ -407,7 +394,6 @@
 
   .stat-card {
     padding-top: 0.02in;
-    border-top: 2px solid var(--black);
   }
 
   .stat-number {
@@ -423,6 +409,53 @@
     font-size: 9.6pt;
     line-height: 1.35;
     max-width: 18em;
+  }
+
+  .stat-hero {
+    display: grid;
+    grid-template-columns: 1.02fr 0.98fr;
+    gap: 0.22in;
+    align-items: start;
+  }
+
+  .stat-hero-intro h3 {
+    font-size: 28pt;
+    line-height: 1.02;
+    letter-spacing: -1.2px;
+    max-width: 8.5em;
+  }
+
+  .stat-hero-intro .logo-box {
+    margin-top: 0.16in;
+    width: 1.02in;
+    min-height: 0.46in;
+  }
+
+  .stat-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.14in 0.18in;
+  }
+
+  .stat-hero-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .stat-hero-number {
+    font-family: var(--font-headline);
+    font-weight: 300;
+    font-size: 42pt;
+    line-height: 0.9;
+    letter-spacing: -2px;
+  }
+
+  .stat-hero-text {
+    margin-top: 0.04in;
+    font-size: 9pt;
+    line-height: 1.28;
+    color: var(--muted);
+    max-width: 12em;
   }
 
   .attribution-strip {
@@ -447,6 +480,27 @@
     color: rgba(0, 0, 0, 0.64);
   }
 
+  .logo-box.has-logo {
+    min-height: auto;
+    border: none;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.72);
+  }
+
+  .logo-box.image-placeholder {
+    min-height: 0.5in;
+    border: 1px dashed rgba(0, 0, 0, 0.18);
+    background:
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 0) 0 0/18px 18px,
+      rgba(0, 0, 0, 0.02);
+    color: rgba(0, 0, 0, 0.5);
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 8.3pt;
+    line-height: 1.25;
+    padding: 0.06in 0.08in;
+  }
+
   .image-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -458,6 +512,10 @@
   .image-single {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  .image-single.contained {
+    width: min(75%, 5.2in);
   }
 
   .image-frame {
@@ -476,6 +534,7 @@
   }
 
   .image-frame.single { min-height: 2.45in; }
+  .image-frame.single-contained { min-height: 2.05in; }
   .image-frame.two-up { min-height: 1.78in; }
   .image-frame.screenshot { min-height: 1.9in; align-items: stretch; justify-content: stretch; }
 
@@ -770,12 +829,12 @@
         <section class="section">
           <div class="pattern-grid">
             <div class="pattern-card">
-              <p class="eyebrow">Pattern</p>
+              <p class="eyebrow">Pattern label</p>
               <h4>Editorial opener</h4>
               <p class="pattern-copy">Use for the first page of a leave-behind or one-sheet. Supports a concise topic label, a strong headline, and a deck designed for print reading.</p>
             </div>
             <div class="pattern-card mini-proof">
-              <p class="eyebrow">Pattern</p>
+              <p class="eyebrow">Pattern label</p>
               <h4>Opener with proof strip</h4>
               <p class="pattern-copy">Add a short proof line, narrative, or customer logo strip directly under the opener when the first page needs credibility or orientation.</p>
             </div>
@@ -785,12 +844,12 @@
         <section class="section">
           <div class="pattern-grid">
             <div class="pattern-card">
-              <p class="eyebrow">Pattern</p>
+              <p class="eyebrow">Pattern label</p>
               <h4>Two-column narrative page</h4>
               <p class="pattern-copy">Good for an explanatory section where the left column carries narrative setup and the right column breaks ideas into four smaller sub-points.</p>
             </div>
             <div class="pattern-card list-card">
-              <p class="eyebrow">Pattern</p>
+              <p class="eyebrow">Pattern label</p>
               <h4>Bullet-grid / capabilities page</h4>
               <p class="pattern-copy">Use short subheads with body-style bullets. This works well for capabilities, controls, benefits, or grouped features, but should stay calm and editorial rather than "horsey."</p>
               <ul>
@@ -825,71 +884,85 @@
         </section>
 
         <section class="section compare-block">
-          <p class="eyebrow">Competitor comparison table</p>
+          <p class="eyebrow">Pattern: Competitor comparison table</p>
+          <p class="chart-note pattern-guidance">Use grouped labels such as `Capabilities`, `Resources`, or `Integrations` when a comparison needs clearer structure.</p>
           <div class="compare-table">
             <div class="compare-row header">
-              <div class="table-cell">Feature group</div>
+              <div class="table-cell"></div>
               <div class="table-cell center">Other platform</div>
               <div class="table-cell center">Mural</div>
             </div>
             <div class="compare-row natural">
               <div class="table-cell label">Private mode for independent ideation</div>
-              <div class="table-cell center"><span class="state-pill state-none">Not available</span></div>
-              <div class="table-cell center"><span class="state-pill state-included">Included</span></div>
+              <div class="table-cell center"><span class="state-mark" aria-label="Not available">×</span></div>
+              <div class="table-cell center"><span class="state-mark" aria-label="Included">✓</span></div>
             </div>
             <div class="compare-row">
               <div class="table-cell label">Advanced sharing controls</div>
-              <div class="table-cell center"><span class="state-pill state-limited">Limited</span></div>
-              <div class="table-cell center"><span class="state-pill state-included">Included</span></div>
+              <div class="table-cell center"><span class="state-limited">Limited</span></div>
+              <div class="table-cell center"><span class="state-mark" aria-label="Included">✓</span></div>
             </div>
             <div class="compare-row natural">
               <div class="table-cell label">Template library by use case</div>
-              <div class="table-cell center"><span class="state-pill state-limited">Limited</span></div>
-              <div class="table-cell center"><span class="state-pill state-included">Included</span></div>
+              <div class="table-cell center"><span class="state-limited">Limited</span></div>
+              <div class="table-cell center"><span class="state-mark" aria-label="Included">✓</span></div>
             </div>
           </div>
-          <p class="chart-note">Use grouped labels such as `Capabilities`, `Resources`, or `Integrations` when a comparison needs clearer structure.</p>
         </section>
 
         <section class="section">
-          <p class="eyebrow">User-type access matrix</p>
-          <div class="matrix-intro">
-            <div class="intro-card"><strong>Full member</strong><span>Complete collaboration access with standard plan entitlements.</span></div>
-            <div class="intro-card"><strong>Limited member</strong><span>Restricted participation aligned to a narrower feature set.</span></div>
-            <div class="intro-card"><strong>Guest</strong><span>Shared-content access tied to invited collaboration contexts.</span></div>
-            <div class="intro-card"><strong>Visitor</strong><span>Unregistered or lightweight access under controlled conditions.</span></div>
-          </div>
+          <p class="eyebrow">Pattern: User-type access matrix</p>
+          <p class="chart-note pattern-guidance">Footnotes and help-center rows can sit directly below this pattern when access or pricing conditions need qualification.</p>
           <div class="matrix-table">
             <div class="matrix-row header">
-              <div class="matrix-cell">Capability</div>
-              <div class="matrix-cell center">Full</div>
-              <div class="matrix-cell center">Limited</div>
-              <div class="matrix-cell center">Guest</div>
-              <div class="matrix-cell center">Visitor</div>
+              <div class="matrix-cell"></div>
+              <div class="matrix-cell">
+                <div class="matrix-colhead">
+                  <strong>Full member</strong>
+                  <span>Complete collaboration access with standard plan entitlements.</span>
+                </div>
+              </div>
+              <div class="matrix-cell">
+                <div class="matrix-colhead">
+                  <strong>Limited member</strong>
+                  <span>Restricted participation aligned to a narrower feature set.</span>
+                </div>
+              </div>
+              <div class="matrix-cell">
+                <div class="matrix-colhead">
+                  <strong>Guest</strong>
+                  <span>Shared-content access tied to invited collaboration contexts.</span>
+                </div>
+              </div>
+              <div class="matrix-cell">
+                <div class="matrix-colhead">
+                  <strong>Visitor</strong>
+                  <span>Unregistered or lightweight access under controlled conditions.</span>
+                </div>
+              </div>
             </div>
             <div class="matrix-row natural">
               <div class="matrix-cell">View and comment</div>
-              <div class="matrix-cell center">Yes</div>
-              <div class="matrix-cell center">Yes</div>
-              <div class="matrix-cell center">Yes</div>
-              <div class="matrix-cell center">Yes</div>
+              <div class="matrix-cell center"><span class="state-mark" aria-label="Included">✓</span></div>
+              <div class="matrix-cell center"><span class="state-mark" aria-label="Included">✓</span></div>
+              <div class="matrix-cell center"><span class="state-mark" aria-label="Included">✓</span></div>
+              <div class="matrix-cell center"><span class="state-mark" aria-label="Included">✓</span></div>
             </div>
             <div class="matrix-row">
               <div class="matrix-cell">Create and edit content</div>
-              <div class="matrix-cell center">Yes</div>
-              <div class="matrix-cell center">Limited</div>
+              <div class="matrix-cell center"><span class="state-mark" aria-label="Included">✓</span></div>
+              <div class="matrix-cell center"><span class="state-limited">Limited</span></div>
               <div class="matrix-cell center">Shared only</div>
-              <div class="matrix-cell center">Limited</div>
+              <div class="matrix-cell center"><span class="state-limited">Limited</span></div>
             </div>
             <div class="matrix-row natural">
               <div class="matrix-cell">Workspace-level administration</div>
               <div class="matrix-cell center">If enabled</div>
-              <div class="matrix-cell center">No</div>
-              <div class="matrix-cell center">No</div>
-              <div class="matrix-cell center">No</div>
+              <div class="matrix-cell center"><span class="state-mark" aria-label="Not available">×</span></div>
+              <div class="matrix-cell center"><span class="state-mark" aria-label="Not available">×</span></div>
+              <div class="matrix-cell center"><span class="state-mark" aria-label="Not available">×</span></div>
             </div>
           </div>
-          <p class="chart-note">Footnotes and help-center rows can sit directly below this pattern when access or pricing conditions need qualification.</p>
         </section>
       </div>
       <div class="page-footer">
@@ -915,8 +988,8 @@
         </section>
 
         <section class="section">
+          <p class="eyebrow">Pattern: Multi-stat ROI grid</p>
           <div class="stat-band">
-            <p class="eyebrow">Multi-stat ROI grid</p>
             <div class="stat-grid">
               <div class="stat-card">
                 <div class="stat-number">9.6%</div>
@@ -932,23 +1005,37 @@
               </div>
             </div>
             <div class="attribution-strip">
-              <div class="logo-box">Customer logo</div>
+              <div class="logo-box image-placeholder">Customer logo image</div>
               <p class="source-note">Optional customer attribution, source line, or case-study reference can sit directly under a stat cluster.</p>
             </div>
           </div>
         </section>
 
         <section class="section">
-          <div class="pattern-grid">
-            <div class="pattern-card">
-              <p class="eyebrow">Pattern</p>
-              <h4>Case-study stat cluster</h4>
-              <p class="pattern-copy">Group related proof points so they read as one outcome story rather than disconnected callouts.</p>
+          <p class="eyebrow">Pattern: Headline-led oversized stat option</p>
+          <p class="chart-note pattern-guidance">Use this option when one headline should frame a small set of very large proof points and the numbers need to dominate the page more aggressively.</p>
+          <div class="stat-hero">
+            <div class="stat-hero-intro">
+              <h3>Unpacking a customer ROI story with a setup headline.</h3>
+              <div class="logo-box image-placeholder">Customer logo image</div>
             </div>
-            <div class="pattern-card">
-              <p class="eyebrow">Pattern</p>
-              <h4>Narrative intro paired with large metrics</h4>
-              <p class="pattern-copy">Use a short framing paragraph to explain what the numbers represent before the reader hits the stat cluster.</p>
+            <div class="stat-hero-grid">
+              <div class="stat-hero-card">
+                <div class="stat-hero-number">96%</div>
+                <p class="stat-hero-text">Increase in one high-value workflow area.</p>
+              </div>
+              <div class="stat-hero-card">
+                <div class="stat-hero-number">10%</div>
+                <p class="stat-hero-text">Improvement in a second team motion.</p>
+              </div>
+              <div class="stat-hero-card">
+                <div class="stat-hero-number">9.9%</div>
+                <p class="stat-hero-text">Improvement tied to another use case.</p>
+              </div>
+              <div class="stat-hero-card">
+                <div class="stat-hero-number">23%</div>
+                <p class="stat-hero-text">Reduction in an avoidable collaboration burden.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -976,7 +1063,8 @@
         </section>
 
         <section class="section">
-          <p class="eyebrow">Single placed image</p>
+          <p class="eyebrow">Pattern: Single placed image, full width</p>
+          <p class="image-caption pattern-guidance">Typical pairings: narrative copy above, bullets below, or a partner / certification strip at the bottom of the section.</p>
           <div class="image-single">
             <div class="image-frame single">
               <div class="image-fields">
@@ -990,12 +1078,31 @@
                 </div>
               </div>
             </div>
-            <p class="image-caption">Typical pairings: narrative copy above, bullets below, or a partner / certification strip at the bottom of the section.</p>
           </div>
         </section>
 
         <section class="section">
-          <p class="eyebrow">Two-up image layout</p>
+          <p class="eyebrow">Pattern: Single placed image, 3/4 width</p>
+          <p class="image-caption pattern-guidance">Use when the image should align more closely to the text-column width above it instead of spanning the full available content width.</p>
+          <div class="image-single contained">
+            <div class="image-frame single-contained">
+              <div class="image-fields">
+                <div></div>
+                <div></div>
+              </div>
+              <div class="image-overlay">
+                <div>
+                  <strong>Contained placed image</strong>
+                  <span>Use when the image should feel editorially tied to the column measure above rather than reading as a full-width panel.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Pattern: Two-up image layout</p>
+          <p class="image-caption pattern-guidance">This works well when the visual story benefits from sequence, comparison, or paired proof objects.</p>
           <div class="image-grid">
             <div class="image-card">
               <div class="image-frame two-up">
@@ -1014,11 +1121,10 @@
               </div>
             </div>
           </div>
-          <p class="image-caption">This works well when the visual story benefits from sequence, comparison, or paired proof objects.</p>
         </section>
 
         <section class="section">
-          <p class="eyebrow">Annotated screenshot</p>
+          <p class="eyebrow">Pattern: Annotated screenshot</p>
           <div class="screenshot-grid">
             <div class="image-frame screenshot">
               <div class="image-overlay">
@@ -1059,18 +1165,19 @@
         </section>
 
         <section class="section">
-          <p class="eyebrow">Customer logo strip</p>
+          <p class="eyebrow">Pattern: Customer logo strip</p>
+          <p class="image-caption pattern-guidance">Uploaded marks should begin from normalized containment and then receive small optical scale or vertical-shift tweaks so the row looks balanced at first pass.</p>
           <div class="logo-strip">
             <div class="logo-box">Logo 1</div>
             <div class="logo-box">Logo 2</div>
             <div class="logo-box">Logo 3</div>
             <div class="logo-box">Logo 4</div>
           </div>
-          <p class="image-caption">Uploaded marks should begin from normalized containment and then receive small optical scale or vertical-shift tweaks so the row looks balanced at first pass.</p>
         </section>
 
         <section class="section">
-          <p class="eyebrow">Certifications / badges grid</p>
+          <p class="eyebrow">Pattern: Certifications / badges grid</p>
+          <p class="image-caption pattern-guidance">Badge containers should provide a consistent starting height, but individual marks may still need slight optical adjustment to feel centered and equal in weight.</p>
           <div class="badge-grid">
             <div class="badge-card">
               <div class="badge-pill">Badge</div>
@@ -1088,19 +1195,18 @@
               <span>Short explanatory line.</span>
             </div>
           </div>
-          <p class="image-caption">Badge containers should provide a consistent starting height, but individual marks may still need slight optical adjustment to feel centered and equal in weight.</p>
         </section>
 
         <section class="section">
           <div class="pattern-grid">
             <div class="pattern-card">
-              <p class="eyebrow">Quote and resources</p>
+              <p class="eyebrow">Pattern: Quote and resources</p>
               <blockquote><span class="quote-open">&ldquo;</span>[Use a short quote to reinforce the story with one strong external voice.]&rdquo;</blockquote>
               <p class="quote-attribution">[Name, title, organization]</p>
               <p class="pattern-copy">Let the opening punctuation hang left so the quote text, heading, and attribution align to the same text edge.</p>
             </div>
             <aside class="pattern-card resource-box">
-              <p class="eyebrow">Resource list</p>
+              <p class="eyebrow">Pattern: Resource list</p>
               <div class="resource-list">
                 <ul>
                   <li>[Resource or supporting link]</li>
@@ -1113,7 +1219,7 @@
         </section>
 
         <section class="section">
-          <p class="eyebrow">Closing / CTA page</p>
+          <p class="eyebrow">Pattern: Closing / CTA page</p>
           <div class="cta-card">
             <h4>[Short closing statement]</h4>
             <p>[Use a compact CTA, contact line, or next-step statement to finish the piece cleanly without overloading the final page.]</p>

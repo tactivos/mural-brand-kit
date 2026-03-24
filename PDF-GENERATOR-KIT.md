@@ -134,6 +134,8 @@ This is the initial list of reusable patterns the kit should support.
 
 These should be treated as draft modules for brand review and refinement, not as automatically approved final patterns.
 
+In the pattern library, specimen labels such as `Pattern: Multi-stat ROI grid` are document annotations for review, not content that must appear inside the final component.
+
 ### Core Editorial Patterns
 
 - Editorial opener
@@ -153,7 +155,7 @@ These should be treated as draft modules for brand review and refinement, not as
 - Feature checklist with `Included`, `Limited`, and `Not available` states
 - User-type access matrix
 - Role comparison table
-- Column intro cards above a matrix
+- Integrated column heads with short descriptors
 - Short framing intro above a comparison chart
 - Takeaway or proof block below a comparison chart
 - Footnotes or plan qualification notes below a chart
@@ -161,12 +163,18 @@ These should be treated as draft modules for brand review and refinement, not as
 
 ### Comparison Chart Rules
 
-- Use `Natural` (`#EDEDD8`) to separate rows or row groups when additional scanability is needed.
+- Use alternating white and `Natural` (`#EDEDD8`) fills to separate rows or row groups when additional scanability is needed.
 - Keep comparison layouts editorial rather than spreadsheet-like.
+- Prefer fill-based row separation over horizontal rules.
+- Default to no heading above the left-hand feature or capability column.
 - Group rows under clear labels such as `Capabilities`, `Resources`, and `Integrations`.
 - Allow both competitor-comparison layouts and operational matrices for permissions, pricing, access, or plan differences.
 - Support short descriptive blurbs above columns when users or plan types need definition.
-- Support simple value states such as text labels, checks, dashes, or limited-support markers.
+- Prefer plain typographic column heads with short descriptors over boxed cards when introducing matrix user types.
+- Default to integrating those user-type names and descriptors directly into the matrix header rather than separating them into a detached preface block.
+- Center integrated user-type header copy within its columns when it improves scanability and balance.
+- Prefer simple print-oriented value states such as checks, x's, plain text, dashes, or limited-support markers.
+- Avoid UI-like pills or badge treatments inside chart cells.
 - Support footnotes and qualification language at the bottom of charts when access or pricing conditions need clarification.
 - Preserve enough white space so the chart remains readable in print and in exported PDFs.
 
@@ -177,6 +185,7 @@ These should be treated as draft modules for brand review and refinement, not as
 - Case-study stat cluster
 - Customer logo plus attributed stats
 - Narrative intro paired with large metrics
+- Headline-led oversized stat option
 - Full-width stat panel or tinted stat canvas
 
 ### Stat Pattern Rules
@@ -187,9 +196,13 @@ These should be treated as draft modules for brand review and refinement, not as
 - Allow optional customer attribution such as a logo, company name, or source note when needed.
 - Use stronger visual separation behind a stat zone when it helps distinguish proof content from narrative body copy.
 - Keep supporting copy concise so the numbers remain dominant in the hierarchy.
+- Support both a subdued proof-grid option and a more assertive headline-led oversized-stat option.
+- When using the more assertive option, let a short setup headline frame the proof story before the reader encounters the largest numbers.
 
 ### Image And Screenshot Patterns
 
+- Single placed image, full width
+- Single placed image, 3/4 width
 - Single hero image
 - Single ecosystem graphic
 - Single infographic or logo matrix as one placed asset
@@ -206,6 +219,7 @@ These should be treated as draft modules for brand review and refinement, not as
 
 - Use a single placed image when the visual communicates a complete idea more clearly than breaking it into smaller modules.
 - Treat screenshots, ecosystems, diagrams, and logo matrices as editorial content blocks rather than decorative filler.
+- Support both full-width placed images and more contained single-image placements that align to the text-column measure above.
 - Support both single-image and two-image layouts in the library.
 - Allow annotations when they materially improve understanding of the image.
 - Pair images with short narrative, bullets, proof points, or certification strips when the page needs additional context.
@@ -219,6 +233,8 @@ These should be treated as draft modules for brand review and refinement, not as
 - Give uploaded logos and badges a normalized bounding area by default so they begin from a balanced shared height rather than their raw file dimensions.
 - Support small optical adjustments per mark, especially `scale` and vertical shift, because mathematically centered assets often do not look visually centered.
 - Expect light manual refinement for unusual marks, but make the default starting state as balanced as possible.
+- When demonstrating an optional customer logo in a pattern library or starter, use an explicit image placeholder so users understand that a placed asset can go there.
+- When a real customer logo is placed as attribution, remove any placeholder rule or box unless a frame is intentionally needed for the concept.
 
 ## Layout Rules
 
@@ -248,6 +264,7 @@ These should be treated as draft modules for brand review and refinement, not as
 ## Content Rules
 
 - Write for print reading, not scanning on a webpage.
+- Keep paragraph measure in a readable range of roughly `45-75` characters per line; aim closer to `50-70` when possible.
 - Separate the utilitarian topic label from the editorial headline: the label names the subject plainly, while the headline carries the written expression.
 - Keep paragraphs compact.
 - Avoid overly long decks.
