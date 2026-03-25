@@ -95,6 +95,7 @@ Opener page rules:
 - Keep the main narrative within a readable text measure rather than stretching it across the page.
 - Use the far-right rail for secondary themes or proof points such as `Security`, `Scalability`, and `Control`; do not let it compete with the main story.
 - If the opener includes a quote, keep it aligned to the main text span rather than forcing it into the narrow support rail.
+- Keep footer elements baseline-aligned so the logo, URL, and page number sit on a consistent line.
 
 ### 2. Structured Content Page
 
@@ -168,6 +169,7 @@ Rules:
 - Prefer a restrained, print-forward treatment for the closing message.
 - If using a panel or tinted field, keep it square-cornered rather than card-like.
 - Keep the supporting line compact and comfortably within a readable measure.
+- Keep footer elements baseline-aligned so any logo, URL, and page number sit on a consistent line.
 
 ## First-Pass Pattern Library
 
@@ -186,8 +188,8 @@ Use a strict two-tone system in the pattern library:
 
 ### Core Editorial Patterns
 
-- Title and subhead
-- Headline and supporting paragraph
+- Title and subtitle
+- Headline
 - Section heading and body copy
 - Bullets in body copy
 - Numbered list in body copy
@@ -197,15 +199,17 @@ Use a strict two-tone system in the pattern library:
 - Customer logo strip
 - Closing / CTA page
 
-For `Title and subhead`, support a large editorial title followed by a compact supporting line when the source hierarchy uses a named title and a separate plan, audience, or document type label.
+For `Title and subtitle`, support a large editorial title followed by a compact supporting line when the source hierarchy uses a named title and a separate plan, audience, or document type label.
 
-For `Headline and supporting paragraph`, support a large editorial headline with a supporting paragraph that stays aligned to the same reading column beneath it. When the page needs a secondary proof rail, support a five-column opener logic with the main story in the left three columns, one open spacer column, and the support rail in the fifth column.
+For `Headline`, support a serif headline with a supporting paragraph beneath it. Use this tier for internal proof statements, pricing promises, title-less opener headlines, or other editorial moments that need emphasis but should remain clearly below the display title. When the page needs a secondary proof rail, support a five-column opener logic with the main story in the left three columns, one open spacer column, and the support rail in the fifth column.
 
 Core editorial pattern rules:
 
 - Show editorial text patterns as straightforward specimens, not as boxed cards or abstract descriptions.
 - Separate the annotation layer from the example layer: use `Pattern:` for the label, plain-language guidance beneath it, and an explicit `Example` label before the specimen.
 - Use plain-language guidance written for non-designers. Prefer familiar terms such as headline, section heading, body copy, bullets, numbered list, caption, and logo.
+- Use proper dash punctuation: em dashes and en dashes where called for, and do not substitute a hyphen-minus when the copy requires a real dash.
+- When em dashes need optical spacing in HTML, prefer narrow no-break spaces (`&#8239;`) on both sides rather than full spaces.
 - When demonstrating a single-column text pattern on the page, use a three-column page logic and let the specimen span two columns.
 - Keep the headline and supporting paragraph on the same reading column width.
 - Show section headings in an `ABC Social Light` treatment.
@@ -238,6 +242,7 @@ Core editorial pattern rules:
 - Center integrated user-type header copy within its columns when it improves scanability and balance.
 - Prefer simple print-oriented value states such as checks, x's, plain text, dashes, or limited-support markers.
 - Default check marks and x marks in comparison and matrix patterns to black. Only use another color when the user explicitly changes that styling.
+- When a check mark carries an asterisk or note marker, keep the check aligned to the same column position as adjacent checks and let the note marker hang tightly to the right.
 - Avoid UI-like pills or badge treatments inside chart cells.
 - Support footnotes and qualification language at the bottom of charts when access or pricing conditions need clarification.
 - Preserve enough white space so the chart remains readable in print and in exported PDFs.

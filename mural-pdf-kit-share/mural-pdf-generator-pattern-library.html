@@ -317,9 +317,21 @@
     margin-top: 0.06in;
     font-size: 18pt;
     line-height: 1.05;
-    letter-spacing: 0;
+    letter-spacing: -0.2px;
     color: var(--black);
     text-wrap: pretty;
+  }
+
+  .specimen-editorial-headline {
+    font-family: var(--font-headline);
+    font-weight: 300;
+    font-size: 23pt;
+    line-height: 1.02;
+    letter-spacing: -1px;
+    max-width: 14em;
+    color: var(--black);
+    text-wrap: pretty;
+    margin-bottom: var(--body-space);
   }
 
   .specimen-proof-strip {
@@ -444,7 +456,7 @@
     font-weight: 300;
     font-size: 18pt;
     line-height: 1.05;
-    letter-spacing: 0;
+    letter-spacing: -0.2px;
     margin: 0 0 0.09in;
   }
 
@@ -968,7 +980,7 @@
     bottom: 0.23in;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: baseline;
   }
 
   .page-number {
@@ -981,7 +993,7 @@
 
   .page-signature {
     display: inline-flex;
-    align-items: flex-end;
+    align-items: baseline;
     gap: 0.12in;
     color: rgba(0, 0, 0, 0.72);
     text-decoration: none;
@@ -995,7 +1007,6 @@
     object-fit: contain;
     width: 0.86in;
     height: auto;
-    transform: translateY(0.01in);
   }
 
   .page-signature-url {
@@ -1084,7 +1095,7 @@
 
         <section class="section">
           <div class="pattern-card">
-            <p class="eyebrow">Pattern: Title and subhead</p>
+            <p class="eyebrow">Pattern: Title and subtitle</p>
             <p class="pattern-copy pattern-guidance">Use this pattern when the source hierarchy calls for a named title followed by a compact supporting line such as a plan, audience, or document type.</p>
             <div class="editorial-three-col">
               <div class="text-specimen narrow">
@@ -1098,13 +1109,13 @@
 
         <section class="section">
           <div class="pattern-card">
-            <p class="eyebrow">Pattern: Headline and supporting paragraph</p>
-            <p class="pattern-copy pattern-guidance">Use this pattern when a large headline is followed by a supporting paragraph in the same text column. For opener-style pages, keep the main story in a readable left text block and place any secondary support in a separate far-right rail rather than widening the main measure.</p>
+            <p class="eyebrow">Pattern: Headline</p>
+            <p class="pattern-copy pattern-guidance">Use this pattern for a serif headline with a supporting paragraph when the content needs emphasis but should remain clearly below the display title. It can work for title-less opener headlines, internal proof statements, or pricing promises.</p>
             <div class="editorial-three-col">
               <div class="text-specimen narrow">
                 <p class="specimen-label">Example</p>
-                <div class="specimen-headline display">Transforming feedback into clearer, more actionable insight.</div>
-                <p class="specimen-deck large">Use the supporting paragraph to frame the story, explain the challenge,<br>or introduce the subject with enough context to carry the reader into the body content below.</p>
+                <div class="specimen-editorial-headline">Predictable and straightforward pricing&#8239;&mdash;&#8239;no catches, no surprises.</div>
+                <p class="specimen-body-copy">Use this tier for internal proof statements, pricing promises, or other editorial moments that need emphasis inside the body narrative without reading like the page title.</p>
               </div>
             </div>
           </div>
