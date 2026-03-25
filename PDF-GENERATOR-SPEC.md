@@ -43,6 +43,7 @@ The generator kit should follow these rules:
 - Use `STK Bureau` for headlines and `ABC Social Light (300)` for body copy by default in PDF generator outputs
 - Default print body rhythm to `10pt / 13pt` with `6.5pt` paragraph spacing unless a specific pattern requires a different treatment
 - Default body copy color to `#000000` unless a specific pattern intentionally uses a secondary text treatment
+- Use approximately `16pt`, `line-height: 1.08`, and slightly tightened tracking around `-0.55px` for sidebar proof headings in narrow support rails
 - Use typography, spacing, and alignment instead of app-like UI components
 - Favor optical alignment over purely mathematical centering when needed
 - Keep enough spare vertical space so content does not unexpectedly spill to a new page in print

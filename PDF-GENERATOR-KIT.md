@@ -190,6 +190,7 @@ Use a strict two-tone system in the pattern library:
 
 - Title and subtitle
 - Headline
+- Sidebar proof heading
 - Section heading and body copy
 - Bullets in body copy
 - Numbered list in body copy
@@ -202,6 +203,8 @@ Use a strict two-tone system in the pattern library:
 For `Title and subtitle`, support a large editorial title followed by a compact supporting line when the source hierarchy uses a named title and a separate plan, audience, or document type label.
 
 For `Headline`, support a serif headline with a supporting paragraph beneath it. Use this tier for internal proof statements, pricing promises, title-less opener headlines, or other editorial moments that need emphasis but should remain clearly below the display title. When the page needs a secondary proof rail, support a five-column opener logic with the main story in the left three columns, one open spacer column, and the support rail in the fifth column.
+
+For `Sidebar proof heading`, support a smaller serif heading used in a narrow support rail for secondary proof themes such as `Security`, `Scalability`, and `Control`. It should sit below the main headline tier and above body copy, while staying compact enough for narrow columns. Default to approximately `16pt`, `line-height: 1.08`, and slightly tightened tracking around `-0.55px`.
 
 Core editorial pattern rules:
 

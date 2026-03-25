@@ -243,10 +243,22 @@
   }
 
   .opener-editorial-grid .opener-quote {
-    grid-column: 1 / span 3;
+    grid-column: 1 / -1;
     margin-top: 0.02in;
     padding-top: 0.14in;
+  }
+
+  .opener-editorial-grid .opener-quote::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
     border-top: 1px solid var(--rule);
+  }
+
+  .opener-quote {
+    position: relative;
   }
 
   .body-copy,
@@ -270,15 +282,16 @@
   }
 
   .benefit-card {
-    padding-top: 0.1in;
+    padding-top: 0.06in;
     border-top: 2px solid var(--black);
+    padding-bottom: 0.06in;
   }
 
   .benefit-card h3 {
     font-size: 16pt;
     line-height: 1.08;
     margin-bottom: 0.05in;
-    letter-spacing: -0.35px;
+    letter-spacing: -0.55px;
   }
 
   .benefit-card p {
@@ -497,6 +510,13 @@
     max-width: 24em;
   }
 
+  .quote-company-logo {
+    display: block;
+    width: 1.05in;
+    height: auto;
+    margin-top: 0.08in;
+  }
+
   .resource-box {
     padding-left: 0.18in;
     border-left: 2px solid var(--jade);
@@ -524,11 +544,11 @@
     font-size: 13.3pt;
     line-height: 1.1;
     letter-spacing: -0.35px;
-    max-width: 18em;
+    max-width: 4.95in;
   }
 
   .opener-quote .quote-open {
-    left: -0.08in;
+    left: -0.065in;
   }
 
   .opener-quote .quote-attribution {
@@ -728,6 +748,7 @@
               <p class="kicker">Customer perspective</p>
               <blockquote><span class="quote-open">&ldquo;</span>Mural enhances our ability to create a safe space for people to collaborate and contribute, whether they're introverted or extroverted, in person or remote. Meetings are more engaging and inclusive, and ultimately, diverse perspectives lead to more innovative, impactful solutions.&rdquo;</blockquote>
               <p class="quote-attribution">Bo Storozuk, Strategic Learning &amp; Talent Management Consultant</p>
+              <img class="quote-company-logo" src="Jacobs_Wordmark_Black.svg" alt="Jacobs logo">
             </div>
           </div>
         </section>
