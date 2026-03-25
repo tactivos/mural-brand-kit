@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mural Member Pricing - Enterprise Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --jade: #00C27A;
+    --mural-green: #00843F;
+    --mural-blue: #5887FF;
+    --mural-pink: #FC83FF;
+    --mural-red: #FF4B4B;
+    --mural-yellow: #FFAA00;
+    --natural: #EDEDD8;
+    --paper: #f3f1ec;
+    --black: #000000;
+    --white: #FFFFFF;
+    --rule: rgba(0, 0, 0, 0.12);
+    --muted: rgba(0, 0, 0, 0.64);
+    --font-headline: 'STK Bureau', 'STK Bureau Serif', 'Merriweather', Georgia, serif;
+    --font-body: 'ABC Social', Arial, Helvetica, sans-serif;
+    --page-width: 8.5in;
+    --page-height: 11in;
+    --page-padding-x: 0.62in;
+    --page-padding-y: 0.58in;
+    --hang-offset: 0.34in;
+    --body-copy: 10.5pt;
+    --small-copy: 8.75pt;
+    --shadow: 0 1px 2px rgba(0,0,0,0.08), 0 14px 34px rgba(0,0,0,0.08);
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-weight: 300;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .document {
+    max-width: calc(var(--page-width) + 1.4in);
+    margin: 0 auto;
+    padding: 32px 0 48px;
+  }
+
+  .page {
+    width: var(--page-width);
+    height: var(--page-height);
+    margin: 0 auto 28px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page:last-child { margin-bottom: 0; }
+
+  .brand-bar {
+    display: flex;
+    height: 10px;
+  }
+
+  .brand-bar span:nth-child(1) { flex: 16; background: var(--mural-pink); }
+  .brand-bar span:nth-child(2) { flex: 33; background: var(--mural-red); }
+  .brand-bar span:nth-child(3) { flex: 9.5; background: var(--mural-green); }
+  .brand-bar span:nth-child(4) { flex: 15; background: var(--mural-yellow); }
+  .brand-bar span:nth-child(5) { flex: 26; background: var(--mural-blue); }
+
+  .page-inner {
+    padding: var(--page-padding-y) var(--page-padding-x);
+    height: calc(var(--page-height) - 10px);
+    padding-bottom: 0.88in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-meta {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    font-size: var(--small-copy);
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-bottom: 0.16in;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .kicker {
+    margin: 0 0 10px;
+    font-size: var(--small-copy);
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1, h2, h3, blockquote {
+    font-family: var(--font-headline);
+    font-weight: 300;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 31pt;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+  }
+
+  h2 {
+    font-size: 23pt;
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+
+  h3 {
+    font-size: 12.25pt;
+    line-height: 1.18;
+    margin-bottom: 0.05in;
+    letter-spacing: -0.15px;
+  }
+
+  .deck,
+  .body-copy,
+  .body-copy p,
+  .pillar p,
+  .matrix-cell,
+  .footnotes p,
+  .resource-list li,
+  .quote-attribution {
+    font-size: var(--body-copy);
+    color: var(--muted);
+  }
+
+  .deck,
+  .body-copy p,
+  blockquote,
+  .quote-attribution {
+    text-wrap: pretty;
+  }
+
+  .hero,
+  .page-opening {
+    margin-top: var(--hang-offset);
+  }
+
+  .hero-copy-block {
+    width: min(100%, 5.35in);
+  }
+
+  .deck {
+    margin: 14px 0 0;
+    line-height: 1.55;
+  }
+
+  .hero-subhead {
+    margin-top: 0.06in;
+    font-size: 18pt;
+    line-height: 1.05;
+    letter-spacing: 0;
+    color: var(--black);
+    text-wrap: pretty;
+  }
+
+  .source-copy {
+    font-size: 10pt;
+    line-height: 13pt;
+    color: #000000;
+    font-weight: 300;
+    letter-spacing: 0;
+    max-width: 4.95in;
+  }
+
+  .source-copy p {
+    margin: 0 0 6.5pt;
+  }
+
+  .source-copy h2 {
+    margin: 0.18in 0 0.12in;
+    font-size: 23pt;
+    line-height: 1.02;
+    letter-spacing: -1px;
+  }
+
+  .source-copy ul {
+    margin: 0 0 6.5pt;
+    padding-left: 18px;
+    font-size: 10pt;
+    line-height: 13pt;
+    letter-spacing: 0;
+  }
+
+  .source-copy li {
+    margin-bottom: 0.04in;
+  }
+
+  .source-copy li:last-child {
+    margin-bottom: 0;
+  }
+
+  .trusted-strip,
+  .section {
+    margin-top: 0.28in;
+    padding-top: 0.18in;
+    border-top: 1px solid var(--rule);
+  }
+
+  .trusted-strip-inner,
+  .intro-grid,
+  .closing-grid {
+    display: grid;
+    gap: 0.32in;
+  }
+
+  .trusted-strip-inner,
+  .intro-grid { grid-template-columns: 1.05fr 0.95fr; }
+  .closing-grid { grid-template-columns: 1.08fr 0.92fr; }
+
+  .opener-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.22in;
+    align-items: start;
+  }
+
+  .opener-editorial-grid .source-copy {
+    grid-column: 1 / span 3;
+  }
+
+  .opener-editorial-grid .benefit-stack {
+    grid-column: 5;
+  }
+
+  .opener-editorial-grid .opener-quote {
+    grid-column: 1 / span 3;
+    margin-top: 0.02in;
+    padding-top: 0.14in;
+    border-top: 1px solid var(--rule);
+  }
+
+  .body-copy,
+  .trusted-copy {
+    line-height: 1.56;
+  }
+
+  .body-copy p,
+  .trusted-copy p {
+    margin: 0 0 0.12in;
+  }
+
+  .body-copy p:last-child,
+  .trusted-copy p:last-child { margin-bottom: 0; }
+
+  .muted { color: var(--muted); }
+
+  .benefit-stack {
+    display: grid;
+    gap: 0.14in;
+  }
+
+  .benefit-card {
+    padding-top: 0.1in;
+    border-top: 2px solid var(--black);
+  }
+
+  .benefit-card h3 {
+    font-size: 16pt;
+    line-height: 1.08;
+    margin-bottom: 0.05in;
+    letter-spacing: -0.35px;
+  }
+
+  .benefit-card p {
+    margin: 0;
+    font-size: 10pt;
+    line-height: 13pt;
+    letter-spacing: 0;
+    color: #000000;
+    font-weight: 300;
+    max-width: 20em;
+  }
+
+  .benefit-card.security,
+  .benefit-card.scalability,
+  .benefit-card.control { background: transparent; }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.18in 0.22in;
+  }
+
+  .pillar {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding-top: 0.1in;
+    border-top: 2px solid var(--black);
+  }
+
+  .pillar p {
+    margin: 0;
+    line-height: 1.44;
+  }
+
+  .pillar .cost {
+    margin-top: 0.06in;
+    font-size: 8.9pt;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.72);
+  }
+
+  .matrix-intro {
+    width: min(100%, 6.5in);
+    margin-top: 0.1in;
+    font-size: 9.6pt;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+
+  .matrix-superhead {
+    display: grid;
+    grid-template-columns: 1.75fr 1.8fr 1.8fr;
+    gap: 0;
+    margin-top: 0.16in;
+    font-size: 7.4pt;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .matrix-superhead div:nth-child(2),
+  .matrix-superhead div:nth-child(3) {
+    padding-bottom: 0.04in;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.32);
+    text-align: center;
+  }
+
+  .matrix-table {
+    width: 100%;
+    margin-top: 0.08in;
+  }
+
+  .matrix-row {
+    display: grid;
+    grid-template-columns: 1.75fr repeat(4, 0.9fr);
+    align-items: center;
+    min-height: 0.31in;
+  }
+
+  .matrix-row.header {
+    min-height: 0.84in;
+    align-items: start;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+  }
+
+  .matrix-row.natural { background: var(--natural); }
+
+  .matrix-cell {
+    padding: 0.055in 0.08in;
+    font-size: 8.3pt;
+    line-height: 1.25;
+  }
+
+  .matrix-cell.center { text-align: center; }
+
+  .matrix-colhead {
+    text-align: center;
+  }
+
+  .matrix-colhead strong {
+    display: block;
+    margin-bottom: 0.02in;
+    font-size: 8.9pt;
+    line-height: 1.1;
+    color: rgba(0, 0, 0, 0.88);
+  }
+
+  .matrix-colhead span {
+    display: block;
+    font-size: 6.9pt;
+    line-height: 1.24;
+    color: var(--muted);
+  }
+
+  .matrix-colhead em {
+    display: block;
+    margin-top: 0.04in;
+    font-style: normal;
+    font-size: 6.9pt;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.72);
+  }
+
+  .state-mark {
+    font-size: 11pt;
+    line-height: 1;
+    color: var(--black);
+  }
+
+  .footnotes {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.24in;
+    margin-top: 0.12in;
+  }
+
+  .footnotes p {
+    margin: 0;
+    font-size: 8.2pt;
+    line-height: 1.35;
+  }
+
+  blockquote {
+    position: relative;
+    font-size: 20pt;
+    line-height: 1.16;
+    letter-spacing: -0.6px;
+    max-width: 15.8em;
+  }
+
+  .quote-open {
+    position: absolute;
+    left: -0.12in;
+    top: 0;
+    line-height: 1;
+  }
+
+  .quote-attribution {
+    margin-top: 0.14in;
+    font-size: 9.5pt;
+    line-height: 1.45;
+    max-width: 24em;
+  }
+
+  .resource-box {
+    padding-left: 0.18in;
+    border-left: 2px solid var(--jade);
+  }
+
+  .resource-list ul {
+    margin: 0;
+    padding-left: 16px;
+  }
+
+  .resource-list li {
+    margin-bottom: 0.055in;
+    line-height: 1.38;
+  }
+
+  .resource-list li:last-child { margin-bottom: 0; }
+
+  .resource-list a {
+    color: var(--black);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  .opener-quote blockquote {
+    font-size: 13.3pt;
+    line-height: 1.1;
+    letter-spacing: -0.35px;
+    max-width: 18em;
+  }
+
+  .opener-quote .quote-open {
+    left: -0.08in;
+  }
+
+  .opener-quote .quote-attribution {
+    margin-top: 0.1in;
+    font-size: 8.2pt;
+    line-height: 1.35;
+  }
+
+  .closing-copy h2 {
+    max-width: 9.5em;
+  }
+
+  .closing-copy p {
+    margin: 0.12in 0 0;
+    font-size: 9.6pt;
+    line-height: 1.45;
+    color: var(--muted);
+    max-width: 28em;
+  }
+
+  .page-footer {
+    position: absolute;
+    left: var(--page-padding-x);
+    right: var(--page-padding-x);
+    bottom: 0.23in;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .page-number {
+    font-size: 8pt;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.42);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .page-signature {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 0.12in;
+    color: rgba(0, 0, 0, 0.72);
+    text-decoration: none;
+    font-size: 8.8pt;
+    line-height: 1;
+  }
+
+  .page-signature-wordmark {
+    display: block;
+    object-fit: contain;
+    width: 0.86in;
+    height: auto;
+    transform: translateY(0.01in);
+  }
+
+  .page.matrix-page .page-opening {
+    margin-top: 0.24in;
+  }
+
+  .page.matrix-page h2 {
+    font-size: 21pt;
+  }
+
+  .page.matrix-page .matrix-intro {
+    margin-top: 0.08in;
+    font-size: 8.8pt;
+    line-height: 1.35;
+  }
+
+  .page.matrix-page .section {
+    margin-top: 0.18in;
+    padding-top: 0.12in;
+  }
+
+  .page.matrix-page .matrix-superhead {
+    margin-top: 0.1in;
+    font-size: 6.9pt;
+  }
+
+  .page.matrix-page .matrix-row {
+    min-height: 0.22in;
+  }
+
+  .page.matrix-page .matrix-row.header {
+    min-height: 0.62in;
+  }
+
+  .page.matrix-page .matrix-cell {
+    padding: 0.038in 0.06in;
+    font-size: 7.3pt;
+    line-height: 1.18;
+  }
+
+  .page.matrix-page .matrix-colhead strong {
+    font-size: 8pt;
+  }
+
+  .page.matrix-page .matrix-colhead span,
+  .page.matrix-page .matrix-colhead em {
+    font-size: 6.2pt;
+    line-height: 1.15;
+  }
+
+  .page.matrix-page .state-mark {
+    font-size: 9pt;
+  }
+
+  .page.matrix-page .footnotes {
+    margin-top: 0.08in;
+  }
+
+  .page.matrix-page .footnotes p {
+    font-size: 7.4pt;
+    line-height: 1.25;
+  }
+
+  @media print {
+    @page {
+      size: letter portrait;
+      margin: 0;
+    }
+
+    body { background: var(--white); }
+
+    .document {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      width: var(--page-width);
+      height: var(--page-height);
+      margin: 0;
+      box-shadow: none;
+      break-after: page;
+      page-break-after: always;
+    }
+
+    .page:last-child {
+      break-after: auto;
+      page-break-after: auto;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="document">
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div>Member pricing</div>
+        </header>
+
+        <section class="hero">
+          <div class="hero-copy-block">
+            <h1>Member pricing</h1>
+            <p class="hero-subhead">Enterprise plan</p>
+          </div>
+        </section>
+
+        <section class="trusted-strip">
+          <div class="opener-editorial-grid">
+            <div class="source-copy">
+              <p>Mural's seat-based pricing model offers a predictable approach to procurement and provisioning user access.</p>
+              <p>For Enterprise plan customers, the Member pricing model offers four user types: Full Members, Limited Members, Guests, and Visitors. Each user type has access to the capabilities and features that best fit their needs.</p>
+              <p>This model lets companies assign users the appropriate level of access in accordance with their security and compliance standards, while allowing users to collaborate seamlessly with clients, customers, and consultants without compromising security.</p>
+              <h2>Predictable and straightforward pricing &mdash;no catches, no surprises.</h2>
+              <p>Mural is committed to offering flexible and transparent pricing with no catches and no surprises.</p>
+              <ul>
+                <li>Never get billed retroactively.</li>
+                <li>Plus, we'll never surprise you with a bill or invoice.</li>
+              </ul>
+              <p>Contact a Mural account representative for more information.</p>
+            </div>
+            <div class="benefit-stack" aria-label="Enterprise pricing benefits">
+              <div class="benefit-card security">
+                <h3>Security</h3>
+                <p>Enable secure, authenticated access that supports strict data privacy and security standards.</p>
+              </div>
+              <div class="benefit-card scalability">
+                <h3>Scalability</h3>
+                <p>Scale collaboration by extending the benefits of Mural across the broader employee base.</p>
+              </div>
+              <div class="benefit-card control">
+                <h3>Control</h3>
+                <p>Easily manage user access and entitlements through the company dashboard.</p>
+              </div>
+            </div>
+            <div class="opener-quote">
+              <p class="kicker">Customer perspective</p>
+              <blockquote><span class="quote-open">&ldquo;</span>Mural enhances our ability to create a safe space for people to collaborate and contribute, whether they're introverted or extroverted, in person or remote. Meetings are more engaging and inclusive, and ultimately, diverse perspectives lead to more innovative, impactful solutions.&rdquo;</blockquote>
+              <p class="quote-attribution">Bo Storozuk, Strategic Learning &amp; Talent Management Consultant</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <img class="page-signature-wordmark" src="Mural_Wordmark_Multicolor.svg" alt="Mural logo">
+          <span>mural.co</span>
+        </a>
+        <div class="page-number">Page 1</div>
+      </div>
+    </section>
+
+    <section class="page matrix-page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div>Member pricing</div>
+        </header>
+
+        <section class="page-opening">
+          <h2>Enterprise plan</h2>
+          <p class="matrix-intro">Access &amp; capabilities by user type</p>
+        </section>
+
+        <section class="section">
+          <div class="matrix-superhead" aria-hidden="true">
+            <div></div>
+            <div>Internal users</div>
+            <div>External users</div>
+          </div>
+          <div class="matrix-table" role="table" aria-label="Member pricing access matrix">
+            <div class="matrix-row header" role="row">
+              <div class="matrix-cell" role="columnheader"></div>
+              <div class="matrix-cell center" role="columnheader">
+                <div class="matrix-colhead">
+                  <strong>Full Member</strong>
+                  <span>Full collaboration access to plan content.</span>
+                  <em>Paid per license</em>
+                </div>
+              </div>
+              <div class="matrix-cell center" role="columnheader">
+                <div class="matrix-colhead">
+                  <strong>Limited Member</strong>
+                  <span>Limited collaboration access.</span>
+                  <em>Covered by platform fee</em>
+                </div>
+              </div>
+              <div class="matrix-cell center" role="columnheader">
+                <div class="matrix-colhead">
+                  <strong>Guest*</strong>
+                  <span>Registered access to shared content and canvas collaboration.</span>
+                  <em>Free</em>
+                </div>
+              </div>
+              <div class="matrix-cell center" role="columnheader">
+                <div class="matrix-colhead">
+                  <strong>Visitor*</strong>
+                  <span>Unregistered view access with limited edit capability.</span>
+                  <em>Free</em>
+                </div>
+              </div>
+            </div>
+
+            <div class="matrix-row natural"><div class="matrix-cell">View murals &amp; templates</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Search for murals, rooms, &amp; templates</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Comment</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Add reactions to stickies &amp; on canvas</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Create sticky notes</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Add shapes</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Add connectors</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Add icons</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Insert images</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Share mural</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Access rooms with invite</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Access rooms without invite</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Create headings &amp; paragraphs</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Create mind maps (without AI)</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Add tables</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Create areas</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Draw</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Access content library</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Import files</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Export content</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Use Mural Actions</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Create, publish, &amp; use templates</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Create murals, folders, rooms, &amp; workspaces (if enabled)</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Manage murals, folders, rooms, &amp; workspaces</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Search for murals, folders, rooms, templates, workspaces</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row"><div class="matrix-cell">Facilitation Superpowers</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"><span class="state-mark">✓</span> <span style="font-size:7pt;color:rgba(0,0,0,0.56);">**</span></div><div class="matrix-cell center"></div></div>
+            <div class="matrix-row natural"><div class="matrix-cell">Mural AI</div><div class="matrix-cell center"><span class="state-mark">✓</span></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div><div class="matrix-cell center"></div></div>
+          </div>
+
+          <div class="footnotes">
+            <p>Contact a Mural account representative for more information. For additional details, visit the <a href="https://help.mural.co/">Mural Help Center</a>.</p>
+            <p>* Edit or view access for murals depends on company settings.<br>** Only on Enterprise plan.</p>
+          </div>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <img class="page-signature-wordmark" src="Mural_Wordmark_Multicolor.svg" alt="Mural logo">
+          <span>mural.co</span>
+        </a>
+        <div class="page-number">Page 2</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
