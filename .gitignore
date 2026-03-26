@@ -8,3 +8,7 @@
 
 # Optional: uncomment if you want to keep Cursor project data local only
 # .cursor/
+
+# Local Asana agent secrets and generated reports
+asana-agent/.env
+asana-agent/output/
