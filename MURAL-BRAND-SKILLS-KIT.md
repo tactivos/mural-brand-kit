@@ -160,6 +160,11 @@ The Photography section sits under Supporting Graphics and includes:
 
 ### Mascot
 - `Anku` is the named Mural mascot
+- Anku is a secondary brand element used to add warmth, personality, and a more human feel to the brand
+- Keep the logo, product, and core message as the primary focus
+- Use approved Anku artwork and poses only
+- Do not redraw, distort, restyle, or create unofficial variations
+- The guide includes an `Incorrect mascot usage` block with explicit `Do not use` examples
 
 ## Key Design Tokens
 
@@ -292,7 +297,7 @@ The Co-branding area now includes three sections:
 ## File Structure
 - `mural-brand-guidelines.html` — complete self-contained guide
 - `MURAL-BRAND-SKILLS-KIT.md` — downloadable companion skills kit
-- Local image and SVG assets live beside the HTML file as needed for guide examples
+- Local image and SVG assets live beside the HTML file as needed for guide examples, including co-branding, logo misuse, and mascot misuse assets
 
 ## Editing Guidelines
 - Keep the guide in the single HTML file
