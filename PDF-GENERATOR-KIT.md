@@ -56,6 +56,10 @@ Do not use this kit as-is for:
 - Prefer a small number of repeatable page types over one-off custom layouts.
 - Keep copy concise and remove redundant framing when the same context can sit directly with the content.
 - Put explanatory context where the reader needs it most so they do not have to look elsewhere to understand a chart, stat, or page module.
+- Place footnotes, source notes, and legal lines in a grouped footnote band anchored a set distance above the page footer. These are page-level notes and should not be attached to any one content section, even when individual notes reference different parts of the page.
+- When a section grid sits below intro copy, align the primary content column to the same measure as the intro copy so the page reads as one continuous column rather than two competing widths.
+- Do not force content into narrow side-by-side columns when stacking vertically or restructuring the layout would use space more efficiently. Prefer the arrangement that gives each element room to breathe.
+- Trim built-in whitespace or padding from any placed image asset before positioning it. Untrimmed assets make CSS spacing values unreliable.
 
 ## First-Pass Content Handling
 
@@ -95,7 +99,12 @@ Opener page rules:
 - Keep the main narrative within a readable text measure rather than stretching it across the page.
 - Use the far-right rail for secondary themes or proof points such as `Security`, `Scalability`, and `Control`; do not let it compete with the main story.
 - If the opener includes a quote, keep it aligned to the main text span rather than forcing it into the narrow support rail.
+- A supporting quote section can span the full opener grid width, while the quote text itself remains on a controlled measure within that larger span.
 - Keep footer elements baseline-aligned so the logo, URL, and page number sit on a consistent line.
+- When a PDF covers LUMA content, use the Mural + LUMA logo lockup in the footer instead of the standalone Mural wordmark. Choose the lockup variant based on which brand leads: use the Mural-lead lockup when the document uses the `mural.co` web address and Mural is the primary brand context; use the LUMA-lead lockup when LUMA is the primary brand context. Both lockup variants are defined in the brand guidelines under the LUMA sub-brand section.
+- When using the Mural + LUMA lockup, scale the entire lockup so the Mural wordmark portion matches the size of the standalone Mural wordmark used in non-LUMA footers.
+- Left-align the lockup so the left edge of the "M" in Mural sits on the same edge as the text above it. Use a negative left margin to compensate for any built-in SVG padding.
+- The lockup SVG may contain empty space above and below the letterforms. Use a vertical transform to shift it down so the bottom of the lockup visually baseline-aligns with the URL and page number.
 
 ### 2. Structured Content Page
 
@@ -153,6 +162,13 @@ Quote rules:
 - Use hanging punctuation so the opening quotation mark hangs to the left of the text block or grid.
 - Align the quote text, the heading above it, and the attribution below it to the same text edge.
 - Keep the quote visually strong but compact; do not let the quote block become a loose page-filling paragraph.
+- Bold the person's name in the attribution; keep their title and role in the default body weight.
+- When a company logo accompanies the quote, treat it as part of the citation — it replaces typing out the company name.
+- Place the logo below the attribution, aligned to the same text edge as the quote and attribution text.
+- Match the space between the attribution and the logo to the space between the quote and the attribution, so the three elements read as one unit.
+- Keep the logo restrained — large enough to be clearly legible but not so large that it competes with the quote itself.
+- Trim built-in whitespace or padding from logo assets before placing them so CSS spacing values produce accurate visual results.
+- Use a small negative left margin if needed to optically align the logo's first letterform with the text edge above.
 
 ### 5. Closing / Contact Page
 
@@ -247,8 +263,11 @@ Core editorial pattern rules:
 - Default check marks and x marks in comparison and matrix patterns to black. Only use another color when the user explicitly changes that styling.
 - When a check mark carries an asterisk or note marker, keep the check aligned to the same column position as adjacent checks and let the note marker hang tightly to the right.
 - Avoid UI-like pills or badge treatments inside chart cells.
-- Support footnotes and qualification language at the bottom of charts when access or pricing conditions need clarification.
+- Place qualification notes directly under the chart in mouse type when they explain matrix states or access conditions.
+- Treat CTA or help-center language below a chart as a separate support line rather than as footnote text.
+- When a capability row includes a `Learn More` link, place it inline with the label when it fits comfortably; otherwise let it break beneath the label without disturbing the column alignment.
 - Preserve enough white space so the chart remains readable in print and in exported PDFs.
+- Do not add columns beyond what exists in the source content. Only include additional columns when the user explicitly asks for them.
 
 ### Stat And Proof Patterns
 

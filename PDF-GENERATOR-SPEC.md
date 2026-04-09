@@ -49,6 +49,8 @@ The generator kit should follow these rules:
 - Keep enough spare vertical space so content does not unexpectedly spill to a new page in print
 - Default comparison and matrix check marks to black unless a user intentionally overrides the color
 - When a comparison or matrix check mark includes an asterisk or note marker, keep the check aligned with adjacent checks and let the marker hang tightly to the right
+- Place chart qualification notes directly under the matrix in mouse type, and separate CTA/help language below them as its own support line
+- Allow `Learn More` links to sit inline with matrix capability labels when they fit without disrupting scanability
 - Keep copy concise and avoid redundant explanation when the same context can live directly with the content it clarifies
 - Place explanatory context as close as possible to the data, chart, or message it supports so readers do not need to cross-reference
 - Preserve provided source copy as-is by default on the first pass unless the user explicitly asks for rewriting
@@ -76,6 +78,7 @@ That label should:
 - remain separate from the larger editorial headline
 - avoid a competing top-right meta field
 - keep footer elements baseline-aligned when a page uses a logo, URL, and page number together
+- allow supporting quote sections to span the full opener grid width while keeping the quote text on a controlled measure
 
 ## Content Guardrails
 
