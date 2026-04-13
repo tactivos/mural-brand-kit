@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partnership One-Sheet — Mural + Microsoft Teams</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --jade: #00C27A;
+    --mural-green: #00843F;
+    --mural-blue: #5887FF;
+    --mural-pink: #FC83FF;
+    --mural-red: #FF4B4B;
+    --mural-yellow: #FFAA00;
+    --natural: #EDEDD8;
+    --black: #000000;
+    --white: #FFFFFF;
+    --paper: #f3f1ec;
+    --rule: rgba(0, 0, 0, 0.12);
+    --muted: rgba(0, 0, 0, 0.64);
+    --font-headline: 'STK Bureau', 'STK Bureau Serif', 'Merriweather', Georgia, serif;
+    --font-body: 'ABC Social', Arial, Helvetica, sans-serif;
+    --page-width: 8.5in;
+    --page-height: 11in;
+    --page-padding-x: 0.62in;
+    --page-padding-y: 0.58in;
+    --hang-offset: 0.34in;
+    --body-copy: 10pt;
+    --body-leading: 13pt;
+    --body-space: 6.5pt;
+    --small-copy: 8.75pt;
+    --shadow: 0 1px 2px rgba(0,0,0,0.08), 0 14px 34px rgba(0,0,0,0.08);
+  }
+
+  html { font-size: 16px; }
+  body { margin: 0; background: #141414; color: var(--black); font-family: var(--font-body); font-weight: 300; letter-spacing: 0; -webkit-font-smoothing: antialiased; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .document { max-width: calc(var(--page-width) + 1.4in); margin: 0 auto; padding: 0 0 48px; }
+  .page { width: var(--page-width); min-height: var(--page-height); margin: 0 auto 28px; background: var(--white); box-shadow: var(--shadow); position: relative; overflow: hidden; }
+  .page:last-child { margin-bottom: 0; }
+
+  .brand-bar { display: flex; height: 10px; }
+  .brand-bar span:nth-child(1) { flex: 16; background: var(--mural-pink); }
+  .brand-bar span:nth-child(2) { flex: 33; background: var(--mural-red); }
+  .brand-bar span:nth-child(3) { flex: 9.5; background: var(--mural-green); }
+  .brand-bar span:nth-child(4) { flex: 15; background: var(--mural-yellow); }
+  .brand-bar span:nth-child(5) { flex: 26; background: var(--mural-blue); }
+
+  .page-inner { padding: var(--page-padding-y) var(--page-padding-x); min-height: calc(var(--page-height) - 10px); display: flex; flex-direction: column; }
+  .page-meta { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; font-size: var(--small-copy); line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 0.16in; border-bottom: 1px solid var(--rule); }
+  .kicker { margin: 0 0 10px; font-size: var(--small-copy); line-height: 1.4; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  h1, h2, h3, blockquote { font-family: var(--font-headline); font-weight: 300; margin: 0; }
+  h1 { font-size: 31pt; line-height: 1.1; letter-spacing: -1.5px; }
+  h2 { font-size: 23pt; line-height: 1.1; letter-spacing: -1px; }
+  h3 { font-size: 12.25pt; line-height: 1.18; margin-bottom: 0.05in; letter-spacing: -0.15px; }
+
+  p, li { font-size: var(--body-copy); line-height: var(--body-leading); margin: 0; font-weight: 300; }
+  .deck { margin: 14px 0 0; line-height: 1.55; text-wrap: pretty; }
+  .hero { margin-top: var(--hang-offset); }
+  .hero-copy-block { width: min(100%, 5.2in); }
+  .page-opening { margin-top: var(--hang-offset); }
+  .section { margin-top: 0.28in; padding-top: 0.18in; border-top: 1px solid var(--rule); }
+  .muted { color: var(--muted); }
+
+  .body-copy { line-height: var(--body-leading); }
+  .body-copy p { margin: 0 0 var(--body-space); line-height: var(--body-leading); text-wrap: pretty; }
+  .body-copy p:last-child { margin-bottom: 0; }
+
+  .two-col { display: grid; grid-template-columns: 1.03fr 0.97fr; gap: 0.34in; }
+
+  /* --- Partner logo lockup --- */
+
+  .partner-lockup {
+    display: flex;
+    align-items: center;
+    gap: 0.18in;
+    margin-bottom: 0.18in;
+  }
+
+  .partner-logo-placeholder {
+    width: 1.2in;
+    height: 0.48in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed rgba(0, 0, 0, 0.16);
+    border-radius: 4px;
+    font-size: 8pt;
+    color: var(--muted);
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .partner-plus {
+    font-family: var(--font-headline);
+    font-size: 22pt;
+    color: rgba(0, 0, 0, 0.24);
+    line-height: 1;
+  }
+
+  /* --- Integration features grid --- */
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.14in 0.22in;
+    margin-top: 0.12in;
+  }
+
+  .feature-card {
+    padding: 0.14in;
+    background: var(--natural);
+    border-radius: 4px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .feature-card h3 { margin-bottom: 0.03in; }
+  .feature-card p { font-size: 9.2pt; line-height: 1.35; text-wrap: pretty; }
+
+  /* --- Image frame --- */
+
+  .image-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.2in;
+    border: 1px dashed rgba(0, 0, 0, 0.16);
+    border-radius: 4px;
+    background:
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 0) 0 0/18px 18px,
+      rgba(0, 0, 0, 0.02);
+    color: rgba(0, 0, 0, 0.54);
+    text-align: center;
+    font-size: 8.5pt;
+    line-height: 1.35;
+    padding: 0.16in;
+  }
+
+  .image-frame strong {
+    display: block;
+    font-size: 10pt;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .image-frame span {
+    display: block;
+    margin-top: 0.04in;
+    max-width: 20em;
+  }
+
+  blockquote { position: relative; font-size: 20pt; line-height: 1.2; letter-spacing: -0.6px; max-width: 16.8em; text-wrap: pretty; }
+  .quote-open { position: absolute; left: -0.12in; top: 0; line-height: 1; }
+  .quote-attribution { margin-top: 0.14in; font-size: 9.5pt; line-height: 1.45; color: var(--muted); max-width: 24em; text-wrap: pretty; }
+
+  .resource-box { padding-left: 0.18in; border-left: 2px solid var(--jade); }
+  .resource-box .kicker { margin-bottom: 0.08in; }
+  .resource-list li a { color: var(--black); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  .page-footer { position: absolute; left: var(--page-padding-x); right: var(--page-padding-x); bottom: 0.23in; display: flex; justify-content: space-between; align-items: baseline; }
+  .page-number { font-size: 8pt; line-height: 1; color: rgba(0, 0, 0, 0.42); letter-spacing: 0.08em; text-transform: uppercase; }
+  .page-signature { display: inline-flex; align-items: flex-end; gap: 0.12in; color: rgba(0, 0, 0, 0.72); text-decoration: none; font-size: 8.8pt; line-height: 1; letter-spacing: 0.01em; }
+  .page-signature-wordmark { display: block; object-fit: contain; width: 0.86in; height: auto; transform: translateY(-0.02in); }
+  .page-signature-url { color: rgba(0, 0, 0, 0.72); }
+
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    body { background: var(--white); }
+    .document { max-width: none; margin: 0; padding: 0; }
+    .page { width: var(--page-width); min-height: var(--page-height); margin: 0; box-shadow: none; break-after: page; page-break-after: always; }
+    .page:last-child { break-after: auto; page-break-after: auto; }
+  }
+</style>
+</head>
+<body>
+  <main class="document">
+
+    <!-- PAGE 1 — Integration story -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Integration partnership</div>
+        </header>
+
+        <div class="hero">
+          <div class="partner-lockup">
+            <img src="../Mural_Wordmark_Multicolor.svg" alt="Mural logo" style="width: 1.2in; height: auto;">
+            <span class="partner-plus">+</span>
+            <div class="partner-logo-placeholder">Partner logo</div>
+          </div>
+          <div class="hero-copy-block">
+            <h1>Visual collaboration that lives where your team already works.</h1>
+            <p class="deck">The Mural integration for Microsoft Teams brings visual collaboration directly into meetings, channels, and chats&#8239;&mdash;&#8239;so teams can brainstorm, plan, and align without switching tools.</p>
+          </div>
+        </div>
+
+        <section class="section">
+          <div class="feature-grid">
+            <div class="feature-card">
+              <h3>In-meeting whiteboard</h3>
+              <p>Launch and collaborate on a mural directly from any Teams meeting, with full editing capabilities for all participants.</p>
+            </div>
+            <div class="feature-card">
+              <h3>Channel tabs</h3>
+              <p>Pin murals to any Teams channel so project boards, roadmaps, and planning spaces are always one click away.</p>
+            </div>
+            <div class="feature-card">
+              <h3>Chat sharing</h3>
+              <p>Share murals in Teams conversations with rich link previews and jump into collaborative editing from chat.</p>
+            </div>
+            <div class="feature-card">
+              <h3>SSO &amp; provisioning</h3>
+              <p>Single sign-on through Azure AD and SCIM provisioning keep user management seamless and secure.</p>
+            </div>
+            <div class="feature-card">
+              <h3>M365 certified</h3>
+              <p>Mural is Microsoft 365 certified, meeting the highest standards for data security and privacy compliance.</p>
+            </div>
+            <div class="feature-card">
+              <h3>Copilot ready</h3>
+              <p>Surface Mural content through Microsoft Copilot to bring visual collaboration insights into your AI workflows.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="image-frame">
+            <div>
+              <strong>Screenshot</strong>
+              <span>Mural embedded in a Microsoft Teams meeting, showing a sprint retrospective board with participant cursors visible.</span>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <img class="page-signature-wordmark" src="../Mural_Wordmark_Multicolor.svg" alt="Mural logo">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <div class="page-number">Page 1</div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 — Quote + resources -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Integration partnership</div>
+        </header>
+
+        <section class="page-opening">
+          <blockquote><span class="quote-open">&ldquo;</span>Having Mural embedded directly in Teams has transformed how our distributed teams run meetings. People actually collaborate instead of just watching a presentation.&rdquo;</blockquote>
+          <p class="quote-attribution"><strong>Director of Digital Workplace</strong><br>Global Manufacturing Company</p>
+        </section>
+
+        <section class="section">
+          <h2>Why IT leaders choose Mural for Teams</h2>
+          <div class="two-col">
+            <div class="body-copy">
+              <p>Mural's deep integration with the Microsoft ecosystem goes far beyond a basic embedded app. Built natively on Azure, Mural provides enterprise IT with a collaboration platform that aligns with existing security policies, identity management, and governance standards.</p>
+              <p class="muted">With M365 certification, SSPA compliance, and full support for Conditional Access policies, Mural is designed to meet the requirements of the most security-conscious organizations.</p>
+            </div>
+            <div>
+              <aside class="resource-box">
+                <p class="kicker">Get started</p>
+                <div class="resource-list">
+                  <ul>
+                    <li><a href="https://mural.co/microsoft-teams">Mural for Microsoft Teams</a></li>
+                    <li><a href="#">Admin deployment guide</a></li>
+                    <li><a href="#">Microsoft AppSource listing</a></li>
+                    <li><a href="https://mural.co/enterprise">Enterprise plan overview</a></li>
+                  </ul>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <div class="page-number">Page 2</div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
