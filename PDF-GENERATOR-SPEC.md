@@ -193,21 +193,33 @@ The user sees the 7 document types in a left nav, each with a name and short des
 
 ### Three-panel editor
 
-- **Left panel — page navigator**: Thumbnail strip of all pages in the document. Click to select a page.
-- **Center panel — canvas**: Live rendered preview of the selected page at approximately actual proportions.
-- **Right panel — inspector**: Controls for the selected page, organized top-to-bottom:
-  - Document-level settings (type, topic label)
-  - Page-level layout selection (full-width, two-column, sidebar-heavy, table/matrix)
-  - Content fields (headline, body, etc.)
-  - AI prompt field for custom refinements
+- **Left panel — page navigator**: Document type selector at top, thumbnail strip of all pages below. Click to select a page. Page count updates when user adds/removes pages via the inspector.
+- **Center panel — canvas**: Live rendered preview at approximately actual proportions. Below the preview, a **layout variant strip** shows 5 clickable SVG thumbnails (Full-width hero, Two-column, Sidebar, Table/matrix, Stat grid) for visually switching the selected page's layout.
+- **Right panel — inspector**: Organized into a pinned export bar and 7 collapsible sections:
+
+#### Pinned export bar (top, non-scrolling)
+- Filename input (auto-populated from doc type, editable)
+- Generate PDF button (primary action)
+- Error messages appear below the button
+
+#### Collapsible sections (scrollable)
+
+1. **Document settings**: Topic label, Audience (text), Tone (select: Professional, Conversational, Technical, Bold), Output length (select: Concise/1pg, Standard/2pg, Detailed/3+pg)
+2. **Content**: Toggle between Paste mode (freeform textarea) and Structured mode (Headline, Deck, Body, Stats, CTA as separate fields) via a segmented control
+3. **Images**: Search input (placeholder for future brand image library), Upload button (accepts jpg/png/webp/svg, stores as base64), thumbnail grid of uploaded images with select/remove
+4. **Page layout**: Document-default layout selector (dropdown) + per-page overrides shown when a page has a non-default layout (with Reset to default link). Syncs with the canvas layout strip.
+5. **Brand colors**: Grid of 11 Mural brand color swatches for accent theming. Document-level default + per-page overrides (hybrid pattern).
+6. **Page count**: +/− buttons (min 1, max 6) that update the left navigator's page list
+7. **AI refinement**: Freeform prompt for custom AI adjustments
 
 ### Generation flow
 
 1. User selects a document type → sees the starter example
-2. User pastes their content into the source content field
-3. User hits "Generate" → AI produces a new document using the selected type's starter as the structural reference and the user's content
-4. User reviews the result in the canvas, adjusts per-page settings, and uses the AI prompt to refine specific pages
-5. User exports via browser print (File > Print > Save as PDF)
+2. User fills in document settings and content (paste or structured)
+3. User optionally adjusts page layouts, colors, and page count
+4. User hits "Generate PDF" → AI produces a new document using the selected type's starter as the structural reference, the user's content, and all inspector settings
+5. User reviews the result in the canvas, adjusts per-page settings, and uses the AI prompt to refine specific pages
+6. User exports via browser print (File > Print > Save as PDF)
 
 ## Export Workflow
 
