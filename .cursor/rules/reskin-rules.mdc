@@ -1,0 +1,53 @@
+---
+description: Rules for reskinning existing Mural PDFs into the new brand system
+alwaysApply: true
+---
+
+# Reskin Rules
+
+## Source of truth
+
+- **Pattern library is canonical.** Always consult `mural-pdf-generator-pattern-library.html` first for component styles, class names, and layout patterns. Starter files have NOT been audited and may contain drift — do not copy from starters.
+- **Carry over all content.** Every piece of content from the original PDF must appear in the reskin. Cross-check page by page — missing logos, stats, lists, or sections is a failure.
+- **Do not replicate old visual design.** The original PDF's layout, colors, and styling are being replaced. Use only pattern library components to present the carried-over content.
+- **Do not invent copy.** Never generate headlines, body text, eyebrow labels, or link lists that aren't in the original PDF. If content doesn't exist in the source, don't add it. The reskin is a visual transformation, not a rewrite.
+- **Preserve content order.** The sequence of content in the reskin should match the original PDF's order. Pages may be redistributed for better layout, but sections should not be reordered.
+
+## Logo handling
+
+- Use the **`.logo-strip`** (4-up grid) + **`.logo-box.has-logo`** pattern for customer logos. Never use pill-shaped `.logo-chip` for logo images.
+- **Optical balancing is required.** Start all logos at a shared base size, then apply per-logo `--asset-scale` (and `--asset-shift-x`/`--asset-shift-y` if needed) to visually balance them. Compact logos (e.g. IBM) scale up; very wide logos (e.g. Booz Allen) scale down.
+- Use **black** (`_B`) variants on light backgrounds, **white** (`_W`) variants on dark backgrounds.
+- Source logos from `assets/logos/customers/`. Reference with correct relative paths from the reskin file's location (e.g. `../../assets/logos/customers/` from `reskins/type/file.html`).
+
+## Grid system
+
+- All reskins must include the grid variables in `:root`: `--grid-columns: 6`, `--grid-gutter: 0.24in`, `--grid-column: 1.01in`.
+- Use `var(--grid-gutter)` for all layout gaps. Do not hardcode gap values.
+- Use clean column ratios (`1fr 1fr`, `1fr 2fr`, `repeat(3, 1fr)`) — no uneven `fr` pairs like `1.03fr 0.97fr`.
+
+## Typography
+
+- `h1` line-height: `1.08` (not `1.1`).
+- `.deck` color: `var(--black)` (not `var(--muted)`).
+- Body copy is black. Gray (`var(--muted)`) is for instructional text in the pattern library only.
+- **Readable measure is required.** `.body-copy` gets `max-width: 62ch`. `ul, ol` get `max-width: 62ch`. `.deck` gets `max-width: 34em`. Body text must never run full page width unconstrained.
+- No forced line breaks (`<br>`) in headlines unless the content genuinely requires it.
+- **Headline-to-body spacing.** Body copy directly below a headline in `.page-opening` uses `.intro-copy` (not `.body-copy` or `.deck`), which provides `margin-top: 0.22in` and `max-width: 5.05in`. No rule line should appear between a headline and its supporting body copy.
+
+## Quotes
+
+- **Default quote** (`blockquote`): 13.3pt, line-height 1.1, letter-spacing -0.35px, max-width 4.9in. Use in combined grids, sidebars, and alongside body content.
+- **Large quote** (`blockquote.quote-large`): 18pt, line-height 1.2, letter-spacing -0.5px, max-width 15.8em. Use when the quote is the dominant element on the page.
+- **Attribution is consistent** across both styles: 8.2pt, line-height 1.35, color `var(--black)`, margin-top 0.1in. Include a company logo when available.
+- `.quote-open` hangs left: `-0.065in` (default), `-0.08in` (large).
+
+## Layout
+
+- **Content column width.** Body copy and bullet lists in content sections should be constrained to ~4 columns (`max-width: 5.05in`), not full page width.
+- **Combined grid for content + quote.** Use `.combined-grid` with `grid-template-columns: 5.05in 1fr` (wide left for content, narrow right for quote) — matching the LUMA PCP pattern.
+- **No rule lines within a content group.** When multiple subsections belong to the same topic (e.g. trust & security bullet groups), keep them in one `.section` with spacing (`margin-top: 0.14in`) between sub-items rather than separate `.section` elements with divider rules.
+
+## Scope
+
+- Reskin edits affect **only** the PDF generator system (pattern library, starters, reskins). Never modify the Brand Guidelines (`mural-brand-guidelines.html`) unless specifically asked.

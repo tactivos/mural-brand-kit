@@ -1,0 +1,354 @@
+[
+  {
+    "id": "mural-wordmark-multicolor",
+    "name": "Mural Wordmark (Multicolor)",
+    "category": "logos/mural",
+    "tags": ["mural", "wordmark", "logo", "multicolor", "brand"],
+    "file": "logos/mural/Mural_Wordmark_Multicolor.svg",
+    "format": "svg"
+  },
+  {
+    "id": "mural-luma-lockup",
+    "name": "Mural + LUMA Lockup",
+    "category": "logos/mural",
+    "tags": ["mural", "luma", "lockup", "logo", "partnership"],
+    "file": "logos/mural/Mural_LUMA_Lockup_Mural_Lead.svg",
+    "format": "svg"
+  },
+  {
+    "id": "ibm-black",
+    "name": "IBM (Black)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "fortune-100", "technology", "black"],
+    "file": "logos/customers/IBM_B.svg",
+    "format": "svg"
+  },
+  {
+    "id": "ibm-white",
+    "name": "IBM (White)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "fortune-100", "technology", "white"],
+    "file": "logos/customers/IBM_W.svg",
+    "format": "svg"
+  },
+  {
+    "id": "microsoft-logo-black",
+    "name": "Microsoft",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "fortune-100", "technology", "partner"],
+    "file": "logos/customers/microsoft-black.svg",
+    "format": "svg"
+  },
+  {
+    "id": "booz-allen-black",
+    "name": "Booz Allen Hamilton (Black)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "fortune-100", "consulting", "black"],
+    "file": "logos/customers/BoozAllenH_B.svg",
+    "format": "svg"
+  },
+  {
+    "id": "booz-allen-white",
+    "name": "Booz Allen Hamilton (White)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "fortune-100", "consulting", "white"],
+    "file": "logos/customers/BoozAllenH_W.svg",
+    "format": "svg"
+  },
+  {
+    "id": "jacobs-black",
+    "name": "Jacobs (Black)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "engineering", "black"],
+    "file": "logos/customers/Jacobs_B.svg",
+    "format": "svg"
+  },
+  {
+    "id": "jacobs-white",
+    "name": "Jacobs (White)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "engineering", "white"],
+    "file": "logos/customers/Jacobs_W.svg",
+    "format": "svg"
+  },
+  {
+    "id": "autodesk-black",
+    "name": "Autodesk (Black)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "technology", "design", "black"],
+    "file": "logos/customers/Autodesk_B.svg",
+    "format": "svg"
+  },
+  {
+    "id": "autodesk-white",
+    "name": "Autodesk (White)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "technology", "design", "white"],
+    "file": "logos/customers/Autodesk_W.svg",
+    "format": "svg"
+  },
+  {
+    "id": "capco-black",
+    "name": "CAPCO (Black)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "consulting", "finance", "black"],
+    "file": "logos/customers/CAPCO_B.svg",
+    "format": "svg"
+  },
+  {
+    "id": "capco-white",
+    "name": "CAPCO (White)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "consulting", "finance", "white"],
+    "file": "logos/customers/CAPCO_W.svg",
+    "format": "svg"
+  },
+  {
+    "id": "github-black",
+    "name": "GitHub (Black)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "technology", "developer", "black"],
+    "file": "logos/customers/Github_B.svg",
+    "format": "svg"
+  },
+  {
+    "id": "github-white",
+    "name": "GitHub (White)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "technology", "developer", "white"],
+    "file": "logos/customers/Github_W.svg",
+    "format": "svg"
+  },
+  {
+    "id": "steelcase-black",
+    "name": "Steelcase (Black)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "furniture", "workplace", "black"],
+    "file": "logos/customers/Steelcase_B.svg",
+    "format": "svg"
+  },
+  {
+    "id": "steelcase-white",
+    "name": "Steelcase (White)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "furniture", "workplace", "white"],
+    "file": "logos/customers/Steelcase_W.svg",
+    "format": "svg"
+  },
+  {
+    "id": "thoughtworks-black",
+    "name": "Thoughtworks (Black)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "consulting", "technology", "black"],
+    "file": "logos/customers/Thoughtworks_B.svg",
+    "format": "svg"
+  },
+  {
+    "id": "thoughtworks-white",
+    "name": "Thoughtworks (White)",
+    "category": "logos/customers",
+    "tags": ["enterprise", "customer", "consulting", "technology", "white"],
+    "file": "logos/customers/Thoughtworks_W.svg",
+    "format": "svg"
+  },
+  {
+    "id": "symbol-partner",
+    "name": "Mural Symbol (Partner)",
+    "category": "logos/partners",
+    "tags": ["mural", "symbol", "partner", "logo"],
+    "file": "logos/partners/Symbol_Partner.svg",
+    "format": "svg"
+  },
+  {
+    "id": "wordmark-partner",
+    "name": "Mural Wordmark (Partner)",
+    "category": "logos/partners",
+    "tags": ["mural", "wordmark", "partner", "logo"],
+    "file": "logos/partners/Wordmark_Partner.svg",
+    "format": "svg"
+  },
+  {
+    "id": "aicpa-soc",
+    "name": "AICPA SOC",
+    "category": "logos/certifications",
+    "tags": ["certification", "security", "compliance", "soc", "audit"],
+    "file": "logos/certifications/aicpa-soc.webp",
+    "format": "webp"
+  },
+  {
+    "id": "ccpa-ready",
+    "name": "CCPA Ready",
+    "category": "logos/certifications",
+    "tags": ["certification", "privacy", "compliance", "ccpa", "california"],
+    "file": "logos/certifications/ccpa-ready.webp",
+    "format": "webp"
+  },
+  {
+    "id": "csa-star",
+    "name": "CSA STAR",
+    "category": "logos/certifications",
+    "tags": ["certification", "security", "cloud", "csa"],
+    "file": "logos/certifications/csa-star.avif",
+    "format": "avif"
+  },
+  {
+    "id": "gdpr-ready",
+    "name": "GDPR Ready",
+    "category": "logos/certifications",
+    "tags": ["certification", "privacy", "compliance", "gdpr", "europe"],
+    "file": "logos/certifications/gdpr-ready.webp",
+    "format": "webp"
+  },
+  {
+    "id": "iso-27001",
+    "name": "ISO 27001",
+    "category": "logos/certifications",
+    "tags": ["certification", "security", "compliance", "iso"],
+    "file": "logos/certifications/iso-27001.webp",
+    "format": "webp"
+  },
+  {
+    "id": "ky3p",
+    "name": "KY3P",
+    "category": "logos/certifications",
+    "tags": ["certification", "security", "compliance", "vendor"],
+    "file": "logos/certifications/ky3p.avif",
+    "format": "avif"
+  },
+  {
+    "id": "microsoft-365-certified",
+    "name": "Microsoft 365 Certified",
+    "category": "logos/certifications",
+    "tags": ["certification", "microsoft", "integration", "365"],
+    "file": "logos/certifications/microsoft-365-certified.png",
+    "format": "png"
+  },
+  {
+    "id": "microsoft-sspa",
+    "name": "Microsoft SSPA",
+    "category": "logos/certifications",
+    "tags": ["certification", "microsoft", "security", "sspa"],
+    "file": "logos/certifications/microsoft-sspa.avif",
+    "format": "avif"
+  },
+  {
+    "id": "luma-logo",
+    "name": "LUMA Logo",
+    "category": "logos/luma",
+    "tags": ["luma", "logo", "brand", "training"],
+    "file": "logos/luma/LUMA_Logo.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-logo-black",
+    "name": "LUMA Logo (Black)",
+    "category": "logos/luma",
+    "tags": ["luma", "logo", "black", "training"],
+    "file": "logos/luma/LUMA_Logo_Black.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-logo-white",
+    "name": "LUMA Logo (White)",
+    "category": "logos/luma",
+    "tags": ["luma", "logo", "white", "training"],
+    "file": "logos/luma/LUMA_Logo_White.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-logo-stacked",
+    "name": "LUMA Logo (Stacked)",
+    "category": "logos/luma",
+    "tags": ["luma", "logo", "stacked", "training"],
+    "file": "logos/luma/LUMA_Logo_Stacked.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-logo-stacked-black",
+    "name": "LUMA Logo Stacked (Black)",
+    "category": "logos/luma",
+    "tags": ["luma", "logo", "stacked", "black", "training"],
+    "file": "logos/luma/LUMA_Logo_Stacked_Black.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-logo-stacked-white",
+    "name": "LUMA Logo Stacked (White)",
+    "category": "logos/luma",
+    "tags": ["luma", "logo", "stacked", "white", "training"],
+    "file": "logos/luma/LUMA_Logo_Stacked_White.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-icon-look",
+    "name": "LUMA Icon: Look",
+    "category": "illustrations",
+    "tags": ["luma", "icon", "look", "method", "training"],
+    "file": "illustrations/LUMA_Icon_Look.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-icon-look-black",
+    "name": "LUMA Icon: Look (Black)",
+    "category": "illustrations",
+    "tags": ["luma", "icon", "look", "method", "black", "training"],
+    "file": "illustrations/LUMA_Icon_Look_Black.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-icon-make",
+    "name": "LUMA Icon: Make",
+    "category": "illustrations",
+    "tags": ["luma", "icon", "make", "method", "training"],
+    "file": "illustrations/LUMA_Icon_Make.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-icon-make-black",
+    "name": "LUMA Icon: Make (Black)",
+    "category": "illustrations",
+    "tags": ["luma", "icon", "make", "method", "black", "training"],
+    "file": "illustrations/LUMA_Icon_Make_Black.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-icon-understand",
+    "name": "LUMA Icon: Understand",
+    "category": "illustrations",
+    "tags": ["luma", "icon", "understand", "method", "training"],
+    "file": "illustrations/LUMA_Icon_Understand.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-icon-understand-black",
+    "name": "LUMA Icon: Understand (Black)",
+    "category": "illustrations",
+    "tags": ["luma", "icon", "understand", "method", "black", "training"],
+    "file": "illustrations/LUMA_Icon_Understand_Black.png",
+    "format": "png"
+  },
+  {
+    "id": "luma-mtb-sketch",
+    "name": "LUMA Methods Toolbox Sketch",
+    "category": "illustrations",
+    "tags": ["luma", "illustration", "methods", "toolbox", "sketch"],
+    "file": "illustrations/LUMA_MTB_Sketch.png",
+    "format": "png"
+  },
+  {
+    "id": "collaborations-illustration",
+    "name": "Collaborations",
+    "category": "illustrations",
+    "tags": ["mural", "illustration", "collaboration", "product", "feature"],
+    "file": "illustrations/Collaborations.svg",
+    "format": "svg"
+  },
+  {
+    "id": "integrations-illustration",
+    "name": "Integrations",
+    "category": "illustrations",
+    "tags": ["mural", "illustration", "integrations", "product", "feature"],
+    "file": "illustrations/Integrations.svg",
+    "format": "svg"
+  }
+]

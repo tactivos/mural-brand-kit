@@ -35,6 +35,9 @@
     --body-space: 6.5pt;
     --small-copy: 8.75pt;
     --shadow: 0 1px 2px rgba(0,0,0,0.08), 0 14px 34px rgba(0,0,0,0.08);
+    --grid-columns: 6;
+    --grid-gutter: 0.24in;
+    --grid-column: 1.01in;
   }
 
   html { font-size: 16px; }
@@ -113,7 +116,7 @@
 
   h1 {
     font-size: 31pt;
-    line-height: 1.1;
+    line-height: 1.08;
     letter-spacing: -1.5px;
   }
 
@@ -154,8 +157,7 @@
   .stat-copy,
   .source-note,
   .image-caption,
-  .resource-list li,
-  .quote-attribution {
+  .resource-list li {
     color: var(--muted);
     text-wrap: pretty;
   }
@@ -181,6 +183,18 @@
     margin-top: 14px;
     max-width: 34em;
   }
+
+  .intro-copy {
+    margin-top: 0.22in;
+    max-width: 5.05in;
+  }
+
+  .intro-copy p {
+    margin: 0 0 var(--body-space);
+    text-wrap: pretty;
+  }
+
+  .intro-copy p:last-child { margin-bottom: 0; }
 
   .eyebrow {
     margin-bottom: 0.08in;
@@ -241,10 +255,60 @@
     border-top: 1px solid var(--rule);
   }
 
+  /* ── Shared grid layouts ─────────────────────────────── */
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
+  }
+
+  .sidebar-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--grid-gutter);
+    align-items: start;
+    flex: 1;
+  }
+
+  .combined-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
+    align-items: start;
+  }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--grid-gutter);
+  }
+
+  .proof-strip {
+    margin-top: 0.28in;
+    padding-top: 0.18in;
+    border-top: 1px solid var(--rule);
+  }
+
+  .proof-strip-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
+    align-items: center;
+  }
+
+  /* ── End shared grid layouts ─────────────────────────── */
+
   .pattern-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.18in 0.22in;
+    gap: var(--grid-gutter);
   }
 
   .pattern-card {
@@ -293,7 +357,7 @@
 
   .specimen-headline.display {
     font-size: 31pt;
-    line-height: 1.1;
+    line-height: 1.08;
     letter-spacing: -1.5px;
     max-width: 10.8em;
   }
@@ -337,8 +401,8 @@
   .specimen-proof-strip {
     margin-top: 0.12in;
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 0.1in;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
     align-items: center;
   }
 
@@ -372,8 +436,8 @@
 
   .specimen-columns {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 0.12in;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
     align-items: start;
   }
 
@@ -416,7 +480,7 @@
   .specimen-bullet-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.12in;
+    gap: var(--grid-gutter);
   }
 
   .specimen-bullet-columns ul {
@@ -442,7 +506,7 @@
   .editorial-three-col {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.18in;
+    gap: var(--grid-gutter);
   }
 
   .editorial-three-col .text-specimen,
@@ -668,7 +732,7 @@
   .stat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.12in;
+    gap: var(--grid-gutter);
     margin-top: 0.1in;
   }
 
@@ -693,8 +757,8 @@
 
   .stat-hero {
     display: grid;
-    grid-template-columns: 1.02fr 0.98fr;
-    gap: 0.22in;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
     align-items: start;
   }
 
@@ -714,7 +778,7 @@
   .stat-hero-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.14in 0.18in;
+    gap: var(--grid-gutter);
   }
 
   .stat-hero-card {
@@ -785,7 +849,7 @@
   .image-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.16in;
+    gap: var(--grid-gutter);
     margin-top: 0.12in;
   }
 
@@ -856,8 +920,8 @@
 
   .screenshot-grid {
     display: grid;
-    grid-template-columns: 1.08fr 0.92fr;
-    gap: 0.16in;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
     align-items: start;
   }
 
@@ -878,7 +942,7 @@
   .logo-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.08in;
+    gap: var(--grid-gutter);
     margin-top: 0.1in;
   }
 
@@ -887,7 +951,7 @@
   .badge-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.12in;
+    gap: var(--grid-gutter);
     margin-top: 0.1in;
   }
 
@@ -927,8 +991,18 @@
     text-align: center;
   }
 
+  /* Default quote — editorial size for use in combined grids and sidebars */
   blockquote {
     position: relative;
+    font-size: 13.3pt;
+    line-height: 1.1;
+    letter-spacing: -0.35px;
+    max-width: 4.9in;
+    text-wrap: pretty;
+  }
+
+  /* Large quote — use when a quote is the dominant element on a page */
+  blockquote.quote-large {
     font-size: 18pt;
     line-height: 1.2;
     letter-spacing: -0.5px;
@@ -937,17 +1011,23 @@
 
   .quote-open {
     position: absolute;
-    left: -0.08in;
+    left: -0.065in;
     top: 0;
     line-height: 1;
   }
 
-  .quote-attribution {
-    margin-top: 0.12in;
-    font-size: 9pt;
-    line-height: 1.4;
-    color: var(--black);
+  .quote-large .quote-open {
+    left: -0.08in;
   }
+
+  .quote-attribution {
+    margin-top: 0.1in;
+    font-size: 8.2pt;
+    line-height: 1.35;
+    color: var(--black);
+    text-wrap: pretty;
+  }
+
 
   .quote-logo-placeholder {
     margin-top: 0.08in;
@@ -1047,6 +1127,82 @@
       page-break-after: auto;
     }
   }
+
+  /* ── Grid system visualizations ───────────────────────── */
+
+  .grid-demo {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), 1fr);
+    gap: var(--grid-gutter);
+  }
+
+  .grid-col {
+    background: rgba(0, 194, 122, 0.12);
+    border: 1px dashed rgba(0, 194, 122, 0.4);
+    height: 0.48in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7.5pt;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .grid-layout-demo {
+    display: grid;
+    gap: var(--grid-gutter);
+    margin-top: 0.08in;
+  }
+
+  .grid-layout-cell {
+    background: rgba(0, 194, 122, 0.08);
+    border: 1px dashed rgba(0, 194, 122, 0.3);
+    padding: 0.1in 0.14in;
+    font-size: 7.5pt;
+    color: var(--muted);
+  }
+
+  .grid-layout-cell strong {
+    display: block;
+    font-size: 8pt;
+    color: var(--black);
+    font-weight: 500;
+    margin-bottom: 0.02in;
+  }
+
+  .grid-spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    margin-top: 0.08in;
+  }
+
+  .grid-spec-table th {
+    text-align: left;
+    font-weight: 500;
+    padding: 0.06in 0.1in;
+    border-bottom: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .grid-spec-table td {
+    padding: 0.06in 0.1in;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    vertical-align: top;
+  }
+
+  .grid-spec-table code {
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 7.5pt;
+    background: rgba(0,0,0,0.04);
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+
 </style>
 </head>
 <body>
@@ -1536,10 +1692,20 @@
 
         <section class="section">
           <div class="pattern-card">
-            <p class="eyebrow">Pattern: Quote and resources</p>
-            <p class="pattern-copy pattern-guidance">Let the opening quote mark hang left so the quote, heading, and attribution align.</p>
+            <p class="eyebrow">Pattern: Quote (default)</p>
+            <p class="pattern-copy pattern-guidance">The default quote style for use in combined grids, sidebars, and alongside body content. 13.3pt, tight leading. Attribution in black at 8.2pt.</p>
             <blockquote><span class="quote-open">&ldquo;</span>Use a short quote to reinforce the story with one strong external voice.&rdquo;</blockquote>
-            <p class="quote-attribution">Name, title, organization</p>
+            <p class="quote-attribution"><strong>Name</strong><br>Title, organization</p>
+            <div class="logo-box image-placeholder quote-logo-placeholder">Company logo</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="pattern-card">
+            <p class="eyebrow">Pattern: Quote (large)</p>
+            <p class="pattern-copy pattern-guidance">Use when a quote is the dominant element on the page or needs to carry more visual weight. 18pt, slightly looser leading. Add the <code>.quote-large</code> class to the blockquote element.</p>
+            <blockquote class="quote-large"><span class="quote-open">&ldquo;</span>Use a short quote to reinforce the story with one strong external voice.&rdquo;</blockquote>
+            <p class="quote-attribution"><strong>Name</strong><br>Title, organization</p>
             <div class="logo-box image-placeholder quote-logo-placeholder">Company logo</div>
           </div>
         </section>
@@ -1565,6 +1731,110 @@
           <span class="page-signature-url">mural.co</span>
         </a>
         <div class="page-number">Page 7</div>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Pattern library</div>
+          <div class="right">Grid system</div>
+        </header>
+
+        <section class="page-opening">
+          <h2>Grid system</h2>
+          <p class="deck">All PDF layouts share a 6-column grid. Column gaps, content widths, and named layout patterns are derived from this grid so that spacing is consistent across every document type.</p>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Base grid: 6 columns</p>
+          <table class="grid-spec-table">
+            <tr>
+              <th>Property</th>
+              <th>Variable</th>
+              <th>Value</th>
+            </tr>
+            <tr>
+              <td>Page width</td>
+              <td><code>--page-width</code></td>
+              <td>8.5 in</td>
+            </tr>
+            <tr>
+              <td>Page padding</td>
+              <td><code>--page-padding-x</code></td>
+              <td>0.62 in each side</td>
+            </tr>
+            <tr>
+              <td>Content area</td>
+              <td>&mdash;</td>
+              <td>7.26 in</td>
+            </tr>
+            <tr>
+              <td>Columns</td>
+              <td><code>--grid-columns</code></td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>Column width</td>
+              <td><code>--grid-column</code></td>
+              <td>1.01 in</td>
+            </tr>
+            <tr>
+              <td>Gutter</td>
+              <td><code>--grid-gutter</code></td>
+              <td>0.24 in</td>
+            </tr>
+          </table>
+
+          <div class="grid-demo" style="margin-top: 0.14in;">
+            <div class="grid-col">1</div>
+            <div class="grid-col">2</div>
+            <div class="grid-col">3</div>
+            <div class="grid-col">4</div>
+            <div class="grid-col">5</div>
+            <div class="grid-col">6</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Named layouts</p>
+
+          <p class="image-caption pattern-guidance" style="margin-bottom: 0.1in;">Every layout below uses <code>gap: var(--grid-gutter)</code> for column spacing.</p>
+
+          <p style="font-size: 8pt; font-weight: 500; margin: 0.12in 0 0.04in;">Full-width (6 of 6)</p>
+          <div class="grid-layout-demo" style="grid-template-columns: 1fr;">
+            <div class="grid-layout-cell"><strong>.page-opening, .section</strong>Spans all 6 columns</div>
+          </div>
+
+          <p style="font-size: 8pt; font-weight: 500; margin: 0.12in 0 0.04in;">Two-column &mdash; 3 + 3</p>
+          <div class="grid-layout-demo" style="grid-template-columns: 1fr 1fr;">
+            <div class="grid-layout-cell"><strong>.two-col</strong>3 cols</div>
+            <div class="grid-layout-cell"><strong>.two-col</strong>3 cols</div>
+          </div>
+
+          <p style="font-size: 8pt; font-weight: 500; margin: 0.12in 0 0.04in;">Sidebar &mdash; 2 + 4</p>
+          <div class="grid-layout-demo" style="grid-template-columns: 1fr 2fr;">
+            <div class="grid-layout-cell"><strong>.sidebar-layout</strong>2 cols</div>
+            <div class="grid-layout-cell"><strong>.sidebar-layout</strong>4 cols</div>
+          </div>
+
+          <p style="font-size: 8pt; font-weight: 500; margin: 0.12in 0 0.04in;">Three-column &mdash; 2 + 2 + 2</p>
+          <div class="grid-layout-demo" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="grid-layout-cell"><strong>.three-col, .stat-grid</strong>2 cols</div>
+            <div class="grid-layout-cell"><strong>.three-col, .stat-grid</strong>2 cols</div>
+            <div class="grid-layout-cell"><strong>.three-col, .stat-grid</strong>2 cols</div>
+          </div>
+        </section>
+
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <div class="page-number">Page 8</div>
       </div>
     </section>
   </main>

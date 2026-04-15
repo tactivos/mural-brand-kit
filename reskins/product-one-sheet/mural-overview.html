@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mural Overview — Product One-Sheet</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --jade: #00C27A;
+    --mural-green: #00843F;
+    --mural-blue: #5887FF;
+    --mural-pink: #FC83FF;
+    --mural-red: #FF4B4B;
+    --mural-yellow: #FFAA00;
+    --natural: #EDEDD8;
+    --black: #000000;
+    --white: #FFFFFF;
+    --paper: #f3f1ec;
+    --rule: rgba(0, 0, 0, 0.12);
+    --muted: rgba(0, 0, 0, 0.64);
+    --font-headline: 'STK Bureau', 'STK Bureau Serif', 'Merriweather', Georgia, serif;
+    --font-body: 'ABC Social', Arial, Helvetica, sans-serif;
+    --page-width: 8.5in;
+    --page-height: 11in;
+    --page-padding-x: 0.62in;
+    --page-padding-y: 0.58in;
+    --hang-offset: 0.34in;
+    --body-copy: 10pt;
+    --body-leading: 13pt;
+    --body-space: 6.5pt;
+    --small-copy: 8.75pt;
+    --shadow: 0 1px 2px rgba(0,0,0,0.08), 0 14px 34px rgba(0,0,0,0.08);
+    --grid-columns: 6;
+    --grid-gutter: 0.24in;
+    --grid-column: 1.01in;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    margin: 0;
+    background: #141414;
+    color: var(--black);
+    font-family: var(--font-body);
+    font-weight: 300;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .document { max-width: calc(var(--page-width) + 1.4in); margin: 0 auto; padding: 0 0 48px; }
+
+  .page {
+    width: var(--page-width);
+    min-height: var(--page-height);
+    margin: 0 auto 28px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page:last-child { margin-bottom: 0; }
+
+  .brand-bar { display: flex; height: 10px; }
+  .brand-bar span:nth-child(1) { flex: 16; background: var(--mural-pink); }
+  .brand-bar span:nth-child(2) { flex: 33; background: var(--mural-red); }
+  .brand-bar span:nth-child(3) { flex: 9.5; background: var(--mural-green); }
+  .brand-bar span:nth-child(4) { flex: 15; background: var(--mural-yellow); }
+  .brand-bar span:nth-child(5) { flex: 26; background: var(--mural-blue); }
+
+  .page-inner {
+    padding: var(--page-padding-y) var(--page-padding-x);
+    min-height: calc(var(--page-height) - 10px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    font-size: var(--small-copy);
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-bottom: 0.16in;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .page-meta .right { text-align: right; color: var(--muted); }
+
+  h1, h2, h3, h4, blockquote { font-family: var(--font-headline); font-weight: 300; margin: 0; }
+  h1 { font-size: 31pt; line-height: 1.08; letter-spacing: -1.5px; }
+  h2 { font-size: 23pt; line-height: 1.1; letter-spacing: -1px; }
+  h3 { font-size: 15pt; line-height: 1.08; letter-spacing: -0.3px; }
+
+  p, li { font-size: var(--body-copy); line-height: var(--body-leading); margin: 0; font-weight: 300; letter-spacing: 0; }
+
+  .page-opening { margin-top: var(--hang-offset); }
+
+  .deck { margin-top: 14px; max-width: 34em; color: var(--black); text-wrap: pretty; }
+
+  .eyebrow {
+    margin-bottom: 0.08in;
+    font-size: var(--small-copy);
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .section { margin-top: 0.24in; padding-top: 0.16in; border-top: 1px solid var(--rule); }
+
+  .muted { color: var(--muted); }
+
+  /* --- Body copy --- */
+
+  .body-copy { line-height: var(--body-leading); max-width: 5.05in; }
+  .body-copy p { margin: 0 0 var(--body-space); line-height: var(--body-leading); text-wrap: pretty; }
+  .body-copy p:last-child { margin-bottom: 0; }
+
+  .intro-copy { margin-top: 0.22in; max-width: 5.05in; }
+  .intro-copy p { margin: 0 0 var(--body-space); text-wrap: pretty; }
+  .intro-copy p:last-child { margin-bottom: 0; }
+
+  /* --- Combined grid (LUMA PCP pattern) --- */
+
+  .combined-grid {
+    display: grid;
+    grid-template-columns: 5.05in 1fr;
+    gap: var(--grid-gutter);
+    align-items: start;
+  }
+
+  /* --- Quote --- */
+
+  blockquote {
+    position: relative;
+    font-size: 13.3pt;
+    line-height: 1.1;
+    letter-spacing: -0.35px;
+    max-width: 4.9in;
+    text-wrap: pretty;
+  }
+
+  .quote-open { position: absolute; left: -0.065in; top: 0; line-height: 1; }
+
+  .quote-attribution {
+    margin-top: 0.1in;
+    font-size: 8.2pt;
+    line-height: 1.35;
+    color: var(--black);
+    text-wrap: pretty;
+  }
+
+  /* --- Section heading (sans-serif, per pattern library) --- */
+
+  .section-head {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 18pt;
+    line-height: 1.05;
+    letter-spacing: -0.2px;
+    margin: 0 0 0.09in;
+  }
+
+  /* --- Bullets --- */
+
+  ul, ol { margin: var(--body-space) 0 0; padding-left: 16px; max-width: 5.05in; }
+
+  li { margin-bottom: calc(var(--body-space) / 2); text-wrap: pretty; }
+  li:last-child { margin-bottom: 0; }
+
+  /* --- Logo strip --- */
+
+  .logo-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--grid-gutter);
+    margin-top: 0.1in;
+  }
+
+  .logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0.48in;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.78);
+  }
+
+  .logo-box.has-logo {
+    min-height: auto;
+    border: none;
+    background: transparent;
+    --asset-scale: 1;
+    --asset-shift-x: 0px;
+    --asset-shift-y: 0px;
+  }
+
+  .logo-box img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: calc(100% - 0.14in);
+    max-height: calc(100% - 0.08in);
+    object-fit: contain;
+    transform: translate(var(--asset-shift-x), var(--asset-shift-y)) scale(var(--asset-scale));
+    transform-origin: center;
+  }
+
+
+  /* --- Stat band (pattern library) --- */
+
+  .stat-band {
+    margin-top: 0.12in;
+    padding: 0.18in;
+    background: var(--natural);
+  }
+
+  .stat-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
+    align-items: start;
+  }
+
+  .stat-hero-intro h3 {
+    font-size: 28pt;
+    line-height: 1.02;
+    letter-spacing: -1.2px;
+    max-width: 8.5em;
+  }
+
+  .stat-hero-number {
+    font-family: var(--font-headline);
+    font-weight: 300;
+    font-size: 42pt;
+    line-height: 0.9;
+    letter-spacing: -2px;
+  }
+
+  .stat-hero-text {
+    margin-top: 0.04in;
+    font-size: 9pt;
+    line-height: 1.28;
+    color: var(--muted);
+    max-width: 12em;
+  }
+
+  /* --- Pillar grid --- */
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
+  }
+
+  .pillar {
+    padding-top: 0.1in;
+    border-top: 2px solid var(--black);
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .pillar h3 { font-size: 12.25pt; line-height: 1.18; margin-bottom: 0.05in; letter-spacing: -0.15px; }
+  .pillar p { line-height: var(--body-leading); margin: 0; text-wrap: pretty; }
+
+  /* --- Resource box --- */
+
+  .resource-box { padding-left: 0; }
+  .resource-content { padding-left: 0.18in; border-left: 2px solid var(--jade); }
+  .resource-list ul { margin: 0.06in 0 0; padding-left: 15px; }
+  .resource-list li { font-size: 9.8pt; line-height: 1.38; margin-bottom: 0.03in; color: var(--black); }
+  .resource-list li a { color: var(--black); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  /* --- Footer --- */
+
+  .page-footer {
+    position: absolute;
+    left: var(--page-padding-x);
+    right: var(--page-padding-x);
+    bottom: 0.23in;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .page-number {
+    font-size: 8pt;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.42);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .page-signature {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.12in;
+    color: rgba(0, 0, 0, 0.72);
+    text-decoration: none;
+    font-size: 8.8pt;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .page-signature-wordmark {
+    display: block;
+    object-fit: contain;
+    width: 0.86in;
+    height: auto;
+  }
+
+  .page-signature-url { color: rgba(0, 0, 0, 0.72); }
+
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    body { background: var(--white); }
+    .document { max-width: none; margin: 0; padding: 0; }
+    .page { width: var(--page-width); min-height: var(--page-height); margin: 0; box-shadow: none; break-after: page; page-break-after: always; }
+    .page:last-child { break-after: auto; page-break-after: auto; }
+  }
+</style>
+</head>
+<body>
+  <main class="document">
+
+    <!-- PAGE 1 — Opener + quote + trust & security -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Product overview</div>
+        </header>
+
+        <section class="page-opening">
+          <h1>Make it a mural, not a meeting.</h1>
+          <div class="intro-copy">
+            <p>Choose the only system that combines an intuitive digital whiteboard where teams can collaborate, industry-leading training programs to improve problem-solving, and professional services that deliver business results.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="combined-grid">
+            <div>
+              <p class="eyebrow">Trust and security</p>
+
+              <div class="body-copy">
+                <p><strong>You need an enterprise-grade platform you can trust</strong></p>
+              </div>
+              <ul>
+                <li>Security, privacy, reliability, and compliance measures designed for the world&rsquo;s most security-conscious companies</li>
+                <li>Technical support and implementation solutions for complex organizations</li>
+                <li>Features that give you visibility, security, and control</li>
+              </ul>
+
+              <div class="body-copy" style="margin-top: 0.14in;">
+                <p><strong>You need to transform how teams work together</strong></p>
+              </div>
+              <ul>
+                <li>Mural offers training and services that improve how your teams work together&#8239;&mdash;&#8239;in offices or around the world</li>
+                <li>LUMA System&trade; certification programs equip teams with the collaboration skills to tackle everyday work challenges with creativity and confidence</li>
+              </ul>
+
+              <div class="body-copy" style="margin-top: 0.14in;">
+                <p><strong>You&rsquo;re ready to maximize your Microsoft investments</strong></p>
+              </div>
+              <ul>
+                <li>Mural offers the deepest integration with the Microsoft ecosystem of all visual collaboration platforms</li>
+                <li>Power more efficient workflows across Microsoft Teams, PowerPoint, Azure DevOps, and more</li>
+              </ul>
+
+              <div class="body-copy" style="margin-top: 0.14in;">
+                <p><strong>You want transparent pricing with no catches and no surprises</strong></p>
+              </div>
+              <ul>
+                <li>Choose between seat-based or engagement-based pricing</li>
+                <li>Never get billed retroactively</li>
+              </ul>
+            </div>
+
+            <div>
+              <blockquote><span class="quote-open">&ldquo;</span>Mural enhances our ability to create a safe space for people to collaborate and contribute, whether they&rsquo;re introverted or extroverted, in person or remote. Meetings are more engaging and inclusive, and ultimately, diverse perspectives lead to more innovative, impactful solutions.&rdquo;</blockquote>
+              <p class="quote-attribution"><strong>Bo Storozuk</strong><br>Strategic Learning &amp; Talent Management Consultant</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <img class="page-signature-wordmark" src="../Mural_Wordmark_Multicolor.svg" alt="Mural logo">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <div class="page-number">Page 1</div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 — Templates by team -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Product overview</div>
+        </header>
+
+        <section class="page-opening">
+          <div class="body-copy">
+            <p>Find hundreds of templates to help your teams achieve business goals and find value fast, no matter where your team sits in your organization.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="pillar-grid">
+            <div class="pillar">
+              <h3>Consulting</h3>
+            </div>
+            <div class="pillar">
+              <h3>Executive</h3>
+            </div>
+            <div class="pillar">
+              <h3>Product</h3>
+            </div>
+            <div class="pillar">
+              <h3>Sales</h3>
+            </div>
+            <div class="pillar">
+              <h3>Technology</h3>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <div class="page-number">Page 2</div>
+      </div>
+    </section>
+
+    <!-- PAGE 3 — Customer logos + 95% stat -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Product overview</div>
+        </header>
+
+        <section class="section" style="margin-top: var(--hang-offset); border: none; padding: 0;">
+          <div class="logo-strip" aria-label="Enterprise customer logos">
+            <div class="logo-box has-logo" style="--asset-scale: 1.15;"><img src="../../assets/logos/customers/IBM_B.svg" alt="IBM"></div>
+            <div class="logo-box has-logo"><img src="../../assets/logos/customers/Steelcase_B.svg" alt="Steelcase"></div>
+            <div class="logo-box has-logo"><img src="../../assets/logos/customers/Github_B.svg" alt="GitHub"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 0.92;"><img src="../../assets/logos/customers/Autodesk_B.svg" alt="Autodesk"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 0.95;"><img src="../../assets/logos/customers/Thoughtworks_B.svg" alt="Thoughtworks"></div>
+            <div class="logo-box has-logo"><img src="../../assets/logos/customers/Jacobs_B.svg" alt="Jacobs"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 0.90;"><img src="../../assets/logos/customers/BoozAllenH_B.svg" alt="Booz Allen Hamilton"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 1.12;"><img src="../../assets/logos/customers/CAPCO_B.svg" alt="CAPCO"></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="stat-band">
+            <div class="stat-hero">
+              <div class="stat-hero-intro">
+                <h3>95% of the Fortune 100 partner with us</h3>
+              </div>
+              <div>
+                <div class="body-copy">
+                  <p>Mural makes it easy to come up with innovative ideas, connect with colleagues around the globe, build winning strategies, and coordinate complex initiatives.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <div class="page-number">Page 3</div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

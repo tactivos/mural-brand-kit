@@ -32,6 +32,9 @@
     --body-space: 6.5pt;
     --small-copy: 8.75pt;
     --shadow: 0 1px 2px rgba(0,0,0,0.08), 0 14px 34px rgba(0,0,0,0.08);
+    --grid-columns: 6;
+    --grid-gutter: 0.24in;
+    --grid-column: 1.01in;
   }
 
   html { font-size: 16px; }
@@ -114,7 +117,7 @@
 
   h1 {
     font-size: 31pt;
-    line-height: 1.1;
+    line-height: 1.08;
     letter-spacing: -1.5px;
   }
 
@@ -170,8 +173,8 @@
 
   .two-col {
     display: grid;
-    grid-template-columns: 1.03fr 0.97fr;
-    gap: 0.34in;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
   }
 
   /* --- Layout: pillar grid (2x2) --- */
@@ -179,7 +182,7 @@
   .pillar-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.18in 0.22in;
+    gap: var(--grid-gutter);
   }
 
   .pillar {
@@ -205,8 +208,8 @@
 
   .proof-strip-inner {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 0.28in;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
     align-items: center;
   }
 
@@ -220,7 +223,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.18in;
+    gap: var(--grid-gutter);
   }
 
   .logo-chip {
@@ -300,8 +303,8 @@
 
   .sidebar-layout {
     display: grid;
-    grid-template-columns: 0.42fr 0.58fr;
-    gap: 0.34in;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--grid-gutter);
     align-items: start;
     flex: 1;
   }
