@@ -10,7 +10,7 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 
 | # | Source PDF | Status | Reskin file | Notes |
 |---|-----------|--------|-------------|-------|
-| 1 | Mural Overview One-pager.pdf | Reskinned | reskins/product-one-sheet/mural-overview.html | General Mural pitch, 3 pages |
+| 1 | Mural Overview One-pager.pdf | Audited | reskins/product-one-sheet/mural-overview.html | Single page, reference example |
 | 2 | MURAL_Overview_One Sheet_Release.pdf | Selected | — | Updated release version |
 | 3 | Hybrid Collaboration_One Sheet_Final.pdf | Selected | — | Hybrid work angle |
 | 4 | Customer Success.pdf | Catalogued | — | Could also be use-case |

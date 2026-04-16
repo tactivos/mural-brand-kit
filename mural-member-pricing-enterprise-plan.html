@@ -29,16 +29,21 @@
     --page-padding-x: 0.62in;
     --page-padding-y: 0.58in;
     --hang-offset: 0.34in;
-    --body-copy: 10.5pt;
+    --body-copy: 10pt;
+    --body-leading: 13pt;
+    --body-space: 6.5pt;
     --small-copy: 8.75pt;
     --shadow: 0 1px 2px rgba(0,0,0,0.08), 0 14px 34px rgba(0,0,0,0.08);
+    --grid-columns: 6;
+    --grid-gutter: 0.24in;
+    --grid-column: 1.01in;
   }
 
   html { font-size: 16px; }
 
   body {
     margin: 0;
-    background: var(--paper);
+    background: #141414;
     color: var(--black);
     font-family: var(--font-body);
     font-weight: 300;
@@ -51,7 +56,7 @@
   .document {
     max-width: calc(var(--page-width) + 1.4in);
     margin: 0 auto;
-    padding: 32px 0 48px;
+    padding: 0 0 48px;
   }
 
   .page {
@@ -112,6 +117,8 @@
     margin: 0;
   }
 
+  strong { font-weight: 700; }
+
   h1 {
     font-size: 31pt;
     line-height: 1.08;
@@ -140,7 +147,7 @@
   .resource-list li,
   .quote-attribution {
     font-size: var(--body-copy);
-    color: var(--muted);
+    color: var(--black);
   }
 
   .deck,
@@ -174,16 +181,16 @@
   }
 
   .source-copy {
-    font-size: 10pt;
-    line-height: 13pt;
-    color: #000000;
+    font-size: var(--body-copy);
+    line-height: var(--body-leading);
+    color: var(--black);
     font-weight: 300;
     letter-spacing: 0;
-    max-width: 4.95in;
+    max-width: 5.05in;
   }
 
   .source-copy p {
-    margin: 0 0 6.5pt;
+    margin: 0 0 var(--body-space);
   }
 
   .source-copy h2 {
@@ -194,10 +201,10 @@
   }
 
   .source-copy ul {
-    margin: 0 0 6.5pt;
+    margin: 0 0 var(--body-space);
     padding-left: 18px;
-    font-size: 10pt;
-    line-height: 13pt;
+    font-size: var(--body-copy);
+    line-height: var(--body-leading);
     letter-spacing: 0;
   }
 
@@ -220,22 +227,22 @@
   .intro-grid,
   .closing-grid {
     display: grid;
-    gap: 0.32in;
+    gap: var(--grid-gutter);
   }
 
   .trusted-strip-inner,
-  .intro-grid { grid-template-columns: 1.05fr 0.95fr; }
-  .closing-grid { grid-template-columns: 1.08fr 0.92fr; }
+  .intro-grid { grid-template-columns: 1fr 1fr; }
+  .closing-grid { grid-template-columns: 1fr 1fr; }
 
   .opener-editorial-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0.22in;
+    gap: var(--grid-gutter);
     align-items: start;
   }
 
   .opener-editorial-grid .source-copy {
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 4;
   }
 
   .opener-editorial-grid .benefit-stack {
@@ -263,12 +270,12 @@
 
   .body-copy,
   .trusted-copy {
-    line-height: 1.56;
+    line-height: var(--body-leading);
   }
 
   .body-copy p,
   .trusted-copy p {
-    margin: 0 0 0.12in;
+    margin: 0 0 var(--body-space);
   }
 
   .body-copy p:last-child,
@@ -296,10 +303,10 @@
 
   .benefit-card p {
     margin: 0;
-    font-size: 10pt;
-    line-height: 13pt;
+    font-size: var(--body-copy);
+    line-height: var(--body-leading);
     letter-spacing: 0;
-    color: #000000;
+    color: var(--black);
     font-weight: 300;
     max-width: 20em;
   }
@@ -311,7 +318,7 @@
   .pillar-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.18in 0.22in;
+    gap: 0.18in var(--grid-gutter);
   }
 
   .pillar {
@@ -339,7 +346,7 @@
     margin-top: 0.1in;
     font-size: 9.6pt;
     line-height: 1.45;
-    color: var(--muted);
+    color: var(--black);
   }
 
   .matrix-superhead {
@@ -512,9 +519,9 @@
 
   .quote-company-logo {
     display: block;
-    width: 1.05in;
+    width: 0.68in;
     height: auto;
-    margin-top: 0.08in;
+    margin-top: 0.06in;
   }
 
   .resource-box {
@@ -554,7 +561,7 @@
   .opener-quote .quote-attribution {
     margin-top: 0.1in;
     font-size: 8.2pt;
-    line-height: 1.35;
+    line-height: 1.2;
   }
 
   .closing-copy h2 {
@@ -565,7 +572,7 @@
     margin: 0.12in 0 0;
     font-size: 9.6pt;
     line-height: 1.45;
-    color: var(--muted);
+    color: var(--black);
     max-width: 28em;
   }
 
@@ -745,10 +752,9 @@
               </div>
             </div>
             <div class="opener-quote">
-              <p class="kicker">Customer perspective</p>
-              <blockquote><span class="quote-open">&ldquo;</span>Mural enhances our ability to create a safe space for people to collaborate and contribute, whether they're introverted or extroverted, in person or remote. Meetings are more engaging and inclusive, and ultimately, diverse perspectives lead to more innovative, impactful solutions.&rdquo;</blockquote>
-              <p class="quote-attribution">Bo Storozuk, Strategic Learning &amp; Talent Management Consultant</p>
-              <img class="quote-company-logo" src="Jacobs_Wordmark_Black.svg" alt="Jacobs logo">
+              <blockquote><span class="quote-open">&ldquo;</span>Mural enhances our ability to create a safe space for people to collaborate and contribute, whether they&rsquo;re introverted or extroverted, in person or remote. Meetings are more engaging and inclusive, and ultimately, diverse perspectives lead to more innovative, impactful solutions.&rdquo;</blockquote>
+              <p class="quote-attribution"><strong>Bo Storozuk</strong><br>Strategic Learning &amp; Talent Management Consultant</p>
+              <img class="quote-company-logo" src="assets/logos/customers/Jacobs_B.svg" alt="Jacobs logo">
             </div>
           </div>
         </section>
