@@ -175,7 +175,7 @@
     margin-top: 0.06in;
     font-size: 18pt;
     line-height: 1.05;
-    letter-spacing: 0;
+    letter-spacing: -0.2px;
     color: var(--black);
     text-wrap: pretty;
   }
@@ -233,6 +233,13 @@
   .trusted-strip-inner,
   .intro-grid { grid-template-columns: 1fr 1fr; }
   .closing-grid { grid-template-columns: 1fr 1fr; }
+
+  .combined-grid {
+    display: grid;
+    grid-template-columns: 5.05in 1fr;
+    gap: var(--grid-gutter);
+    align-items: start;
+  }
 
   .opener-editorial-grid {
     display: grid;
@@ -707,6 +714,7 @@
 </head>
 <body>
   <main class="document">
+    <!-- PAGE 1 — Combined grid with quote right, benefits in 3-col below -->
     <section class="page">
       <div class="brand-bar" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span>
@@ -724,34 +732,20 @@
         </section>
 
         <section class="trusted-strip">
-          <div class="opener-editorial-grid">
-            <div class="source-copy">
-              <p>Mural's seat-based pricing model offers a predictable approach to procurement and provisioning user access.</p>
+          <div class="combined-grid">
+            <div class="source-copy" style="max-width: none;">
+              <p>Mural&rsquo;s seat-based pricing model offers a predictable approach to procurement and provisioning user access.</p>
               <p>For Enterprise plan customers, the Member pricing model offers four user types: Full Members, Limited Members, Guests, and Visitors. Each user type has access to the capabilities and features that best fit their needs.</p>
               <p>This model lets companies assign users the appropriate level of access in accordance with their security and compliance standards, while allowing users to collaborate seamlessly with clients, customers, and consultants without compromising security.</p>
               <h2>Predictable and straightforward pricing&#8239;&mdash;&#8239;no catches, no surprises.</h2>
               <p>Mural is committed to offering flexible and transparent pricing with no catches and no surprises.</p>
               <ul>
                 <li>Never get billed retroactively.</li>
-                <li>Plus, we'll never surprise you with a bill or invoice.</li>
+                <li>Plus, we&rsquo;ll never surprise you with a bill or invoice.</li>
               </ul>
               <p>Contact a Mural account representative for more information.</p>
             </div>
-            <div class="benefit-stack" aria-label="Enterprise pricing benefits">
-              <div class="benefit-card security">
-                <h3>Security</h3>
-                <p>Enable secure, authenticated access that supports strict data privacy and security standards.</p>
-              </div>
-              <div class="benefit-card scalability">
-                <h3>Scalability</h3>
-                <p>Scale collaboration by extending the benefits of Mural across the broader employee base.</p>
-              </div>
-              <div class="benefit-card control">
-                <h3>Control</h3>
-                <p>Easily manage user access and entitlements through the company dashboard.</p>
-              </div>
-            </div>
-            <div class="opener-quote">
+            <div class="opener-quote" style="margin-top: 0; padding-top: 0;">
               <blockquote><span class="quote-open">&ldquo;</span>Mural enhances our ability to create a safe space for people to collaborate and contribute, whether they&rsquo;re introverted or extroverted, in person or remote. Meetings are more engaging and inclusive, and ultimately, diverse perspectives lead to more innovative, impactful solutions.&rdquo;</blockquote>
               <p class="quote-attribution"><strong>Bo Storozuk</strong><br>Strategic Learning &amp; Talent Management Consultant</p>
               <img class="quote-company-logo" src="assets/logos/customers/Jacobs_B.svg" alt="Jacobs logo">
@@ -759,6 +753,22 @@
           </div>
         </section>
 
+        <section class="section" style="border-top: none;">
+          <div class="pillar-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 5.05in;">
+            <div class="pillar">
+              <h3>Security</h3>
+              <p>Enable secure, authenticated access that supports strict data privacy and security standards.</p>
+            </div>
+            <div class="pillar">
+              <h3>Scalability</h3>
+              <p>Scale collaboration by extending the benefits of Mural across the broader employee base.</p>
+            </div>
+            <div class="pillar">
+              <h3>Control</h3>
+              <p>Easily manage user access and entitlements through the company dashboard.</p>
+            </div>
+          </div>
+        </section>
       </div>
       <div class="page-footer">
         <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">

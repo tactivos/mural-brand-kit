@@ -40,7 +40,10 @@ When reskinning, use **only** these three files as references:
 - `h1` line-height: `1.08` (not `1.1`).
 - `.deck` color: `var(--black)` (not `var(--muted)`).
 - Body copy is black. Gray (`var(--muted)`) is for instructional text in the pattern library only.
-- **Readable measure is required.** `.body-copy` gets `max-width: 62ch`. `ul, ol` get `max-width: 62ch`. `.deck` gets `max-width: 34em`. Body text must never run full page width unconstrained.
+- **`strong { font-weight: 700; }`** must be included in every reskin for consistent bold rendering.
+- **Use typography tokens.** All reskins must define `--body-copy: 10pt`, `--body-leading: 13pt`, `--body-space: 6.5pt` in `:root` and use them instead of hardcoded values.
+- **Subhead letter-spacing.** Text at 18pt (e.g. `.hero-subhead`) uses `letter-spacing: -0.2px`.
+- **Readable measure is required.** `.body-copy` gets `max-width: 5.05in`. `ul, ol` get `max-width: 5.05in`. `.deck` gets `max-width: 34em`. Body text must never run full page width unconstrained.
 - No forced line breaks (`<br>`) in headlines unless the content genuinely requires it.
 - **Headline-to-body spacing.** Body copy directly below a headline in `.page-opening` uses `.intro-copy` (not `.body-copy` or `.deck`), which provides `margin-top: 0.22in` and `max-width: 5.05in`. No rule line should appear between a headline and its supporting body copy.
 
@@ -57,7 +60,9 @@ When reskinning, use **only** these three files as references:
 - **Combined grid for content + quote.** Use `.combined-grid` with `grid-template-columns: 5.05in 1fr` (wide left for content, narrow right for quote) — matching the LUMA PCP pattern.
 - **No rule lines within a content group.** When multiple subsections belong to the same topic (e.g. trust & security bullet groups), keep them in one `.section` with spacing (`margin-top: 0.14in`) between sub-items rather than separate `.section` elements with divider rules.
 - **No rule line before colored background blocks.** When a `.section` contains a colored background element (e.g. `.stat-band` with `var(--natural)`), suppress the rule line with `border-top: none`. The background color provides enough visual separation.
+- **No rule line before subordinate components.** When benefit cards, pillar grids, or similar components appear directly below body copy in the same content flow, suppress the section rule (`border-top: none`). The pillar top-borders provide enough visual structure.
 - **Page numbers only on multi-page documents.** Single-page PDFs should not display a page number. Only add `.page-number` elements when the document has two or more pages.
+- **Quote placement consistency.** When a page uses `.combined-grid`, place the quote in the right column. This maintains a consistent position across document types (e.g. Mural Overview and Member Pricing both use this pattern).
 
 ## Scope
 
