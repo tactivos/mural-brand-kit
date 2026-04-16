@@ -92,14 +92,12 @@
     border-bottom: 1px solid var(--rule);
   }
 
-  .page-meta .right { text-align: right; color: var(--muted); }
-
-  h1, h2, h3, h4, blockquote { font-family: var(--font-headline); font-weight: 300; margin: 0; }
+  h1, h3, blockquote { font-family: var(--font-headline); font-weight: 300; margin: 0; }
   h1 { font-size: 31pt; line-height: 1.08; letter-spacing: -1.5px; }
-  h2 { font-size: 23pt; line-height: 1.1; letter-spacing: -1px; }
   h3 { font-size: 15pt; line-height: 1.08; letter-spacing: -0.3px; }
 
   p, li { font-size: var(--body-copy); line-height: var(--body-leading); margin: 0; font-weight: 300; letter-spacing: 0; }
+  strong { font-weight: 700; }
 
   .page-opening { margin-top: var(--hang-offset); }
 
@@ -115,6 +113,7 @@
   }
 
   .section { margin-top: 0.24in; padding-top: 0.16in; border-top: 1px solid var(--rule); }
+  .section-flush { margin-top: var(--hang-offset); padding-top: 0; border-top: none; }
 
   .muted { color: var(--muted); }
 
@@ -153,9 +152,18 @@
   .quote-attribution {
     margin-top: 0.1in;
     font-size: 8.2pt;
-    line-height: 1.35;
+    line-height: 1.2;
     color: var(--black);
     text-wrap: pretty;
+  }
+
+  .quote-company-logo {
+    display: block;
+    margin-top: 0.1in;
+    margin-left: -0.02in;
+    width: 0.68in;
+    height: auto;
+    object-fit: contain;
   }
 
   /* --- Section heading (sans-serif, per pattern library) --- */
@@ -172,6 +180,7 @@
   /* --- Bullets --- */
 
   ul, ol { margin: var(--body-space) 0 0; padding-left: 16px; max-width: 5.05in; }
+  .body-copy + ul, .body-copy + ol { margin-top: 0; }
 
   li { margin-bottom: calc(var(--body-space) / 2); text-wrap: pretty; }
   li:last-child { margin-bottom: 0; }
@@ -220,7 +229,7 @@
 
   .stat-band {
     margin-top: 0.12in;
-    padding: 0.18in;
+    padding: 0.18in 0.18in 0.24in;
     background: var(--natural);
   }
 
@@ -345,7 +354,7 @@
         <section class="page-opening">
           <h1>Make it a mural, not a meeting.</h1>
           <div class="intro-copy">
-            <p>Choose the only system that combines an intuitive digital whiteboard where teams can collaborate, industry-leading training programs to improve problem-solving, and professional services that deliver business results.</p>
+            <p>When ideas are visible, progress accelerates. Mural&rsquo;s intuitive workspace and AI-powered tools bring teams into alignment instantly&thinsp;&mdash;&thinsp;helping you move from concept to outcome with speed and clarity. Seeing is how&trade; Mural gets Sales, Marketing, R&amp;D, and Consulting teams to outcomes faster.</p>
           </div>
         </section>
 
@@ -367,8 +376,8 @@
                 <p><strong>You need to transform how teams work together</strong></p>
               </div>
               <ul>
-                <li>Mural offers training and services that improve how your teams work together&#8239;&mdash;&#8239;in offices or around the world</li>
-                <li>LUMA System&trade; certification programs equip teams with the collaboration skills to tackle everyday work challenges with creativity and confidence</li>
+                <li>Mural offers training and services that improve how your teams work together<br>&#8239;&mdash;&#8239;in offices or around the world</li>
+                <li>LUMA System&trade; certification programs equip teams with the collaboration skills<br>to tackle everyday work challenges with creativity and confidence</li>
               </ul>
 
               <div class="body-copy" style="margin-top: 0.14in;">
@@ -391,87 +400,12 @@
             <div>
               <blockquote><span class="quote-open">&ldquo;</span>Mural enhances our ability to create a safe space for people to collaborate and contribute, whether they&rsquo;re introverted or extroverted, in person or remote. Meetings are more engaging and inclusive, and ultimately, diverse perspectives lead to more innovative, impactful solutions.&rdquo;</blockquote>
               <p class="quote-attribution"><strong>Bo Storozuk</strong><br>Strategic Learning &amp; Talent Management Consultant</p>
+              <img class="quote-company-logo" src="../../assets/logos/customers/Jacobs_B.svg" alt="Jacobs logo">
             </div>
           </div>
         </section>
-      </div>
-      <div class="page-footer">
-        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
-          <img class="page-signature-wordmark" src="../Mural_Wordmark_Multicolor.svg" alt="Mural logo">
-          <span class="page-signature-url">mural.co</span>
-        </a>
-        <div class="page-number">Page 1</div>
-      </div>
-    </section>
 
-    <!-- PAGE 2 — Templates by team -->
-    <section class="page">
-      <div class="brand-bar" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <div class="page-inner">
-        <header class="page-meta">
-          <div class="left">Product overview</div>
-        </header>
-
-        <section class="page-opening">
-          <div class="body-copy">
-            <p>Find hundreds of templates to help your teams achieve business goals and find value fast, no matter where your team sits in your organization.</p>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="pillar-grid">
-            <div class="pillar">
-              <h3>Consulting</h3>
-            </div>
-            <div class="pillar">
-              <h3>Executive</h3>
-            </div>
-            <div class="pillar">
-              <h3>Product</h3>
-            </div>
-            <div class="pillar">
-              <h3>Sales</h3>
-            </div>
-            <div class="pillar">
-              <h3>Technology</h3>
-            </div>
-          </div>
-        </section>
-      </div>
-      <div class="page-footer">
-        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
-          <span class="page-signature-url">mural.co</span>
-        </a>
-        <div class="page-number">Page 2</div>
-      </div>
-    </section>
-
-    <!-- PAGE 3 — Customer logos + 95% stat -->
-    <section class="page">
-      <div class="brand-bar" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <div class="page-inner">
-        <header class="page-meta">
-          <div class="left">Product overview</div>
-        </header>
-
-        <section class="section" style="margin-top: var(--hang-offset); border: none; padding: 0;">
-          <div class="logo-strip" aria-label="Enterprise customer logos">
-            <div class="logo-box has-logo" style="--asset-scale: 1.15;"><img src="../../assets/logos/customers/IBM_B.svg" alt="IBM"></div>
-            <div class="logo-box has-logo"><img src="../../assets/logos/customers/Steelcase_B.svg" alt="Steelcase"></div>
-            <div class="logo-box has-logo"><img src="../../assets/logos/customers/Github_B.svg" alt="GitHub"></div>
-            <div class="logo-box has-logo" style="--asset-scale: 0.92;"><img src="../../assets/logos/customers/Autodesk_B.svg" alt="Autodesk"></div>
-            <div class="logo-box has-logo" style="--asset-scale: 0.95;"><img src="../../assets/logos/customers/Thoughtworks_B.svg" alt="Thoughtworks"></div>
-            <div class="logo-box has-logo"><img src="../../assets/logos/customers/Jacobs_B.svg" alt="Jacobs"></div>
-            <div class="logo-box has-logo" style="--asset-scale: 0.90;"><img src="../../assets/logos/customers/BoozAllenH_B.svg" alt="Booz Allen Hamilton"></div>
-            <div class="logo-box has-logo" style="--asset-scale: 1.12;"><img src="../../assets/logos/customers/CAPCO_B.svg" alt="CAPCO"></div>
-          </div>
-        </section>
-
-        <section class="section">
+        <section class="section" style="border-top: none; margin-top: 0.16in; padding-top: 0;">
           <div class="stat-band">
             <div class="stat-hero">
               <div class="stat-hero-intro">
@@ -484,13 +418,25 @@
               </div>
             </div>
           </div>
+          <div style="background: var(--natural); padding: 0 0.18in;"><hr style="margin: 0; border: none; border-top: 1px solid var(--rule);"></div>
+          <div class="logo-strip" style="margin-top: 0; padding: 0.16in 0.18in 0.24in; background: var(--natural);" aria-label="Enterprise customer logos">
+            <div class="logo-box has-logo" style="--asset-scale: 0.92;"><img src="../../assets/logos/customers/IBM_B.svg" alt="IBM"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 0.65;"><img src="../../assets/logos/customers/Steelcase_B.svg" alt="Steelcase"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 0.65;"><img src="../../assets/logos/customers/Github_B.svg" alt="GitHub"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 0.74;"><img src="../../assets/logos/customers/Autodesk_B.svg" alt="Autodesk"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 0.76;"><img src="../../assets/logos/customers/Thoughtworks_B.svg" alt="Thoughtworks"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 0.76;"><img src="../../assets/logos/customers/Jacobs_B.svg" alt="Jacobs"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 0.90;"><img src="../../assets/logos/customers/BoozAllenH_B.svg" alt="Booz Allen Hamilton"></div>
+            <div class="logo-box has-logo" style="--asset-scale: 0.86;"><img src="../../assets/logos/customers/CAPCO_B.svg" alt="CAPCO"></div>
+          </div>
         </section>
       </div>
       <div class="page-footer">
         <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <img class="page-signature-wordmark" src="../../Mural_Wordmark_Multicolor.svg" alt="Mural logo">
           <span class="page-signature-url">mural.co</span>
         </a>
-        <div class="page-number">Page 3</div>
+        <div class="page-number">Page 1</div>
       </div>
     </section>
 

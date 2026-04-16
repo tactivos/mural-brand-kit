@@ -5,9 +5,18 @@ alwaysApply: true
 
 # Reskin Rules
 
+## Approved references
+
+When reskinning, use **only** these three files as references:
+1. **Pattern library** (`mural-pdf-generator-pattern-library.html`) — canonical source for component styles, class names, and CSS specs.
+2. **LUMA PCP** (`luma-practitioner-certification-program.html`) — quality bar for layout, spacing, and typography.
+3. **Mural Overview** (`reskins/product-one-sheet/mural-overview.html`) — quality bar for content-heavy product documents.
+
+**Do NOT reference the 7 starter HTML files in `starters/`.** They were scaffolded early, have not been audited, and contain drift from the refined rules.
+
 ## Source of truth
 
-- **Pattern library is canonical.** Always consult `mural-pdf-generator-pattern-library.html` first for component styles, class names, and layout patterns. Starter files have NOT been audited and may contain drift — do not copy from starters.
+- **Pattern library is canonical.** Always consult `mural-pdf-generator-pattern-library.html` first for component styles, class names, and layout patterns.
 - **Carry over all content.** Every piece of content from the original PDF must appear in the reskin. Cross-check page by page — missing logos, stats, lists, or sections is a failure.
 - **Do not replicate old visual design.** The original PDF's layout, colors, and styling are being replaced. Use only pattern library components to present the carried-over content.
 - **Do not invent copy.** Never generate headlines, body text, eyebrow labels, or link lists that aren't in the original PDF. If content doesn't exist in the source, don't add it. The reskin is a visual transformation, not a rewrite.
@@ -39,7 +48,7 @@ alwaysApply: true
 
 - **Default quote** (`blockquote`): 13.3pt, line-height 1.1, letter-spacing -0.35px, max-width 4.9in. Use in combined grids, sidebars, and alongside body content.
 - **Large quote** (`blockquote.quote-large`): 18pt, line-height 1.2, letter-spacing -0.5px, max-width 15.8em. Use when the quote is the dominant element on the page.
-- **Attribution is consistent** across both styles: 8.2pt, line-height 1.35, color `var(--black)`, margin-top 0.1in. Include a company logo when available.
+- **Attribution is consistent** across both styles: 8.2pt, line-height 1.2, color `var(--black)`, margin-top 0.1in. Include a company logo when available.
 - `.quote-open` hangs left: `-0.065in` (default), `-0.08in` (large).
 
 ## Layout
@@ -47,6 +56,7 @@ alwaysApply: true
 - **Content column width.** Body copy and bullet lists in content sections should be constrained to ~4 columns (`max-width: 5.05in`), not full page width.
 - **Combined grid for content + quote.** Use `.combined-grid` with `grid-template-columns: 5.05in 1fr` (wide left for content, narrow right for quote) — matching the LUMA PCP pattern.
 - **No rule lines within a content group.** When multiple subsections belong to the same topic (e.g. trust & security bullet groups), keep them in one `.section` with spacing (`margin-top: 0.14in`) between sub-items rather than separate `.section` elements with divider rules.
+- **No rule line before colored background blocks.** When a `.section` contains a colored background element (e.g. `.stat-band` with `var(--natural)`), suppress the rule line with `border-top: none`. The background color provides enough visual separation.
 
 ## Scope
 
