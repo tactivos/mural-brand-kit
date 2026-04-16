@@ -286,6 +286,11 @@
     gap: var(--grid-gutter);
   }
 
+  .pillar-grid.three-up {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 5.05in;
+  }
+
   .three-col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1828,6 +1833,13 @@
             <div class="grid-layout-cell"><strong>.three-col, .stat-grid</strong>2 cols</div>
             <div class="grid-layout-cell"><strong>.three-col, .stat-grid</strong>2 cols</div>
             <div class="grid-layout-cell"><strong>.three-col, .stat-grid</strong>2 cols</div>
+          </div>
+
+          <p style="font-size: 8pt; font-weight: 500; margin: 0.12in 0 0.04in;">Three-column pillars &mdash; constrained to content width (5.05in)</p>
+          <div class="grid-layout-demo" style="grid-template-columns: repeat(3, 1fr); max-width: 5.05in;">
+            <div class="grid-layout-cell"><strong>.pillar-grid.three-up</strong></div>
+            <div class="grid-layout-cell"><strong>.pillar-grid.three-up</strong></div>
+            <div class="grid-layout-cell"><strong>.pillar-grid.three-up</strong></div>
           </div>
         </section>
 
