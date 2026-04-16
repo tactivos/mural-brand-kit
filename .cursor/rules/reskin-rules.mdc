@@ -57,6 +57,7 @@ When reskinning, use **only** these three files as references:
 - **Combined grid for content + quote.** Use `.combined-grid` with `grid-template-columns: 5.05in 1fr` (wide left for content, narrow right for quote) — matching the LUMA PCP pattern.
 - **No rule lines within a content group.** When multiple subsections belong to the same topic (e.g. trust & security bullet groups), keep them in one `.section` with spacing (`margin-top: 0.14in`) between sub-items rather than separate `.section` elements with divider rules.
 - **No rule line before colored background blocks.** When a `.section` contains a colored background element (e.g. `.stat-band` with `var(--natural)`), suppress the rule line with `border-top: none`. The background color provides enough visual separation.
+- **Page numbers only on multi-page documents.** Single-page PDFs should not display a page number. Only add `.page-number` elements when the document has two or more pages.
 
 ## Scope
 
