@@ -46,6 +46,7 @@ When reskinning, use **only** these three files as references:
 - **Readable measure is required.** `.body-copy` gets `max-width: 5.05in`. `ul, ol` get `max-width: 5.05in`. `.deck` gets `max-width: 34em`. Body text must never run full page width unconstrained.
 - No forced line breaks (`<br>`) in headlines unless the content genuinely requires it.
 - **Headline-to-body spacing.** Body copy directly below a headline in `.page-opening` uses `.intro-copy` (not `.body-copy` or `.deck`), which provides `margin-top: 0.22in` and `max-width: 5.05in`. No rule line should appear between a headline and its supporting body copy.
+- **Body copy paragraph spacing.** Consecutive paragraphs within `.body-copy` use `margin-bottom: var(--body-space)` (6.5pt) with `:last-child { margin-bottom: 0; }`. This matches `.intro-copy` paragraph spacing. Do not collapse paragraphs to `margin: 0`.
 
 ## Quotes
 

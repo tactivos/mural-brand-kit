@@ -31,7 +31,7 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 
 | # | Source PDF | Status | Reskin file | Notes |
 |---|-----------|--------|-------------|-------|
-| — | (no existing PDFs) | — | — | Starter template only |
+| 1 | Why Mural over Miro.pdf | Reskinned | reskins/competitive-comparison/mural-vs-miro.html | 6 pages, first competitive comparison |
 
 ## Pricing guide
 
@@ -88,7 +88,7 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 |------|-------|----------|-----------|
 | Product one-sheet | 6 | 3 | 1 |
 | Use case | 5 | 3 | 0 |
-| Competitive comparison | 0 | 0 | 0 |
+| Competitive comparison | 1 | 1 | 1 |
 | Pricing guide | 9 | 3 | 0 |
 | Topic deep-dive | 4 | 3 | 0 |
 | Program overview | 6 | 3 | 1 |

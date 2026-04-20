@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Mural over Miro — Competitive Comparison</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --jade: #00C27A;
+    --mural-green: #00843F;
+    --mural-blue: #5887FF;
+    --mural-pink: #FC83FF;
+    --mural-red: #FF4B4B;
+    --mural-yellow: #FFAA00;
+    --natural: #EDEDD8;
+    --black: #000000;
+    --white: #FFFFFF;
+    --paper: #f3f1ec;
+    --rule: rgba(0, 0, 0, 0.12);
+    --muted: rgba(0, 0, 0, 0.64);
+    --font-headline: 'STK Bureau', 'STK Bureau Serif', 'Merriweather', Georgia, serif;
+    --font-body: 'ABC Social', Arial, Helvetica, sans-serif;
+    --page-width: 8.5in;
+    --page-height: 11in;
+    --page-padding-x: 0.62in;
+    --page-padding-y: 0.58in;
+    --hang-offset: 0.34in;
+    --body-copy: 10pt;
+    --body-leading: 13pt;
+    --body-space: 6.5pt;
+    --small-copy: 8.75pt;
+    --shadow: 0 1px 2px rgba(0,0,0,0.08), 0 14px 34px rgba(0,0,0,0.08);
+    --grid-columns: 6;
+    --grid-gutter: 0.24in;
+    --grid-column: 1.01in;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    margin: 0;
+    background: #141414;
+    color: var(--black);
+    font-family: var(--font-body);
+    font-weight: 300;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .document { max-width: calc(var(--page-width) + 1.4in); margin: 0 auto; padding: 0 0 48px; }
+
+  .page {
+    width: var(--page-width);
+    min-height: var(--page-height);
+    margin: 0 auto 28px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page:last-child { margin-bottom: 0; }
+
+  .brand-bar { display: flex; height: 10px; }
+  .brand-bar span:nth-child(1) { flex: 16; background: var(--mural-pink); }
+  .brand-bar span:nth-child(2) { flex: 33; background: var(--mural-red); }
+  .brand-bar span:nth-child(3) { flex: 9.5; background: var(--mural-green); }
+  .brand-bar span:nth-child(4) { flex: 15; background: var(--mural-yellow); }
+  .brand-bar span:nth-child(5) { flex: 26; background: var(--mural-blue); }
+
+  .page-inner {
+    padding: var(--page-padding-y) var(--page-padding-x);
+    min-height: calc(var(--page-height) - 10px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    font-size: var(--small-copy);
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-bottom: 0.16in;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h1, h2, h3, blockquote { font-family: var(--font-headline); font-weight: 300; margin: 0; }
+  h1 { font-size: 31pt; line-height: 1.08; letter-spacing: -1.5px; }
+  h2 { font-size: 22pt; line-height: 1.08; letter-spacing: -0.8px; }
+  h3 { font-size: 15pt; line-height: 1.08; letter-spacing: -0.3px; }
+
+  p, li { font-size: var(--body-copy); line-height: var(--body-leading); margin: 0; font-weight: 300; letter-spacing: 0; }
+  strong { font-weight: 700; }
+  sup { font-size: 0.6em; line-height: 0; vertical-align: baseline; position: relative; top: -0.4em; }
+
+  .page-opening { margin-top: var(--hang-offset); }
+
+  .deck { margin-top: 14px; max-width: 34em; color: var(--black); text-wrap: pretty; }
+
+  .eyebrow {
+    margin-bottom: 0.08in;
+    font-size: var(--small-copy);
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .section { margin-top: 0.24in; padding-top: 0.16in; border-top: 1px solid var(--rule); }
+
+  .muted { color: var(--muted); }
+
+  /* --- Body copy --- */
+
+  .body-copy { line-height: var(--body-leading); max-width: 5.05in; }
+  .body-copy p { margin: 0 0 var(--body-space); line-height: var(--body-leading); text-wrap: pretty; }
+  .body-copy p:last-child { margin-bottom: 0; }
+
+  .intro-copy { margin-top: 0.22in; max-width: 5.05in; }
+  .intro-copy p { margin: 0 0 var(--body-space); text-wrap: pretty; }
+  .intro-copy p:last-child { margin-bottom: 0; }
+
+  /* --- Combined grid --- */
+
+  .combined-grid {
+    display: grid;
+    grid-template-columns: 5.05in 1fr;
+    gap: var(--grid-gutter);
+    align-items: start;
+  }
+
+  /* --- Quote --- */
+
+  blockquote {
+    position: relative;
+    font-size: 13.3pt;
+    line-height: 1.1;
+    letter-spacing: -0.35px;
+    max-width: 4.9in;
+    text-wrap: pretty;
+  }
+
+  .quote-open { position: absolute; left: -0.065in; top: 0; line-height: 1; }
+
+  blockquote.quote-display {
+    font-size: 31pt;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    max-width: 100%;
+  }
+  blockquote.quote-display .quote-open { left: -0.14in; }
+
+  .quote-attribution {
+    margin-top: 0.1in;
+    font-size: 8.2pt;
+    line-height: 1.2;
+    color: var(--black);
+    text-wrap: pretty;
+  }
+
+  /* --- Section heading (sans-serif) --- */
+
+  .section-head {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 18pt;
+    line-height: 1.05;
+    letter-spacing: -0.2px;
+    margin: 0 0 0.09in;
+  }
+
+  /* --- Bullets --- */
+
+  ul, ol { margin: var(--body-space) 0 0; padding-left: 16px; max-width: 5.05in; }
+  .body-copy + ul, .body-copy + ol { margin-top: var(--body-space); }
+
+  li { margin-bottom: var(--body-space); text-wrap: pretty; }
+  li:last-child { margin-bottom: 0; }
+
+  /* --- Pillar grid --- */
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
+  }
+
+  .pillar-grid.four-up {
+    grid-template-columns: 1fr 1fr;
+    max-width: 5.05in;
+  }
+
+  .pillar {
+    padding-top: 0.1in;
+    border-top: 2px solid var(--black);
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .pillar h3 { font-size: 12.25pt; line-height: 1.18; margin-bottom: 0.05in; letter-spacing: -0.15px; }
+  .pillar p { line-height: var(--body-leading); margin: 0; text-wrap: pretty; }
+
+  /* --- Numbered items (page 2) — 3-column layout --- */
+
+  .numbered-items {}
+
+  .numbered-item {
+    display: grid;
+    grid-template-columns: 0.62in 1.7in 1fr;
+    gap: var(--grid-gutter);
+    padding: 0.22in 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .numbered-item:first-child { border-top: none; padding-top: 0; }
+
+  .numbered-item-number {
+    font-family: var(--font-headline);
+    font-weight: 300;
+    font-size: 56pt;
+    line-height: 0.82;
+    letter-spacing: -2px;
+  }
+
+  .numbered-item-title {
+    font-family: var(--font-headline);
+    font-weight: 300;
+    font-size: 15pt;
+    line-height: 1.08;
+    letter-spacing: -0.3px;
+  }
+
+  .numbered-item p { text-wrap: pretty; }
+
+  /* --- Stat band --- */
+
+  .stat-band {
+    margin-top: 0.12in;
+    padding: 0.18in 0.18in 0.24in;
+    background: var(--natural);
+  }
+
+  .stat-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
+    align-items: start;
+  }
+
+  .stat-hero-intro h3 {
+    font-size: 28pt;
+    line-height: 1.02;
+    letter-spacing: -1.2px;
+    max-width: 8.5em;
+  }
+
+  .stat-hero-number {
+    font-family: var(--font-headline);
+    font-weight: 300;
+    font-size: 42pt;
+    line-height: 0.9;
+    letter-spacing: -2px;
+  }
+
+  .stat-hero-text {
+    margin-top: 0.04in;
+    font-size: 9pt;
+    line-height: 1.2;
+    color: var(--muted);
+    max-width: 12em;
+  }
+
+  /* --- Stat grid (multi-stat, page 6) --- */
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.2in 0.24in;
+    margin-top: 0.16in;
+    padding: 0.24in;
+    background: var(--natural);
+  }
+
+  .stat-item {}
+
+  .stat-number {
+    font-family: var(--font-headline);
+    font-weight: 300;
+    font-size: 34pt;
+    line-height: 0.9;
+    letter-spacing: -1.5px;
+    color: var(--jade);
+  }
+
+  .stat-label {
+    margin-top: 0.04in;
+    font-size: 8.5pt;
+    line-height: 1.3;
+    color: var(--black);
+    max-width: 12em;
+  }
+
+  /* --- Comparison matrix (page 5) --- */
+
+  .comparison-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--body-copy);
+    line-height: var(--body-leading);
+  }
+
+  .comparison-matrix thead th {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--small-copy);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    padding: 0.1in 0.12in;
+    border-bottom: 2px solid var(--black);
+  }
+
+  .comparison-matrix thead th:first-child {
+    text-align: left;
+    width: 60%;
+  }
+
+  .comparison-matrix thead th.col-mural { width: 20%; color: var(--jade); }
+  .comparison-matrix thead th.col-miro { width: 20%; }
+
+  .comparison-matrix tbody td {
+    padding: 0.06in 0.12in;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: middle;
+  }
+
+  .comparison-matrix tbody td:first-child {
+    font-weight: 300;
+    text-align: left;
+  }
+
+  .comparison-matrix tbody td:nth-child(2),
+  .comparison-matrix tbody td:nth-child(3) {
+    text-align: center;
+  }
+
+  .comparison-matrix .group-header td {
+    font-weight: 700;
+    font-size: var(--small-copy);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-top: 0.14in;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  .check { color: var(--jade); font-size: 14pt; }
+  .dash { color: rgba(0,0,0,0.2); font-size: 14pt; }
+
+  /* --- Microsoft ecosystem graphic --- */
+
+  .ecosystem-graphic {
+    margin-top: 0.2in;
+    text-align: center;
+  }
+
+  .ecosystem-graphic img {
+    width: 100%;
+    max-width: 6.5in;
+    height: auto;
+  }
+
+  /* --- Award callout --- */
+
+  .award-callout {
+    margin-top: 0.16in;
+    padding: 0.14in 0.18in;
+    background: var(--natural);
+    display: inline-block;
+    font-size: var(--body-copy);
+    line-height: var(--body-leading);
+  }
+
+  /* --- Footer --- */
+
+  .page-footer {
+    position: absolute;
+    left: var(--page-padding-x);
+    right: var(--page-padding-x);
+    bottom: 0.23in;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .page-number {
+    font-size: 8pt;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.42);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .page-signature {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.12in;
+    color: rgba(0, 0, 0, 0.72);
+    text-decoration: none;
+    font-size: 8.8pt;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .page-signature-wordmark {
+    display: block;
+    object-fit: contain;
+    width: 0.86in;
+    height: auto;
+  }
+
+  .page-signature-url { color: rgba(0, 0, 0, 0.72); }
+
+  .footnote {
+    font-size: 7.5pt;
+    color: var(--muted);
+    margin-top: 0.08in;
+  }
+
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    body { background: var(--white); }
+    .document { max-width: none; margin: 0; padding: 0; }
+    .page { width: var(--page-width); min-height: var(--page-height); margin: 0; box-shadow: none; break-after: page; page-break-after: always; }
+    .page:last-child { break-after: auto; page-break-after: auto; }
+  }
+</style>
+</head>
+<body>
+  <main class="document">
+
+    <!-- PAGE 1 — Hero + value props + stat -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Competitive comparison</div>
+        </header>
+
+        <section class="page-opening">
+          <h1>Miro gives you tools, but only Mural helps you transform your teamwork.</h1>
+          <div class="intro-copy">
+            <p>Enterprise teams need solutions that work across the organization. While Miro works for specific use cases, only Mural excels in cross-functional settings.</p>
+            <p>With greater customizability, stronger security, a more intuitive interface, and smart teamwork practices, Mural beats Miro for enterprise users.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="combined-grid">
+            <div>
+              <div class="body-copy">
+                <p><strong>Get started in an instant with no learning curve</strong></p>
+                <p>Mural&rsquo;s user-friendly platform makes it easy for anyone to get up and running in a flash. With built-in templates and Mural AI, you can streamline workflows and run more efficient brainstorms right away, in real-time or asynchronously.</p>
+              </div>
+              <div class="body-copy" style="margin-top: 0.14in;">
+                <p><strong>Customized solutions for today and tomorrow</strong></p>
+                <p>Every organization has its own unique needs. Mural&rsquo;s best-in-class customer success and service teams are dedicated to tailoring a solution that works for you as you scale.</p>
+              </div>
+              <div class="body-copy" style="margin-top: 0.14in;">
+                <p><strong>A platform and a system, all in one</strong></p>
+                <p>Smart teamwork practices&thinsp;&mdash;&thinsp;based on the proven LUMA System&trade;&thinsp;&mdash;&thinsp;are embedded in Mural through tools and templates that help teams get to the good stuff, faster.</p>
+              </div>
+              <div class="body-copy" style="margin-top: 0.14in;">
+                <p><strong>AI capabilities focused on the future of collaboration</strong></p>
+                <p>Quickly generate ideas, create mind maps, cluster information, and more with our built-in AI. We also integrate with Microsoft Copilot for powerful AI functionality across the Microsoft ecosystem.</p>
+              </div>
+              <div class="body-copy" style="margin-top: 0.14in;">
+                <p><strong>Mural offers best in class visibility, security, and control</strong></p>
+                <p>Mural provides the security and controls enterprises require. Our data residency offering, identity management, data protection, information governance, and collaboration controls make Mural an enterprise partner you can trust.</p>
+              </div>
+            </div>
+            <div>
+              <div class="stat-hero-number">100%</div>
+              <p class="stat-hero-text" style="max-width: 100%;">of surveyed Fortune 500 organizations agree that they would recommend Mural over other whiteboard competitors because Mural&rsquo;s enterprise product offerings and services are superior.<sup>1</sup></p>
+            </div>
+          </div>
+          <p class="footnote"><sup>1</sup> Mural Survey, 2022. Retrieved from third party vendor.</p>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <img class="page-signature-wordmark" src="../../Mural_Wordmark_Multicolor.svg" alt="Mural logo">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <span class="page-number">Page 1</span>
+      </div>
+    </section>
+
+    <!-- PAGE 2 — 4 Things Miro customers miss out on -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Competitive comparison</div>
+        </header>
+
+        <section class="page-opening">
+          <h2>4 things Miro customers miss<br>out on by not choosing Mural:</h2>
+        </section>
+
+        <section class="section" style="border-top: none; padding-top: 0; margin-top: 0.22in;">
+          <div class="numbered-items">
+            <div class="numbered-item">
+              <span class="numbered-item-number">1.</span>
+              <span class="numbered-item-title">Intuitive and<br>easy-to-use human-centered design combined with powerful AI</span>
+              <p>Mural&rsquo;s human-centered design philosophy contributes to a product that is intuitive and user-friendly. AI is integrated to support the things people do best, assisting teams with idea generation, clustering of information, and streamlining redundant and repetitive tasks. Using Mural, teams can get started quickly and conquer the blank page by generating ideas, finding common themes, and expanding on concepts efficiently to solve problems and reach unexpected conclusions.</p>
+            </div>
+            <div class="numbered-item">
+              <span class="numbered-item-number">2.</span>
+              <span class="numbered-item-title">A transformation partner</span>
+              <p>Unlike Miro, Mural excels as a transformation partner by actively addressing user engagement and motivation challenges. Mural provides much more than digital resources and onboarding programs; it integrates expert guidance, customized deployment, flexible growth models, and hands-on support, ensuring users understand the platform&rsquo;s capabilities and are motivated to use them effectively. This approach is particularly beneficial for activating broader and more effective workflows across various organizational levels and teams.</p>
+            </div>
+            <div class="numbered-item">
+              <span class="numbered-item-number">3.</span>
+              <span class="numbered-item-title">Comprehensive system and design</span>
+              <p>Mural&rsquo;s LUMA System offers a unique blend of advanced teamwork practices and thoughtfully-designed templates to accelerate innovation, resources, and training while enhancing productivity and creativity. We&rsquo;re the only vendor dedicated to giving our customers not just a better tool, but a better way to work.</p>
+            </div>
+            <div class="numbered-item">
+              <span class="numbered-item-number">4.</span>
+              <span class="numbered-item-title">High performance and collaboration capabilities</span>
+              <p>Mural&rsquo;s unique set of features for those conducting workshops and meetings helps facilitators save time, stay in control, and keep sessions engaging. They allow for interactive guidance of participants, reduction in bias through private mode, and control of the experience through a custom toolbar. Experience a premium product for every employee that&rsquo;s built to scale, able to provide stability with no loss of performance, even among thousands of participants.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <span class="page-number">Page 2</span>
+      </div>
+    </section>
+
+    <!-- PAGE 3 — Competitive weaknesses + quote -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Competitive comparison</div>
+        </header>
+
+        <section class="page-opening">
+          <h2>The features enterprise leaders want,<br>the functionality enterprise teams need.</h2>
+          <div class="body-copy" style="margin-top: 0.22in;">
+            <p>&ldquo;More&rdquo; isn&rsquo;t the same as &ldquo;better.&rdquo; Miro has features that might be exciting for designers but make little sense for most enterprise users. As business needs grow and evolve, particularly when cross-functional coordination is required, Miro&rsquo;s complexity can pose a challenge.</p>
+            <p>User feedback indicates that Miro struggles in cross-functional settings due to:</p>
+          </div>
+          <ul>
+            <li><strong>Overwhelming complexity:</strong> Miro&rsquo;s suite of features, while comprehensive, can be overwhelming for users, particularly in cross-functional collaboration. This complexity can make the platform&rsquo;s entry point especially challenging to navigate, and users may find it overly complicated.</li>
+            <li><strong>Difficulty in demonstrating cross-functional use cases:</strong> Miro isn&rsquo;t built for cross-functional use cases and can require additional, often costly, support services to work across the enterprise, which can be a huge barrier for organizations that need a wall-to-wall solution.</li>
+            <li><strong>Workflow integration and performance challenges:</strong> While Miro boasts a wide array of integrations, the functionality and maintenance of these integrations is inconsistent, often forcing users to rely on external tools. This creates a disjointed experience, contrary to the seamless workflow Miro claims to provide. Miro&rsquo;s performance challenges are especially acute when it comes to scale, making it an unreliable solution for the interactions with customers and outside participants where you can&rsquo;t risk failure.</li>
+          </ul>
+
+          <div style="margin-top: 0.28in;">
+            <blockquote class="quote-display"><span class="quote-open">&ldquo;</span>Mural has made team efforts simple.<br>I am able to share concepts in stages, make edits, build IA wireframes, and basic design concepts within the tool so non-design contributors can collaborate without limitations.&rdquo;</blockquote>
+            <p class="quote-attribution"><strong>IT Specialist</strong><br>State &amp; Local Government</p>
+          </div>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <span class="page-number">Page 3</span>
+      </div>
+    </section>
+
+    <!-- PAGE 4 — Microsoft ecosystem -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Competitive comparison</div>
+        </header>
+
+        <section class="page-opening">
+          <h2>The most comprehensive visual collaboration solution for the Microsoft ecosystem</h2>
+          <div class="intro-copy">
+            <p>Mural is the only visual collaboration app to become M365 certified for customer data privacy and security.</p>
+            <p>Mural is built for Microsoft-powered organizations and designed to integrate seamlessly with the Microsoft ecosystem to scale effective teamwork.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="body-copy">
+            <p><strong>Mural&rsquo;s trusted platform and deep integrations deliver a connected experience where you&rsquo;re already working:</strong></p>
+          </div>
+          <ul>
+            <li>10+ years of investment across Microsoft</li>
+            <li>Powered by Microsoft Azure</li>
+            <li>Integrations with core M365 apps like Outlook, Office.com, Excel, PowerPoint, OneDrive, and Teams&thinsp;&mdash;&thinsp;and winner of Microsoft&rsquo;s 2022 Partner of the Year award</li>
+            <li>Integration with Microsoft Azure DevOps for connected agile workflows</li>
+            <li>Azure Active Directory for modern identity management</li>
+            <li>Buy through Azure Marketplace and retire Microsoft Azure Consumption Commitment (MACC)</li>
+          </ul>
+          <div class="award-callout">
+            <strong>Apps &amp; Solutions for Microsoft Teams Award</strong><br>
+            2022 Partner of the Year Winner
+          </div>
+        </section>
+
+        <div class="ecosystem-graphic">
+          <img src="../../assets/logos/partners/microsoft-ecosystem.svg" alt="Mural integrations with the Microsoft ecosystem including Teams, Word, Excel, PowerPoint, OneDrive, Outlook, GitHub, Azure DevOps, Surface Hub, Entra ID, Intune MAM, and Copilot">
+        </div>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <span class="page-number">Page 4</span>
+      </div>
+    </section>
+
+    <!-- PAGE 5 — Feature comparison matrix -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Competitive comparison</div>
+        </header>
+
+        <section class="page-opening">
+          <h2>Miro or Mural?</h2>
+          <div class="intro-copy">
+            <p>Miro&rsquo;s good for capturing ideas, but Mural can help transform your teamwork.</p>
+          </div>
+        </section>
+
+        <section class="section" style="border-top: none; padding-top: 0; margin-top: 0.18in;">
+          <table class="comparison-matrix">
+            <thead>
+              <tr>
+                <th></th>
+                <th class="col-mural">Mural</th>
+                <th class="col-miro">Miro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="group-header"><td colspan="3">Platform Capabilities</td></tr>
+              <tr><td>Focus Mode (simplified view with condensed tools and navigation)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>Delegate Facilitators (delegate full facilitation controls to any user)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>Support basic use cases with few participants and up to scaled collaboration with thousands of participants</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>Outline Mode (custom shareable and exportable rich media outlines)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>Custom Toolbar (control the tools members, guests, and visitors can use)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>Microsoft AI Copilot Integration</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>In-App Learning Journeys &amp; Collaboration Guides</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>In-App Chat Support</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>Human-Centered Design Certifications</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>Mural insights (activity analytics in a Mural/board)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>LUMA System&trade; Templates</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>Custom Transformation Professional Services</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr class="group-header"><td colspan="3">Secure Collaboration</td></tr>
+              <tr><td>Visitor Access Link Expiration Date</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>Confidential Rooms (Mural/board spaces with an added level of security)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr><td>Custom Guest Deactivation Periods</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <span class="page-number">Page 5</span>
+      </div>
+    </section>
+
+    <!-- PAGE 6 — Pricing + SAP ROI -->
+    <section class="page">
+      <div class="brand-bar" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="page-inner">
+        <header class="page-meta">
+          <div class="left">Competitive comparison</div>
+        </header>
+
+        <section class="page-opening">
+          <h2>Pricing Transparency. No catches, no surprises.</h2>
+          <div class="intro-copy">
+            <p>Mural has a transparent approach to pricing that has been developed over 11+ years of focusing on enterprise needs. Simply put, we understand how to partner with enterprise customers. With Mural&rsquo;s new Enterprise plan, every employee can experience a premium product that isn&rsquo;t priced like one.</p>
+            <p>Mural&rsquo;s enterprise sales experts are here to support you, and our pricing and packaging are designed to meet your organization&rsquo;s needs.</p>
+          </div>
+        </section>
+
+        <section class="section" style="border-top: none; padding-top: 0; margin-top: 0.1in;">
+          <ul>
+            <li>You can trust Mural&rsquo;s pricing and packaging to meet your needs</li>
+            <li>Pricing stays predictable, even as you grow with Mural</li>
+            <li>No more concerns about excluding collaborators due to license costs</li>
+            <li>Enjoy seamless and affordable collaboration with internal and external participants</li>
+            <li>Easily manage all your memberships</li>
+            <li>Don&rsquo;t overpay. Avoid surprise bills and unanticipated price hikes</li>
+          </ul>
+          <div class="body-copy" style="margin-top: 0.14in;">
+            <p>Enterprise pricing can be discussed with <strong>our sales team</strong>.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Case study</p>
+          <h3>Unpacking SAP&rsquo;s ROI with Mural</h3>
+          <div class="stat-grid">
+            <div class="stat-item">
+              <div class="stat-number">10%</div>
+              <p class="stat-label">increase in design thinking project efficiency from presales</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">23%</div>
+              <p class="stat-label">reduction in avoidable in-person workshops</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">10%</div>
+              <p class="stat-label">improvement in project efficiency from UX design</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">9.6%</div>
+              <p class="stat-label">increase in projects enabled in hybrid environment</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">9.9%</div>
+              <p class="stat-label">improvement in design thinking project efficiency from service sales</p>
+            </div>
+          </div>
+          <p class="footnote">Source: Mural Survey, 2022. Retrieved from third party vendor.</p>
+        </section>
+      </div>
+      <div class="page-footer">
+        <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
+          <span class="page-signature-url">mural.co</span>
+        </a>
+        <span class="page-number">Page 6</span>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
