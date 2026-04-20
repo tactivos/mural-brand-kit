@@ -1027,6 +1027,18 @@
     left: -0.08in;
   }
 
+  /* Display quote — title-weight quote for maximum visual impact */
+  blockquote.quote-display {
+    font-size: 31pt;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    max-width: 100%;
+  }
+
+  blockquote.quote-display .quote-open {
+    left: -0.14in;
+  }
+
   .quote-attribution {
     margin-top: 0.1in;
     font-size: 8.2pt;
@@ -1714,6 +1726,15 @@
             <blockquote class="quote-large"><span class="quote-open">&ldquo;</span>Use a short quote to reinforce the story with one strong external voice.&rdquo;</blockquote>
             <p class="quote-attribution"><strong>Name</strong><br>Title, organization</p>
             <div class="logo-box image-placeholder quote-logo-placeholder">Company logo</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="pattern-card">
+            <p class="eyebrow">Pattern: Quote (display)</p>
+            <p class="pattern-copy pattern-guidance">Use when a quote needs maximum visual impact, matching title-weight typography. 31pt, line-height 1.08, letter-spacing -1.5px — identical to <code>h1</code>. Best placed below body copy as a standalone element, not inside a combined grid. Add the <code>.quote-display</code> class to the blockquote element.</p>
+            <blockquote class="quote-display"><span class="quote-open">&ldquo;</span>Use a short, powerful quote that anchors the page with the weight of a headline.&rdquo;</blockquote>
+            <p class="quote-attribution"><strong>Name</strong><br>Title, organization</p>
           </div>
         </section>
 
