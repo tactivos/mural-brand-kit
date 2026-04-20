@@ -94,8 +94,8 @@
 
   h1, h2, h3, blockquote { font-family: var(--font-headline); font-weight: 300; margin: 0; }
   h1 { font-size: 31pt; line-height: 1.08; letter-spacing: -1.5px; }
-  h2 { font-size: 22pt; line-height: 1.08; letter-spacing: -0.8px; }
-  h3 { font-size: 15pt; line-height: 1.08; letter-spacing: -0.3px; }
+  h2 { font-size: 22pt; line-height: 1.08; letter-spacing: -0.8px; max-width: 5.05in; }
+  h3 { font-size: 15pt; line-height: 1.08; letter-spacing: -0.3px; max-width: 5.05in; }
 
   p, li { font-size: var(--body-copy); line-height: var(--body-leading); margin: 0; font-weight: 300; letter-spacing: 0; }
   strong { font-weight: 700; }
@@ -314,19 +314,19 @@
   .comparison-matrix {
     width: 100%;
     border-collapse: collapse;
-    font-size: var(--body-copy);
-    line-height: var(--body-leading);
+    font-size: 8.3pt;
+    line-height: 1.25;
   }
 
   .comparison-matrix thead th {
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: var(--small-copy);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-size: 8.9pt;
+    line-height: 1.1;
     text-align: center;
-    padding: 0.1in 0.12in;
-    border-bottom: 2px solid var(--black);
+    padding: 0.08in 0.1in;
+    color: rgba(0,0,0,0.88);
+    border-bottom: 1px solid rgba(0,0,0,0.24);
   }
 
   .comparison-matrix thead th:first-child {
@@ -334,18 +334,26 @@
     width: 60%;
   }
 
-  .comparison-matrix thead th.col-mural { width: 20%; color: var(--jade); }
+  .comparison-matrix thead th.col-mural { width: 20%; }
   .comparison-matrix thead th.col-miro { width: 20%; }
 
+  .comparison-matrix tbody tr.natural {
+    background: var(--natural);
+  }
+
   .comparison-matrix tbody td {
-    padding: 0.06in 0.12in;
-    border-bottom: 1px solid var(--rule);
+    padding: 0.055in 0.08in;
     vertical-align: middle;
+    color: rgba(0,0,0,0.92);
   }
 
   .comparison-matrix tbody td:first-child {
     font-weight: 300;
     text-align: left;
+  }
+
+  .comparison-matrix .group-header td:first-child {
+    font-weight: 700;
   }
 
   .comparison-matrix tbody td:nth-child(2),
@@ -355,26 +363,31 @@
 
   .comparison-matrix .group-header td {
     font-weight: 700;
-    font-size: var(--small-copy);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding-top: 0.14in;
-    border-bottom: 2px solid var(--rule);
+    font-size: 8.9pt;
+    line-height: 1.1;
+    color: rgba(0,0,0,0.88);
+    padding-top: 0.3in;
+    padding-bottom: 0.08in;
+    background: transparent;
+    border-bottom: none;
   }
 
-  .check { color: var(--jade); font-size: 14pt; }
-  .dash { color: rgba(0,0,0,0.2); font-size: 14pt; }
+  .comparison-matrix .group-header:first-child td {
+    padding-top: 0.1in;
+  }
+
+  .check { color: var(--black); font-size: 10pt; }
+  .dash { color: rgba(0,0,0,0.2); font-size: 10pt; }
 
   /* --- Microsoft ecosystem graphic --- */
 
   .ecosystem-graphic {
-    margin-top: 0.2in;
-    text-align: center;
+    margin: 0.5in 0 0.3in;
+    max-width: 5.05in;
   }
 
   .ecosystem-graphic img {
     width: 100%;
-    max-width: 6.5in;
     height: auto;
   }
 
@@ -382,11 +395,19 @@
 
   .award-callout {
     margin-top: 0.16in;
-    padding: 0.14in 0.18in;
-    background: var(--natural);
-    display: inline-block;
+    padding-top: 0.14in;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 0.18in;
     font-size: var(--body-copy);
     line-height: var(--body-leading);
+  }
+
+  .award-callout img {
+    height: 0.6in;
+    width: auto;
+    flex-shrink: 0;
   }
 
   /* --- Footer --- */
@@ -600,16 +621,17 @@
         </header>
 
         <section class="page-opening">
-          <h2>The most comprehensive visual collaboration solution for the Microsoft ecosystem</h2>
-          <div class="intro-copy">
-            <p>Mural is the only visual collaboration app to become M365 certified for customer data privacy and security.</p>
-            <p>Mural is built for Microsoft-powered organizations and designed to integrate seamlessly with the Microsoft ecosystem to scale effective teamwork.</p>
-          </div>
+          <h2>Mural is built for Microsoft-powered organizations and designed to integrate seamlessly with the Microsoft ecosystem to scale effective teamwork</h2>
         </section>
+
+        <div class="ecosystem-graphic">
+          <img src="../../assets/logos/partners/microsoft-ecosystem.svg" alt="Mural integrations with the Microsoft ecosystem including Teams, Word, Excel, PowerPoint, OneDrive, Outlook, GitHub, Azure DevOps, Surface Hub, Entra ID, Intune MAM, and Copilot">
+        </div>
 
         <section class="section">
           <div class="body-copy">
-            <p><strong>Mural&rsquo;s trusted platform and deep integrations deliver a connected experience where you&rsquo;re already working:</strong></p>
+            <p><strong>The most comprehensive visual collaboration solution for the Microsoft ecosystem</strong></p>
+            <p>Mural&rsquo;s trusted platform and deep integrations deliver a connected experience where you&rsquo;re already working:</p>
           </div>
           <ul>
             <li>10+ years of investment across Microsoft</li>
@@ -620,14 +642,9 @@
             <li>Buy through Azure Marketplace and retire Microsoft Azure Consumption Commitment (MACC)</li>
           </ul>
           <div class="award-callout">
-            <strong>Apps &amp; Solutions for Microsoft Teams Award</strong><br>
-            2022 Partner of the Year Winner
+            <img src="../../assets/logos/partners/2022-partner-of-the-year.svg" alt="Microsoft 2022 Partner of the Year">
           </div>
         </section>
-
-        <div class="ecosystem-graphic">
-          <img src="../../assets/logos/partners/microsoft-ecosystem.svg" alt="Mural integrations with the Microsoft ecosystem including Teams, Word, Excel, PowerPoint, OneDrive, Outlook, GitHub, Azure DevOps, Surface Hub, Entra ID, Intune MAM, and Copilot">
-        </div>
       </div>
       <div class="page-footer">
         <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">
@@ -659,28 +676,29 @@
             <thead>
               <tr>
                 <th></th>
-                <th class="col-mural">Mural</th>
                 <th class="col-miro">Miro</th>
+                <th class="col-mural">Mural</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="group-header"><td colspan="3">Platform Capabilities</td></tr>
-              <tr><td>Focus Mode (simplified view with condensed tools and navigation)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>Delegate Facilitators (delegate full facilitation controls to any user)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>Support basic use cases with few participants and up to scaled collaboration with thousands of participants</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>Outline Mode (custom shareable and exportable rich media outlines)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>Custom Toolbar (control the tools members, guests, and visitors can use)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>Microsoft AI Copilot Integration</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>In-App Learning Journeys &amp; Collaboration Guides</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>In-App Chat Support</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>Human-Centered Design Certifications</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>Mural insights (activity analytics in a Mural/board)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>LUMA System&trade; Templates</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>Custom Transformation Professional Services</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr class="group-header"><td colspan="3">Capabilities</td></tr>
+              <tr class="natural"><td>Delegate Facilitators (delegate full facilitation controls to any user)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Support basic use cases with few participants and up to scaled collaboration with thousands of participants</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>Focus Mode (simplified view with condensed tools and navigation)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Outline Mode (custom shareable and exportable rich media outlines)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>Custom Toolbar (control the tools members, guests, and visitors can use)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Microsoft AI Copilot Integration</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="group-header"><td colspan="3">Platform</td></tr>
+              <tr class="natural"><td>In-App Learning Journeys &amp; Collaboration Guides</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>In-App Chat Support</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>LUMA System&trade; Template</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Human-Centered Design Certifications</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>Custom Transformation Professional Services</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
               <tr class="group-header"><td colspan="3">Secure Collaboration</td></tr>
-              <tr><td>Visitor Access Link Expiration Date</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>Confidential Rooms (Mural/board spaces with an added level of security)</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
-              <tr><td>Custom Guest Deactivation Periods</td><td><span class="check">&#10003;</span></td><td><span class="dash">&mdash;</span></td></tr>
+              <tr class="natural"><td>Confidential Rooms (Mural/board spaces with an added level of security)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Mural insights (activity analytics in a Mural/board)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>Custom Guest Deactivation Periods</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Visitor Access Link Expiration Date</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
             </tbody>
           </table>
         </section>
