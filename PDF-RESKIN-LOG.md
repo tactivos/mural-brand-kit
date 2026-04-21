@@ -31,7 +31,7 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 
 | # | Source PDF | Status | Reskin file | Notes |
 |---|-----------|--------|-------------|-------|
-| 1 | Why Mural over Miro.pdf | Reskinned | reskins/competitive-comparison/mural-vs-miro.html | 6 pages, first competitive comparison |
+| 1 | Why Mural over Miro.pdf | Reskinned | reskins/competitive-comparison/mural-vs-miro.html | 6 pages. Display quote (p3), grouped comparison matrix with subsections (p5), headline-led stat hero (p6), footnote anchoring, soft returns, × marks for competitor gaps |
 
 ## Pricing guide
 
@@ -42,7 +42,7 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 | 3 | Selecting the Right Mural Plan.pdf | Selected | — | Plan comparison |
 | 4 | Member-pricing-model_transition-overview.pdf | Catalogued | — | Transition explainer |
 | 5 | Mural Enterprise Plan - Member Pricing Technical Overview.pdf | Catalogued | — | Technical pricing detail |
-| 6 | Member pricing Enterprise Plan.pdf | Catalogued | — | Enterprise-specific pricing |
+| 6 | Member pricing Enterprise Plan.pdf | Reskinned | reskins/pricing-guide/mural-member-pricing-enterprise-plan.html | Enterprise-specific pricing. Bolded CTAs with sales link |
 | 7 | Mural QEM Pricing.pdf | Catalogued | — | QEM-specific |
 | 8 | Switch to Mural_2023.pdf | Catalogued | — | Older competitive switch |
 | 9 | Why members select Enterprise.pdf | Catalogued | — | Could also be product one-sheet |
@@ -61,7 +61,7 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 | # | Source PDF | Status | Reskin file | Notes |
 |---|-----------|--------|-------------|-------|
 | 1 | LUMA-FCP.pdf | Selected | — | Facilitation Certification Program |
-| 2 | LUMA-PCP.pdf | Reskinned | luma-practitioner-certification-program.html | Reference example for all reskins |
+| 2 | LUMA-PCP.pdf | Reskinned | reskins/program-overview/luma-practitioner-certification-program.html | Reference example for all reskins |
 | 3 | LUMA-Enterprise Buyer.pdf | Selected | — | Enterprise buyer program |
 | 4 | LUMA-ICP.pdf | Catalogued | — | Innovation Certification Program |
 | 5 | Luma System-One Sheet.pdf | Catalogued | — | LUMA System overview |
@@ -84,13 +84,13 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 
 ## Summary
 
-| Type | Total | Selected | Reskinned |
-|------|-------|----------|-----------|
-| Product one-sheet | 6 | 3 | 1 |
-| Use case | 5 | 3 | 0 |
-| Competitive comparison | 1 | 1 | 1 |
-| Pricing guide | 9 | 3 | 0 |
-| Topic deep-dive | 4 | 3 | 0 |
-| Program overview | 6 | 3 | 1 |
-| Partnership one-sheet | 8 | 3 | 0 |
-| **Total** | **38** | **18** | **2** |
+| Type | Total | ≥ Selected | ≥ Reskinned | Audited |
+|------|-------|------------|-------------|---------|
+| Product one-sheet | 6 | 3 | 1 | 1 |
+| Use case | 5 | 3 | 0 | 0 |
+| Competitive comparison | 1 | 1 | 1 | 0 |
+| Pricing guide | 9 | 4 | 1 | 0 |
+| Topic deep-dive | 4 | 3 | 0 | 0 |
+| Program overview | 6 | 3 | 1 | 0 |
+| Partnership one-sheet | 8 | 3 | 0 | 0 |
+| **Total** | **39** | **20** | **4** | **1** |
