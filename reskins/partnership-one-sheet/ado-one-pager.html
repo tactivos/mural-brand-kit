@@ -162,76 +162,39 @@
     height: auto;
   }
 
-  /* --- Page 2 two-column layout --- */
+  /* --- Illustration pair (side by side) --- */
 
-  .steps-grid {
+  .illustration-pair {
     display: grid;
-    grid-template-columns: 3.2in 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: var(--grid-gutter);
-    align-items: start;
+    margin-top: 0.16in;
   }
 
-  .steps-grid ol { max-width: none; }
-
-  /* --- Image frame (screenshot placeholder) --- */
-
-  .image-frame {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 4.4in;
-    border: 1px dashed rgba(0, 0, 0, 0.16);
+  .illustration-pair img {
+    width: 100%;
+    height: auto;
     border-radius: 4px;
-    background:
-      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.08) 1px, transparent 0) 0 0/18px 18px,
-      rgba(0, 0, 0, 0.02);
-    color: rgba(0, 0, 0, 0.54);
-    text-align: center;
-    font-size: 8.5pt;
-    line-height: 1.35;
-    padding: 0.16in;
-  }
-
-  .image-frame strong {
-    display: block;
-    font-size: 10pt;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
-
-  .image-frame span {
-    display: block;
-    margin-top: 0.04in;
-    max-width: 20em;
-  }
-
-  /* --- Step labels (below screenshot) --- */
-
-  .step-labels {
-    display: flex;
-    gap: 0.12in;
-    margin-top: 0.1in;
-    font-size: 7pt;
-    line-height: 1.25;
-    color: var(--muted);
-    text-align: center;
-  }
-
-  .step-labels span {
-    flex: 1;
+    aspect-ratio: 612 / 419;
+    object-fit: cover;
+    object-position: top;
   }
 
   /* --- Award callout --- */
 
   .award-callout {
     margin-top: 0.16in;
+    padding-top: 0.14in;
+    border-top: 1px solid var(--rule);
     display: flex;
     align-items: center;
-    gap: 0.14in;
+    gap: 0.18in;
+    font-size: var(--body-copy);
+    line-height: var(--body-leading);
   }
 
   .award-callout img {
-    height: 0.5in;
+    height: 0.6in;
     width: auto;
     flex-shrink: 0;
   }
@@ -251,7 +214,7 @@
     font-size: 36pt;
     line-height: 0.9;
     letter-spacing: -1.5px;
-    color: var(--jade);
+    color: var(--black);
     flex-shrink: 0;
   }
 
@@ -305,7 +268,7 @@
 
   /* --- Links --- */
 
-  a { color: var(--black); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a { color: #3776E4; text-decoration-thickness: 1px; text-underline-offset: 2px; }
 
   @media print {
     @page { size: letter portrait; margin: 0; }
@@ -330,12 +293,26 @@
         </header>
 
         <section class="page-opening">
+          <h1>Faster, smoother workflows<br>with Azure DevOps and Mural</h1>
+          <div class="deck">
+            <p>Level up your team&rsquo;s next agile ceremony and supercharge your remote standups, sprint planning, and retrospectives.</p>
+          </div>
+        </section>
+
+        <section class="section">
           <div class="combined-grid">
             <div>
-              <h1>Faster, smoother workflows with Azure DevOps and Mural</h1>
-              <div class="deck">
-                <p>Level up your team&rsquo;s next agile ceremony and supercharge your remote standups, sprint planning, and retrospectives.</p>
+              <h2>Make teamwork feel like less work<br>with Mural and Azure DevOps</h2>
+              <div class="body-copy" style="margin-top: 0.12in;">
+                <p>Agile teams can use Mural&rsquo;s visual canvas and templates to</p>
               </div>
+              <ul>
+                <li>Refine work items in a backlog</li>
+                <li>Review a sprint plan</li>
+                <li>Break down a feature into smaller chunks of work</li>
+                <li>Lead a retrospective</li>
+                <li>Build a program board</li>
+              </ul>
             </div>
             <div>
               <blockquote><span class="quote-open">&ldquo;</span>With the recent addition of connecting Azure DevOps to Mural, our workload has decreased &hellip; and we expect to automate even more in the future, quite effectively doing more with less.&rdquo;</blockquote>
@@ -345,22 +322,8 @@
         </section>
 
         <section class="section">
-          <h2>Make teamwork feel like less work with Mural and Azure DevOps</h2>
-          <div class="body-copy" style="margin-top: 0.12in;">
-            <p>Agile teams can use Mural&rsquo;s visual canvas and templates to</p>
-          </div>
-          <ul>
-            <li>Refine work items in a backlog</li>
-            <li>Review a sprint plan</li>
-            <li>Break down a feature into smaller chunks of work</li>
-            <li>Lead a retrospective</li>
-            <li>Build a program board</li>
-          </ul>
-        </section>
-
-        <section class="section" style="border-top: none; padding-top: 0; margin-top: 0.22in;">
           <div class="body-copy">
-            <p><strong>Mural is built for Microsoft-powered organizations and designed to integrate seamlessly with the Microsoft ecosystem to scale effective teamwork.</strong></p>
+            <p><strong>Mural is built for Microsoft-powered organizations and designed to integrate seamlessly with the Microsoft ecosystem to scale effective teamwork.</strong> Mural is the only visual collaboration app to become M365 certified for customer data privacy and security.</p>
           </div>
           <div class="ecosystem-graphic">
             <img src="../../assets/logos/partners/microsoft-ecosystem.svg" alt="Mural integrations with the Microsoft ecosystem including Teams, Word, Excel, PowerPoint, OneDrive, Outlook, GitHub, Azure DevOps, Surface Hub, and Azure AD">
@@ -389,55 +352,25 @@
         <section class="page-opening">
           <h2>Templates and practices to help your team work better</h2>
           <div class="body-copy" style="margin-top: 0.12in;">
-            <p>With Mural and Microsoft Azure DevOps, jumpstart collaboration sessions and guide planning using templates specifically designed for agile ceremonies</p>
+            <p>With Mural and Microsoft Azure DevOps, jumpstart collaboration sessions and guide planning using templates specifically designed for agile ceremonies.</p>
           </div>
+          <ul>
+            <li>Connect to your Azure DevOps organization(s)</li>
+            <li>Use filters to find work items you want to import, or use a query to find work items</li>
+            <li>Import work items as sticky notes on the canvas</li>
+            <li>Create new work items from sticky notes.</li>
+          </ul>
         </section>
 
-        <section class="section" style="border-top: none; padding-top: 0; margin-top: 0.16in;">
-          <div class="steps-grid">
-            <div>
-              <ol>
-                <li>Connect to your Azure DevOps organization(s)</li>
-                <li>Use filters to find work items you want to import, or use a query to find work items</li>
-                <li>Import work items as sticky notes on the canvas</li>
-                <li>Create new work items from sticky notes.</li>
-              </ol>
+        <div class="illustration-pair">
+          <img src="../../assets/illustrations/AzureDevOps1.svg" alt="Mural Azure DevOps import panel showing work item selection, filtering, and import as sticky notes">
+          <img src="../../assets/illustrations/AzureDevOps2.svg" alt="Sprint planning template in Mural with Azure DevOps integration">
+        </div>
 
-              <div class="body-copy" style="margin-top: 0.22in;">
-                <p>To learn more about how you can unlock secure collaboration at scale with Mural&rsquo;s Enterprise plan, contact our sales team today or visit <a href="https://www.mural.co/enterprise">mural.co/enterprise</a>.</p>
-              </div>
+        <div class="body-copy" style="margin-top: 0.22in;">
+            <p><strong>To learn more about how you can unlock secure collaboration at scale with Mural&rsquo;s Enterprise plan, contact <a href="https://www.mural.co/contact-us/sales">our sales team</a> today or visit <a href="https://www.mural.co/enterprise">mural.co/enterprise</a>.</strong></p>
+        </div>
 
-              <div class="body-copy" style="margin-top: 0.16in;">
-                <p><strong>Mural is the only visual collaboration app to become M365 certified for customer data privacy and security.</strong></p>
-              </div>
-
-              <div class="award-callout">
-                <img src="../../assets/logos/partners/2022-partner-of-the-year.svg" alt="Apps &amp; Solutions for Microsoft Teams Award &mdash; 2022 Partner of the Year Winner">
-              </div>
-
-              <div class="stat-callout">
-                <div class="stat-number">93%</div>
-                <p class="stat-label">of surveyed organizations that leverage agile experienced an increase in collaboration and productivity following the implementation of Mural.</p>
-              </div>
-            </div>
-
-            <div>
-              <div class="image-frame">
-                <div>
-                  <strong>Screenshot</strong>
-                  <span>Mural Azure DevOps import panel showing work item selection, filtering, and import as sticky notes.</span>
-                </div>
-              </div>
-              <div class="step-labels">
-                <span>Connect organization</span>
-                <span>Search and filter results</span>
-                <span>Select work items</span>
-                <span>Use custom queries</span>
-                <span>Customize imported sticky notes</span>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
       <div class="page-footer">
         <a class="page-signature" href="https://www.mural.co/" aria-label="Mural website">

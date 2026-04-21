@@ -42,6 +42,7 @@ When reskinning, use **only** these three files as references:
 - Body copy is black. Gray (`var(--muted)`) is for instructional text in the pattern library only.
 - **`strong { font-weight: 700; }`** must be included in every reskin for consistent bold rendering.
 - **Use typography tokens.** All reskins must define `--body-copy: 10pt`, `--body-leading: 13pt`, `--body-space: 6.5pt` in `:root` and use them instead of hardcoded values.
+- **Link color.** All inline links in reskins use Blue ADA (`#3776E4`) with `text-decoration-thickness: 1px` and `text-underline-offset: 2px`. Do not use black or jade for inline text links.
 - **Subhead letter-spacing.** Text at 18pt (e.g. `.hero-subhead`) uses `letter-spacing: -0.2px`.
 - **Readable measure is required.** `.body-copy` gets `max-width: 5.05in`. `ul, ol` get `max-width: 5.05in`. `.deck` gets `max-width: 34em`. Body text must never run full page width unconstrained.
 - No forced line breaks (`<br>`) in headlines unless the content genuinely requires it.
@@ -64,6 +65,7 @@ When reskinning, use **only** these three files as references:
 - **No rule line before colored background blocks.** When a `.section` contains a colored background element (e.g. `.stat-band` with `var(--natural)`), suppress the rule line with `border-top: none`. The background color provides enough visual separation.
 - **No rule line before subordinate components.** When benefit cards, pillar grids, or similar components appear directly below body copy in the same content flow, suppress the section rule (`border-top: none`). The pillar top-borders provide enough visual structure.
 - **Page numbers only on multi-page documents.** Single-page PDFs should not display a page number. Only add `.page-number` elements when the document has two or more pages.
+- **Clean hero area.** The page-opening (title + deck/intro copy) should be full-width and uncluttered. Do not place quotes, stats, or sidebar content alongside the title. Quotes and secondary elements belong in a `.combined-grid` inside a `.section` below the hero — not inside `.page-opening`. Exceptions only when the user explicitly requests it.
 - **Quote placement consistency.** When a page uses `.combined-grid`, place the quote in the right column. This maintains a consistent position across document types (e.g. Mural Overview and Member Pricing both use this pattern).
 - **Three-column pillars.** Use `.pillar-grid.three-up` for benefit/feature cards in a 3-column layout constrained to the content column (`max-width: 5.05in`). Use below body copy in the same content flow, without a rule line above.
 
