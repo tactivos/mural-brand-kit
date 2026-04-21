@@ -107,6 +107,28 @@
 
   .muted { color: var(--muted); }
 
+  /* --- Partner logo lockup --- */
+
+  .partner-lockup {
+    display: flex;
+    align-items: center;
+    gap: 0.18in;
+    margin-top: 0.2in;
+    margin-bottom: 0.18in;
+  }
+
+  .partner-lockup img {
+    height: 0.42in;
+    width: auto;
+  }
+
+  .partner-plus {
+    font-family: var(--font-headline);
+    font-size: 22pt;
+    color: rgba(0, 0, 0, 0.24);
+    line-height: 1;
+  }
+
   /* --- Body copy --- */
 
   .body-copy { line-height: var(--body-leading); max-width: 5.05in; }
@@ -291,6 +313,12 @@
         <header class="page-meta">
           <div class="left">Integration partnership</div>
         </header>
+
+        <div class="partner-lockup">
+          <img src="../../Mural_Wordmark_Multicolor.svg" alt="Mural logo" style="width: 1.2in; height: auto;">
+          <span class="partner-plus">+</span>
+          <img src="../../assets/logos/partners/azure-devops.svg" alt="Azure DevOps logo">
+        </div>
 
         <section class="page-opening">
           <h1>Faster, smoother workflows<br>with Azure DevOps and Mural</h1>
