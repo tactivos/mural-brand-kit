@@ -660,6 +660,69 @@
     color: rgba(0, 0, 0, 0.62);
   }
 
+  /* Grouped comparison matrix — subsectioned competitive table */
+
+  .comparison-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.3pt;
+    line-height: 1.25;
+  }
+
+  .comparison-matrix thead th {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 8.9pt;
+    line-height: 1.1;
+    text-align: center;
+    padding: 0.08in 0.1in;
+    color: rgba(0,0,0,0.88);
+    border-bottom: 1px solid rgba(0,0,0,0.24);
+  }
+
+  .comparison-matrix thead th:first-child {
+    text-align: left;
+    width: 60%;
+  }
+
+  .comparison-matrix tbody tr.natural {
+    background: var(--natural);
+  }
+
+  .comparison-matrix tbody td {
+    padding: 0.055in 0.08in;
+    vertical-align: middle;
+    color: rgba(0,0,0,0.92);
+  }
+
+  .comparison-matrix tbody td:first-child {
+    font-weight: 300;
+    text-align: left;
+  }
+
+  .comparison-matrix tbody td:not(:first-child) {
+    text-align: center;
+  }
+
+  .comparison-matrix .group-header td {
+    font-weight: 700;
+    font-size: 8.9pt;
+    line-height: 1.1;
+    color: rgba(0,0,0,0.88);
+    padding-top: 0.3in;
+    padding-bottom: 0.08in;
+    background: transparent;
+    border-bottom: none;
+  }
+
+  .comparison-matrix .group-header td:first-child {
+    font-weight: 700;
+  }
+
+  .comparison-matrix .group-header:first-child td {
+    padding-top: 0.1in;
+  }
+
   .matrix-table {
     width: 100%;
     margin-top: 0.1in;
@@ -1443,6 +1506,29 @@
               <div class="table-cell center"><span class="state-mark" aria-label="Included">✓</span></div>
             </div>
           </div>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Pattern: Grouped comparison matrix</p>
+          <p class="chart-note pattern-guidance">Use when a competitive comparison needs subsections (e.g. Capabilities, Platform, Secure Collaboration). Group headers restart alternating row colors. First row after a group header is always <code>natural</code>. Column headers match group header styling: 8.9pt, bold, near-black.</p>
+          <table class="comparison-matrix" style="max-width: 6.5in;">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Miro</th>
+                <th>Mural</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="group-header"><td colspan="3">Capabilities</td></tr>
+              <tr class="natural"><td>Feature available only in Mural</td><td><span class="state-mark" aria-label="Not available">×</span></td><td><span class="state-mark" aria-label="Included">✓</span></td></tr>
+              <tr><td>Another differentiating capability</td><td><span class="state-mark" aria-label="Not available">×</span></td><td><span class="state-mark" aria-label="Included">✓</span></td></tr>
+              <tr class="natural"><td>A third unique feature</td><td><span class="state-mark" aria-label="Not available">×</span></td><td><span class="state-mark" aria-label="Included">✓</span></td></tr>
+              <tr class="group-header"><td colspan="3">Platform</td></tr>
+              <tr class="natural"><td>Platform-level differentiator</td><td><span class="state-mark" aria-label="Not available">×</span></td><td><span class="state-mark" aria-label="Included">✓</span></td></tr>
+              <tr><td>Second platform feature</td><td><span class="state-mark" aria-label="Not available">×</span></td><td><span class="state-mark" aria-label="Included">✓</span></td></tr>
+            </tbody>
+          </table>
         </section>
 
         <section class="section">
