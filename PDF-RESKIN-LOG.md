@@ -73,7 +73,7 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 |---|-----------|--------|-------------|-------|
 | 1 | Microsoft Strat Partnership.pdf | Selected | — | Strategic partnership overview |
 | 2 | Copilot and Mural AI.pdf | Selected | — | AI integration partnership |
-| 3 | ADO One-Pager.pdf | Selected | — | Azure DevOps integration |
+| 3 | ADO One-Pager.pdf | Reskinned | reskins/partnership-one-sheet/ado-one-pager.html | 2 pages. Azure DevOps integration, quote sidebar, agile use cases, ecosystem graphic, M365 cert + 2022 Partner of Year badge, 93% stat. Screenshot placeholder pending asset |
 | 4 | msft-strategic-partnership.pdf | Catalogued | — | Older version of #1? |
 | 5 | Copilot and Graph Connector.pdf | Catalogued | — | Graph connector integration |
 | 6 | Getting Started with the Mural App for Microsoft Teams.pdf | Catalogued | — | Teams integration guide |
@@ -92,5 +92,5 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 | Pricing guide | 9 | 4 | 1 | 0 |
 | Topic deep-dive | 4 | 3 | 0 | 0 |
 | Program overview | 6 | 3 | 1 | 0 |
-| Partnership one-sheet | 8 | 3 | 0 | 0 |
-| **Total** | **39** | **20** | **4** | **1** |
+| Partnership one-sheet | 8 | 4 | 1 | 0 |
+| **Total** | **39** | **21** | **5** | **1** |
