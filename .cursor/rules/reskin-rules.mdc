@@ -48,6 +48,7 @@ When reskinning, use **only** these three files as references:
 - No forced line breaks (`<br>`) in headlines unless the content genuinely requires it.
 - **Headline-to-body spacing.** Body copy directly below a headline in `.page-opening` uses `.intro-copy` (not `.body-copy` or `.deck`), which provides `margin-top: 0.22in` and `max-width: 5.05in`. No rule line should appear between a headline and its supporting body copy.
 - **Body copy paragraph spacing.** Consecutive paragraphs within `.body-copy` use `margin-bottom: var(--body-space)` (6.5pt) with `:last-child { margin-bottom: 0; }`. This matches `.intro-copy` paragraph spacing. Do not collapse paragraphs to `margin: 0`.
+- **CTA styling.** Bold the full CTA line with `<strong>`. Link specific actionable phrases (e.g., "our sales team", "mural.co/enterprise") rather than the entire sentence. Links use Blue ADA per the link color rule.
 
 ## Quotes
 
@@ -67,6 +68,8 @@ When reskinning, use **only** these three files as references:
 - **Page numbers only on multi-page documents.** Single-page PDFs should not display a page number. Only add `.page-number` elements when the document has two or more pages.
 - **Clean hero area.** The page-opening (title + deck/intro copy) should be full-width and uncluttered. Do not place quotes, stats, or sidebar content alongside the title. Quotes and secondary elements belong in a `.combined-grid` inside a `.section` below the hero — not inside `.page-opening`. Exceptions only when the user explicitly requests it.
 - **Quote placement consistency.** When a page uses `.combined-grid`, place the quote in the right column. This maintains a consistent position across document types (e.g. Mural Overview and Member Pricing both use this pattern).
+- **Bullet lists flow with body copy.** When a bullet list follows body copy, keep both in the same container (e.g., inside the same `.page-opening` or `.section`). Do not put the list in a separate `<section>` — that adds a double gap from the section's `margin-top` plus the list's own `margin-top`.
+- **Award callout.** `.award-callout` uses `border-top: 1px solid var(--rule)`, `padding-top: 0.14in`, `margin-top: 0.16in`, `gap: 0.18in`. Image height is `0.6in`. This must be consistent across all reskins that include an award badge.
 - **Three-column pillars.** Use `.pillar-grid.three-up` for benefit/feature cards in a 3-column layout constrained to the content column (`max-width: 5.05in`). Use below body copy in the same content flow, without a rule line above.
 
 ## Tables
