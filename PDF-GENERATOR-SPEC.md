@@ -34,7 +34,7 @@ Each document type has a self-contained HTML starter that serves as both a previ
 - `starters/pricing-guide.html`
 - `starters/topic-deep-dive.html`
 - `starters/program-overview.html`
-- `starters/partnership-one-sheet.html`
+- `starters/partnership-one-sheet.html` (Partnership/integration one-sheet)
 
 ## Supporting Assets
 
@@ -94,12 +94,12 @@ User intent: "I need to promote a training program."
 Typical structure:
 - Page 1: Sidebar-heavy layout (large quote ~40%, program details ~60%) → program description → inclusions list → two pricing options side by side → CTA in footer
 
-### 7. Partnership one-sheet
+### 7. Partnership/integration one-sheet
 
-User intent: "I need to explain a partnership."
+User intent: "I need to explain a partnership or integration."
 
 Typical structure:
-- Page 1: Opener (joint value headline) → integration benefits as bullets → ecosystem logo grid → partner award badge → quote → footer
+- Page 1: Partner lockup (Mural wordmark + partner logo) → opener (joint value headline) → integration benefits as bullets → ecosystem logo grid → quote → footer
 
 ## Design System Layers
 

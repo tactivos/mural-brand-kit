@@ -67,7 +67,7 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 | 5 | Luma System-One Sheet.pdf | Catalogued | — | LUMA System overview |
 | 6 | LUMA-Workplace.pdf | Catalogued | — | Workplace program |
 
-## Partnership one-sheet
+## Partnership/integration one-sheet
 
 | # | Source PDF | Status | Reskin file | Notes |
 |---|-----------|--------|-------------|-------|
@@ -92,5 +92,5 @@ Tracks all 39 existing Mural 1-pagers by document type, reskin status, and notes
 | Pricing guide | 9 | 4 | 1 | 0 |
 | Topic deep-dive | 4 | 3 | 0 | 0 |
 | Program overview | 6 | 3 | 1 | 0 |
-| Partnership one-sheet | 8 | 4 | 1 | 0 |
+| Partnership/integration one-sheet | 8 | 4 | 1 | 0 |
 | **Total** | **39** | **21** | **5** | **1** |
