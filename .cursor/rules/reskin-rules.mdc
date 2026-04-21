@@ -67,6 +67,13 @@ When reskinning, use **only** these three files as references:
 - **Quote placement consistency.** When a page uses `.combined-grid`, place the quote in the right column. This maintains a consistent position across document types (e.g. Mural Overview and Member Pricing both use this pattern).
 - **Three-column pillars.** Use `.pillar-grid.three-up` for benefit/feature cards in a 3-column layout constrained to the content column (`max-width: 5.05in`). Use below body copy in the same content flow, without a rule line above.
 
+## Tables
+
+- **Cell styling.** Table cells use `8.3pt`, `line-height: 1.25`, `padding: 0.055in 0.08in`. Matches the Member Pricing Enterprise plan table.
+- **Alternating rows.** Use `.natural` class on alternating rows. The first data row after a header or group heading is always `natural`. Row color resets after each group heading.
+- **Competitor "not available" marks.** Use `×` (`&times;`), not a dash or em dash, when a competitor lacks functionality. Style at `12.5pt`, `font-weight: 500`, `color: var(--black)` for optical balance with the ✓ checkmark.
+- **Headline max-width.** `h2` and `h3` in reskins use `max-width: 5.05in` to match body copy width. `h1` (page title) is unconstrained.
+
 ## Scope
 
 - Reskin edits affect **only** the PDF generator system (pattern library, starters, reskins). Never modify the Brand Guidelines (`mural-brand-guidelines.html`) unless specifically asked.

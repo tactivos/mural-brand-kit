@@ -275,8 +275,19 @@
     margin-top: 0.04in;
     font-size: 9pt;
     line-height: 1.2;
-    color: var(--muted);
+    color: var(--black);
     max-width: 12em;
+  }
+
+  .stat-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gutter);
+  }
+
+  .stat-hero-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   /* --- Stat grid (multi-stat, page 6) --- */
@@ -377,7 +388,7 @@
   }
 
   .check { color: var(--black); font-size: 10pt; }
-  .dash { color: rgba(0,0,0,0.2); font-size: 10pt; }
+  .dash { color: var(--black); font-size: 12.5pt; font-weight: 500; }
 
   /* --- Microsoft ecosystem graphic --- */
 
@@ -451,9 +462,12 @@
   .page-signature-url { color: rgba(0, 0, 0, 0.72); }
 
   .footnote {
+    position: absolute;
+    bottom: 0.74in;
+    left: var(--page-padding-x);
+    right: var(--page-padding-x);
     font-size: 7.5pt;
     color: var(--muted);
-    margin-top: 0.08in;
   }
 
   @media print {
@@ -682,23 +696,23 @@
             </thead>
             <tbody>
               <tr class="group-header"><td colspan="3">Capabilities</td></tr>
-              <tr class="natural"><td>Delegate Facilitators (delegate full facilitation controls to any user)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr><td>Support basic use cases with few participants and up to scaled collaboration with thousands of participants</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr class="natural"><td>Focus Mode (simplified view with condensed tools and navigation)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr><td>Outline Mode (custom shareable and exportable rich media outlines)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr class="natural"><td>Custom Toolbar (control the tools members, guests, and visitors can use)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr><td>Microsoft AI Copilot Integration</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>Delegate Facilitators (delegate full facilitation controls to any user)</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Support basic use cases with few participants and up to scaled collaboration with thousands of participants</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>Focus Mode (simplified view with condensed tools and navigation)</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Outline Mode (custom shareable and exportable rich media outlines)</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>Custom Toolbar (control the tools members, guests, and visitors can use)</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Microsoft AI Copilot Integration</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
               <tr class="group-header"><td colspan="3">Platform</td></tr>
-              <tr class="natural"><td>In-App Learning Journeys &amp; Collaboration Guides</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr><td>In-App Chat Support</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr class="natural"><td>LUMA System&trade; Template</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr><td>Human-Centered Design Certifications</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr class="natural"><td>Custom Transformation Professional Services</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>In-App Learning Journeys &amp; Collaboration Guides</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>In-App Chat Support</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>LUMA System&trade; Template</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Human-Centered Design Certifications</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>Custom Transformation Professional Services</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
               <tr class="group-header"><td colspan="3">Secure Collaboration</td></tr>
-              <tr class="natural"><td>Confidential Rooms (Mural/board spaces with an added level of security)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr><td>Mural insights (activity analytics in a Mural/board)</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr class="natural"><td>Custom Guest Deactivation Periods</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
-              <tr><td>Visitor Access Link Expiration Date</td><td><span class="dash">&mdash;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>Confidential Rooms (Mural/board spaces with an added level of security)</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Mural insights (activity analytics in a Mural/board)</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr class="natural"><td>Custom Guest Deactivation Periods</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
+              <tr><td>Visitor Access Link Expiration Date</td><td><span class="dash">&times;</span></td><td><span class="check">&#10003;</span></td></tr>
             </tbody>
           </table>
         </section>
@@ -744,28 +758,32 @@
         </section>
 
         <section class="section">
-          <p class="eyebrow">Case study</p>
-          <h3>Unpacking SAP&rsquo;s ROI with Mural</h3>
-          <div class="stat-grid">
-            <div class="stat-item">
-              <div class="stat-number">10%</div>
-              <p class="stat-label">increase in design thinking project efficiency from presales</p>
+          <div class="stat-hero">
+            <div class="stat-hero-intro">
+              <h3>Unpacking SAP&rsquo;s ROI with Mural</h3>
+              <div class="logo-box has-logo" style="margin-top: 0.16in; width: 0.58in;"><img src="../../assets/logos/customers/SAP_B.svg" alt="SAP"></div>
             </div>
-            <div class="stat-item">
-              <div class="stat-number">23%</div>
-              <p class="stat-label">reduction in avoidable in-person workshops</p>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">10%</div>
-              <p class="stat-label">improvement in project efficiency from UX design</p>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">9.6%</div>
-              <p class="stat-label">increase in projects enabled in hybrid environment</p>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">9.9%</div>
-              <p class="stat-label">improvement in design thinking project efficiency from service sales</p>
+            <div class="stat-hero-grid">
+              <div class="stat-hero-card">
+                <div class="stat-hero-number">10%</div>
+                <p class="stat-hero-text">increase in design thinking project efficiency from presales</p>
+              </div>
+              <div class="stat-hero-card">
+                <div class="stat-hero-number">23%</div>
+                <p class="stat-hero-text">reduction in avoidable in-person workshops</p>
+              </div>
+              <div class="stat-hero-card">
+                <div class="stat-hero-number">10%</div>
+                <p class="stat-hero-text">improvement in project efficiency from UX design</p>
+              </div>
+              <div class="stat-hero-card">
+                <div class="stat-hero-number">9.6%</div>
+                <p class="stat-hero-text">increase in projects enabled in hybrid environment</p>
+              </div>
+              <div class="stat-hero-card">
+                <div class="stat-hero-number">9.9%</div>
+                <p class="stat-hero-text">improvement in design thinking project efficiency from service sales</p>
+              </div>
             </div>
           </div>
           <p class="footnote">Source: Mural Survey, 2022. Retrieved from third party vendor.</p>

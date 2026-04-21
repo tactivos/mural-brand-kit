@@ -647,6 +647,11 @@
     color: var(--black);
   }
 
+  .state-mark[aria-label="Not available"] {
+    font-size: 12.5pt;
+    font-weight: 500;
+  }
+
   .state-limited {
     font-size: 8.2pt;
     line-height: 1.2;
@@ -1415,7 +1420,7 @@
 
         <section class="section compare-block">
           <p class="eyebrow">Pattern: Competitor comparison table</p>
-          <p class="chart-note pattern-guidance">Use group labels when the table needs clearer sections.</p>
+          <p class="chart-note pattern-guidance">Use group labels when the table needs clearer sections. Use <code>&times;</code> (×) when a competitor does not have the functionality, not a dash. The × is styled at 12.5pt, font-weight 500 for optical balance with the ✓ checkmark.</p>
           <div class="compare-table">
             <div class="compare-row header">
               <div class="table-cell"></div>
