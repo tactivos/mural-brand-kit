@@ -41,7 +41,7 @@ Each document type has a self-contained HTML starter that serves as both a previ
 The editor stack is being stood up additively alongside the static HTML kit above. Nothing in the static kit is being removed or rewritten; the editor renders the same HTML with the same class names so both output surfaces stay identical.
 
 - `editor-app/` — TypeScript workspace for the Puck-based visual editor. Self-contained Node subproject; the root repo remains a static HTML repo.
-- `editor-app/styles/brand.css` — verbatim copy of `mural-pdf-generator-pattern-library.html`'s `<style>` block. Single source of truth for all rendering surfaces (static HTML kit AND the new editor).
+- `editor-app/styles/brand.css` — canonical stylesheet for the editor's `/preview/*` print routes. Sourced from the approved reskins (`reskins/product-one-sheet/mural-overview.html` is the v1 seed; additional doc types merge in here, not per-doc-type sheets). Not loaded by the editor UI, landing page, or any admin surface — only by `app/preview/layout.tsx`. The static HTML kit (pattern library, reskins, starters) continues to carry its own inline styles and is NOT modified to reference this file.
 - `editor-app/src/schema/` — canonical `MuralDoc` types and the v1 Element Catalog.
 - `editor-app/tests/visual/` — Playwright visual-regression goldens captured from existing reskins. Ensures the editor's `/preview` output stays pixel-identical to the static HTML surface.
 - `MURAL-DOC-SCHEMA.md` — canonical JSON schema for documents (editor-independent). AI emits this; the editor loads and saves this; storage uses this.
@@ -150,17 +150,23 @@ This decoupling means the editor library can be swapped later without touching A
 
 ### Rendering and the print target
 
-The editor has two rendering surfaces, both driven from the same React components and the same `brand.css`:
+The editor has two rendering surfaces, driven from the same React components:
 
-- **Edit surface** — the three-panel editor UI (see `Web Tool UI` below).
-- **Print surface** — a `/preview/:docId` route that runs Puck's `<Render>` with zero editor chrome. This is the page the user prints from via `File > Print > Save as PDF`.
+- **Edit surface** — the three-panel editor UI (see `Web Tool UI` below). Renders without `brand.css`, so the editor chrome is free to use its own styling.
+- **Print surface** — a `/preview/:docId` route that runs Puck's `<Render>` with zero editor chrome, scoped under `app/preview/layout.tsx` which is the only place `brand.css` loads. This is the page the user prints from via `File > Print > Save as PDF`.
 
-Both surfaces emit the same HTML and the same class names as the existing static pattern library. Visual-regression CI enforces pixel-identity between `/preview` and the static reskins; any drift between the two rendering surfaces fails the build.
+The print surface emits the same HTML and class names as the approved reskins (`reskins/product-one-sheet/mural-overview.html` and siblings). Visual-regression CI captures goldens for both the static reskins and the `/preview` routes; any drift between the two fails the build.
+
+### brand.css invariant
+
+- **Source of truth:** the approved reskins under `reskins/` (per `.cursor/rules/reskin-rules.mdc`). `brand.css` starts as a promotion of `reskins/product-one-sheet/mural-overview.html`'s inline styles; additional doc types contribute their rules here as they come online.
+- **Not** a copy of `mural-pdf-generator-pattern-library.html`. The pattern library is a specimen showcase that also contains annotation-only styles (`.pattern-card`, specimen labels, code blocks) and does not carry the full reskin layout grids (`.combined-grid`, 4-up `.logo-strip`, 1fr/1fr `.stat-hero`). Sourcing `brand.css` from reskins closes that gap.
+- **Scope of effect:** `brand.css` is loaded only by `/preview/*` routes. Static HTML files are unaffected; they keep their own inline styles.
+- When a change to `brand.css` is needed, update it first, then re-run visual-regression to capture the intended diff.
 
 ### Additive, reversible migration
 
 - No existing HTML file is modified. `mural-pdf-generator-starter.html`, `mural-pdf-generator-pattern-library.html`, `mural-pdf-generator.html`, and every file under `starters/` and `reskins/` continues to work exactly as before.
-- `editor-app/styles/brand.css` is a verbatim byte-for-byte copy of the pattern library's `<style>` block. Any change to one must be mirrored in the other; CI enforces this.
 - Rollback at any point via `git revert` of the offending commits, or via the `checkpoint-pre-puck-editor` tag for a full reset.
 - Until the editor ships, the static HTML kit remains the production path.
 
@@ -207,7 +213,7 @@ Everything else — headlines, body copy, bullets, quotes, numbered lists, secti
 
 When the Puck-based editor is used, the layers above correspond directly to levels of the Section / Strip / Element hierarchy described in `Editor Architecture`:
 
-- Layer 1 (Foundation) lives in `editor-app/styles/brand.css` and is shared by both the static HTML kit and the editor.
+- Layer 1 (Foundation) lives in two places that must agree visually: the reskins' inline styles (static kit) and `editor-app/styles/brand.css` (editor `/preview/*`). The latter is promoted from the former per the `brand.css invariant` above.
 - Layer 2 (Page frames) is composed as page chrome (`BrandBar`, `PageFooter`, `PageNumber`) — see the page-chrome list in `EDITOR-COMPONENT-INVENTORY.md`.
 - Layer 3 (Page layouts) corresponds to Sections and the Strips they contain. Each named layout here maps to one or more Strip types.
 - Layer 4 (Specialized markup) corresponds to dedicated Strip types (e.g. `CompareTable`, `MatrixTable`, `StatCluster`, `LogoStrip`) and a small number of specialized Elements (`StatNumeral`, `LogoBox`).
@@ -295,7 +301,7 @@ The user sees the 7 document types in a left nav, each with a name and short des
 
 ## Export Workflow
 
-1. Open the document in the preview canvas (static HTML file, or the `/preview/:docId` route in the editor — both render identical HTML from the same `brand.css`)
+1. Open the document in the preview canvas (static HTML file, or the `/preview/:docId` route in the editor — both produce the same visual output; see `Editor Architecture > brand.css invariant`)
 2. Choose `File > Print` (or click Export PDF button)
 3. Confirm `Letter` paper size, `100%` scale, backgrounds enabled
 4. Save the PDF

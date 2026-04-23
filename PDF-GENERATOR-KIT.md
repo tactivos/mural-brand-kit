@@ -19,7 +19,7 @@ It is meant to be shared alongside the brand guide so another person can generat
 The static HTML kit above is not changing. Alongside it, a Puck-based visual editor is being stood up so non-designers can author the same output through a drag-and-drop UI. Everything below is additive; the static kit continues to work unchanged.
 
 - `editor-app/` — TypeScript workspace for the editor (Node subproject; root repo stays static HTML)
-- `editor-app/styles/brand.css` — verbatim copy of the pattern library's `<style>` block; single source of truth for all rendering
+- `editor-app/styles/brand.css` — canonical stylesheet for the editor's `/preview/*` print routes, sourced from the approved reskins (not from the pattern library). Loaded only by `app/preview/layout.tsx`. See `PDF-GENERATOR-SPEC.md > Editor Architecture > brand.css invariant`.
 - `editor-app/src/schema/` — canonical `MuralDoc` types + the v1 Element Catalog
 - `editor-app/tests/visual/` — Playwright visual-regression goldens
 - `MURAL-DOC-SCHEMA.md` — canonical JSON schema the AI emits and the editor reads/writes
