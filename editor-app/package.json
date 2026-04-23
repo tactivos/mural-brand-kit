@@ -22,6 +22,7 @@
     "typescript": "^5.5.0"
   },
   "dependencies": {
+    "@puckeditor/core": "^0.21.2",
     "next": "^14.2.35",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
