@@ -6,11 +6,26 @@ It is meant to be shared alongside the brand guide so another person can generat
 
 ## What This Kit Includes
 
+### Static HTML kit (production today)
+
 - `mural-pdf-generator-starter.html` as the blank starter template for new PDFs
 - `mural-pdf-generator-pattern-library.html` as the review surface for draft reusable patterns
 - `mural-pdf-generator.html` as the filled trust-and-security example
 - `PDF-GENERATOR-SPEC.md` as the source of truth for what belongs in the kit
 - this document as the reusable operating guide
+
+### Editor stack (being built, additive)
+
+The static HTML kit above is not changing. Alongside it, a Puck-based visual editor is being stood up so non-designers can author the same output through a drag-and-drop UI. Everything below is additive; the static kit continues to work unchanged.
+
+- `editor-app/` — TypeScript workspace for the editor (Node subproject; root repo stays static HTML)
+- `editor-app/styles/brand.css` — verbatim copy of the pattern library's `<style>` block; single source of truth for all rendering
+- `editor-app/src/schema/` — canonical `MuralDoc` types + the v1 Element Catalog
+- `editor-app/tests/visual/` — Playwright visual-regression goldens
+- `MURAL-DOC-SCHEMA.md` — canonical JSON schema the AI emits and the editor reads/writes
+- `EDITOR-COMPONENT-INVENTORY.md` — 24-entity build manifest for the v1 Product one-sheet
+
+See `PDF-GENERATOR-SPEC.md` > `Editor Architecture` for the full Section / Strip / Element hierarchy.
 
 ## Recommended Cursor Setup
 
