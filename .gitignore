@@ -23,3 +23,7 @@ editor-app/dist/
 editor-app/.next/
 editor-app/out/
 editor-app/*.tsbuildinfo
+
+# editor-app Playwright output (golden PNGs under tests/**/*-snapshots/ ARE committed)
+editor-app/test-results/
+editor-app/playwright-report/
