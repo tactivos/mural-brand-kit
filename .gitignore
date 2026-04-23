@@ -16,3 +16,10 @@
 # Local Asana agent secrets and generated reports
 asana-agent/.env
 asana-agent/output/
+
+# editor-app (Node subproject)
+editor-app/node_modules/
+editor-app/dist/
+editor-app/.next/
+editor-app/out/
+editor-app/*.tsbuildinfo

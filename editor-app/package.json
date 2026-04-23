@@ -1,0 +1,14 @@
+{
+  "name": "editor-app",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Mural PDF Generator editor app (Puck-based). Scaffolded per MURAL-DOC-SCHEMA.md.",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build:types": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}
