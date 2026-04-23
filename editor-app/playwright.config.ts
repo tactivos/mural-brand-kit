@@ -42,7 +42,7 @@ export default defineConfig({
     // retina-quality diffs.
     viewport: { width: 816, height: 1056 },
     deviceScaleFactor: 2,
-    // Reskins use file:// URLs; no base URL needed.
+    baseURL: "http://localhost:3100",
   },
 
   projects: [
@@ -51,4 +51,14 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
+
+  // Auto-start the Next.js production server for /preview tests. Reskin
+  // tests (which load file:// URLs) don't need the server but reusing it
+  // keeps the test command single-step.
+  webServer: {
+    command: "npm run start -- -p 3100",
+    url: "http://localhost:3100/preview/product-one-sheet",
+    reuseExistingServer: !process.env["CI"],
+    timeout: 60_000,
+  },
 });
