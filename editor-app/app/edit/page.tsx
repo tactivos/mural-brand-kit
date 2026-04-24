@@ -23,13 +23,30 @@
  *
  * Known v1 property: saving passes the doc through the adapter
  * round-trip. Lossy bits documented in src/adapters/muraldoc-puck.ts
- * (inline marks, multi-paragraph, section boundaries) are collapsed
- * on the first save. Restored when RichtextField lands.
+ * (multi-paragraph, section boundaries) are collapsed on the first
+ * save. Bold marks and links now round-trip losslessly (A12).
  *
- * The canvas renders inline (iframe.enabled: false) so brand.css
- * applies directly.
+ * fieldTransforms.richtext override
+ * ---------------------------------
+ * Puck's default richtext transform replaces a RichtextField's value
+ * with an inline TipTap EditorContent ReactNode before passing it to
+ * the component's render function. That default assumes you render
+ * the ReactNode directly (`<div>{richTextProp}</div>`) and get an
+ * in-canvas WYSIWYG editor for free. We can't use that assumption —
+ * our BodyCopy / IntroCopy / BulletList components need raw HTML so
+ * they can parse it into InlineNode[] and stamp the brand's markup
+ * (`.body-copy p`, `.intro-copy p`, etc.) around it. Without this
+ * override, every render crashes with `e.trim is not a function`
+ * because the code tries to parse a ReactNode as HTML.
+ *
+ * Tradeoff: users lose in-canvas inline click-to-edit for rich
+ * fields. Editing happens via the right-hand inspector panel, which
+ * still uses Puck's full TipTap UI (bold button, link dialog). This
+ * is consistent with the rest of our inspector-first flow and does
+ * not reduce what users can DO, only where they do it.
  */
 import { Puck } from "@puckeditor/core";
+import type { FieldTransforms } from "@puckeditor/core";
 import { useEffect, useMemo, useState } from "react";
 import { puckConfig, type MuralPuckData } from "../../src/puck/config.js";
 import {
@@ -44,6 +61,15 @@ import {
 } from "../../src/persistence/local-storage.js";
 
 const DOC_TYPE = "product-one-sheet" as const;
+
+/**
+ * Override Puck's built-in richtext transform so the component render
+ * function receives the raw HTML string instead of an inline-editor
+ * ReactNode. See the fieldTransforms docstring at the top of this file.
+ */
+const FIELD_TRANSFORMS: FieldTransforms = {
+  richtext: ({ value }) => value,
+};
 
 export default function EditPage() {
   const fixtureData: MuralPuckData = useMemo(
@@ -96,6 +122,7 @@ export default function EditPage() {
       config={puckConfig}
       data={data}
       iframe={{ enabled: false }}
+      fieldTransforms={FIELD_TRANSFORMS}
       onPublish={(published) => {
         const doc = puckToMuralDoc(
           published as unknown as MuralPuckData,

@@ -1,7 +1,20 @@
 "use client";
 
 /**
- * Puck config — v0.6 (A8a → A8e).
+ * Puck config — v0.7 (A12).
+ *
+ * Changes from v0.6 (A8e):
+ *   - A12: BodyCopy, IntroCopy, and BulletList items upgraded from
+ *     plain textarea to RichtextField. The field's enabled TipTap
+ *     extensions are locked to the MuralDoc InlineNode subset:
+ *     paragraph + bold + link. Italic, underline, strikethrough, inline
+ *     code, code blocks, headings, lists, blockquotes, and horizontal
+ *     rules are disabled at the field level so non-designers
+ *     physically cannot emit formatting MuralDoc can't represent.
+ *
+ *     Values are stored as HTML strings (TipTap's native serialization
+ *     — `editor.getHTML()`). The MuralDoc adapter translates between
+ *     HTML and InlineNode[] at the save/load boundary.
  *
  * Changes from v0.2 (A7):
  *   - A8a: Simple text elements — SubHeading, SectionHeading, Deck, IntroCopy.
@@ -16,10 +29,10 @@
  *     "multi-piece component within a strip" layer.
  *
  * Still in scope for later cuts:
- *   - Rich text (RichtextField) for BodyCopy/IntroCopy/BulletList items
  *   - Bounded field types (max lines, max words, max items)
  *   - Blockquote "large" and "display" variants
- *   - MuralDoc adapter
+ *   - Multi-paragraph BodyCopy/IntroCopy (needs a schema field update)
+ *   - Rich text on Blockquote.text (low leverage — current fixture is plain)
  *
  * See EDITOR-COMPONENT-INVENTORY.md for the full v1 manifest.
  */
@@ -43,6 +56,7 @@ import {
 } from "../components/strips/StatBand.js";
 import { LogoStrip } from "../components/strips/LogoStrip.js";
 import { LOGO_MANIFEST, type LogoKey } from "../data/logo-manifest.js";
+import { htmlToInlineNodes } from "../adapters/rich-text-html.js";
 import { BrandBar } from "../components/page-chrome/BrandBar.js";
 import { PageFooter } from "../components/page-chrome/PageFooter.js";
 import {
@@ -75,23 +89,22 @@ type DeckFields = {
 
 type IntroCopyFields = {
   /**
-   * Plain-text intro paragraph for the v0.3 config. Wrapped in a single
-   * TextNode paragraph at render time. Multi-paragraph and inline marks
-   * arrive with the RichtextField integration.
+   * HTML fragment from Puck's RichtextField. The config locks the field
+   * to the MuralDoc InlineNode subset (paragraph + bold + link) so the
+   * string is safe to parse with htmlToInlineNodes at render time.
+   * Multi-paragraph arrives when the schema grows a paragraphs-array
+   * field; for now, only the first <p> is consumed.
    */
   text: string;
 };
 
 type BodyCopyFields = {
-  /**
-   * Plain-text body copy for the v0.3 config. We accept a single string
-   * here and wrap it in a TextNode at render time. Multi-paragraph bodies
-   * and inline marks arrive with the RichtextField integration.
-   */
+  /** HTML fragment from Puck's RichtextField. See IntroCopyFields. */
   text: string;
 };
 
 type BulletListFields = {
+  /** Each item's `text` is a single-paragraph HTML fragment. */
   items: Array<{ text: string }>;
   style: "bullet" | "number";
 };
@@ -208,6 +221,42 @@ const LOGO_KEY_OPTIONAL_OPTIONS: Array<{ label: string; value: LogoKey | "" }> =
  */
 export type MuralPuckData = Data<PuckComponents, RootFields>;
 
+/**
+ * TipTap extension gate for every RichtextField in this config.
+ * Anything not explicitly kept is disabled — the inspector won't show
+ * that formatting button, and paste from the OS / other apps is
+ * stripped on insert. The kept set — paragraph (implicit, not listed
+ * since there's no option to disable text), bold, link, hardBreak —
+ * matches MuralDoc's InlineNode schema exactly, so the HTML emitted by
+ * TipTap round-trips losslessly through htmlToInlineNodes.
+ */
+const RICH_TEXT_OPTIONS = {
+  italic: false,
+  underline: false,
+  strike: false,
+  code: false,
+  codeBlock: false,
+  heading: false,
+  bulletList: false,
+  orderedList: false,
+  listItem: false,
+  listKeymap: false,
+  blockquote: false,
+  horizontalRule: false,
+  textAlign: false,
+} as const;
+
+/**
+ * Display-only helper for array-item summaries — the Puck inspector
+ * shows one line per item in a collapsed accordion. Raw HTML like
+ * "<p>Item</p>" looks broken; this strips tags for that one label.
+ * Not a security primitive — the underlying HTML is still the source
+ * of truth for rendering.
+ */
+function stripTags(html: string): string {
+  return html.replace(/<[^>]+>/g, "").trim();
+}
+
 export const puckConfig: Config<{
   components: PuckComponents;
   root: RootFields;
@@ -312,27 +361,33 @@ export const puckConfig: Config<{
     IntroCopy: {
       label: "Intro copy",
       fields: {
-        text: { type: "textarea", label: "Intro paragraph" },
+        text: {
+          type: "richtext",
+          label: "Intro paragraph",
+          options: RICH_TEXT_OPTIONS,
+        },
       },
       defaultProps: {
-        text: "Intro copy sits below the headline, styled with the tighter intro leading. Multi-paragraph support arrives with the rich-text field integration.",
+        text: "<p>Intro copy sits below the headline, styled with the tighter intro leading.</p>",
       },
       render: ({ text }) => (
-        <IntroCopy paragraphs={[[{ type: "text", value: text }]]} />
+        <IntroCopy paragraphs={[htmlToInlineNodes(text)]} />
       ),
     },
 
     BodyCopy: {
       label: "Body copy",
       fields: {
-        text: { type: "textarea", label: "Paragraph text" },
+        text: {
+          type: "richtext",
+          label: "Paragraph text",
+          options: RICH_TEXT_OPTIONS,
+        },
       },
       defaultProps: {
-        text: "Body copy goes here. One paragraph for now; multi-paragraph support arrives with the rich-text field integration.",
+        text: "<p>Body copy goes here. One paragraph for now; multi-paragraph support arrives when the schema adds a paragraphs field.</p>",
       },
-      render: ({ text }) => (
-        <BodyCopy content={[{ type: "text", value: text }]} />
-      ),
+      render: ({ text }) => <BodyCopy content={htmlToInlineNodes(text)} />,
     },
 
     Blockquote: {
@@ -388,26 +443,30 @@ export const puckConfig: Config<{
           type: "array",
           label: "Items",
           getItemSummary: (item, i) =>
-            item.text ? item.text.slice(0, 60) : `Item ${(i ?? 0) + 1}`,
-          defaultItemProps: { text: "New bullet item" },
+            item.text ? stripTags(item.text).slice(0, 60) : `Item ${(i ?? 0) + 1}`,
+          defaultItemProps: { text: "<p>New bullet item</p>" },
           arrayFields: {
-            text: { type: "text", label: "Item text" },
+            text: {
+              type: "richtext",
+              label: "Item text",
+              options: RICH_TEXT_OPTIONS,
+            },
           },
         },
       },
       defaultProps: {
         style: "bullet",
         items: [
-          { text: "First bullet item" },
-          { text: "Second bullet item" },
-          { text: "Third bullet item" },
+          { text: "<p>First bullet item</p>" },
+          { text: "<p>Second bullet item</p>" },
+          { text: "<p>Third bullet item</p>" },
         ],
       },
       render: ({ items, style }) => (
         <BulletList
           style={style}
           items={items.map((item) => ({
-            content: [{ type: "text", value: item.text }],
+            content: htmlToInlineNodes(item.text),
           }))}
         />
       ),

@@ -13,13 +13,17 @@
  * what lets us swap editors (Craft.js, GrapesJS, a custom UI) in the
  * future without touching persistence, AI, or static rendering.
  *
- * Scope v1 (A9) — deliberately lossy
- * ----------------------------------
- * Only covers what the Puck config v0.6 supports:
+ * Scope v1 (A9 → A12)
+ * -------------------
+ * Only covers what the Puck config v0.7 supports:
  *   - Elements: Headline, SubHeading, SectionHeading, Eyebrow, Deck,
  *     IntroCopy, BodyCopy, BulletList, Blockquote, LogoBox
  *   - Strips:   BodyGroup (exploded), CombinedGrid, StatBand, LogoStrip
  *   - Meta:     topicLabel (via pageMetaLabel)
+ *   - Rich text (A12): BodyCopy, IntroCopy, and BulletList items move
+ *     their inline content through an HTML bridge (see ./rich-text-html).
+ *     Bold marks and link nodes now survive the full round trip;
+ *     previously they collapsed to plain text.
  *
  * Known losses (documented; accepted for v1; addressed by later steps):
  *   - Multi-page MuralDocs throw. Editor is single-page until a page
@@ -27,19 +31,21 @@
  *   - Section boundaries collapse. All strips are flattened into a
  *     single Content section on the return trip. Section types
  *     (Opener/Content/StatBand/Closing) and suppressTopRule are lost.
- *   - Inline marks (bold, links) collapse to plain text. Restored when
- *     RichtextField lands in the config.
  *   - Multi-paragraph BodyCopy/IntroCopy keep only their first
- *     paragraph. Same RichtextField fix unblocks this.
+ *     paragraph. Resolved when the schema adds a first-class multi-
+ *     paragraph field (and the Puck config follows with a paragraphs
+ *     array of RichtextFields).
+ *   - Blockquote.text is still plain; rich text on the quote body
+ *     will land once a user asks for bold inside a pull quote.
  *   - LogoBox.variant defaults to "B"; user can't pick W until we add
  *     that field in the Puck config.
  *
  * Round-trip stability
  * --------------------
- * `muralDocToPuck(doc)` is lossy on a raw MuralDoc with marks/multi-
- * paragraphs, but the output IS stable — i.e. after the first pass,
- * further round-trips are the identity. The test in
- * tests/adapters/muraldoc-puck.spec.ts pins this invariant.
+ * `muralDocToPuck(doc)` is lossy on multi-paragraph content (still), but
+ * the output IS stable — after the first pass, further round-trips are
+ * the identity. The test in tests/adapters/muraldoc-puck.spec.ts pins
+ * this invariant. A12 adds a bold-preservation round-trip test as well.
  */
 
 import type {
@@ -62,6 +68,10 @@ import type {
 } from "../schema/mural-doc.js";
 import type { MuralPuckData } from "../puck/config.js";
 import { LOGO_MANIFEST, type LogoKey } from "../data/logo-manifest.js";
+import {
+  htmlToInlineNodes,
+  inlineNodesToHTML,
+} from "./rich-text-html.js";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Types
@@ -90,17 +100,21 @@ function propsAs<T>(item: PuckItem): T {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Inline nodes <-> plain text (lossy)
+// Inline nodes <-> plain text (still used where Puck stores a plain string)
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Flatten an InlineNode[] to plain string. Drops marks (bold) and link
  * structure — bold text becomes plain; links become their label text only.
- * This is where rich text information dies on the way into Puck.
  *
- * Exported for the rich-text migration path: when RichtextField lands,
- * callers will switch to passing nodes through unchanged and this
- * function becomes dead code.
+ * As of A12, the three rich fields (BodyCopy, IntroCopy, BulletList
+ * items) no longer route through this helper; they go through
+ * inlineNodesToHTML / htmlToInlineNodes instead and preserve marks.
+ * Retained (not deleted) because:
+ *   1. It still serves the test suite for lossy-flatten assertions.
+ *   2. Any future field that intentionally wants plain-text storage
+ *      (e.g. a single-line accessible label, a non-RichtextField)
+ *      should reuse this rather than re-deriving it inline.
  */
 export function inlineNodesToPlain(nodes: InlineNode[]): string {
   return nodes
@@ -108,7 +122,12 @@ export function inlineNodesToPlain(nodes: InlineNode[]): string {
     .join("");
 }
 
-/** Wrap a plain string as a single-TextNode inline array. */
+/**
+ * Wrap a plain string as a single-TextNode inline array. Kept alongside
+ * inlineNodesToPlain for the same symmetry reasons documented above;
+ * not currently called by the adapter's rich-field pathways.
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- see above
 function plainToInlineNodes(text: string): InlineNode[] {
   return [{ type: "text", value: text }];
 }
@@ -170,13 +189,15 @@ function muralElementToPuck(el: MuralElement): PuckItem {
 
     case "IntroCopy": {
       const p = el.props as IntroCopyProps;
-      // v1: take first paragraph only; multi-paragraph restored with
-      // RichtextField. An empty paragraph list collapses to an empty
-      // string so we stay round-trip-stable.
+      // v1: still takes only the first paragraph (schema-side multi-
+      // paragraph support is a future change). Marks and links are
+      // preserved via the HTML bridge. Empty paragraph list collapses
+      // to "<p></p>" so Puck's RichtextField always has a valid
+      // editor document on load.
       const first = p.paragraphs[0] ?? [];
       return {
         type: "IntroCopy",
-        props: { ...base, text: inlineNodesToPlain(first) },
+        props: { ...base, text: inlineNodesToHTML(first) },
       };
     }
 
@@ -188,7 +209,7 @@ function muralElementToPuck(el: MuralElement): PuckItem {
         p.content ?? (p.paragraphs && p.paragraphs[0]) ?? [];
       return {
         type: "BodyCopy",
-        props: { ...base, text: inlineNodesToPlain(content) },
+        props: { ...base, text: inlineNodesToHTML(content) },
       };
     }
 
@@ -200,7 +221,7 @@ function muralElementToPuck(el: MuralElement): PuckItem {
           ...base,
           style: p.style ?? "bullet",
           items: p.items.map((item) => ({
-            text: inlineNodesToPlain(item.content),
+            text: inlineNodesToHTML(item.content),
           })),
         },
       };
@@ -290,7 +311,7 @@ function puckToMuralElement(item: PuckItem): MuralElement {
       return {
         id,
         type: "IntroCopy",
-        props: { paragraphs: [plainToInlineNodes(text)] },
+        props: { paragraphs: [htmlToInlineNodes(text)] },
       };
     }
 
@@ -299,7 +320,7 @@ function puckToMuralElement(item: PuckItem): MuralElement {
       return {
         id,
         type: "BodyCopy",
-        props: { content: plainToInlineNodes(text) },
+        props: { content: htmlToInlineNodes(text) },
       };
     }
 
@@ -313,7 +334,7 @@ function puckToMuralElement(item: PuckItem): MuralElement {
         type: "BulletList",
         props: {
           style,
-          items: items.map((it) => ({ content: plainToInlineNodes(it.text) })),
+          items: items.map((it) => ({ content: htmlToInlineNodes(it.text) })),
         },
       };
     }

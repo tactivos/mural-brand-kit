@@ -6,7 +6,12 @@ import {
   AdapterError,
 } from "../../src/adapters/muraldoc-puck.js";
 import { muralOverviewFixture } from "../../src/fixtures/mural-overview.js";
-import type { MuralDoc, Strip } from "../../src/schema/mural-doc.js";
+import type {
+  MuralDoc,
+  Strip,
+  BodyCopyProps,
+  Section,
+} from "../../src/schema/mural-doc.js";
 
 /**
  * Adapter unit tests — pure-node; do not use `page`. Playwright is the
@@ -16,8 +21,11 @@ import type { MuralDoc, Strip } from "../../src/schema/mural-doc.js";
  * The round-trip test pins the adapter's most important invariant:
  * after the first pass through Puck, the shape is stable. See the
  * "Scope v1" notes in src/adapters/muraldoc-puck.ts for which MuralDoc
- * features survive that first pass (most) and which collapse (inline
- * marks, multi-paragraph BodyCopy/IntroCopy, section boundaries).
+ * features survive that first pass (most) and which collapse (multi-
+ * paragraph BodyCopy/IntroCopy, section boundaries).
+ *
+ * A12 note: inline marks (bold, links) now round-trip losslessly via
+ * the rich-text HTML bridge; see the "bold mark round-trip" test below.
  */
 
 test.describe("muraldoc-puck adapter", () => {
@@ -104,7 +112,9 @@ test.describe("muraldoc-puck adapter", () => {
     ]);
   });
 
-  test("inline marks collapse to plain text on the way to Puck", () => {
+  test("BodyCopy rich text surfaces in Puck as a single-paragraph HTML fragment with <strong>", () => {
+    // Pre-A12: this test asserted inline marks collapsed to plain text.
+    // Post-A12: RichtextField stores HTML, and bold marks survive.
     const data = muralDocToPuck(muralOverviewFixture);
     const combined = data.content.find((c) => c.type === "CombinedGrid");
     const contentSlot = (
@@ -113,15 +123,67 @@ test.describe("muraldoc-puck adapter", () => {
       }
     ).contentSlot;
 
-    // The first BodyCopy in the content slot is the "You need an
-    // enterprise-grade platform..." subhead, originally marked bold.
-    // In Puck v1 it's plain text — marks are gone.
     const firstBody = contentSlot.find(
       (c) => c.type === "BodyCopy" && c.props.id === "sub-1",
     );
     expect(firstBody?.props.text).toBe(
-      "You need an enterprise-grade platform you can trust",
+      "<p><strong>You need an enterprise-grade platform you can trust</strong></p>",
     );
+  });
+
+  test("bold mark round-trips from MuralDoc through Puck and back", () => {
+    // The headline property of the RichtextField migration — bold
+    // on the "sub-1" BodyCopy must survive the full pipeline so that
+    // a user who publishes without touching that field gets the exact
+    // same doc back.
+    const fixedNow = new Date("2026-04-24T00:00:00.000Z");
+    const data = muralDocToPuck(muralOverviewFixture);
+    const doc = puckToMuralDoc(data, muralOverviewFixture, fixedNow);
+
+    // The "sub-1" BodyCopy lives inside the CombinedGrid's content
+    // slot, which survives the round-trip as a CombinedGrid strip
+    // under the single Content section.
+    const section = doc.pages[0]!.sections[0] as Section;
+    const combined = section.strips.find(
+      (s) => s.type === "CombinedGrid",
+    )!;
+    const contentSlot = combined.slots!["content"]!;
+    const sub1 = contentSlot.find((el) => el.id === "sub-1");
+    expect(sub1).toBeDefined();
+    expect(sub1!.type).toBe("BodyCopy");
+    const props = sub1!.props as BodyCopyProps;
+    expect(props.content).toEqual([
+      {
+        type: "text",
+        value: "You need an enterprise-grade platform you can trust",
+        marks: ["bold"],
+      },
+    ]);
+  });
+
+  test("BulletList items carry single-paragraph HTML on the way to Puck", () => {
+    const data = muralDocToPuck(muralOverviewFixture);
+    const combined = data.content.find((c) => c.type === "CombinedGrid");
+    const contentSlot = (
+      combined!.props as unknown as {
+        contentSlot: Array<{
+          type: string;
+          props: Record<string, unknown>;
+        }>;
+      }
+    ).contentSlot;
+    const firstBullets = contentSlot.find((c) => c.type === "BulletList");
+    expect(firstBullets).toBeDefined();
+    const { items } = firstBullets!.props as unknown as {
+      items: Array<{ text: string }>;
+    };
+    // Every item must be wrapped in <p>...</p> — this is the shape
+    // Puck's RichtextField expects and what htmlToInlineNodes will
+    // handle cleanly on the way back.
+    for (const it of items) {
+      expect(it.text.startsWith("<p>")).toBe(true);
+      expect(it.text.endsWith("</p>")).toBe(true);
+    }
   });
 
   test("round-trip is stable: puckToMuralDoc -> muralDocToPuck yields identical Puck Data", () => {
