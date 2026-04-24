@@ -17,7 +17,7 @@ import { defineConfig, devices } from "@playwright/test";
  * directory. No runtime impact on the existing HTML files.
  */
 export default defineConfig({
-  testDir: "./tests/visual",
+  testDir: "./tests",
   fullyParallel: true,
   forbidOnly: !!process.env["CI"],
   retries: 0,
