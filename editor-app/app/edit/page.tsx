@@ -14,15 +14,10 @@
  * to shuttle brand.css into the iframe.
  */
 import { Puck } from "@puckeditor/core";
-import type { Data } from "@puckeditor/core";
-import { puckConfig } from "../../src/puck/config.js";
+import { puckConfig, type MuralPuckData } from "../../src/puck/config.js";
 
-const initialData: Data = {
+const initialData: MuralPuckData = {
   content: [
-    {
-      type: "Eyebrow",
-      props: { id: "Eyebrow-1", text: "Product overview" },
-    },
     {
       type: "Headline",
       props: { id: "Headline-1", text: "Make it a mural, not a meeting.", level: 1 },
@@ -35,7 +30,11 @@ const initialData: Data = {
       },
     },
   ],
-  root: { props: {} },
+  root: {
+    props: {
+      pageMetaLabel: "Product overview",
+    },
+  },
 };
 
 export default function EditPage() {
