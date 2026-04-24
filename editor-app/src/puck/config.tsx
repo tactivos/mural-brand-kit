@@ -1,22 +1,21 @@
 "use client";
 
 /**
- * Puck config — v0.5 (A8a + A8b + A8c + A8d).
+ * Puck config — v0.6 (A8a → A8e).
  *
  * Changes from v0.2 (A7):
- *   - A8a: Simple text elements — SubHeading (h4), SectionHeading (h3),
- *     Deck (p.deck), IntroCopy (div.intro-copy with one wrapped paragraph).
+ *   - A8a: Simple text elements — SubHeading, SectionHeading, Deck, IntroCopy.
  *   - A8b: BulletList with ArrayField items + bullet/numbered select.
- *   - A8c: Blockquote with a flat field shape (text, attributionName,
- *     attributionRole, logoKey) that reconstructs the nested attribution
- *     object at render time. Only the "default" variant is wired.
- *   - A8d: LogoBox with a logoKey select driven by LOGO_MANIFEST plus
- *     an optional numeric assetScale override. Blank scale falls back
- *     to the manifest's per-logo defaultScale.
+ *   - A8c: Blockquote with flat field shape; default variant only.
+ *   - A8d: LogoBox with logoKey select + optional assetScale override.
+ *   - A8e: Strip components — CombinedGrid, StatBand, LogoStrip — each
+ *     using Puck SlotFields with `allow` allowlists. Allowlists are
+ *     sourced from EDITOR-COMPONENT-INVENTORY.md and enforced by Puck
+ *     at drag time, so non-designers physically cannot place, e.g., a
+ *     Headline inside a LogoStrip's logo slot. This is the Wix-style
+ *     "multi-piece component within a strip" layer.
  *
  * Still in scope for later cuts:
- *   - Strip components with SlotField allowlists (CombinedGrid, StatBand,
- *     LogoStrip)
  *   - Rich text (RichtextField) for BodyCopy/IntroCopy/BulletList items
  *   - Bounded field types (max lines, max words, max items)
  *   - Blockquote "large" and "display" variants
@@ -24,7 +23,7 @@
  *
  * See EDITOR-COMPONENT-INVENTORY.md for the full v1 manifest.
  */
-import type { Config, Data } from "@puckeditor/core";
+import type { Config, Data, Slot } from "@puckeditor/core";
 import { Headline } from "../components/elements/Headline.js";
 import {
   SubHeading,
@@ -37,6 +36,12 @@ import { BodyCopy } from "../components/elements/BodyCopy.js";
 import { BulletList } from "../components/elements/BulletList.js";
 import { Blockquote } from "../components/elements/Blockquote.js";
 import { LogoBox } from "../components/elements/LogoBox.js";
+import { CombinedGrid } from "../components/strips/CombinedGrid.js";
+import {
+  StatBand,
+  StatBandRule,
+} from "../components/strips/StatBand.js";
+import { LogoStrip } from "../components/strips/LogoStrip.js";
 import { LOGO_MANIFEST, type LogoKey } from "../data/logo-manifest.js";
 import { BrandBar } from "../components/page-chrome/BrandBar.js";
 import { PageFooter } from "../components/page-chrome/PageFooter.js";
@@ -113,6 +118,51 @@ type LogoBoxFields = {
   assetScale: number | null;
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Slot allowlists — the brand-enforcement heart of the strip layer.
+// Sourced from EDITOR-COMPONENT-INVENTORY.md. A value here is the
+// authoritative list of elements a user is allowed to drop into that
+// slot; Puck's SlotField enforces this at drag time, so non-designers
+// physically cannot place a Headline inside a LogoStrip, etc.
+// ─────────────────────────────────────────────────────────────────────────────
+const CONTENT_SLOT_ALLOW = [
+  "Eyebrow",
+  "SubHeading",
+  "SectionHeading",
+  "IntroCopy",
+  "BodyCopy",
+  "BulletList",
+];
+
+const QUOTE_SLOT_ALLOW = ["Blockquote"];
+
+const STAT_INTRO_SLOT_ALLOW = ["SectionHeading", "Headline"];
+
+const STAT_BODY_SLOT_ALLOW = ["IntroCopy", "BodyCopy"];
+
+const LOGO_STRIP_SLOT_ALLOW = ["LogoBox"];
+
+type CombinedGridFields = {
+  contentSlot: Slot;
+  quoteSlot: Slot;
+};
+
+type StatBandFields = {
+  introSlot: Slot;
+  bodySlot: Slot;
+};
+
+type LogoStripFields = {
+  ariaLabel: string;
+  /**
+   * When true, the strip renders a thin rule above and a natural-color
+   * background band around the logos — matching the Mural Overview
+   * reskin. Off by default for flexibility.
+   */
+  onNaturalField: boolean;
+  logosSlot: Slot;
+};
+
 type RootFields = {
   /** Small uppercase label that sits above the top rule on every page. */
   pageMetaLabel: string;
@@ -129,6 +179,9 @@ type PuckComponents = {
   BulletList: BulletListFields;
   Blockquote: BlockquoteFields;
   LogoBox: LogoBoxFields;
+  CombinedGrid: CombinedGridFields;
+  StatBand: StatBandFields;
+  LogoStrip: LogoStripFields;
 };
 
 /**
@@ -387,6 +440,103 @@ export const puckConfig: Config<{
             ? assetScale
             : entry.defaultScale;
         return <LogoBox src={entry.src} alt={entry.alt} assetScale={scale} />;
+      },
+    },
+
+    // ─────────────────────────────────────────────────────────────────────
+    // Strips — multi-element containers. Each slot carries an `allow`
+    // list so the drop indicator rejects non-allowed elements at drag
+    // time. This is the Wix-style "multi-piece component" layer.
+    // ─────────────────────────────────────────────────────────────────────
+
+    CombinedGrid: {
+      label: "Combined grid (content + quote)",
+      fields: {
+        contentSlot: {
+          type: "slot",
+          label: "Content (left column)",
+          allow: CONTENT_SLOT_ALLOW,
+        },
+        quoteSlot: {
+          type: "slot",
+          label: "Quote (right column)",
+          allow: QUOTE_SLOT_ALLOW,
+        },
+      },
+      defaultProps: {
+        contentSlot: [],
+        quoteSlot: [],
+      },
+      render: ({ contentSlot: Content, quoteSlot: Quote }) => (
+        <CombinedGrid content={<Content />} quote={<Quote />} />
+      ),
+    },
+
+    StatBand: {
+      label: "Stat band (hero stat + narrative)",
+      fields: {
+        introSlot: {
+          type: "slot",
+          label: "Stat heading (left column)",
+          allow: STAT_INTRO_SLOT_ALLOW,
+        },
+        bodySlot: {
+          type: "slot",
+          label: "Narrative (right column)",
+          allow: STAT_BODY_SLOT_ALLOW,
+        },
+      },
+      defaultProps: {
+        introSlot: [],
+        bodySlot: [],
+      },
+      render: ({ introSlot: Intro, bodySlot: Body }) => (
+        <StatBand intro={<Intro />} body={<Body />} />
+      ),
+    },
+
+    LogoStrip: {
+      label: "Logo strip",
+      fields: {
+        ariaLabel: {
+          type: "text",
+          label: "Accessible label (e.g. 'Customer logos')",
+        },
+        onNaturalField: {
+          type: "radio",
+          label: "Background",
+          options: [
+            { label: "Transparent", value: false },
+            { label: "Natural band with top rule", value: true },
+          ],
+        },
+        logosSlot: {
+          type: "slot",
+          label: "Logos",
+          allow: LOGO_STRIP_SLOT_ALLOW,
+        },
+      },
+      defaultProps: {
+        ariaLabel: "Customer logos",
+        onNaturalField: false,
+        logosSlot: [],
+      },
+      render: ({ ariaLabel, onNaturalField, logosSlot: Logos }) => {
+        const extraStyle = onNaturalField
+          ? {
+              marginTop: 0,
+              padding: "0.16in 0.18in 0.24in",
+              background: "var(--natural)",
+            }
+          : undefined;
+        return (
+          <>
+            {onNaturalField ? <StatBandRule /> : null}
+            <LogoStrip ariaLabel={ariaLabel} extraStyle={extraStyle}>
+              <Logos />
+            </LogoStrip>
+          </>
+        );
       },
     },
   },
