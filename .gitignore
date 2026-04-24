@@ -27,3 +27,6 @@ editor-app/*.tsbuildinfo
 # editor-app Playwright output (golden PNGs under tests/**/*-snapshots/ ARE committed)
 editor-app/test-results/
 editor-app/playwright-report/
+
+# editor-app print-fidelity audit artifacts (regenerated on demand)
+editor-app/print-audit/

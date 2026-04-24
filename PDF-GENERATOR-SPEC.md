@@ -164,6 +164,37 @@ The print surface emits the same HTML and class names as the approved reskins (`
 - **Scope of effect:** `brand.css` is loaded only by `/preview/*` routes. Static HTML files are unaffected; they keep their own inline styles.
 - When a change to `brand.css` is needed, update it first, then re-run visual-regression to capture the intended diff.
 
+### Print pipeline: browser-native, no Paged.js
+
+**Decision (A14):** Use the browser's native `File > Print > Save as PDF` (Chromium's `page.pdf()` under the hood, Safari/Firefox's equivalents too). **Paged.js is NOT integrated.** Revisit only when multi-page paginated documents land.
+
+**Rationale.** An audit run on 2026-04-24 (`editor-app/scripts/print-audit.mjs`) generated 8.5 × 11 in PDFs from both `/preview/product-one-sheet` and the static reskin `reskins/product-one-sheet/mural-overview.html`, using the same Chromium print engine. Results:
+
+| Measure | Value |
+|---|---|
+| PDF size | 118.8 KB vs 118.7 KB (0.08% delta) |
+| Print-media PNG diff | 2.56% of pixels (88,262 / 3,446,784) |
+| Root cause of diff | 4 hand-authored `<br>` forced line breaks in the reskin (lines 381, 382, 403, 404) that our editor deliberately does not surface |
+| Pixel-perfect regions | Brand bar, eyebrow, headline, intro copy, rule lines, stat-band heading, right-column quote (majority) |
+| Drift regions | Body-copy bullet lists (cascading vertical offset from the forced breaks), and everything below them on the same page |
+
+The CSS, font metrics, page dimensions, and layout engine match exactly. The delta is a **content-model** difference (we don't model forced `<br>`s, the reskin does), not a **pipeline** difference. Printing from the editor produces a document that is visually equivalent in every brand-relevant dimension: typography, spacing, grid, color, logo optical balance, rule lines, page frame.
+
+**Follow-ups logged, not blocking:**
+
+1. Visual regression continues to compare `/preview` to its own stored golden (not to the reskin). Hand-tuned reskins are not the correct bar for pixel-perfect automated comparison.
+2. If product wants designers to be able to reproduce the reskin's hand-tuned breaks, add **soft line-break** support to `RichText` (Shift+Enter → `<br>` in a locked-down TipTap extension). Not in A14 scope.
+3. Paged.js becomes worth re-evaluating only when a document type needs true multi-page pagination with running headers/footers/page numbers across pages. Single-page docs stay browser-native.
+
+**Artifacts regenerate on demand:**
+
+```
+cd editor-app
+npm run build && npm run start -- -p 3100  # in one shell
+node scripts/print-audit.mjs               # in another
+# outputs land in editor-app/print-audit/ (gitignored)
+```
+
 ### Additive, reversible migration
 
 - No existing HTML file is modified. `mural-pdf-generator-starter.html`, `mural-pdf-generator-pattern-library.html`, `mural-pdf-generator.html`, and every file under `starters/` and `reskins/` continues to work exactly as before.
