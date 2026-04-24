@@ -18,10 +18,23 @@ test("/edit mounts Puck and renders seed components", async ({ page }) => {
   await expect(page.locator(".brand-bar > span")).toHaveCount(5);
   await expect(page.locator(".page-footer")).toHaveCount(1);
 
-  // Editable content from initialData.content and root fields
+  // Editable content from the muralOverviewFixture (loaded via the
+  // MuralDoc -> Puck adapter). These strings will survive light edits
+  // to the fixture; if the smoke test starts failing unexpectedly, the
+  // adapter is the first place to look.
   await expect(page.locator(".page-meta .left")).toContainText("Product overview");
   await expect(page.locator("h1")).toContainText("Make it a mural, not a meeting.");
-  await expect(page.locator(".body-copy p")).toContainText("When ideas are visible");
+  await expect(page.locator(".intro-copy p").first()).toContainText(
+    "When ideas are visible",
+  );
+  // CombinedGrid: the content slot should have at least one BodyCopy
+  // subhead, and the quote slot should have the Bo Storozuk attribution.
+  await expect(page.locator(".body-copy p").first()).toContainText(
+    "You need an enterprise-grade platform",
+  );
+  await expect(page.locator(".quote-attribution")).toContainText("Bo Storozuk");
+  // LogoStrip: 8 logo boxes end up on the page (via the fixture).
+  await expect(page.locator(".logo-strip .logo-box.has-logo")).toHaveCount(8);
 
   expect(jsErrors, `Unexpected JS errors: ${jsErrors.map((e) => e.message).join(", ")}`).toHaveLength(0);
 });
