@@ -366,18 +366,20 @@ expect(puckToMuralDoc(muralDocToPuck(doc), doc.meta)).toEqual(doc);
 
 Lived on the schema and enforced by custom Puck bounded fields.
 
-| Element | Constraint | Source |
-|--------|-----------|--------|
-| `Headline.text` | 2–4 lines (≈ 90 chars max per line at h1 size) | PDF-GENERATOR-SPEC.md line 177 |
-| `Deck.text` | 45–75 words | PDF-GENERATOR-SPEC.md line 178 |
-| `BulletList.items` | 2–5 items | PDF-GENERATOR-SPEC.md line 179 |
-| `Blockquote.text` | 20–45 words | PDF-GENERATOR-SPEC.md line 180 |
-| `LogoStrip.children` | 3–6 `LogoBox` items | PDF-GENERATOR-SPEC.md line 181 |
-| `BodyCopy.content` (aggregate) | page body ≈ 180–260 words | PDF-GENERATOR-KIT.md line 124 |
-| `InlineNode.link.href` | must be valid URL; link color forced to `#3776E4` at render | reskin-rules.mdc "Link color" |
-| `InlineNode.text.marks[bold]` | renders as `strong { font-weight: 700 }` — no other weights | reskin-rules.mdc Typography |
+| Element | Constraint | Source | Implemented |
+|--------|-----------|--------|------------|
+| `Headline.text` | 2–4 lines (≈ 90 chars max per line at h1 size) | PDF-GENERATOR-SPEC.md line 177 | ✓ A13 |
+| `Deck.text` | 45–75 words | PDF-GENERATOR-SPEC.md line 178 | ✓ A13 |
+| `BulletList.items` | 2–5 items | PDF-GENERATOR-SPEC.md line 179 | ✓ A13 |
+| `Blockquote.text` | 20–45 words | PDF-GENERATOR-SPEC.md line 180 | ✓ A13 |
+| `LogoStrip.children` | 3–6 `LogoBox` items | PDF-GENERATOR-SPEC.md line 181 | ✓ A13 |
+| `BodyCopy.content` (aggregate) | page body ≈ 180–260 words | PDF-GENERATOR-KIT.md line 124 | deferred — cross-element |
+| `InlineNode.link.href` | must be valid URL; link color forced to `#3776E4` at render | reskin-rules.mdc "Link color" | deferred — belongs in rich-text-html parser |
+| `InlineNode.text.marks[bold]` | renders as `strong { font-weight: 700 }` — no other weights | reskin-rules.mdc Typography | enforced at render by CSS |
 
 Overflow behavior: live counter + soft warning + "AI trim suggestion" button + override-with-warning. Never silently drop content.
+
+**A13 mechanism.** Each implemented row is declared on the Puck field via `metadata: { bounded: { kind, min, max } }` in [`editor-app/src/puck/config.tsx`](editor-app/src/puck/config.tsx). A Puck `overrides.fieldTypes.{text,textarea,richtext,array,slot}` wrapper in [`editor-app/src/puck/bounded-overrides.tsx`](editor-app/src/puck/bounded-overrides.tsx) reads that metadata, runs [`editor-app/src/puck/bounded.ts`](editor-app/src/puck/bounded.ts) counters, and renders a soft badge below the inspector input. No hard limit — save always succeeds.
 
 ## Round-trip and print guarantees
 

@@ -1,7 +1,24 @@
 "use client";
 
 /**
- * Puck config — v0.7 (A12).
+ * Puck config — v0.8 (A13).
+ *
+ * Changes from v0.7 (A12):
+ *   - A13: Bounded fields. Five fields now carry
+ *     `metadata.bounded`, which the `boundedOverrides` wrapper reads
+ *     to render a soft-limit badge below the field in the inspector:
+ *
+ *       Headline.text           2–4 lines  (approx. 90 chars/line)
+ *       Deck.text              45–75 words
+ *       Blockquote.text        20–45 words
+ *       BulletList.items        2–5 items
+ *       LogoStrip.logosSlot     3–6 items
+ *
+ *     Limits are sourced from MURAL-DOC-SCHEMA.md's "Validation
+ *     rules (content guardrails)" table — update that table first if
+ *     a limit changes. Philosophy per the spec: warn, never block.
+ *     The counter shows status and suggests action; it does NOT
+ *     prevent save.
  *
  * Changes from v0.6 (A8e):
  *   - A12: BodyCopy, IntroCopy, and BulletList items upgraded from
@@ -29,7 +46,8 @@
  *     "multi-piece component within a strip" layer.
  *
  * Still in scope for later cuts:
- *   - Bounded field types (max lines, max words, max items)
+ *   - BodyCopy aggregate page-body word bound (180–260) — cross-element
+ *   - Link.href URL validation — orthogonal, belongs in the HTML parser
  *   - Blockquote "large" and "display" variants
  *   - Multi-paragraph BodyCopy/IntroCopy (needs a schema field update)
  *   - Rich text on Blockquote.text (low leverage — current fixture is plain)
@@ -297,7 +315,14 @@ export const puckConfig: Config<{
     Headline: {
       label: "Headline",
       fields: {
-        text: { type: "text", label: "Headline text" },
+        text: {
+          type: "text",
+          label: "Headline text",
+          // Spec: 2–4 lines at h1 size, ≈ 90 chars per line.
+          metadata: {
+            bounded: { kind: "lines", min: 2, max: 4, charsPerLine: 90 },
+          },
+        },
         level: {
           type: "select",
           label: "Heading level",
@@ -350,7 +375,12 @@ export const puckConfig: Config<{
     Deck: {
       label: "Deck",
       fields: {
-        text: { type: "textarea", label: "Deck text" },
+        text: {
+          type: "textarea",
+          label: "Deck text",
+          // Spec: 45–75 words.
+          metadata: { bounded: { kind: "words", min: 45, max: 75 } },
+        },
       },
       defaultProps: {
         text: "A short supporting sentence beneath the headline.",
@@ -393,7 +423,12 @@ export const puckConfig: Config<{
     Blockquote: {
       label: "Quote",
       fields: {
-        text: { type: "textarea", label: "Quote text" },
+        text: {
+          type: "textarea",
+          label: "Quote text",
+          // Spec: 20–45 words.
+          metadata: { bounded: { kind: "words", min: 20, max: 45 } },
+        },
         attributionName: { type: "text", label: "Attribution name" },
         attributionRole: { type: "text", label: "Attribution role / title" },
         logoKey: {
@@ -442,6 +477,8 @@ export const puckConfig: Config<{
         items: {
           type: "array",
           label: "Items",
+          // Spec: 2–5 items.
+          metadata: { bounded: { kind: "items", min: 2, max: 5 } },
           getItemSummary: (item, i) =>
             item.text ? stripTags(item.text).slice(0, 60) : `Item ${(i ?? 0) + 1}`,
           defaultItemProps: { text: "<p>New bullet item</p>" },
@@ -573,6 +610,8 @@ export const puckConfig: Config<{
           type: "slot",
           label: "Logos",
           allow: LOGO_STRIP_SLOT_ALLOW,
+          // Spec: 3–6 LogoBox children.
+          metadata: { bounded: { kind: "items", min: 3, max: 6 } },
         },
       },
       defaultProps: {

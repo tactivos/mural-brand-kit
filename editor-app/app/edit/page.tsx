@@ -1,7 +1,8 @@
 "use client";
 
 /**
- * /edit — Puck-based editor with localStorage persistence (A11).
+ * /edit — Puck-based editor with localStorage persistence + bounded
+ * fields (A13).
  *
  * Lifecycle:
  *   1. First render (SSR + client): show the fixture. This guarantees
@@ -44,11 +45,22 @@
  * still uses Puck's full TipTap UI (bold button, link dialog). This
  * is consistent with the rest of our inspector-first flow and does
  * not reduce what users can DO, only where they do it.
+ *
+ * boundedOverrides (A13)
+ * ----------------------
+ * overrides={boundedOverrides} installs a render wrapper around the
+ * five field types (text/textarea/richtext/array/slot) that reads
+ * `field.metadata.bounded` and appends a live counter badge below
+ * the default field UI. Fields without `metadata.bounded` are
+ * untouched. See src/puck/bounded-overrides.tsx and the annotated
+ * fields in src/puck/config.tsx (Headline, Deck, Blockquote,
+ * BulletList, LogoStrip).
  */
 import { Puck } from "@puckeditor/core";
 import type { FieldTransforms } from "@puckeditor/core";
 import { useEffect, useMemo, useState } from "react";
 import { puckConfig, type MuralPuckData } from "../../src/puck/config.js";
+import { boundedOverrides } from "../../src/puck/bounded-overrides.js";
 import {
   muralDocToPuck,
   puckToMuralDoc,
@@ -123,6 +135,7 @@ export default function EditPage() {
       data={data}
       iframe={{ enabled: false }}
       fieldTransforms={FIELD_TRANSFORMS}
+      overrides={boundedOverrides}
       onPublish={(published) => {
         const doc = puckToMuralDoc(
           published as unknown as MuralPuckData,
