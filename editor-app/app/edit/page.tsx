@@ -1,48 +1,112 @@
 "use client";
 
 /**
- * /edit — Puck-based editor scaffold (A10).
+ * /edit — Puck-based editor with localStorage persistence (A11).
  *
- * This page loads the canonical MuralDoc fixture through the adapter
- * so the editor's seed state is a real MuralDoc, not a hand-written
- * Puck blob. `onPublish` round-trips back to MuralDoc via the same
- * adapter — the eventual persistence / API layer will plug in there.
+ * Lifecycle:
+ *   1. First render (SSR + client): show the fixture. This guarantees
+ *      no hydration mismatch even though localStorage is only
+ *      available on the client.
+ *   2. After mount: check localStorage. If a saved MuralDoc exists
+ *      for this docType, swap it in (forcing a Puck remount via `key`).
+ *      If `?reset=1` is present, clear storage first and drop the param
+ *      from the URL so refreshes don't reset again.
+ *   3. On Publish: run puckToMuralDoc through the adapter and save.
+ *
+ * Escape hatch: visit `/edit?reset=1` to wipe the saved doc and seed
+ * from fixture. Keeps the UI minimal until we add a proper reset
+ * button through Puck's overrides.
+ *
+ * Save trigger: explicit Publish button. Auto-save on every change is
+ * a later step (needs debouncing to avoid hammering localStorage on
+ * every keystroke).
+ *
+ * Known v1 property: saving passes the doc through the adapter
+ * round-trip. Lossy bits documented in src/adapters/muraldoc-puck.ts
+ * (inline marks, multi-paragraph, section boundaries) are collapsed
+ * on the first save. Restored when RichtextField lands.
  *
  * The canvas renders inline (iframe.enabled: false) so brand.css
- * applies directly. A future step can switch to iframe mode once we
- * decide how to shuttle brand.css into the iframe.
+ * applies directly.
  */
 import { Puck } from "@puckeditor/core";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { puckConfig, type MuralPuckData } from "../../src/puck/config.js";
 import {
   muralDocToPuck,
   puckToMuralDoc,
 } from "../../src/adapters/muraldoc-puck.js";
 import { muralOverviewFixture } from "../../src/fixtures/mural-overview.js";
+import {
+  loadDoc,
+  saveDoc,
+  clearDoc,
+} from "../../src/persistence/local-storage.js";
+
+const DOC_TYPE = "product-one-sheet" as const;
 
 export default function EditPage() {
-  const initialData: MuralPuckData = useMemo(
+  const fixtureData: MuralPuckData = useMemo(
     () => muralDocToPuck(muralOverviewFixture),
     [],
   );
 
+  const [data, setData] = useState<MuralPuckData>(fixtureData);
+  // `remountKey` forces Puck to re-initialize when we hydrate from
+  // storage. Puck reads `data` only on mount; bumping the key is the
+  // supported way to swap initial data at runtime.
+  const [remountKey, setRemountKey] = useState(0);
+
+  useEffect(() => {
+    // Reset takes precedence: if the user explicitly navigated to
+    // /edit?reset=1, wipe storage, strip the query param, then fall
+    // through to the normal "no saved doc" path (fixture stays).
+    const params = new URLSearchParams(window.location.search);
+    const shouldReset = params.has("reset");
+    if (shouldReset) {
+      clearDoc(DOC_TYPE);
+      window.history.replaceState(null, "", "/edit");
+      return;
+    }
+
+    const stored = loadDoc(DOC_TYPE);
+    if (stored) {
+      try {
+        setData(muralDocToPuck(stored));
+        setRemountKey((v) => v + 1);
+      } catch (error) {
+        // Stored doc is structurally valid (passed isValidMuralDoc) but
+        // has shape the current adapter can't translate — probably from
+        // a newer Puck config than was running when it was saved. Clear
+        // it so the next refresh starts clean, and surface the error
+        // in the console for anyone watching.
+        // eslint-disable-next-line no-console
+        console.error(
+          "[edit] stored doc failed to load via adapter; clearing it",
+          error,
+        );
+        clearDoc(DOC_TYPE);
+      }
+    }
+  }, []);
+
   return (
     <Puck
+      key={remountKey}
       config={puckConfig}
-      data={initialData}
+      data={data}
       iframe={{ enabled: false }}
-      onPublish={(data) => {
-        // Adapter round-trip: Puck Data -> MuralDoc. Uses the loaded
-        // fixture as baseDoc so editor-invisible metadata (title,
-        // docType, tone, createdAt) survives the trip. Persistence
-        // layer (future commit) plugs in here.
+      onPublish={(published) => {
         const doc = puckToMuralDoc(
-          data as unknown as MuralPuckData,
+          published as unknown as MuralPuckData,
           muralOverviewFixture,
         );
+        const ok = saveDoc(doc);
         // eslint-disable-next-line no-console
-        console.log("[puck] publish -> MuralDoc", doc);
+        console.log(
+          ok ? "[edit] saved MuralDoc to localStorage" : "[edit] save failed (storage disabled?)",
+          doc,
+        );
       }}
     />
   );
