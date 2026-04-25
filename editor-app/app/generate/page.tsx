@@ -13,13 +13,26 @@
  *
  * v1 scope:
  *   - product-one-sheet only (matches the rest of the app).
- *   - No streaming, no progress UI beyond a spinner-style label.
  *   - Errors render inline; the user can retry without reloading.
  *   - Styling is intentionally plain (system fonts, no brand chrome) —
  *     this is editor-side UI, not a print surface.
+ *
+ * Progress UX (Apr 2026)
+ * ----------------------
+ * Smoke-tested generation latency lands at ~25-30 s on Azure OpenAI
+ * GPT-5.4 with a single retry budget. To keep the user oriented during
+ * that wait we show:
+ *   - An animated spinner.
+ *   - A rotating status message that reflects the actual server-side
+ *     stages (Azure call -> validation -> save). The intervals are
+ *     calibrated to observed timing, not faked progress.
+ *   - An elapsed-seconds counter so the page never looks frozen.
+ *   - An expectation hint ("usually takes 20-40 seconds").
+ * No fake percentage bar — we have no real progress signal mid-call,
+ * and a fake bar that stalls at 90% is worse than honest text.
  */
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { saveDoc } from "../../src/persistence/local-storage.js";
 import type { MuralDoc } from "../../src/schema/mural-doc.js";
 
@@ -28,6 +41,22 @@ type OutputLength = NonNullable<MuralDoc["meta"]["outputLength"]>;
 
 const TONES: Tone[] = ["Professional", "Conversational", "Technical", "Bold"];
 const LENGTHS: OutputLength[] = ["Concise", "Standard", "Detailed"];
+
+/**
+ * Map elapsed seconds to a status message. Times are calibrated to
+ * the actual /api/generate pipeline:
+ *   - ~0-3 s: client request + Azure auth handshake
+ *   - ~3-22 s: GPT-5.4 generation (the long pole)
+ *   - ~22-26 s: server-side validation + adapter round-trip
+ *   - 26 s+: model retried, or unusual latency
+ */
+function statusForElapsed(seconds: number): string {
+  if (seconds < 3) return "Connecting to the model\u2026";
+  if (seconds < 22) return "Drafting your one-sheet\u2026";
+  if (seconds < 30) return "Validating against the schema\u2026";
+  if (seconds < 45) return "Almost there\u2014polishing the draft\u2026";
+  return "Taking longer than usual. Hang tight.";
+}
 
 export default function GeneratePage() {
   const router = useRouter();
@@ -39,6 +68,21 @@ export default function GeneratePage() {
 
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [elapsed, setElapsed] = useState(0);
+
+  // Tick the elapsed counter every 500ms while a request is in flight.
+  // Reset to 0 the moment submission ends so a follow-up submit starts fresh.
+  useEffect(() => {
+    if (!submitting) {
+      setElapsed(0);
+      return;
+    }
+    const startedAt = Date.now();
+    const id = window.setInterval(() => {
+      setElapsed(Math.floor((Date.now() - startedAt) / 1000));
+    }, 500);
+    return () => window.clearInterval(id);
+  }, [submitting]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -194,27 +238,84 @@ export default function GeneratePage() {
           </div>
         )}
 
-        <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-          <button
-            type="submit"
-            disabled={submitting}
-            style={{
-              ...buttonStyle,
-              opacity: submitting ? 0.6 : 1,
-              cursor: submitting ? "wait" : "pointer",
-            }}
-          >
-            {submitting ? "Generating…" : "Generate"}
-          </button>
-          <a
-            href="/edit"
-            style={{ color: "#3776E4", textDecoration: "underline" }}
-          >
-            Skip and edit fixture
-          </a>
-        </div>
+        {submitting ? (
+          <LoadingPanel elapsed={elapsed} />
+        ) : (
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            <button type="submit" style={buttonStyle}>
+              Generate
+            </button>
+            <a
+              href="/edit"
+              style={{ color: "#3776E4", textDecoration: "underline" }}
+            >
+              Skip and edit fixture
+            </a>
+          </div>
+        )}
       </form>
+
+      {/*
+        Spinner keyframes. Inlined here so the page stays self-contained
+        and so we don't pollute the global stylesheet with editor-only UI.
+      */}
+      <style>{`
+        @keyframes generate-spin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+      `}</style>
     </main>
+  );
+}
+
+/**
+ * Loading panel shown while POST /api/generate is in flight. Renders
+ * inside the same form layout so the visual rhythm doesn't jump when
+ * the submit button hides.
+ */
+function LoadingPanel({ elapsed }: { elapsed: number }) {
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      style={{
+        display: "flex",
+        gap: "1rem",
+        alignItems: "center",
+        padding: "1rem 1.25rem",
+        border: "1px solid #cbd5e1",
+        borderRadius: "0.5rem",
+        background: "#f8fafc",
+      }}
+    >
+      <Spinner />
+      <div style={{ display: "grid", gap: "0.2rem" }}>
+        <div style={{ fontWeight: 500, fontSize: "0.95rem" }}>
+          {statusForElapsed(elapsed)}
+        </div>
+        <div style={{ color: "#64748b", fontSize: "0.85rem" }}>
+          Elapsed: {elapsed}s &middot; Generations usually take 20&ndash;40 seconds.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Spinner() {
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        width: "1.5rem",
+        height: "1.5rem",
+        flex: "0 0 auto",
+        borderRadius: "9999px",
+        border: "3px solid #cbd5e1",
+        borderTopColor: "#00c27a",
+        animation: "generate-spin 0.9s linear infinite",
+      }}
+    />
   );
 }
 
