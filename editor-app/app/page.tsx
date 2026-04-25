@@ -23,6 +23,18 @@ export default function HomePage() {
         and document-type selector land in a later migration step. For now:
       </p>
       <ul>
+        <li>
+          <a href="/generate">Generate a one-sheet</a> — AI-drafted MuralDoc,
+          opens in the editor.
+        </li>
+        <li>
+          <a href="/edit">Edit the fixture</a> — open the canonical product
+          one-sheet in Puck.
+        </li>
+        <li>
+          <a href="/preview/product-one-sheet">Preview the print surface</a> —
+          zero-chrome render, target of <code>File &rsaquo; Print</code>.
+        </li>
         <li>Schema: see <code>MURAL-DOC-SCHEMA.md</code></li>
         <li>Component manifest: see <code>EDITOR-COMPONENT-INVENTORY.md</code></li>
         <li>

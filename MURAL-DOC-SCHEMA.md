@@ -381,6 +381,8 @@ Overflow behavior: live counter + soft warning + "AI trim suggestion" button + o
 
 **A13 mechanism.** Each implemented row is declared on the Puck field via `metadata: { bounded: { kind, min, max } }` in [`editor-app/src/puck/config.tsx`](editor-app/src/puck/config.tsx). A Puck `overrides.fieldTypes.{text,textarea,richtext,array,slot}` wrapper in [`editor-app/src/puck/bounded-overrides.tsx`](editor-app/src/puck/bounded-overrides.tsx) reads that metadata, runs [`editor-app/src/puck/bounded.ts`](editor-app/src/puck/bounded.ts) counters, and renders a soft badge below the inspector input. No hard limit — save always succeeds.
 
+**A15 mechanism.** The same constraints are mirrored as soft limits in the AI system prompt at [`editor-app/src/ai/system-prompt.ts`](editor-app/src/ai/system-prompt.ts), so generated drafts land inside the bounded ranges before the user opens them in the editor. Server-side validation in [`editor-app/app/api/generate/route.ts`](editor-app/app/api/generate/route.ts) re-uses `isValidMuralDoc` (now exported from [`editor-app/src/persistence/local-storage.ts`](editor-app/src/persistence/local-storage.ts)) plus the `muralDocToPuck` adapter as a deep validity check. If the model emits a structurally bad doc, the route retries once and otherwise returns 502 with a descriptive error.
+
 ## Round-trip and print guarantees
 
 The schema is only as valuable as the invariants it upholds. The following must hold in CI:

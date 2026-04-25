@@ -195,6 +195,43 @@ node scripts/print-audit.mjs               # in another
 # outputs land in editor-app/print-audit/ (gitignored)
 ```
 
+### AI generation pipeline
+
+**Status (A15):** Wired end-to-end for `product-one-sheet`. Live, behind Azure OpenAI.
+
+**Topology.** A single Next.js route — `POST /api/generate` — turns a user prompt into a `MuralDoc`:
+
+```
+/generate (client form)
+  -> POST /api/generate (Node runtime, holds Azure key)
+    -> Azure OpenAI chat.completions.create
+       (model = AZURE_OPENAI_DEPLOYMENT, response_format: json_object)
+    -> JSON.parse + isValidMuralDoc + muralDocToPuck round-trip
+    -> stampTimestamps
+    -> 200 { doc }
+  <- saveDoc(doc) to localStorage
+  <- router.push("/edit")
+```
+
+The browser never sees the Azure key; only the server-side route reads `AZURE_OPENAI_*` env vars (template at `editor-app/.env.local.example`).
+
+**Provider choice.** Azure OpenAI was selected to match the `jmoore-ai.openai.azure.com` deployment that already exists for this project. The deployment serves GPT-5.4 today; the SDK call is `chat.completions.create()` with `response_format: { type: "json_object" }` for reliable JSON output.
+
+**Why prompt-engineering, not strict JSON Schema mode.** A strict JSON Schema mirror of `MuralDoc` would be roughly 300 LOC of fragile type-mirror code with `nullable: true` on every optional field. Instead, the system prompt (`editor-app/src/ai/system-prompt.ts`) describes the schema in natural language, embeds the canonical fixture as a one-shot example, and enumerates the allowed strip / element / logo-key values. Server-side validation through `isValidMuralDoc` plus a `muralDocToPuck` round-trip guarantees that anything malformed never reaches the editor. One retry on validation failure, then 502 with the model's last error.
+
+**v1 scope:**
+
+- `product-one-sheet` only. Other doc types return 400.
+- No streaming, no incremental rendering — single response, redirect on success.
+- No automated end-to-end test against Azure (would need a live key in CI and a paid call per run). Pure-function tests of the prompt builder live at `editor-app/tests/ai/system-prompt.spec.ts`.
+- Model errors surface inline on the form; user can retry without reloading.
+
+**Follow-ups (not blocking):**
+
+1. Add the remaining doc types to the system prompt and the `SUPPORTED_DOC_TYPES` allow-list.
+2. Consider strict JSON Schema mode once we have telemetry on actual hallucination rates.
+3. Add a "regenerate this section" affordance inside `/edit` that posts a partial-doc context to a future `/api/refine` route.
+
 ### Additive, reversible migration
 
 - No existing HTML file is modified. `mural-pdf-generator-starter.html`, `mural-pdf-generator-pattern-library.html`, `mural-pdf-generator.html`, and every file under `starters/` and `reskins/` continues to work exactly as before.

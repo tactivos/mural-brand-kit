@@ -112,8 +112,16 @@ export function clearDoc(docType: DocType): void {
  * and the schemaVersion matches. Deeper problems (malformed elements,
  * unknown strip types) surface when the adapter runs and throws an
  * AdapterError the editor can catch.
+ *
+ * Exported so the AI route (`/api/generate`) can re-validate model
+ * output server-side before sending it back to the client. The two
+ * call sites have the same correctness need: "is this thing safe to
+ * hand to the adapter?".
  */
-function isValidMuralDoc(value: unknown, expectedDocType: DocType): value is MuralDoc {
+export function isValidMuralDoc(
+  value: unknown,
+  expectedDocType: DocType,
+): value is MuralDoc {
   if (typeof value !== "object" || value === null) return false;
   const doc = value as Partial<MuralDoc>;
   if (doc.schemaVersion !== 1) return false;
