@@ -1,0 +1,91 @@
+name: Deploy Brand Guidelines to GitHub Pages
+
+# Publishes mural-brand-guidelines.html (plus index.html, robots.txt, and every
+# image asset referenced from the HTML) to the gh-pages branch whenever any of
+# those files change on main. Can also be run manually from the Actions tab.
+#
+# Why a curated publish dir instead of pushing the whole repo?
+#   The repo also contains the editor-app, internal docs, and PDF reskins that
+#   we don't want exposed at tactivos.github.io/mural-brand-kit. The workflow
+#   parses the HTML to discover referenced assets so adding a new <img src="..."/>
+#   automatically gets that asset deployed -- no manifest to keep in sync.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'mural-brand-guidelines.html'
+      - 'index.html'
+      - 'robots.txt'
+      - '*.svg'
+      - '*.png'
+      - '*.jpg'
+      - '*.jpeg'
+      - '*.gif'
+      - '*.webp'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - name: Assemble publish directory
+        run: |
+          set -euo pipefail
+          mkdir -p _publish
+
+          for f in mural-brand-guidelines.html index.html robots.txt; do
+            if [ ! -f "$f" ]; then
+              echo "::error::Required file missing: $f"
+              exit 1
+            fi
+            cp "$f" "_publish/$f"
+          done
+
+          # Discover every locally-referenced image asset in the HTML
+          # (matches src="..." and href="..." pointing at .svg/.png/.jpg/.jpeg/.gif/.webp,
+          # excluding URLs with a scheme, leading slash, or data: prefix).
+          assets=$(grep -oE '(src|href)="[^"#]+\.(svg|png|jpg|jpeg|gif|webp)"' mural-brand-guidelines.html \
+            | sed -E 's/^(src|href)="(.*)"$/\2/' \
+            | grep -vE '^(https?:|/|data:)' \
+            | sort -u)
+
+          missing=0
+          while IFS= read -r asset; do
+            [ -z "$asset" ] && continue
+            if [ ! -f "$asset" ]; then
+              echo "::error::Referenced asset missing in repo: $asset"
+              missing=1
+              continue
+            fi
+            mkdir -p "_publish/$(dirname "$asset")"
+            cp "$asset" "_publish/$asset"
+            echo "  + $asset"
+          done <<< "$assets"
+
+          if [ "$missing" = "1" ]; then
+            exit 1
+          fi
+
+          echo "---"
+          echo "Publish directory contents:"
+          ls -la _publish/
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_publish
+          publish_branch: gh-pages
+          commit_message: "Deploy brand guidelines (${{ github.sha }})"
