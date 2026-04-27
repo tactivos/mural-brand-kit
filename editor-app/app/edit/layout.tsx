@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import "@puckeditor/core/puck.css";
 import "../../styles/brand.css";
+import "../../styles/edit-shell.css";
 
 /**
  * /edit/* layout — loads both Puck's editor chrome styles and our brand.css.

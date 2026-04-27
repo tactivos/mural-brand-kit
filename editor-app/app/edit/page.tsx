@@ -1,61 +1,41 @@
 "use client";
 
 /**
- * /edit — Puck-based editor with localStorage persistence + bounded
- * fields (A13).
+ * /edit — single UI surface for editing AND previewing a MuralDoc.
  *
- * Lifecycle:
- *   1. First render (SSR + client): show the fixture. This guarantees
- *      no hydration mismatch even though localStorage is only
- *      available on the client.
- *   2. After mount: check localStorage. If a saved MuralDoc exists
- *      for this docType, swap it in (forcing a Puck remount via `key`).
- *      If `?reset=1` is present, clear storage first and drop the param
- *      from the URL so refreshes don't reset again.
- *   3. On Publish: run puckToMuralDoc through the adapter and save.
+ * Two modes share the same URL and the same data:
+ *   - "edit"    → Puck three-panel UI (Navigator + Canvas + Inspector)
+ *   - "preview" → the same component tree that /preview/product-one-sheet
+ *                 uses (ProductOneSheetRenderer), with no editor chrome —
+ *                 i.e. exactly what `File > Print > Save as PDF` produces.
  *
- * Escape hatch: visit `/edit?reset=1` to wipe the saved doc and seed
- * from fixture. Keeps the UI minimal until we add a proper reset
- * button through Puck's overrides.
+ * Why both modes are mounted simultaneously
+ * -----------------------------------------
+ * We render Puck and the preview surface side-by-side in the DOM and
+ * toggle between them with `display: none`. This:
+ *   1. Preserves Puck's internal state (selection, scroll, undo stack)
+ *      across mode switches — toggling back to edit doesn't lose your
+ *      place.
+ *   2. Keeps the preview live: every Puck `onChange` syncs a MuralDoc
+ *      mirror that the preview surface reads, so flipping the toggle
+ *      shows the latest in-progress edits without any save step.
+ *   3. Lets `Cmd+P` print correctly from either mode — see the print
+ *      CSS at the bottom of this file, which forces the preview
+ *      subtree as the only visible thing on paper.
  *
- * Save trigger: explicit Publish button. Auto-save on every change is
- * a later step (needs debouncing to avoid hammering localStorage on
- * every keystroke).
+ * Lifecycle (unchanged from earlier revisions):
+ *   1. First render (SSR + client): show the fixture. No hydration
+ *      mismatch.
+ *   2. After mount: check localStorage. If a saved MuralDoc exists,
+ *      swap it in (forcing a Puck remount via `key`). `?reset=1`
+ *      clears storage and drops the param from the URL.
+ *   3. On Publish: round-trip through puckToMuralDoc and save.
  *
- * Known v1 property: saving passes the doc through the adapter
- * round-trip. Lossy bits documented in src/adapters/muraldoc-puck.ts
- * (multi-paragraph, section boundaries) are collapsed on the first
- * save. Bold marks and links now round-trip losslessly (A12).
- *
- * fieldTransforms.richtext override
- * ---------------------------------
- * Puck's default richtext transform replaces a RichtextField's value
- * with an inline TipTap EditorContent ReactNode before passing it to
- * the component's render function. That default assumes you render
- * the ReactNode directly (`<div>{richTextProp}</div>`) and get an
- * in-canvas WYSIWYG editor for free. We can't use that assumption —
- * our BodyCopy / IntroCopy / BulletList components need raw HTML so
- * they can parse it into InlineNode[] and stamp the brand's markup
- * (`.body-copy p`, `.intro-copy p`, etc.) around it. Without this
- * override, every render crashes with `e.trim is not a function`
- * because the code tries to parse a ReactNode as HTML.
- *
- * Tradeoff: users lose in-canvas inline click-to-edit for rich
- * fields. Editing happens via the right-hand inspector panel, which
- * still uses Puck's full TipTap UI (bold button, link dialog). This
- * is consistent with the rest of our inspector-first flow and does
- * not reduce what users can DO, only where they do it.
- *
- * boundedOverrides (A13)
- * ----------------------
- * overrides={boundedOverrides} installs a render wrapper around the
- * five field types (text/textarea/richtext/array/slot) that reads
- * `field.metadata.bounded` and appends a live counter badge below
- * the default field UI. Fields without `metadata.bounded` are
- * untouched. See src/puck/bounded-overrides.tsx and the annotated
- * fields in src/puck/config.tsx (Headline, Deck, Blockquote,
- * BulletList, LogoStrip).
+ * fieldTransforms.richtext + boundedOverrides docs live below in the
+ * `FIELD_TRANSFORMS` and `boundedOverrides` references — see prior
+ * revisions for the full rationale.
  */
+
 import { Puck } from "@puckeditor/core";
 import type { FieldTransforms } from "@puckeditor/core";
 import { useEffect, useMemo, useState } from "react";
@@ -71,17 +51,26 @@ import {
   saveDoc,
   clearDoc,
 } from "../../src/persistence/local-storage.js";
+import { ProductOneSheetRenderer } from "../../src/components/preview/ProductOneSheetRenderer.js";
+import type { MuralDoc } from "../../src/schema/mural-doc.js";
 
 const DOC_TYPE = "product-one-sheet" as const;
 
 /**
  * Override Puck's built-in richtext transform so the component render
  * function receives the raw HTML string instead of an inline-editor
- * ReactNode. See the fieldTransforms docstring at the top of this file.
+ * ReactNode. Without this, every render crashes with `e.trim is not a
+ * function` because our components parse the value as HTML.
+ *
+ * Tradeoff: in-canvas inline rich-text editing is disabled. Editing
+ * happens via the right-hand inspector panel, which still uses Puck's
+ * full TipTap UI (bold, link dialog).
  */
 const FIELD_TRANSFORMS: FieldTransforms = {
   richtext: ({ value }) => value,
 };
+
+type Mode = "edit" | "preview";
 
 export default function EditPage() {
   const fixtureData: MuralPuckData = useMemo(
@@ -95,10 +84,17 @@ export default function EditPage() {
   // supported way to swap initial data at runtime.
   const [remountKey, setRemountKey] = useState(0);
 
+  // Live MuralDoc mirror for the preview surface. Updated on every
+  // Puck onChange via the adapter. We seed with the fixture so the
+  // first paint already has something to show; the mount-time
+  // hydration step below swaps in the saved doc if there is one.
+  const [livePreviewDoc, setLivePreviewDoc] = useState<MuralDoc>(
+    muralOverviewFixture,
+  );
+
+  const [mode, setMode] = useState<Mode>("edit");
+
   useEffect(() => {
-    // Reset takes precedence: if the user explicitly navigated to
-    // /edit?reset=1, wipe storage, strip the query param, then fall
-    // through to the normal "no saved doc" path (fixture stays).
     const params = new URLSearchParams(window.location.search);
     const shouldReset = params.has("reset");
     if (shouldReset) {
@@ -111,13 +107,9 @@ export default function EditPage() {
     if (stored) {
       try {
         setData(muralDocToPuck(stored));
+        setLivePreviewDoc(stored);
         setRemountKey((v) => v + 1);
       } catch (error) {
-        // Stored doc is structurally valid (passed isValidMuralDoc) but
-        // has shape the current adapter can't translate — probably from
-        // a newer Puck config than was running when it was saved. Clear
-        // it so the next refresh starts clean, and surface the error
-        // in the console for anyone watching.
         // eslint-disable-next-line no-console
         console.error(
           "[edit] stored doc failed to load via adapter; clearing it",
@@ -129,25 +121,90 @@ export default function EditPage() {
   }, []);
 
   return (
-    <Puck
-      key={remountKey}
-      config={puckConfig}
-      data={data}
-      iframe={{ enabled: false }}
-      fieldTransforms={FIELD_TRANSFORMS}
-      overrides={boundedOverrides}
-      onPublish={(published) => {
-        const doc = puckToMuralDoc(
-          published as unknown as MuralPuckData,
-          muralOverviewFixture,
-        );
-        const ok = saveDoc(doc);
-        // eslint-disable-next-line no-console
-        console.log(
-          ok ? "[edit] saved MuralDoc to localStorage" : "[edit] save failed (storage disabled?)",
-          doc,
-        );
-      }}
-    />
+    <div className="edit-shell" data-mode={mode}>
+      <header className="edit-shell__topbar">
+        <div className="edit-shell__brand">Mural PDF Generator</div>
+        <div className="edit-shell__modes" role="tablist" aria-label="View mode">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mode === "edit"}
+            className={
+              "edit-shell__mode-btn" +
+              (mode === "edit" ? " edit-shell__mode-btn--active" : "")
+            }
+            onClick={() => setMode("edit")}
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mode === "preview"}
+            className={
+              "edit-shell__mode-btn" +
+              (mode === "preview" ? " edit-shell__mode-btn--active" : "")
+            }
+            onClick={() => setMode("preview")}
+          >
+            Preview
+          </button>
+        </div>
+        <div className="edit-shell__actions">
+          {mode === "preview" ? (
+            <button
+              type="button"
+              className="edit-shell__action-btn"
+              onClick={() => window.print()}
+              title="Print or save as PDF"
+            >
+              Print
+            </button>
+          ) : null}
+        </div>
+      </header>
+
+      <div className="edit-shell__main">
+        <div className="edit-shell__edit">
+          <Puck
+            key={remountKey}
+            config={puckConfig}
+            data={data}
+            iframe={{ enabled: false }}
+            fieldTransforms={FIELD_TRANSFORMS}
+            overrides={boundedOverrides}
+            onChange={(newData) => {
+              try {
+                const doc = puckToMuralDoc(
+                  newData as unknown as MuralPuckData,
+                  muralOverviewFixture,
+                );
+                setLivePreviewDoc(doc);
+              } catch {
+                // Puck data can be transiently shaped in ways the adapter
+                // refuses (e.g. mid-drag). Keep the last good preview doc.
+              }
+            }}
+            onPublish={(published) => {
+              const doc = puckToMuralDoc(
+                published as unknown as MuralPuckData,
+                muralOverviewFixture,
+              );
+              const ok = saveDoc(doc);
+              // eslint-disable-next-line no-console
+              console.log(
+                ok
+                  ? "[edit] saved MuralDoc to localStorage"
+                  : "[edit] save failed (storage disabled?)",
+                doc,
+              );
+            }}
+          />
+        </div>
+        <div className="edit-shell__preview">
+          <ProductOneSheetRenderer doc={livePreviewDoc} />
+        </div>
+      </div>
+    </div>
   );
 }

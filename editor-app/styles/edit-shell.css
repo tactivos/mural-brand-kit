@@ -1,0 +1,138 @@
+/*
+ * edit-shell.css — chrome and layout for /edit's unified Edit/Preview surface.
+ *
+ * Owned by app/edit/page.tsx. Loaded only by app/edit/layout.tsx so it
+ * never bleeds into /preview, the landing page, or any future routes.
+ *
+ * The interesting bits:
+ *   - Both modes (.edit-shell__edit and .edit-shell__preview) are
+ *     mounted in the DOM at the same time. We toggle visibility with
+ *     `display: none` based on the parent's [data-mode] attribute, so
+ *     Puck preserves its internal state across toggles and the preview
+ *     surface always reflects the latest in-progress edits.
+ *   - The @media print block forces the preview subtree as the only
+ *     visible thing on paper, regardless of which mode is active on
+ *     screen. This guarantees Cmd+P from anywhere on /edit prints the
+ *     same PDF as Cmd+P on /preview/product-one-sheet.
+ */
+
+.edit-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #fafafa;
+}
+
+.edit-shell__topbar {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  z-index: 10;
+}
+
+.edit-shell__brand {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.edit-shell__modes {
+  display: inline-flex;
+  gap: 0;
+  background: #f3f3f3;
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.edit-shell__mode-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 6px 16px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.edit-shell__mode-btn:hover {
+  color: #111;
+}
+
+.edit-shell__mode-btn--active {
+  background: #ffffff;
+  color: #111;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.edit-shell__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-shell__action-btn {
+  appearance: none;
+  border: 1px solid #d4d4d4;
+  background: #ffffff;
+  padding: 6px 14px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #111;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-shell__action-btn:hover {
+  background: #f7f7f7;
+}
+
+.edit-shell__main {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+}
+
+.edit-shell__edit,
+.edit-shell__preview {
+  position: absolute;
+  inset: 0;
+}
+
+.edit-shell__preview {
+  overflow: auto;
+  background: var(--natural, #ededd8);
+  padding: 32px 16px;
+}
+
+/* Mode toggle: show one subtree, hide the other. Both stay mounted so
+   Puck preserves its state across toggles. */
+.edit-shell[data-mode="edit"] .edit-shell__preview { display: none; }
+.edit-shell[data-mode="preview"] .edit-shell__edit { display: none; }
+
+/* Print bridge: regardless of which mode is active on screen, printing
+   always renders the preview subtree alone. This guarantees Cmd+P from
+   /edit produces the same PDF as Cmd+P from /preview/product-one-sheet. */
+@media print {
+  .edit-shell { height: auto; background: #ffffff; }
+  .edit-shell__topbar { display: none !important; }
+  .edit-shell__edit { display: none !important; }
+  .edit-shell__preview {
+    position: static !important;
+    display: block !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+}

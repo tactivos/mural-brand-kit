@@ -31,8 +31,15 @@ test.describe("/edit persistence", () => {
 
   test("fresh browser renders the fixture", async ({ page }) => {
     await page.goto("/edit", { waitUntil: "networkidle" });
-    await expect(page.locator("h1")).toContainText("Make it a mural, not a meeting.");
-    await expect(page.locator(".page-meta .left")).toContainText("Product overview");
+    // Scoped to .edit-shell__edit because the preview pane mirrors the
+    // same content; otherwise the locator matches both subtrees.
+    const editPane = page.locator(".edit-shell__edit");
+    await expect(editPane.locator("h1")).toContainText(
+      "Make it a mural, not a meeting.",
+    );
+    await expect(editPane.locator(".page-meta .left")).toContainText(
+      "Product overview",
+    );
   });
 
   test("seeded localStorage is picked up on mount", async ({ page }) => {
@@ -87,8 +94,11 @@ test.describe("/edit persistence", () => {
     );
     await page.goto("/edit", { waitUntil: "networkidle" });
 
-    await expect(page.locator("h1")).toContainText("Seeded from localStorage");
-    await expect(page.locator(".page-meta .left")).toContainText("Seeded topic");
+    const editPane = page.locator(".edit-shell__edit");
+    await expect(editPane.locator("h1")).toContainText("Seeded from localStorage");
+    await expect(editPane.locator(".page-meta .left")).toContainText(
+      "Seeded topic",
+    );
   });
 
   test("?reset=1 wipes storage and reverts to fixture, and clears the query param", async ({ page }) => {
@@ -134,7 +144,10 @@ test.describe("/edit persistence", () => {
 
     await page.goto("/edit?reset=1", { waitUntil: "networkidle" });
 
-    await expect(page.locator("h1")).toContainText("Make it a mural, not a meeting.");
+    const editPane = page.locator(".edit-shell__edit");
+    await expect(editPane.locator("h1")).toContainText(
+      "Make it a mural, not a meeting.",
+    );
 
     const url = new URL(page.url());
     expect(url.search).toBe("");
@@ -153,8 +166,11 @@ test.describe("/edit persistence", () => {
     );
     await page.goto("/edit", { waitUntil: "networkidle" });
 
+    const editPane = page.locator(".edit-shell__edit");
     // Fixture renders, and the corrupt blob was removed.
-    await expect(page.locator("h1")).toContainText("Make it a mural, not a meeting.");
+    await expect(editPane.locator("h1")).toContainText(
+      "Make it a mural, not a meeting.",
+    );
     const remaining = await page.evaluate(
       (key) => window.localStorage.getItem(key),
       STORAGE_KEY,
@@ -180,7 +196,10 @@ test.describe("/edit persistence", () => {
     );
     await page.goto("/edit", { waitUntil: "networkidle" });
 
-    await expect(page.locator("h1")).toContainText("Make it a mural, not a meeting.");
+    const editPane = page.locator(".edit-shell__edit");
+    await expect(editPane.locator("h1")).toContainText(
+      "Make it a mural, not a meeting.",
+    );
     const remaining = await page.evaluate(
       (key) => window.localStorage.getItem(key),
       STORAGE_KEY,

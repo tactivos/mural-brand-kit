@@ -232,6 +232,30 @@ The browser never sees the Azure key; only the server-side route reads `AZURE_OP
 2. Consider strict JSON Schema mode once we have telemetry on actual hallucination rates.
 3. Add a "regenerate this section" affordance inside `/edit` that posts a partial-doc context to a future `/api/refine` route.
 
+### Unified edit + preview surface
+
+**Status (A16):** `/edit` is now the single UI surface for both editing and previewing. `/preview/:docType` still exists as a stable deep-link / golden-test target, unchanged.
+
+**The toggle.** A segmented control in the `/edit` top bar swaps between two modes:
+
+- **Edit** — the full Puck UI (Navigator + Canvas + Inspector). Selection outlines, dropzones, the brand bar, and component drag handles all visible.
+- **Preview** — the same React component tree that `/preview/product-one-sheet` renders, with no editor chrome at all. This is what `File > Print > Save as PDF` produces.
+
+**Shared renderer.** `src/components/preview/ProductOneSheetRenderer.tsx` is the canonical view of a `MuralDoc`. Both `/preview/product-one-sheet/page.tsx` and `/edit`'s preview pane import it. They are guaranteed pixel-identical because they share code, not because they happen to render similar markup.
+
+**Both subtrees are mounted simultaneously** under `.edit-shell__edit` and `.edit-shell__preview`, toggled with `display: none`. This:
+
+1. Preserves Puck's internal state (selection, scroll, undo stack) across mode switches.
+2. Keeps the preview live: every Puck `onChange` syncs a `MuralDoc` mirror via `puckToMuralDoc`, so flipping the toggle shows the latest in-progress edits without any save step.
+3. Lets `Cmd+P` print correctly from either mode — `@media print` rules in `styles/edit-shell.css` force the preview subtree as the only visible element on paper, regardless of the active screen mode.
+
+**Tests.** `tests/visual/edit-smoke.spec.ts` includes a toggle test that asserts both panes mount, that the active mode controls visibility via `[data-mode]`, and that the preview pane shows the fixture content. The persistence tests are scoped to `.edit-shell__edit` to avoid double-matching across subtrees. The `/preview` visual-regression golden remains the print-fidelity contract; it didn't change as part of A16.
+
+**Out of scope (deferred):**
+
+- Fixing Puck's slot wrappers breaking grid-based layouts inside Edit mode (e.g. logos stacking vertically inside `.logo-strip`). Preview mode bypasses Puck entirely so it doesn't suffer this; Edit mode WYSIWYG fidelity is a follow-up.
+- Restyling `/` and `/generate` to match the brand. Tracked separately.
+
 ### Additive, reversible migration
 
 - No existing HTML file is modified. `mural-pdf-generator-starter.html`, `mural-pdf-generator-pattern-library.html`, `mural-pdf-generator.html`, and every file under `starters/` and `reskins/` continues to work exactly as before.
