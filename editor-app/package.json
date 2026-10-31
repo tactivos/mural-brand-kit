@@ -22,7 +22,7 @@
     "typescript": "^5.5.0"
   },
   "dependencies": {
-    "@puckeditor/core": "^0.21.2",
+    "@puckeditor/core": "^0.24.0",
     "next": "^14.2.35",
     "node-html-parser": "^7.1.0",
     "openai": "^6.34.0",
